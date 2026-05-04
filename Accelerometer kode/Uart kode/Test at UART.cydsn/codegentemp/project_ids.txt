@@ -1,6 +1,0 @@
-C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\Test at UART.cyprj|bdf74222-ab9d-4936-9af2-51802d49793f
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a22111c0-a4a3-4a5a-88f2-fd0e346eca71
-C:\Users\Anton\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|dc39a1e5-0f59-4809-b5f3-36bf6ee43624
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|84c26c98-9f19-4197-a573-c52854106333
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|1d83aeb1-dc7a-428c-a489-5cc2c7b8894e
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b32c7f96-ff6d-4df4-be33-15ef39ccb595

@@ -132,11 +132,11 @@
 .set Clock_3__PM_STBY_MSK, 0x04
 
 /* AlarmPin */
-.set AlarmPin__0__INTTYPE, CYREG_PICU2_INTTYPE1
-.set AlarmPin__0__MASK, 0x02
-.set AlarmPin__0__PC, CYREG_PRT2_PC1
+.set AlarmPin__0__INTTYPE, CYREG_PICU2_INTTYPE0
+.set AlarmPin__0__MASK, 0x01
+.set AlarmPin__0__PC, CYREG_PRT2_PC0
 .set AlarmPin__0__PORT, 2
-.set AlarmPin__0__SHIFT, 1
+.set AlarmPin__0__SHIFT, 0
 .set AlarmPin__AG, CYREG_PRT2_AG
 .set AlarmPin__AMUX, CYREG_PRT2_AMUX
 .set AlarmPin__BIE, CYREG_PRT2_BIE
@@ -151,7 +151,7 @@
 .set AlarmPin__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU2_BASE
 .set AlarmPin__LCD_COM_SEG, CYREG_PRT2_LCD_COM_SEG
 .set AlarmPin__LCD_EN, CYREG_PRT2_LCD_EN
-.set AlarmPin__MASK, 0x02
+.set AlarmPin__MASK, 0x01
 .set AlarmPin__PORT, 2
 .set AlarmPin__PRT, CYREG_PRT2_PRT
 .set AlarmPin__PRTDSI__CAPS_SEL, CYREG_PRT2_CAPS_SEL
@@ -162,7 +162,7 @@
 .set AlarmPin__PRTDSI__OUT_SEL1, CYREG_PRT2_OUT_SEL1
 .set AlarmPin__PRTDSI__SYNC_OUT, CYREG_PRT2_SYNC_OUT
 .set AlarmPin__PS, CYREG_PRT2_PS
-.set AlarmPin__SHIFT, 1
+.set AlarmPin__SHIFT, 0
 .set AlarmPin__SLW, CYREG_PRT2_SLW
 
 /* Miscellaneous */

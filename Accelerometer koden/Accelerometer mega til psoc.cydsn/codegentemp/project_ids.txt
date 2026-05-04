@@ -1,0 +1,6 @@
+C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer koden\Accelerometer mega til psoc.cydsn\Accelerometer mega til psoc.cyprj|bf5765c2-8689-4dd2-83ad-bfaeea80fad0
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|bd533fa1-51c7-4c1e-8618-b25189db53d1
+C:\Users\Anton\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|76a672c7-53ac-4c30-8fee-c8fac3ad0366
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|fa927f33-26d1-4817-82a6-d057b6bba154
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|70438ad1-fa9b-4fe6-bb2a-ea11be89703d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|04dcd77c-a95d-4949-9ade-e4382631e79e

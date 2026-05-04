@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
   28:Generated_Source\PSoC5/PWM_PM.c **** *  Saves the current user configuration of the component.
   29:Generated_Source\PSoC5/PWM_PM.c **** *
   30:Generated_Source\PSoC5/PWM_PM.c **** * Parameters:
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 2
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 2
 
 
   31:Generated_Source\PSoC5/PWM_PM.c **** *  None
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
   64:Generated_Source\PSoC5/PWM_PM.c ****             PWM_backup.PWMControlRegister = PWM_ReadControlRegister();
   49              		.loc 1 64 0
   50 0016 FFF7FEFF 		bl	PWM_ReadControlRegister
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 3
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 3
 
 
   51              	.LVL2:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
   92:Generated_Source\PSoC5/PWM_PM.c ****                 PWM_WritePeriod(PWM_backup.PWMPeriod);
   78              		.loc 1 92 0
   79 0002 074C     		ldr	r4, .L7
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 4
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 4
 
 
   80 0004 A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  115:Generated_Source\PSoC5/PWM_PM.c **** 
  116:Generated_Source\PSoC5/PWM_PM.c **** 
  117:Generated_Source\PSoC5/PWM_PM.c **** /*******************************************************************************
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 5
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 5
 
 
  118:Generated_Source\PSoC5/PWM_PM.c **** * Function Name: PWM_Sleep
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  148:Generated_Source\PSoC5/PWM_PM.c ****         }
  149:Generated_Source\PSoC5/PWM_PM.c ****     #endif /* (PWM_UseControl) */
  150:Generated_Source\PSoC5/PWM_PM.c **** 
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 6
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 6
 
 
  151:Generated_Source\PSoC5/PWM_PM.c ****     /* Stop component */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  161              		@ args = 0, pretend = 0, frame = 0
  162              		@ frame_needed = 0, uses_anonymous_args = 0
  163 0000 08B5     		push	{r3, lr}
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 7
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 7
 
 
  164              		.cfi_def_cfa_offset 8
@@ -411,18 +411,18 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  203 000b 01       		.uleb128 0x1
  204 000c 6B000000 		.4byte	.LASF34
  205 0010 0C       		.byte	0xc
- 206 0011 91020000 		.4byte	.LASF35
- 207 0015 3B010000 		.4byte	.LASF36
+ 206 0011 B1020000 		.4byte	.LASF35
+ 207 0015 A2010000 		.4byte	.LASF36
  208 0019 00000000 		.4byte	.Ldebug_ranges0+0
  209 001d 00000000 		.4byte	0
  210 0021 00000000 		.4byte	.Ldebug_line0
  211 0025 02       		.uleb128 0x2
  212 0026 01       		.byte	0x1
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 8
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 8
 
 
  213 0027 06       		.byte	0x6
- 214 0028 7A020000 		.4byte	.LASF0
+ 214 0028 9A020000 		.4byte	.LASF0
  215 002c 02       		.uleb128 0x2
  216 002d 01       		.byte	0x1
  217 002e 08       		.byte	0x8
@@ -430,7 +430,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  219 0033 02       		.uleb128 0x2
  220 0034 02       		.byte	0x2
  221 0035 05       		.byte	0x5
- 222 0036 29020000 		.4byte	.LASF2
+ 222 0036 49020000 		.4byte	.LASF2
  223 003a 02       		.uleb128 0x2
  224 003b 02       		.byte	0x2
  225 003c 07       		.byte	0x7
@@ -438,7 +438,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  227 0041 02       		.uleb128 0x2
  228 0042 04       		.byte	0x4
  229 0043 05       		.byte	0x5
- 230 0044 4D020000 		.4byte	.LASF4
+ 230 0044 6D020000 		.4byte	.LASF4
  231 0048 02       		.uleb128 0x2
  232 0049 04       		.byte	0x4
  233 004a 07       		.byte	0x7
@@ -446,11 +446,11 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  235 004f 02       		.uleb128 0x2
  236 0050 08       		.byte	0x8
  237 0051 05       		.byte	0x5
- 238 0052 EE010000 		.4byte	.LASF6
+ 238 0052 0E020000 		.4byte	.LASF6
  239 0056 02       		.uleb128 0x2
  240 0057 08       		.byte	0x8
  241 0058 07       		.byte	0x7
- 242 0059 B4010000 		.4byte	.LASF7
+ 242 0059 71010000 		.4byte	.LASF7
  243 005d 03       		.uleb128 0x3
  244 005e 04       		.byte	0x4
  245 005f 05       		.byte	0x5
@@ -458,7 +458,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  247 0064 02       		.uleb128 0x2
  248 0065 04       		.byte	0x4
  249 0066 07       		.byte	0x7
- 250 0067 A7010000 		.4byte	.LASF8
+ 250 0067 64010000 		.4byte	.LASF8
  251 006b 04       		.uleb128 0x4
  252 006c 2A010000 		.4byte	.LASF12
  253 0070 02       		.byte	0x2
@@ -471,14 +471,14 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  260 007e 02       		.uleb128 0x2
  261 007f 08       		.byte	0x8
  262 0080 04       		.byte	0x4
- 263 0081 91010000 		.4byte	.LASF10
+ 263 0081 4E010000 		.4byte	.LASF10
  264 0085 02       		.uleb128 0x2
  265 0086 01       		.byte	0x1
  266 0087 08       		.byte	0x8
- 267 0088 FC010000 		.4byte	.LASF11
+ 267 0088 1C020000 		.4byte	.LASF11
  268 008c 04       		.uleb128 0x4
  269 008d 07000000 		.4byte	.LASF13
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 9
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 9
 
 
  270 0091 02       		.byte	0x2
@@ -489,11 +489,11 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  275 009d 02       		.uleb128 0x2
  276 009e 08       		.byte	0x8
  277 009f 04       		.byte	0x4
- 278 00a0 56020000 		.4byte	.LASF14
+ 278 00a0 76020000 		.4byte	.LASF14
  279 00a4 02       		.uleb128 0x2
  280 00a5 04       		.byte	0x4
  281 00a6 07       		.byte	0x7
- 282 00a7 E5010000 		.4byte	.LASF15
+ 282 00a7 05020000 		.4byte	.LASF15
  283 00ab 06       		.uleb128 0x6
  284 00ac 05       		.byte	0x5
  285 00ad 03       		.byte	0x3
@@ -518,13 +518,13 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  304 00d2 6B000000 		.4byte	0x6b
  305 00d6 02       		.byte	0x2
  306 00d7 07       		.uleb128 0x7
- 307 00d8 B1020000 		.4byte	.LASF19
+ 307 00d8 D1020000 		.4byte	.LASF19
  308 00dc 03       		.byte	0x3
  309 00dd 76       		.byte	0x76
  310 00de 6B000000 		.4byte	0x6b
  311 00e2 03       		.byte	0x3
  312 00e3 07       		.uleb128 0x7
- 313 00e4 7E010000 		.4byte	.LASF20
+ 313 00e4 3B010000 		.4byte	.LASF20
  314 00e8 03       		.byte	0x3
  315 00e9 86       		.byte	0x86
  316 00ea 6B000000 		.4byte	0x6b
@@ -536,9 +536,9 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  322 00f6 8B       		.byte	0x8b
  323 00f7 AB000000 		.4byte	0xab
  324 00fb 09       		.uleb128 0x9
- 325 00fc 98010000 		.4byte	.LASF22
+ 325 00fc 55010000 		.4byte	.LASF22
  326 0100 01       		.byte	0x1
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 10
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 10
 
 
  327 0101 2A       		.byte	0x2a
@@ -577,7 +577,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  360 0158 F5010000 		.4byte	0x1f5
  361 015c 00       		.byte	0
  362 015d 09       		.uleb128 0x9
- 363 015e CB010000 		.4byte	.LASF24
+ 363 015e 88010000 		.4byte	.LASF24
  364 0162 01       		.byte	0x1
  365 0163 88       		.byte	0x88
  366 0164 00000000 		.4byte	.LFB2
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  381 018b B2       		.byte	0xb2
  382 018c 00000000 		.4byte	.LFB3
  383 0190 18000000 		.4byte	.LFE3-.LFB3
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 11
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 11
 
 
  384 0194 01       		.uleb128 0x1
@@ -620,8 +620,8 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  400 01b9 03       		.byte	0x3
  401 01ba 00000000 		.4byte	PWM_backup
  402 01be 0C       		.uleb128 0xc
- 403 01bf 1A020000 		.4byte	.LASF26
- 404 01c3 1A020000 		.4byte	.LASF26
+ 403 01bf 3A020000 		.4byte	.LASF26
+ 404 01c3 3A020000 		.4byte	.LASF26
  405 01c7 03       		.byte	0x3
  406 01c8 C0       		.byte	0xc0
  407 01c9 0C       		.uleb128 0xc
@@ -630,35 +630,35 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  410 01d2 03       		.byte	0x3
  411 01d3 B3       		.byte	0xb3
  412 01d4 0C       		.uleb128 0xc
- 413 01d5 62020000 		.4byte	.LASF28
- 414 01d9 62020000 		.4byte	.LASF28
+ 413 01d5 82020000 		.4byte	.LASF28
+ 414 01d9 82020000 		.4byte	.LASF28
  415 01dd 03       		.byte	0x3
  416 01de 9D       		.byte	0x9d
  417 01df 0C       		.uleb128 0xc
- 418 01e0 D5010000 		.4byte	.LASF29
- 419 01e4 D5010000 		.4byte	.LASF29
+ 418 01e0 92010000 		.4byte	.LASF29
+ 419 01e4 92010000 		.4byte	.LASF29
  420 01e8 03       		.byte	0x3
  421 01e9 BE       		.byte	0xbe
  422 01ea 0C       		.uleb128 0xc
- 423 01eb 33020000 		.4byte	.LASF30
- 424 01ef 33020000 		.4byte	.LASF30
+ 423 01eb 53020000 		.4byte	.LASF30
+ 424 01ef 53020000 		.4byte	.LASF30
  425 01f3 03       		.byte	0x3
  426 01f4 BA       		.byte	0xba
  427 01f5 0C       		.uleb128 0xc
- 428 01f6 01020000 		.4byte	.LASF31
- 429 01fa 01020000 		.4byte	.LASF31
+ 428 01f6 21020000 		.4byte	.LASF31
+ 429 01fa 21020000 		.4byte	.LASF31
  430 01fe 03       		.byte	0x3
  431 01ff 9E       		.byte	0x9e
  432 0200 0C       		.uleb128 0xc
- 433 0201 44020000 		.4byte	.LASF32
- 434 0205 44020000 		.4byte	.LASF32
+ 433 0201 64020000 		.4byte	.LASF32
+ 434 0205 64020000 		.4byte	.LASF32
  435 0209 03       		.byte	0x3
  436 020a 93       		.byte	0x93
  437 020b 0C       		.uleb128 0xc
- 438 020c 86020000 		.4byte	.LASF33
- 439 0210 86020000 		.4byte	.LASF33
+ 438 020c A6020000 		.4byte	.LASF33
+ 439 0210 A6020000 		.4byte	.LASF33
  440 0214 03       		.byte	0x3
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 12
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 12
 
 
  441 0215 DB       		.byte	0xdb
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  495 0032 49       		.uleb128 0x49
  496 0033 13       		.uleb128 0x13
  497 0034 00       		.byte	0
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 13
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 13
 
 
  498 0035 00       		.byte	0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  552 006b 03       		.uleb128 0x3
  553 006c 0E       		.uleb128 0xe
  554 006d 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 14
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 14
 
 
  555 006e 0B       		.uleb128 0xb
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  609 00a7 3B       		.uleb128 0x3b
  610 00a8 0B       		.uleb128 0xb
  611 00a9 00       		.byte	0
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 15
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 15
 
 
  612 00aa 00       		.byte	0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  654      6E7400
  655              	.LASF23:
  656 0029 50574D5F 		.ascii	"PWM_RestoreConfig\000"
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 16
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 16
 
 
  656      52657374 
@@ -958,133 +958,134 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 1
  675              	.LASF12:
  676 012a 75696E74 		.ascii	"uint8\000"
  676      3800
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 17
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 17
 
 
  677              	.LASF25:
  678 0130 50574D5F 		.ascii	"PWM_Wakeup\000"
  678      57616B65 
  678      757000
- 679              	.LASF36:
- 680 013b 433A5C55 		.ascii	"C:\\Users\\Anton\\Documents\\PSoC Creator\\Buzzer\\"
- 680      73657273 
- 680      5C416E74 
- 680      6F6E5C44 
- 680      6F63756D 
- 681 0168 436F6465 		.ascii	"Code for buzzer.cydsn\000"
- 681      20666F72 
- 681      2062757A 
- 681      7A65722E 
- 681      63796473 
- 682              	.LASF20:
- 683 017e 50574D43 		.ascii	"PWMControlRegister\000"
- 683      6F6E7472 
- 683      6F6C5265 
- 683      67697374 
- 683      657200
- 684              	.LASF10:
- 685 0191 646F7562 		.ascii	"double\000"
- 685      6C6500
- 686              	.LASF22:
- 687 0198 50574D5F 		.ascii	"PWM_SaveConfig\000"
- 687      53617665 
- 687      436F6E66 
- 687      696700
- 688              	.LASF8:
- 689 01a7 756E7369 		.ascii	"unsigned int\000"
- 689      676E6564 
- 689      20696E74 
- 689      00
- 690              	.LASF7:
- 691 01b4 6C6F6E67 		.ascii	"long long unsigned int\000"
- 691      206C6F6E 
- 691      6720756E 
- 691      7369676E 
- 691      65642069 
- 692              	.LASF24:
- 693 01cb 50574D5F 		.ascii	"PWM_Sleep\000"
- 693      536C6565 
- 693      7000
- 694              	.LASF29:
- 695 01d5 50574D5F 		.ascii	"PWM_WritePeriod\000"
- 695      57726974 
- 695      65506572 
- 695      696F6400 
- 696              	.LASF15:
- 697 01e5 73697A65 		.ascii	"sizetype\000"
- 697      74797065 
- 697      00
- 698              	.LASF6:
- 699 01ee 6C6F6E67 		.ascii	"long long int\000"
- 699      206C6F6E 
- 699      6720696E 
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 18
+ 679              	.LASF20:
+ 680 013b 50574D43 		.ascii	"PWMControlRegister\000"
+ 680      6F6E7472 
+ 680      6F6C5265 
+ 680      67697374 
+ 680      657200
+ 681              	.LASF10:
+ 682 014e 646F7562 		.ascii	"double\000"
+ 682      6C6500
+ 683              	.LASF22:
+ 684 0155 50574D5F 		.ascii	"PWM_SaveConfig\000"
+ 684      53617665 
+ 684      436F6E66 
+ 684      696700
+ 685              	.LASF8:
+ 686 0164 756E7369 		.ascii	"unsigned int\000"
+ 686      676E6564 
+ 686      20696E74 
+ 686      00
+ 687              	.LASF7:
+ 688 0171 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 688      206C6F6E 
+ 688      6720756E 
+ 688      7369676E 
+ 688      65642069 
+ 689              	.LASF24:
+ 690 0188 50574D5F 		.ascii	"PWM_Sleep\000"
+ 690      536C6565 
+ 690      7000
+ 691              	.LASF29:
+ 692 0192 50574D5F 		.ascii	"PWM_WritePeriod\000"
+ 692      57726974 
+ 692      65506572 
+ 692      696F6400 
+ 693              	.LASF36:
+ 694 01a2 433A5C55 		.ascii	"C:\\Users\\Anton\\Documents\\GitHub repository\\Ele"
+ 694      73657273 
+ 694      5C416E74 
+ 694      6F6E5C44 
+ 694      6F63756D 
+ 695 01d0 6B74726F 		.ascii	"ktroteknologi-Projekt-1\\Buzzer\\Code for buzzer.cy"
+ 695      74656B6E 
+ 695      6F6C6F67 
+ 695      692D5072 
+ 695      6F6A656B 
+ 696 0201 64736E00 		.ascii	"dsn\000"
+ 697              	.LASF15:
+ 698 0205 73697A65 		.ascii	"sizetype\000"
+ 698      74797065 
+ 698      00
+ 699              	.LASF6:
+ 700 020e 6C6F6E67 		.ascii	"long long int\000"
+ 700      206C6F6E 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 18
 
 
- 699      7400
- 700              	.LASF11:
- 701 01fc 63686172 		.ascii	"char\000"
- 701      00
- 702              	.LASF31:
- 703 0201 50574D5F 		.ascii	"PWM_WriteControlRegister\000"
- 703      57726974 
- 703      65436F6E 
- 703      74726F6C 
- 703      52656769 
- 704              	.LASF26:
- 705 021a 50574D5F 		.ascii	"PWM_ReadPeriod\000"
- 705      52656164 
- 705      50657269 
- 705      6F6400
- 706              	.LASF2:
- 707 0229 73686F72 		.ascii	"short int\000"
- 707      7420696E 
- 707      7400
- 708              	.LASF30:
- 709 0233 50574D5F 		.ascii	"PWM_WriteCounter\000"
- 709      57726974 
- 709      65436F75 
- 709      6E746572 
- 709      00
- 710              	.LASF32:
- 711 0244 50574D5F 		.ascii	"PWM_Stop\000"
- 711      53746F70 
- 711      00
- 712              	.LASF4:
- 713 024d 6C6F6E67 		.ascii	"long int\000"
- 713      20696E74 
- 713      00
- 714              	.LASF14:
- 715 0256 6C6F6E67 		.ascii	"long double\000"
- 715      20646F75 
- 715      626C6500 
- 716              	.LASF28:
- 717 0262 50574D5F 		.ascii	"PWM_ReadControlRegister\000"
- 717      52656164 
- 717      436F6E74 
- 717      726F6C52 
- 717      65676973 
- 718              	.LASF0:
- 719 027a 7369676E 		.ascii	"signed char\000"
- 719      65642063 
- 719      68617200 
- 720              	.LASF33:
- 721 0286 50574D5F 		.ascii	"PWM_Enable\000"
- 721      456E6162 
- 721      6C6500
- 722              	.LASF35:
- 723 0291 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_PM.c\000"
- 723      72617465 
- 723      645F536F 
- 723      75726365 
- 723      5C50536F 
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccI25lGp.s 			page 19
+ 700      6720696E 
+ 700      7400
+ 701              	.LASF11:
+ 702 021c 63686172 		.ascii	"char\000"
+ 702      00
+ 703              	.LASF31:
+ 704 0221 50574D5F 		.ascii	"PWM_WriteControlRegister\000"
+ 704      57726974 
+ 704      65436F6E 
+ 704      74726F6C 
+ 704      52656769 
+ 705              	.LASF26:
+ 706 023a 50574D5F 		.ascii	"PWM_ReadPeriod\000"
+ 706      52656164 
+ 706      50657269 
+ 706      6F6400
+ 707              	.LASF2:
+ 708 0249 73686F72 		.ascii	"short int\000"
+ 708      7420696E 
+ 708      7400
+ 709              	.LASF30:
+ 710 0253 50574D5F 		.ascii	"PWM_WriteCounter\000"
+ 710      57726974 
+ 710      65436F75 
+ 710      6E746572 
+ 710      00
+ 711              	.LASF32:
+ 712 0264 50574D5F 		.ascii	"PWM_Stop\000"
+ 712      53746F70 
+ 712      00
+ 713              	.LASF4:
+ 714 026d 6C6F6E67 		.ascii	"long int\000"
+ 714      20696E74 
+ 714      00
+ 715              	.LASF14:
+ 716 0276 6C6F6E67 		.ascii	"long double\000"
+ 716      20646F75 
+ 716      626C6500 
+ 717              	.LASF28:
+ 718 0282 50574D5F 		.ascii	"PWM_ReadControlRegister\000"
+ 718      52656164 
+ 718      436F6E74 
+ 718      726F6C52 
+ 718      65676973 
+ 719              	.LASF0:
+ 720 029a 7369676E 		.ascii	"signed char\000"
+ 720      65642063 
+ 720      68617200 
+ 721              	.LASF33:
+ 722 02a6 50574D5F 		.ascii	"PWM_Enable\000"
+ 722      456E6162 
+ 722      6C6500
+ 723              	.LASF35:
+ 724 02b1 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_PM.c\000"
+ 724      72617465 
+ 724      645F536F 
+ 724      75726365 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccSwblCu.s 			page 19
 
 
- 724              	.LASF19:
- 725 02b1 496E7465 		.ascii	"InterruptMaskValue\000"
- 725      72727570 
- 725      744D6173 
- 725      6B56616C 
- 725      756500
- 726              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 724      5C50536F 
+ 725              	.LASF19:
+ 726 02d1 496E7465 		.ascii	"InterruptMaskValue\000"
+ 726      72727570 
+ 726      744D6173 
+ 726      6B56616C 
+ 726      756500
+ 727              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

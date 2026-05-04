@@ -66,12 +66,12 @@ Port Name  Setup to Clk  Clock Name:Phase
 
 Port Name        Clock to Out  Clock Name:Phase   
 ---------------  ------------  -----------------  
-AlarmPin(0)_PAD  34014         Clock_1(routed):R  
-AlarmPin(0)_PAD  34014         Clock_1(routed):F  
-AlarmPin(0)_PAD  33503         Clock_2(routed):R  
-AlarmPin(0)_PAD  33503         Clock_2(routed):F  
-AlarmPin(0)_PAD  29825         CyBUS_CLK:R        
-AlarmPin(0)_PAD  29006         Clock_3:R          
+AlarmPin(0)_PAD  33790         Clock_1(routed):R  
+AlarmPin(0)_PAD  33790         Clock_1(routed):F  
+AlarmPin(0)_PAD  33279         Clock_2(routed):R  
+AlarmPin(0)_PAD  33279         Clock_2(routed):F  
+AlarmPin(0)_PAD  29601         CyBUS_CLK:R        
+AlarmPin(0)_PAD  28782         Clock_3:R          
 
 
                          3.3::Pad to Pad

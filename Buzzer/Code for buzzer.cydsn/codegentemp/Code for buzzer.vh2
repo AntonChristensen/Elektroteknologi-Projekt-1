@@ -2,7 +2,7 @@
 --	Conversion of Code for buzzer.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Sun May 03 23:18:47 2026
+--	Mon May 04 13:49:42 2026
 --
 
 USE cypress.cypress.all;
@@ -656,7 +656,7 @@ Clock_3:cy_clock_v1_0
 		id=>"c8a80143-0c31-4f44-9cde-e9bc91d639ce",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"16666666666666.7",
+		period=>"25000000000000",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_116,

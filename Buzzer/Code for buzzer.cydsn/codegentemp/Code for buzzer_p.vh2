@@ -1,5 +1,5 @@
 -- Project:   Code for buzzer
--- Generated: 05/03/2026 23:18:47
+-- Generated: 05/04/2026 13:49:43
 -- PSoC Creator  4.4
 
 ENTITY \Code for buzzer\ IS
@@ -73,7 +73,7 @@ ARCHITECTURE __DEFAULT__ OF \Code for buzzer\ IS
     SIGNAL zero : bit;
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     ATTRIBUTE lib_model OF AlarmPin(0) : LABEL IS "iocell1";
-    ATTRIBUTE Location OF AlarmPin(0) : LABEL IS "P2[1]";
+    ATTRIBUTE Location OF AlarmPin(0) : LABEL IS "P2[0]";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:status_2\ : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF Net_187 : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell1";
