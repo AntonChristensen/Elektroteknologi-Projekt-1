@@ -1,7 +1,0 @@
-C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\drejeknappelegen.cyprj|4fdf8384-37e0-4206-832c-b0c3a90a19c3
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|3028975a-7fd3-48df-8107-29115cd079b9
-C:\Users\ke\OneDrive\Dokumenter\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|5717e8e8-dcef-4535-9652-7580a45367a9
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|c38e945f-4d1a-4130-b8be-d9b7cac9b1a7
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|78bd2e7e-0a75-42d5-9508-f50c46994614
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|13fb8ba1-a145-4828-a1f7-6dfc4994b3cb
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|fe389d1e-87a1-49cb-897a-d27102bbf0a5
