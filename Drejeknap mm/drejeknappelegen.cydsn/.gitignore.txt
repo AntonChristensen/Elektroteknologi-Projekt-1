@@ -1,0 +1,26 @@
+# IDE / workspace
+*.workspace
+*.user
+*.userprefs
+*.suo
+*.opendsf
+
+# PSoC Creator
+Generated_Source/
+Debug/
+Release/
+
+# Build output
+*.hex
+*.elf
+*.map
+
+# Logs
+*.log
+
+# Windows junk
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+
