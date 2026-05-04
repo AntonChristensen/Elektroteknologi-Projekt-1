@@ -1,0 +1,825 @@
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"alarm.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Alarm_Trigger,"ax",%progbits
+  20              		.align	2
+  21              		.global	Alarm_Trigger
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Alarm_Trigger, %function
+  25              	Alarm_Trigger:
+  26              	.LFB63:
+  27              		.file 1 "alarm.c"
+   1:alarm.c       **** #include "alarm.h"
+   2:alarm.c       **** #include "project.h"
+   3:alarm.c       **** static uint8_t active = 0;
+   4:alarm.c       **** void Alarm_Trigger(void)
+   5:alarm.c       **** {
+  28              		.loc 1 5 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   6:alarm.c       ****     active = 1;
+  33              		.loc 1 6 0
+  34 0000 0122     		movs	r2, #1
+  35 0002 014B     		ldr	r3, .L2
+  36 0004 1A70     		strb	r2, [r3]
+  37 0006 7047     		bx	lr
+  38              	.L3:
+  39              		.align	2
+  40              	.L2:
+  41 0008 00000000 		.word	.LANCHOR0
+  42              		.cfi_endproc
+  43              	.LFE63:
+  44              		.size	Alarm_Trigger, .-Alarm_Trigger
+  45              		.section	.text.Alarm_Stop,"ax",%progbits
+  46              		.align	2
+  47              		.global	Alarm_Stop
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	Alarm_Stop, %function
+  51              	Alarm_Stop:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 2
+
+
+  52              	.LFB64:
+   7:alarm.c       **** }
+   8:alarm.c       **** void Alarm_Stop(void)
+   9:alarm.c       **** {
+  53              		.loc 1 9 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57 0000 08B5     		push	{r3, lr}
+  58              		.cfi_def_cfa_offset 8
+  59              		.cfi_offset 3, -8
+  60              		.cfi_offset 14, -4
+  10:alarm.c       ****     active = 0;
+  61              		.loc 1 10 0
+  62 0002 0020     		movs	r0, #0
+  63 0004 024B     		ldr	r3, .L6
+  64 0006 1870     		strb	r0, [r3]
+  11:alarm.c       ****     Red_LED_Write(0);
+  65              		.loc 1 11 0
+  66 0008 FFF7FEFF 		bl	Red_LED_Write
+  67              	.LVL0:
+  68 000c 08BD     		pop	{r3, pc}
+  69              	.L7:
+  70 000e 00BF     		.align	2
+  71              	.L6:
+  72 0010 00000000 		.word	.LANCHOR0
+  73              		.cfi_endproc
+  74              	.LFE64:
+  75              		.size	Alarm_Stop, .-Alarm_Stop
+  76              		.section	.text.Alarm_IsActive,"ax",%progbits
+  77              		.align	2
+  78              		.global	Alarm_IsActive
+  79              		.thumb
+  80              		.thumb_func
+  81              		.type	Alarm_IsActive, %function
+  82              	Alarm_IsActive:
+  83              	.LFB65:
+  12:alarm.c       **** }
+  13:alarm.c       **** uint8_t Alarm_IsActive(void)
+  14:alarm.c       **** {
+  84              		.loc 1 14 0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88              		@ link register save eliminated.
+  15:alarm.c       ****     return active;
+  16:alarm.c       **** }
+  89              		.loc 1 16 0
+  90 0000 014B     		ldr	r3, .L9
+  91 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  92 0004 7047     		bx	lr
+  93              	.L10:
+  94 0006 00BF     		.align	2
+  95              	.L9:
+  96 0008 00000000 		.word	.LANCHOR0
+  97              		.cfi_endproc
+  98              	.LFE65:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 3
+
+
+  99              		.size	Alarm_IsActive, .-Alarm_IsActive
+ 100              		.section	.text.Alarm_Run,"ax",%progbits
+ 101              		.align	2
+ 102              		.global	Alarm_Run
+ 103              		.thumb
+ 104              		.thumb_func
+ 105              		.type	Alarm_Run, %function
+ 106              	Alarm_Run:
+ 107              	.LFB66:
+  17:alarm.c       **** 
+  18:alarm.c       **** 
+  19:alarm.c       **** void Alarm_Run(void)
+  20:alarm.c       **** {
+ 108              		.loc 1 20 0
+ 109              		.cfi_startproc
+ 110              		@ args = 0, pretend = 0, frame = 0
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 112 0000 08B5     		push	{r3, lr}
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 3, -8
+ 115              		.cfi_offset 14, -4
+  21:alarm.c       ****     if (active)
+ 116              		.loc 1 21 0
+ 117 0002 084B     		ldr	r3, .L14
+ 118 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 119 0006 5BB1     		cbz	r3, .L11
+  22:alarm.c       ****     {
+  23:alarm.c       ****         Red_LED_Write(1);
+ 120              		.loc 1 23 0
+ 121 0008 0120     		movs	r0, #1
+ 122 000a FFF7FEFF 		bl	Red_LED_Write
+ 123              	.LVL1:
+  24:alarm.c       ****         CyDelay(200);
+ 124              		.loc 1 24 0
+ 125 000e C820     		movs	r0, #200
+ 126 0010 FFF7FEFF 		bl	CyDelay
+ 127              	.LVL2:
+  25:alarm.c       ****         Red_LED_Write(0);
+ 128              		.loc 1 25 0
+ 129 0014 0020     		movs	r0, #0
+ 130 0016 FFF7FEFF 		bl	Red_LED_Write
+ 131              	.LVL3:
+  26:alarm.c       ****         CyDelay(200);
+ 132              		.loc 1 26 0
+ 133 001a C820     		movs	r0, #200
+ 134 001c FFF7FEFF 		bl	CyDelay
+ 135              	.LVL4:
+ 136              	.L11:
+ 137 0020 08BD     		pop	{r3, pc}
+ 138              	.L15:
+ 139 0022 00BF     		.align	2
+ 140              	.L14:
+ 141 0024 00000000 		.word	.LANCHOR0
+ 142              		.cfi_endproc
+ 143              	.LFE66:
+ 144              		.size	Alarm_Run, .-Alarm_Run
+ 145              		.bss
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 4
+
+
+ 146              		.set	.LANCHOR0,. + 0
+ 147              		.type	active, %object
+ 148              		.size	active, 1
+ 149              	active:
+ 150 0000 00       		.space	1
+ 151              		.text
+ 152              	.Letext0:
+ 153              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 154              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 155              		.file 4 "Generated_Source\\PSoC5/Red_LED.h"
+ 156              		.file 5 "Generated_Source\\PSoC5/CyLib.h"
+ 157              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 158              		.section	.debug_info,"",%progbits
+ 159              	.Ldebug_info0:
+ 160 0000 9A010000 		.4byte	0x19a
+ 161 0004 0400     		.2byte	0x4
+ 162 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 163 000a 04       		.byte	0x4
+ 164 000b 01       		.uleb128 0x1
+ 165 000c 44000000 		.4byte	.LASF22
+ 166 0010 0C       		.byte	0xc
+ 167 0011 3C000000 		.4byte	.LASF23
+ 168 0015 AA010000 		.4byte	.LASF24
+ 169 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 170 001d 00000000 		.4byte	0
+ 171 0021 00000000 		.4byte	.Ldebug_line0
+ 172 0025 02       		.uleb128 0x2
+ 173 0026 01       		.byte	0x1
+ 174 0027 06       		.byte	0x6
+ 175 0028 7B010000 		.4byte	.LASF0
+ 176 002c 03       		.uleb128 0x3
+ 177 002d 12010000 		.4byte	.LASF4
+ 178 0031 02       		.byte	0x2
+ 179 0032 1D       		.byte	0x1d
+ 180 0033 37000000 		.4byte	0x37
+ 181 0037 02       		.uleb128 0x2
+ 182 0038 01       		.byte	0x1
+ 183 0039 08       		.byte	0x8
+ 184 003a 2F010000 		.4byte	.LASF1
+ 185 003e 02       		.uleb128 0x2
+ 186 003f 02       		.byte	0x2
+ 187 0040 05       		.byte	0x5
+ 188 0041 FC010000 		.4byte	.LASF2
+ 189 0045 02       		.uleb128 0x2
+ 190 0046 02       		.byte	0x2
+ 191 0047 07       		.byte	0x7
+ 192 0048 0E000000 		.4byte	.LASF3
+ 193 004c 03       		.uleb128 0x3
+ 194 004d 9A010000 		.4byte	.LASF5
+ 195 0051 02       		.byte	0x2
+ 196 0052 3F       		.byte	0x3f
+ 197 0053 57000000 		.4byte	0x57
+ 198 0057 02       		.uleb128 0x2
+ 199 0058 04       		.byte	0x4
+ 200 0059 05       		.byte	0x5
+ 201 005a 47010000 		.4byte	.LASF6
+ 202 005e 02       		.uleb128 0x2
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 5
+
+
+ 203 005f 04       		.byte	0x4
+ 204 0060 07       		.byte	0x7
+ 205 0061 E9000000 		.4byte	.LASF7
+ 206 0065 02       		.uleb128 0x2
+ 207 0066 08       		.byte	0x8
+ 208 0067 05       		.byte	0x5
+ 209 0068 00000000 		.4byte	.LASF8
+ 210 006c 02       		.uleb128 0x2
+ 211 006d 08       		.byte	0x8
+ 212 006e 07       		.byte	0x7
+ 213 006f FB000000 		.4byte	.LASF9
+ 214 0073 04       		.uleb128 0x4
+ 215 0074 04       		.byte	0x4
+ 216 0075 05       		.byte	0x5
+ 217 0076 696E7400 		.ascii	"int\000"
+ 218 007a 02       		.uleb128 0x2
+ 219 007b 04       		.byte	0x4
+ 220 007c 07       		.byte	0x7
+ 221 007d 21000000 		.4byte	.LASF10
+ 222 0081 03       		.uleb128 0x3
+ 223 0082 27010000 		.4byte	.LASF11
+ 224 0086 03       		.byte	0x3
+ 225 0087 18       		.byte	0x18
+ 226 0088 2C000000 		.4byte	0x2c
+ 227 008c 03       		.uleb128 0x3
+ 228 008d 06020000 		.4byte	.LASF12
+ 229 0091 03       		.byte	0x3
+ 230 0092 2C       		.byte	0x2c
+ 231 0093 4C000000 		.4byte	0x4c
+ 232 0097 02       		.uleb128 0x2
+ 233 0098 04       		.byte	0x4
+ 234 0099 04       		.byte	0x4
+ 235 009a A4010000 		.4byte	.LASF13
+ 236 009e 02       		.uleb128 0x2
+ 237 009f 08       		.byte	0x8
+ 238 00a0 04       		.byte	0x4
+ 239 00a1 5E010000 		.4byte	.LASF14
+ 240 00a5 02       		.uleb128 0x2
+ 241 00a6 01       		.byte	0x1
+ 242 00a7 08       		.byte	0x8
+ 243 00a8 0E020000 		.4byte	.LASF15
+ 244 00ac 02       		.uleb128 0x2
+ 245 00ad 08       		.byte	0x8
+ 246 00ae 04       		.byte	0x4
+ 247 00af 87010000 		.4byte	.LASF16
+ 248 00b3 02       		.uleb128 0x2
+ 249 00b4 04       		.byte	0x4
+ 250 00b5 07       		.byte	0x7
+ 251 00b6 65010000 		.4byte	.LASF17
+ 252 00ba 05       		.uleb128 0x5
+ 253 00bb 2E000000 		.4byte	.LASF25
+ 254 00bf 01       		.byte	0x1
+ 255 00c0 04       		.byte	0x4
+ 256 00c1 00000000 		.4byte	.LFB63
+ 257 00c5 0C000000 		.4byte	.LFE63-.LFB63
+ 258 00c9 01       		.uleb128 0x1
+ 259 00ca 9C       		.byte	0x9c
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 6
+
+
+ 260 00cb 06       		.uleb128 0x6
+ 261 00cc 1C010000 		.4byte	.LASF18
+ 262 00d0 01       		.byte	0x1
+ 263 00d1 08       		.byte	0x8
+ 264 00d2 00000000 		.4byte	.LFB64
+ 265 00d6 14000000 		.4byte	.LFE64-.LFB64
+ 266 00da 01       		.uleb128 0x1
+ 267 00db 9C       		.byte	0x9c
+ 268 00dc F0000000 		.4byte	0xf0
+ 269 00e0 07       		.uleb128 0x7
+ 270 00e1 0C000000 		.4byte	.LVL0
+ 271 00e5 87010000 		.4byte	0x187
+ 272 00e9 08       		.uleb128 0x8
+ 273 00ea 01       		.uleb128 0x1
+ 274 00eb 50       		.byte	0x50
+ 275 00ec 01       		.uleb128 0x1
+ 276 00ed 30       		.byte	0x30
+ 277 00ee 00       		.byte	0
+ 278 00ef 00       		.byte	0
+ 279 00f0 09       		.uleb128 0x9
+ 280 00f1 DA000000 		.4byte	.LASF26
+ 281 00f5 01       		.byte	0x1
+ 282 00f6 0D       		.byte	0xd
+ 283 00f7 81000000 		.4byte	0x81
+ 284 00fb 00000000 		.4byte	.LFB65
+ 285 00ff 0C000000 		.4byte	.LFE65-.LFB65
+ 286 0103 01       		.uleb128 0x1
+ 287 0104 9C       		.byte	0x9c
+ 288 0105 06       		.uleb128 0x6
+ 289 0106 3D010000 		.4byte	.LASF19
+ 290 010a 01       		.byte	0x1
+ 291 010b 13       		.byte	0x13
+ 292 010c 00000000 		.4byte	.LFB66
+ 293 0110 28000000 		.4byte	.LFE66-.LFB66
+ 294 0114 01       		.uleb128 0x1
+ 295 0115 9C       		.byte	0x9c
+ 296 0116 65010000 		.4byte	0x165
+ 297 011a 0A       		.uleb128 0xa
+ 298 011b 0E000000 		.4byte	.LVL1
+ 299 011f 87010000 		.4byte	0x187
+ 300 0123 2D010000 		.4byte	0x12d
+ 301 0127 08       		.uleb128 0x8
+ 302 0128 01       		.uleb128 0x1
+ 303 0129 50       		.byte	0x50
+ 304 012a 01       		.uleb128 0x1
+ 305 012b 31       		.byte	0x31
+ 306 012c 00       		.byte	0
+ 307 012d 0A       		.uleb128 0xa
+ 308 012e 14000000 		.4byte	.LVL2
+ 309 0132 92010000 		.4byte	0x192
+ 310 0136 41010000 		.4byte	0x141
+ 311 013a 08       		.uleb128 0x8
+ 312 013b 01       		.uleb128 0x1
+ 313 013c 50       		.byte	0x50
+ 314 013d 02       		.uleb128 0x2
+ 315 013e 08       		.byte	0x8
+ 316 013f C8       		.byte	0xc8
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 7
+
+
+ 317 0140 00       		.byte	0
+ 318 0141 0A       		.uleb128 0xa
+ 319 0142 1A000000 		.4byte	.LVL3
+ 320 0146 87010000 		.4byte	0x187
+ 321 014a 54010000 		.4byte	0x154
+ 322 014e 08       		.uleb128 0x8
+ 323 014f 01       		.uleb128 0x1
+ 324 0150 50       		.byte	0x50
+ 325 0151 01       		.uleb128 0x1
+ 326 0152 30       		.byte	0x30
+ 327 0153 00       		.byte	0
+ 328 0154 07       		.uleb128 0x7
+ 329 0155 20000000 		.4byte	.LVL4
+ 330 0159 92010000 		.4byte	0x192
+ 331 015d 08       		.uleb128 0x8
+ 332 015e 01       		.uleb128 0x1
+ 333 015f 50       		.byte	0x50
+ 334 0160 02       		.uleb128 0x2
+ 335 0161 08       		.byte	0x8
+ 336 0162 C8       		.byte	0xc8
+ 337 0163 00       		.byte	0
+ 338 0164 00       		.byte	0
+ 339 0165 0B       		.uleb128 0xb
+ 340 0166 93010000 		.4byte	.LASF27
+ 341 016a 01       		.byte	0x1
+ 342 016b 03       		.byte	0x3
+ 343 016c 81000000 		.4byte	0x81
+ 344 0170 05       		.uleb128 0x5
+ 345 0171 03       		.byte	0x3
+ 346 0172 00000000 		.4byte	active
+ 347 0176 0C       		.uleb128 0xc
+ 348 0177 6E010000 		.4byte	.LASF28
+ 349 017b 06       		.byte	0x6
+ 350 017c 1207     		.2byte	0x712
+ 351 017e 82010000 		.4byte	0x182
+ 352 0182 0D       		.uleb128 0xd
+ 353 0183 8C000000 		.4byte	0x8c
+ 354 0187 0E       		.uleb128 0xe
+ 355 0188 50010000 		.4byte	.LASF20
+ 356 018c 50010000 		.4byte	.LASF20
+ 357 0190 04       		.byte	0x4
+ 358 0191 26       		.byte	0x26
+ 359 0192 0E       		.uleb128 0xe
+ 360 0193 D2000000 		.4byte	.LASF21
+ 361 0197 D2000000 		.4byte	.LASF21
+ 362 019b 05       		.byte	0x5
+ 363 019c 76       		.byte	0x76
+ 364 019d 00       		.byte	0
+ 365              		.section	.debug_abbrev,"",%progbits
+ 366              	.Ldebug_abbrev0:
+ 367 0000 01       		.uleb128 0x1
+ 368 0001 11       		.uleb128 0x11
+ 369 0002 01       		.byte	0x1
+ 370 0003 25       		.uleb128 0x25
+ 371 0004 0E       		.uleb128 0xe
+ 372 0005 13       		.uleb128 0x13
+ 373 0006 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 8
+
+
+ 374 0007 03       		.uleb128 0x3
+ 375 0008 0E       		.uleb128 0xe
+ 376 0009 1B       		.uleb128 0x1b
+ 377 000a 0E       		.uleb128 0xe
+ 378 000b 55       		.uleb128 0x55
+ 379 000c 17       		.uleb128 0x17
+ 380 000d 11       		.uleb128 0x11
+ 381 000e 01       		.uleb128 0x1
+ 382 000f 10       		.uleb128 0x10
+ 383 0010 17       		.uleb128 0x17
+ 384 0011 00       		.byte	0
+ 385 0012 00       		.byte	0
+ 386 0013 02       		.uleb128 0x2
+ 387 0014 24       		.uleb128 0x24
+ 388 0015 00       		.byte	0
+ 389 0016 0B       		.uleb128 0xb
+ 390 0017 0B       		.uleb128 0xb
+ 391 0018 3E       		.uleb128 0x3e
+ 392 0019 0B       		.uleb128 0xb
+ 393 001a 03       		.uleb128 0x3
+ 394 001b 0E       		.uleb128 0xe
+ 395 001c 00       		.byte	0
+ 396 001d 00       		.byte	0
+ 397 001e 03       		.uleb128 0x3
+ 398 001f 16       		.uleb128 0x16
+ 399 0020 00       		.byte	0
+ 400 0021 03       		.uleb128 0x3
+ 401 0022 0E       		.uleb128 0xe
+ 402 0023 3A       		.uleb128 0x3a
+ 403 0024 0B       		.uleb128 0xb
+ 404 0025 3B       		.uleb128 0x3b
+ 405 0026 0B       		.uleb128 0xb
+ 406 0027 49       		.uleb128 0x49
+ 407 0028 13       		.uleb128 0x13
+ 408 0029 00       		.byte	0
+ 409 002a 00       		.byte	0
+ 410 002b 04       		.uleb128 0x4
+ 411 002c 24       		.uleb128 0x24
+ 412 002d 00       		.byte	0
+ 413 002e 0B       		.uleb128 0xb
+ 414 002f 0B       		.uleb128 0xb
+ 415 0030 3E       		.uleb128 0x3e
+ 416 0031 0B       		.uleb128 0xb
+ 417 0032 03       		.uleb128 0x3
+ 418 0033 08       		.uleb128 0x8
+ 419 0034 00       		.byte	0
+ 420 0035 00       		.byte	0
+ 421 0036 05       		.uleb128 0x5
+ 422 0037 2E       		.uleb128 0x2e
+ 423 0038 00       		.byte	0
+ 424 0039 3F       		.uleb128 0x3f
+ 425 003a 19       		.uleb128 0x19
+ 426 003b 03       		.uleb128 0x3
+ 427 003c 0E       		.uleb128 0xe
+ 428 003d 3A       		.uleb128 0x3a
+ 429 003e 0B       		.uleb128 0xb
+ 430 003f 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 9
+
+
+ 431 0040 0B       		.uleb128 0xb
+ 432 0041 27       		.uleb128 0x27
+ 433 0042 19       		.uleb128 0x19
+ 434 0043 11       		.uleb128 0x11
+ 435 0044 01       		.uleb128 0x1
+ 436 0045 12       		.uleb128 0x12
+ 437 0046 06       		.uleb128 0x6
+ 438 0047 40       		.uleb128 0x40
+ 439 0048 18       		.uleb128 0x18
+ 440 0049 9742     		.uleb128 0x2117
+ 441 004b 19       		.uleb128 0x19
+ 442 004c 00       		.byte	0
+ 443 004d 00       		.byte	0
+ 444 004e 06       		.uleb128 0x6
+ 445 004f 2E       		.uleb128 0x2e
+ 446 0050 01       		.byte	0x1
+ 447 0051 3F       		.uleb128 0x3f
+ 448 0052 19       		.uleb128 0x19
+ 449 0053 03       		.uleb128 0x3
+ 450 0054 0E       		.uleb128 0xe
+ 451 0055 3A       		.uleb128 0x3a
+ 452 0056 0B       		.uleb128 0xb
+ 453 0057 3B       		.uleb128 0x3b
+ 454 0058 0B       		.uleb128 0xb
+ 455 0059 27       		.uleb128 0x27
+ 456 005a 19       		.uleb128 0x19
+ 457 005b 11       		.uleb128 0x11
+ 458 005c 01       		.uleb128 0x1
+ 459 005d 12       		.uleb128 0x12
+ 460 005e 06       		.uleb128 0x6
+ 461 005f 40       		.uleb128 0x40
+ 462 0060 18       		.uleb128 0x18
+ 463 0061 9742     		.uleb128 0x2117
+ 464 0063 19       		.uleb128 0x19
+ 465 0064 01       		.uleb128 0x1
+ 466 0065 13       		.uleb128 0x13
+ 467 0066 00       		.byte	0
+ 468 0067 00       		.byte	0
+ 469 0068 07       		.uleb128 0x7
+ 470 0069 898201   		.uleb128 0x4109
+ 471 006c 01       		.byte	0x1
+ 472 006d 11       		.uleb128 0x11
+ 473 006e 01       		.uleb128 0x1
+ 474 006f 31       		.uleb128 0x31
+ 475 0070 13       		.uleb128 0x13
+ 476 0071 00       		.byte	0
+ 477 0072 00       		.byte	0
+ 478 0073 08       		.uleb128 0x8
+ 479 0074 8A8201   		.uleb128 0x410a
+ 480 0077 00       		.byte	0
+ 481 0078 02       		.uleb128 0x2
+ 482 0079 18       		.uleb128 0x18
+ 483 007a 9142     		.uleb128 0x2111
+ 484 007c 18       		.uleb128 0x18
+ 485 007d 00       		.byte	0
+ 486 007e 00       		.byte	0
+ 487 007f 09       		.uleb128 0x9
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 10
+
+
+ 488 0080 2E       		.uleb128 0x2e
+ 489 0081 00       		.byte	0
+ 490 0082 3F       		.uleb128 0x3f
+ 491 0083 19       		.uleb128 0x19
+ 492 0084 03       		.uleb128 0x3
+ 493 0085 0E       		.uleb128 0xe
+ 494 0086 3A       		.uleb128 0x3a
+ 495 0087 0B       		.uleb128 0xb
+ 496 0088 3B       		.uleb128 0x3b
+ 497 0089 0B       		.uleb128 0xb
+ 498 008a 27       		.uleb128 0x27
+ 499 008b 19       		.uleb128 0x19
+ 500 008c 49       		.uleb128 0x49
+ 501 008d 13       		.uleb128 0x13
+ 502 008e 11       		.uleb128 0x11
+ 503 008f 01       		.uleb128 0x1
+ 504 0090 12       		.uleb128 0x12
+ 505 0091 06       		.uleb128 0x6
+ 506 0092 40       		.uleb128 0x40
+ 507 0093 18       		.uleb128 0x18
+ 508 0094 9742     		.uleb128 0x2117
+ 509 0096 19       		.uleb128 0x19
+ 510 0097 00       		.byte	0
+ 511 0098 00       		.byte	0
+ 512 0099 0A       		.uleb128 0xa
+ 513 009a 898201   		.uleb128 0x4109
+ 514 009d 01       		.byte	0x1
+ 515 009e 11       		.uleb128 0x11
+ 516 009f 01       		.uleb128 0x1
+ 517 00a0 31       		.uleb128 0x31
+ 518 00a1 13       		.uleb128 0x13
+ 519 00a2 01       		.uleb128 0x1
+ 520 00a3 13       		.uleb128 0x13
+ 521 00a4 00       		.byte	0
+ 522 00a5 00       		.byte	0
+ 523 00a6 0B       		.uleb128 0xb
+ 524 00a7 34       		.uleb128 0x34
+ 525 00a8 00       		.byte	0
+ 526 00a9 03       		.uleb128 0x3
+ 527 00aa 0E       		.uleb128 0xe
+ 528 00ab 3A       		.uleb128 0x3a
+ 529 00ac 0B       		.uleb128 0xb
+ 530 00ad 3B       		.uleb128 0x3b
+ 531 00ae 0B       		.uleb128 0xb
+ 532 00af 49       		.uleb128 0x49
+ 533 00b0 13       		.uleb128 0x13
+ 534 00b1 02       		.uleb128 0x2
+ 535 00b2 18       		.uleb128 0x18
+ 536 00b3 00       		.byte	0
+ 537 00b4 00       		.byte	0
+ 538 00b5 0C       		.uleb128 0xc
+ 539 00b6 34       		.uleb128 0x34
+ 540 00b7 00       		.byte	0
+ 541 00b8 03       		.uleb128 0x3
+ 542 00b9 0E       		.uleb128 0xe
+ 543 00ba 3A       		.uleb128 0x3a
+ 544 00bb 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 11
+
+
+ 545 00bc 3B       		.uleb128 0x3b
+ 546 00bd 05       		.uleb128 0x5
+ 547 00be 49       		.uleb128 0x49
+ 548 00bf 13       		.uleb128 0x13
+ 549 00c0 3F       		.uleb128 0x3f
+ 550 00c1 19       		.uleb128 0x19
+ 551 00c2 3C       		.uleb128 0x3c
+ 552 00c3 19       		.uleb128 0x19
+ 553 00c4 00       		.byte	0
+ 554 00c5 00       		.byte	0
+ 555 00c6 0D       		.uleb128 0xd
+ 556 00c7 35       		.uleb128 0x35
+ 557 00c8 00       		.byte	0
+ 558 00c9 49       		.uleb128 0x49
+ 559 00ca 13       		.uleb128 0x13
+ 560 00cb 00       		.byte	0
+ 561 00cc 00       		.byte	0
+ 562 00cd 0E       		.uleb128 0xe
+ 563 00ce 2E       		.uleb128 0x2e
+ 564 00cf 00       		.byte	0
+ 565 00d0 3F       		.uleb128 0x3f
+ 566 00d1 19       		.uleb128 0x19
+ 567 00d2 3C       		.uleb128 0x3c
+ 568 00d3 19       		.uleb128 0x19
+ 569 00d4 6E       		.uleb128 0x6e
+ 570 00d5 0E       		.uleb128 0xe
+ 571 00d6 03       		.uleb128 0x3
+ 572 00d7 0E       		.uleb128 0xe
+ 573 00d8 3A       		.uleb128 0x3a
+ 574 00d9 0B       		.uleb128 0xb
+ 575 00da 3B       		.uleb128 0x3b
+ 576 00db 0B       		.uleb128 0xb
+ 577 00dc 00       		.byte	0
+ 578 00dd 00       		.byte	0
+ 579 00de 00       		.byte	0
+ 580              		.section	.debug_aranges,"",%progbits
+ 581 0000 34000000 		.4byte	0x34
+ 582 0004 0200     		.2byte	0x2
+ 583 0006 00000000 		.4byte	.Ldebug_info0
+ 584 000a 04       		.byte	0x4
+ 585 000b 00       		.byte	0
+ 586 000c 0000     		.2byte	0
+ 587 000e 0000     		.2byte	0
+ 588 0010 00000000 		.4byte	.LFB63
+ 589 0014 0C000000 		.4byte	.LFE63-.LFB63
+ 590 0018 00000000 		.4byte	.LFB64
+ 591 001c 14000000 		.4byte	.LFE64-.LFB64
+ 592 0020 00000000 		.4byte	.LFB65
+ 593 0024 0C000000 		.4byte	.LFE65-.LFB65
+ 594 0028 00000000 		.4byte	.LFB66
+ 595 002c 28000000 		.4byte	.LFE66-.LFB66
+ 596 0030 00000000 		.4byte	0
+ 597 0034 00000000 		.4byte	0
+ 598              		.section	.debug_ranges,"",%progbits
+ 599              	.Ldebug_ranges0:
+ 600 0000 00000000 		.4byte	.LFB63
+ 601 0004 0C000000 		.4byte	.LFE63
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 12
+
+
+ 602 0008 00000000 		.4byte	.LFB64
+ 603 000c 14000000 		.4byte	.LFE64
+ 604 0010 00000000 		.4byte	.LFB65
+ 605 0014 0C000000 		.4byte	.LFE65
+ 606 0018 00000000 		.4byte	.LFB66
+ 607 001c 28000000 		.4byte	.LFE66
+ 608 0020 00000000 		.4byte	0
+ 609 0024 00000000 		.4byte	0
+ 610              		.section	.debug_line,"",%progbits
+ 611              	.Ldebug_line0:
+ 612 0000 9F010000 		.section	.debug_str,"MS",%progbits,1
+ 612      02005801 
+ 612      00000201 
+ 612      FB0E0D00 
+ 612      01010101 
+ 613              	.LASF8:
+ 614 0000 6C6F6E67 		.ascii	"long long int\000"
+ 614      206C6F6E 
+ 614      6720696E 
+ 614      7400
+ 615              	.LASF3:
+ 616 000e 73686F72 		.ascii	"short unsigned int\000"
+ 616      7420756E 
+ 616      7369676E 
+ 616      65642069 
+ 616      6E7400
+ 617              	.LASF10:
+ 618 0021 756E7369 		.ascii	"unsigned int\000"
+ 618      676E6564 
+ 618      20696E74 
+ 618      00
+ 619              	.LASF25:
+ 620 002e 416C6172 		.ascii	"Alarm_Trigger\000"
+ 620      6D5F5472 
+ 620      69676765 
+ 620      7200
+ 621              	.LASF23:
+ 622 003c 616C6172 		.ascii	"alarm.c\000"
+ 622      6D2E6300 
+ 623              	.LASF22:
+ 624 0044 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 624      43313120 
+ 624      352E342E 
+ 624      31203230 
+ 624      31363036 
+ 625 0077 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 625      20726576 
+ 625      6973696F 
+ 625      6E203233 
+ 625      37373135 
+ 626 00aa 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 626      66756E63 
+ 626      74696F6E 
+ 626      2D736563 
+ 626      74696F6E 
+ 627              	.LASF21:
+ 628 00d2 43794465 		.ascii	"CyDelay\000"
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 13
+
+
+ 628      6C617900 
+ 629              	.LASF26:
+ 630 00da 416C6172 		.ascii	"Alarm_IsActive\000"
+ 630      6D5F4973 
+ 630      41637469 
+ 630      766500
+ 631              	.LASF7:
+ 632 00e9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 632      20756E73 
+ 632      69676E65 
+ 632      6420696E 
+ 632      7400
+ 633              	.LASF9:
+ 634 00fb 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 634      206C6F6E 
+ 634      6720756E 
+ 634      7369676E 
+ 634      65642069 
+ 635              	.LASF4:
+ 636 0112 5F5F7569 		.ascii	"__uint8_t\000"
+ 636      6E74385F 
+ 636      7400
+ 637              	.LASF18:
+ 638 011c 416C6172 		.ascii	"Alarm_Stop\000"
+ 638      6D5F5374 
+ 638      6F7000
+ 639              	.LASF11:
+ 640 0127 75696E74 		.ascii	"uint8_t\000"
+ 640      385F7400 
+ 641              	.LASF1:
+ 642 012f 756E7369 		.ascii	"unsigned char\000"
+ 642      676E6564 
+ 642      20636861 
+ 642      7200
+ 643              	.LASF19:
+ 644 013d 416C6172 		.ascii	"Alarm_Run\000"
+ 644      6D5F5275 
+ 644      6E00
+ 645              	.LASF6:
+ 646 0147 6C6F6E67 		.ascii	"long int\000"
+ 646      20696E74 
+ 646      00
+ 647              	.LASF20:
+ 648 0150 5265645F 		.ascii	"Red_LED_Write\000"
+ 648      4C45445F 
+ 648      57726974 
+ 648      6500
+ 649              	.LASF14:
+ 650 015e 646F7562 		.ascii	"double\000"
+ 650      6C6500
+ 651              	.LASF17:
+ 652 0165 73697A65 		.ascii	"sizetype\000"
+ 652      74797065 
+ 652      00
+ 653              	.LASF28:
+ 654 016e 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 654      52784275 
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cceDFCiS.s 			page 14
+
+
+ 654      66666572 
+ 654      00
+ 655              	.LASF0:
+ 656 017b 7369676E 		.ascii	"signed char\000"
+ 656      65642063 
+ 656      68617200 
+ 657              	.LASF16:
+ 658 0187 6C6F6E67 		.ascii	"long double\000"
+ 658      20646F75 
+ 658      626C6500 
+ 659              	.LASF27:
+ 660 0193 61637469 		.ascii	"active\000"
+ 660      766500
+ 661              	.LASF5:
+ 662 019a 5F5F696E 		.ascii	"__int32_t\000"
+ 662      7433325F 
+ 662      7400
+ 663              	.LASF13:
+ 664 01a4 666C6F61 		.ascii	"float\000"
+ 664      7400
+ 665              	.LASF24:
+ 666 01aa 433A5C55 		.ascii	"C:\\Users\\ke\\Gitfis\\Elektroteknologi-Projekt-1\\"
+ 666      73657273 
+ 666      5C6B655C 
+ 666      47697466 
+ 666      69735C45 
+ 667 01d8 4472656A 		.ascii	"Drejeknap mm\\drejeknappelegen.cydsn\000"
+ 667      656B6E61 
+ 667      70206D6D 
+ 667      5C647265 
+ 667      6A656B6E 
+ 668              	.LASF2:
+ 669 01fc 73686F72 		.ascii	"short int\000"
+ 669      7420696E 
+ 669      7400
+ 670              	.LASF12:
+ 671 0206 696E7433 		.ascii	"int32_t\000"
+ 671      325F7400 
+ 672              	.LASF15:
+ 673 020e 63686172 		.ascii	"char\000"
+ 673      00
+ 674              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
