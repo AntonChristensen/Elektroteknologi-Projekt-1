@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="drejeknap\drejeknappelegen\Source Files\main.c">
+<ExpandedNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\TopDesign</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Pins</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Analog</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Clocks</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Interrupts</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\DMA</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\System</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Directives</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Flash Security</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\EEPROM</v>
+<v>drejeknap\drejeknappelegen\Header Files</v>
+<v>drejeknap\drejeknappelegen\Header Files\accel.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\alarm.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\cyapicallbacks.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\keypad.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\lock.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\rotary.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\servo.h</v>
+<v>drejeknap\drejeknappelegen\Source Files</v>
+<v>drejeknap\drejeknappelegen\Source Files\accel.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\alarm.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\keypad.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\lock.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\main.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\rotary.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\servo.c</v>
+<v>drejeknap\drejeknappelegen\Generated_Source\PSoC5</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\TopDesign</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Pins</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Analog</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Clocks</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Interrupts</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\DMA</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\System</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Directives</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Flash Security</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\EEPROM</v>
+<v>drejeknap\drejeknappelegen\Header Files</v>
+<v>drejeknap\drejeknappelegen\Header Files\accel.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\alarm.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\cyapicallbacks.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\keypad.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\lock.h</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="drejeknap">
+<ExpandedNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\TopDesign</v>
+<v>drejeknap\drejeknappelegen\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\TopDesign</v>
+<v>drejeknap\drejeknappelegen\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="drejeknap">
+<ExpandedNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\CortexM3</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\accel.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_Bypass.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_INT.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_IRQ.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_PM.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_theACLK.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\alarm.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Button.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Green_LED.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_Button.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_Rot.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\keypad.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\lock.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_Servo.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_Servo_PM.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Red_LED.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Rot_A.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Rot_B.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\rotary.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\servo.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Servo_FB.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Servo_Out.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Status_Rot_B.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.elf</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.hex</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.map</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.gpdsc</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen.rpt</v>
+<v>drejeknap\drejeknappelegen\drejeknappelegen_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\CortexM3</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\accel.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_Bypass.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_INT.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_IRQ.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_PM.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_theACLK.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\alarm.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Button.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="drejeknap">
+<ExpandedNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\PSoC 5LP Architecture TRM</v>
+<v>drejeknap\drejeknappelegen\CY8C58LP Family Datasheet</v>
+<v>drejeknap\drejeknappelegen\System Reference Guides</v>
+<v>drejeknap\drejeknappelegen\System Reference Guides\cy_boot_v6_0</v>
+<v>drejeknap\drejeknappelegen\ADC_SAR_v3_10.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_clock_v2_20</v>
+<v>drejeknap\drejeknappelegen\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_isr_v1_70</v>
+<v>drejeknap\drejeknappelegen\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_pins_v2_20</v>
+<v>drejeknap\drejeknappelegen\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>drejeknap\drejeknappelegen\CyStatusReg_v1_90.pdf</v>
+<v>drejeknap\drejeknappelegen\Debouncer_v1_0</v>
+<v>drejeknap\drejeknappelegen\Debouncer_v1_0\Debouncer_v1_0.pdf</v>
+<v>drejeknap\drejeknappelegen\PWM_v3_30.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>drejeknap</v>
+<v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\PSoC 5LP Architecture TRM</v>
+<v>drejeknap\drejeknappelegen\CY8C58LP Family Datasheet</v>
+<v>drejeknap\drejeknappelegen\System Reference Guides</v>
+<v>drejeknap\drejeknappelegen\System Reference Guides\cy_boot_v6_0</v>
+<v>drejeknap\drejeknappelegen\ADC_SAR_v3_10.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_clock_v2_20</v>
+<v>drejeknap\drejeknappelegen\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_isr_v1_70</v>
+<v>drejeknap\drejeknappelegen\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_pins_v2_20</v>
+<v>drejeknap\drejeknappelegen\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>drejeknap\drejeknappelegen\CyStatusReg_v1_90.pdf</v>
+<v>drejeknap\drejeknappelegen\Debouncer_v1_0</v>
+<v>drejeknap\drejeknappelegen\Debouncer_v1_0\Debouncer_v1_0.pdf</v>
+<v>drejeknap\drejeknappelegen\PWM_v3_30.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\drejeknappelegen.cydsn\drejeknappelegen.cydwr" />
+<name v=".\drejeknappelegen.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\drejeknappelegen.cydsn\alarm.c" />
+<name v=".\drejeknappelegen.cydsn\alarm.h" />
+<name v=".\drejeknappelegen.cydsn\accel.c" />
+<name v=".\drejeknappelegen.cydsn\keypad.c" />
+<name v=".\drejeknappelegen.cydsn\lock.c" />
+<name v=".\drejeknappelegen.cydsn\main.c" />
+<name v=".\drejeknappelegen.cydsn\servo.h" />
+<name v=".\drejeknappelegen.cydsn\rotary.h" />
+<name v=".\drejeknappelegen.cydsn\rotary.c" />
+<name v=".\drejeknappelegen.cydsn\lock.h" />
+<name v=".\drejeknappelegen.cydsn\servo.c" />
+<name v=".\drejeknappelegen.cydsn\keypad.h" />
+<name v=".\drejeknappelegen.cydsn\accel.h" />
+<name v=".\drejeknappelegen.cydsn\cyapicallbacks.h" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="756, 392" SelectedTabbedMdiWindow="cad6525b-53ab-4596-a305-074a7cf6238c"><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\drejeknappelegen.cydwr" Guid="b4473f7f-21a4-411a-80fe-7aa25322bd40" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\TopDesign\TopDesign.cysch" Guid="2bbfc2b7-4280-4f57-86db-e3876dc2df94" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\alarm.c" Guid="c20a48ee-64b4-4b6f-8db4-df8cee2f2f89" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\alarm.h" Guid="af87b8e9-7260-4914-91fe-db43a2057dc1" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\accel.c" Guid="d50abe47-e578-4752-b79e-15c4cf8a66f5" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\keypad.c" Guid="1b39f084-5e31-42c8-8d0a-3ab46964632c" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\lock.c" Guid="d0bcbeb1-91be-4d71-b73a-0f96e26a3ace" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\main.c" Guid="3d521638-28b1-4f24-aa65-afa1ea023e7a" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\servo.h" Guid="047ed7c2-3f62-4acf-8e7e-28379ae41511" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\rotary.h" Guid="e5f6a6c9-9098-4ee5-a215-7c09bed833c6" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\rotary.c" Guid="b436d244-106f-456a-b467-73f6f58bdbc9" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\lock.h" Guid="05ecb3da-5c53-418c-a7dc-64c3692a5a8b" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\servo.c" Guid="f347333e-dd27-4d7a-af0b-936219aac5c8" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\keypad.h" Guid="cad6525b-53ab-4596-a305-074a7cf6238c" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\accel.h" Guid="d4795fc8-a853-46b1-9fe9-b1ee8fcb1863" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="6d6e00a7-6db7-499f-a3fd-8404dff81a3b" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\cyapicallbacks.h" Guid="25ce8982-5ed7-4181-9c19-ba36074a9b62" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>
