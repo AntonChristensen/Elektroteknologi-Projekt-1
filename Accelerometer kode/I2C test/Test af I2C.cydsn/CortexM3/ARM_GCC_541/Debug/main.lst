@@ -1,0 +1,2500 @@
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.I2C_Write,"ax",%progbits
+  20              		.align	2
+  21              		.global	I2C_Write
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	I2C_Write, %function
+  25              	I2C_Write:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** //#include "project.h"
+   2:main.c        **** //#include <stdio.h>
+   3:main.c        **** //
+   4:main.c        **** //#define BNO085_ADDR 0x4A
+   5:main.c        **** //
+   6:main.c        **** //uint8 buffer[64];
+   7:main.c        **** //uint8 seq = 0;
+   8:main.c        **** //
+   9:main.c        **** //// -------------------------
+  10:main.c        **** //// I2C write
+  11:main.c        **** //// -------------------------
+  12:main.c        **** //void I2C_Write(uint8 *data, uint8 len)
+  13:main.c        **** //{
+  14:main.c        **** //    I2C_MasterSendStart(BNO085_ADDR, I2C_WRITE_XFER_MODE);
+  15:main.c        **** //
+  16:main.c        **** //    for(uint8 i = 0; i < len; i++)
+  17:main.c        **** //        I2C_MasterWriteByte(data[i]);
+  18:main.c        **** //
+  19:main.c        **** //    I2C_MasterSendStop();
+  20:main.c        **** //}
+  21:main.c        **** //
+  22:main.c        **** //// -------------------------
+  23:main.c        **** //// Read EXACT number of bytes
+  24:main.c        **** //// -------------------------
+  25:main.c        **** //void I2C_Read(uint8 *buf, uint16 len)
+  26:main.c        **** //{
+  27:main.c        **** //    I2C_MasterSendStart(BNO085_ADDR, I2C_READ_XFER_MODE);
+  28:main.c        **** //
+  29:main.c        **** //    for(uint16 i = 0; i < len; i++)
+  30:main.c        **** //    {
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 2
+
+
+  31:main.c        **** //        buf[i] = I2C_MasterReadByte(
+  32:main.c        **** //            (i < len - 1) ? I2C_ACK_DATA : I2C_NAK_DATA
+  33:main.c        **** //        );
+  34:main.c        **** //    }
+  35:main.c        **** //
+  36:main.c        **** //    I2C_MasterSendStop();
+  37:main.c        **** //}
+  38:main.c        **** //
+  39:main.c        **** //// -------------------------
+  40:main.c        **** //// Enable Rotation Vector (CORRECT LENGTH)
+  41:main.c        **** //// -------------------------
+  42:main.c        **** //void EnableRotationVector(void)
+  43:main.c        **** //{
+  44:main.c        **** //    uint8 cmd[] =
+  45:main.c        **** //    {
+  46:main.c        **** //        0x02, 0x00, 0x11, 0x00,  // channel 2 (sensor hub), seq filled later
+  47:main.c        **** //        0xFD, 0x01,
+  48:main.c        **** //        0x05,
+  49:main.c        **** //        0x00, 0x00, 0x64, 0x00,  // 100 ms
+  50:main.c        **** //        0x00, 0x00, 0x00, 0x00,
+  51:main.c        **** //        0x00, 0x00
+  52:main.c        **** //    };
+  53:main.c        **** //
+  54:main.c        **** //    cmd[1] = seq++;  // sequence number
+  55:main.c        **** //
+  56:main.c        **** //    I2C_Write(cmd, sizeof(cmd));
+  57:main.c        **** //}
+  58:main.c        **** //
+  59:main.c        **** //// -------------------------
+  60:main.c        **** //// Read one full SHTP packet
+  61:main.c        **** //// -------------------------
+  62:main.c        **** //uint16 ReadPacket(uint8 *buf)
+  63:main.c        **** //{
+  64:main.c        **** //    uint8 header[4];
+  65:main.c        **** //
+  66:main.c        **** //    // 1. Read header
+  67:main.c        **** //    I2C_Read(header, 4);
+  68:main.c        **** //
+  69:main.c        **** //    uint8 channel = header[0];
+  70:main.c        **** //    uint16 length = header[2] | (header[3] << 8);
+  71:main.c        **** //
+  72:main.c        **** //    // 2. Basic sanity check
+  73:main.c        **** //    if(length == 0 || length > 60)
+  74:main.c        **** //        return 0;
+  75:main.c        **** //
+  76:main.c        **** //    //3. FILTER HERE
+  77:main.c        **** //    if(channel != 2)
+  78:main.c        **** //    {
+  79:main.c        **** //        // still need to clear the packet from the sensor!
+  80:main.c        **** //        uint8 dump[64];
+  81:main.c        **** //        I2C_Read(dump, length - 4);
+  82:main.c        **** //        return 0;
+  83:main.c        **** //    }
+  84:main.c        **** //
+  85:main.c        **** //    // 4. Only now read useful payload
+  86:main.c        **** //    I2C_Read(buf, length - 4);
+  87:main.c        **** //
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 3
+
+
+  88:main.c        **** //    return length;
+  89:main.c        **** //}
+  90:main.c        **** //
+  91:main.c        **** //// -------------------------
+  92:main.c        **** //// MAIN
+  93:main.c        **** //// -------------------------
+  94:main.c        **** //
+  95:main.c        **** //
+  96:main.c        **** //int main(void)
+  97:main.c        **** //{
+  98:main.c        **** //    CyGlobalIntEnable;
+  99:main.c        **** //
+ 100:main.c        **** //    I2C_Start();
+ 101:main.c        **** //
+ 102:main.c        **** //    USBUART_Start(0, USBUART_5V_OPERATION);
+ 103:main.c        **** //    while(!USBUART_GetConfiguration());
+ 104:main.c        **** //
+ 105:main.c        **** //    CyDelay(500);  // 🔥 VERY IMPORTANT (sensor boot)
+ 106:main.c        **** //
+ 107:main.c        **** //    CyDelay(500);
+ 108:main.c        **** //
+ 109:main.c        **** //    // Read and discard a few startup packets
+ 110:main.c        **** //    for(int i = 0; i < 5; i++)
+ 111:main.c        **** //    {
+ 112:main.c        **** //        uint8 header[4];
+ 113:main.c        **** //        I2C_Read(header, 4);
+ 114:main.c        **** //
+ 115:main.c        **** //        uint16 len = header[2] | (header[3] << 8);
+ 116:main.c        **** //
+ 117:main.c        **** //        if(len > 4 && len < 64)
+ 118:main.c        **** //        {
+ 119:main.c        **** //            uint8 dump[64];
+ 120:main.c        **** //            I2C_Read(dump, len - 4);
+ 121:main.c        **** //        }
+ 122:main.c        **** //
+ 123:main.c        **** //    CyDelay(50);
+ 124:main.c        **** //    }
+ 125:main.c        **** //    
+ 126:main.c        **** //    EnableRotationVector();
+ 127:main.c        **** //
+ 128:main.c        **** //    CyDelay(300);  // 🔥 allow sensor to start streaming
+ 129:main.c        **** //
+ 130:main.c        **** //    for(;;)
+ 131:main.c        **** //    {
+ 132:main.c        **** //        uint16 len = ReadPacket(buffer);
+ 133:main.c        **** //
+ 134:main.c        **** //        if(len > 0)
+ 135:main.c        **** //        {
+ 136:main.c        **** //            for(uint16 i = 0; i < len - 4; i++)
+ 137:main.c        **** //            {
+ 138:main.c        **** //                char msg[6];
+ 139:main.c        **** //                sprintf(msg, "%02X ", buffer[i]);
+ 140:main.c        **** //                USBUART_PutString(msg);
+ 141:main.c        **** //            }
+ 142:main.c        **** //            USBUART_PutString("\r\n");
+ 143:main.c        **** //        }
+ 144:main.c        **** //
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 4
+
+
+ 145:main.c        **** //        CyDelay(20);
+ 146:main.c        **** //    }
+ 147:main.c        **** //}
+ 148:main.c        **** #include "project.h"
+ 149:main.c        **** #include <stdio.h>
+ 150:main.c        **** 
+ 151:main.c        **** #define BNO085_ADDR 0x4A
+ 152:main.c        **** 
+ 153:main.c        **** // sequence numbers per channel
+ 154:main.c        **** uint8_t seq[6] = {0};
+ 155:main.c        **** 
+ 156:main.c        **** // buffer for incoming packets
+ 157:main.c        **** uint8_t buffer[128];
+ 158:main.c        **** 
+ 159:main.c        **** // -------------------------
+ 160:main.c        **** // I2C WRITE
+ 161:main.c        **** // -------------------------
+ 162:main.c        **** void I2C_Write(uint8_t *data, uint16_t len)
+ 163:main.c        **** {
+  28              		.loc 1 163 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 4, -16
+  36              		.cfi_offset 5, -12
+  37              		.cfi_offset 6, -8
+  38              		.cfi_offset 14, -4
+  39 0002 0646     		mov	r6, r0
+  40 0004 0D46     		mov	r5, r1
+ 164:main.c        ****     I2C_MasterSendStart(BNO085_ADDR, I2C_WRITE_XFER_MODE);
+  41              		.loc 1 164 0
+  42 0006 0021     		movs	r1, #0
+  43              	.LVL1:
+  44 0008 4A20     		movs	r0, #74
+  45              	.LVL2:
+  46 000a FFF7FEFF 		bl	I2C_MasterSendStart
+  47              	.LVL3:
+  48              	.LBB2:
+ 165:main.c        **** 
+ 166:main.c        ****     for(uint16_t i = 0; i < len; i++)
+  49              		.loc 1 166 0
+  50 000e 0024     		movs	r4, #0
+  51 0010 04E0     		b	.L2
+  52              	.LVL4:
+  53              	.L3:
+ 167:main.c        ****         I2C_MasterWriteByte(data[i]);
+  54              		.loc 1 167 0 discriminator 3
+  55 0012 305D     		ldrb	r0, [r6, r4]	@ zero_extendqisi2
+  56 0014 FFF7FEFF 		bl	I2C_MasterWriteByte
+  57              	.LVL5:
+ 166:main.c        ****         I2C_MasterWriteByte(data[i]);
+  58              		.loc 1 166 0 discriminator 3
+  59 0018 0134     		adds	r4, r4, #1
+  60              	.LVL6:
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 5
+
+
+  61 001a A4B2     		uxth	r4, r4
+  62              	.LVL7:
+  63              	.L2:
+ 166:main.c        ****         I2C_MasterWriteByte(data[i]);
+  64              		.loc 1 166 0 is_stmt 0 discriminator 1
+  65 001c AC42     		cmp	r4, r5
+  66 001e F8D3     		bcc	.L3
+  67              	.LBE2:
+ 168:main.c        **** 
+ 169:main.c        ****     I2C_MasterSendStop();
+  68              		.loc 1 169 0 is_stmt 1
+  69 0020 FFF7FEFF 		bl	I2C_MasterSendStop
+  70              	.LVL8:
+  71 0024 70BD     		pop	{r4, r5, r6, pc}
+  72              		.cfi_endproc
+  73              	.LFE64:
+  74              		.size	I2C_Write, .-I2C_Write
+  75 0026 00BF     		.section	.text.I2C_Read,"ax",%progbits
+  76              		.align	2
+  77              		.global	I2C_Read
+  78              		.thumb
+  79              		.thumb_func
+  80              		.type	I2C_Read, %function
+  81              	I2C_Read:
+  82              	.LFB65:
+ 170:main.c        **** }
+ 171:main.c        **** 
+ 172:main.c        **** // -------------------------
+ 173:main.c        **** // I2C READ
+ 174:main.c        **** // -------------------------
+ 175:main.c        **** void I2C_Read(uint8_t *buf, uint16_t len)
+ 176:main.c        **** {
+  83              		.loc 1 176 0
+  84              		.cfi_startproc
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87              	.LVL9:
+  88 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  89              		.cfi_def_cfa_offset 24
+  90              		.cfi_offset 3, -24
+  91              		.cfi_offset 4, -20
+  92              		.cfi_offset 5, -16
+  93              		.cfi_offset 6, -12
+  94              		.cfi_offset 7, -8
+  95              		.cfi_offset 14, -4
+  96 0002 0746     		mov	r7, r0
+  97 0004 0D46     		mov	r5, r1
+ 177:main.c        ****     I2C_MasterSendStart(BNO085_ADDR, I2C_READ_XFER_MODE);
+  98              		.loc 1 177 0
+  99 0006 0121     		movs	r1, #1
+ 100              	.LVL10:
+ 101 0008 4A20     		movs	r0, #74
+ 102              	.LVL11:
+ 103 000a FFF7FEFF 		bl	I2C_MasterSendStart
+ 104              	.LVL12:
+ 105              	.LBB3:
+ 178:main.c        **** 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 6
+
+
+ 179:main.c        ****     for(uint16_t i = 0; i < len; i++)
+ 106              		.loc 1 179 0
+ 107 000e 0024     		movs	r4, #0
+ 108 0010 0BE0     		b	.L6
+ 109              	.LVL13:
+ 110              	.L8:
+ 180:main.c        ****     {
+ 181:main.c        ****         buf[i] = I2C_MasterReadByte(
+ 111              		.loc 1 181 0
+ 112 0012 3E19     		adds	r6, r7, r4
+ 182:main.c        ****             (i < len - 1) ? I2C_ACK_DATA : I2C_NAK_DATA
+ 113              		.loc 1 182 0
+ 114 0014 6B1E     		subs	r3, r5, #1
+ 181:main.c        ****             (i < len - 1) ? I2C_ACK_DATA : I2C_NAK_DATA
+ 115              		.loc 1 181 0
+ 116 0016 9C42     		cmp	r4, r3
+ 117 0018 01DA     		bge	.L9
+ 118 001a 0120     		movs	r0, #1
+ 119 001c 00E0     		b	.L7
+ 120              	.L9:
+ 121 001e 0020     		movs	r0, #0
+ 122              	.L7:
+ 181:main.c        ****             (i < len - 1) ? I2C_ACK_DATA : I2C_NAK_DATA
+ 123              		.loc 1 181 0 is_stmt 0 discriminator 4
+ 124 0020 FFF7FEFF 		bl	I2C_MasterReadByte
+ 125              	.LVL14:
+ 126 0024 3070     		strb	r0, [r6]
+ 179:main.c        ****     {
+ 127              		.loc 1 179 0 is_stmt 1 discriminator 4
+ 128 0026 0134     		adds	r4, r4, #1
+ 129              	.LVL15:
+ 130 0028 A4B2     		uxth	r4, r4
+ 131              	.LVL16:
+ 132              	.L6:
+ 179:main.c        ****     {
+ 133              		.loc 1 179 0 is_stmt 0 discriminator 2
+ 134 002a AC42     		cmp	r4, r5
+ 135 002c F1D3     		bcc	.L8
+ 136              	.LBE3:
+ 183:main.c        ****         );
+ 184:main.c        ****     }
+ 185:main.c        **** 
+ 186:main.c        ****     I2C_MasterSendStop();
+ 137              		.loc 1 186 0 is_stmt 1
+ 138 002e FFF7FEFF 		bl	I2C_MasterSendStop
+ 139              	.LVL17:
+ 140 0032 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 141              		.cfi_endproc
+ 142              	.LFE65:
+ 143              		.size	I2C_Read, .-I2C_Read
+ 144              		.section	.text.ReadPacket,"ax",%progbits
+ 145              		.align	2
+ 146              		.global	ReadPacket
+ 147              		.thumb
+ 148              		.thumb_func
+ 149              		.type	ReadPacket, %function
+ 150              	ReadPacket:
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 7
+
+
+ 151              	.LFB66:
+ 187:main.c        **** }
+ 188:main.c        **** 
+ 189:main.c        **** // -------------------------
+ 190:main.c        **** // READ ONE SHTP PACKET
+ 191:main.c        **** // -------------------------
+ 192:main.c        **** uint16_t ReadPacket(uint8_t *channel)
+ 193:main.c        **** {
+ 152              		.loc 1 193 0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 8
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              	.LVL18:
+ 157 0000 30B5     		push	{r4, r5, lr}
+ 158              		.cfi_def_cfa_offset 12
+ 159              		.cfi_offset 4, -12
+ 160              		.cfi_offset 5, -8
+ 161              		.cfi_offset 14, -4
+ 162 0002 83B0     		sub	sp, sp, #12
+ 163              		.cfi_def_cfa_offset 24
+ 164 0004 0546     		mov	r5, r0
+ 194:main.c        ****     uint8_t header[4];
+ 195:main.c        **** 
+ 196:main.c        ****     // read header
+ 197:main.c        ****     I2C_Read(header, 4);
+ 165              		.loc 1 197 0
+ 166 0006 0421     		movs	r1, #4
+ 167 0008 0DEB0100 		add	r0, sp, r1
+ 168              	.LVL19:
+ 169 000c FFF7FEFF 		bl	I2C_Read
+ 170              	.LVL20:
+ 198:main.c        **** 
+ 199:main.c        ****     uint16_t length = header[0] | (header[1] << 8);
+ 171              		.loc 1 199 0
+ 172 0010 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 173 0014 9DF80540 		ldrb	r4, [sp, #5]	@ zero_extendqisi2
+ 174 0018 43EA0424 		orr	r4, r3, r4, lsl #8
+ 175              	.LVL21:
+ 200:main.c        ****     *channel = header[2];
+ 176              		.loc 1 200 0
+ 177 001c 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 178 0020 2B70     		strb	r3, [r5]
+ 201:main.c        **** 
+ 202:main.c        ****     if(length < 4 || length > 128)
+ 179              		.loc 1 202 0
+ 180 0022 211F     		subs	r1, r4, #4
+ 181 0024 89B2     		uxth	r1, r1
+ 182 0026 7C29     		cmp	r1, #124
+ 183 0028 04D8     		bhi	.L13
+ 203:main.c        ****         return 0;
+ 204:main.c        **** 
+ 205:main.c        ****     // read payload
+ 206:main.c        ****     I2C_Read(buffer, length - 4);
+ 184              		.loc 1 206 0
+ 185 002a 0448     		ldr	r0, .L15
+ 186 002c FFF7FEFF 		bl	I2C_Read
+ 187              	.LVL22:
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 8
+
+
+ 207:main.c        **** 
+ 208:main.c        ****     return length;
+ 188              		.loc 1 208 0
+ 189 0030 2046     		mov	r0, r4
+ 190 0032 00E0     		b	.L12
+ 191              	.L13:
+ 203:main.c        ****         return 0;
+ 192              		.loc 1 203 0
+ 193 0034 0020     		movs	r0, #0
+ 194              	.L12:
+ 209:main.c        **** }
+ 195              		.loc 1 209 0
+ 196 0036 03B0     		add	sp, sp, #12
+ 197              		.cfi_def_cfa_offset 12
+ 198              		@ sp needed
+ 199 0038 30BD     		pop	{r4, r5, pc}
+ 200              	.LVL23:
+ 201              	.L16:
+ 202 003a 00BF     		.align	2
+ 203              	.L15:
+ 204 003c 00000000 		.word	buffer
+ 205              		.cfi_endproc
+ 206              	.LFE66:
+ 207              		.size	ReadPacket, .-ReadPacket
+ 208              		.section	.text.BNO085_Handshake,"ax",%progbits
+ 209              		.align	2
+ 210              		.global	BNO085_Handshake
+ 211              		.thumb
+ 212              		.thumb_func
+ 213              		.type	BNO085_Handshake, %function
+ 214              	BNO085_Handshake:
+ 215              	.LFB67:
+ 210:main.c        **** 
+ 211:main.c        **** // -------------------------
+ 212:main.c        **** // HANDSHAKE (SYNC)
+ 213:main.c        **** // -------------------------
+ 214:main.c        **** void BNO085_Handshake(void)
+ 215:main.c        **** {
+ 216              		.loc 1 215 0
+ 217              		.cfi_startproc
+ 218              		@ args = 0, pretend = 0, frame = 8
+ 219              		@ frame_needed = 0, uses_anonymous_args = 0
+ 220 0000 10B5     		push	{r4, lr}
+ 221              		.cfi_def_cfa_offset 8
+ 222              		.cfi_offset 4, -8
+ 223              		.cfi_offset 14, -4
+ 224 0002 82B0     		sub	sp, sp, #8
+ 225              		.cfi_def_cfa_offset 16
+ 216:main.c        ****     uint8_t ch;
+ 217:main.c        **** 
+ 218:main.c        ****     CyDelay(500);  // sensor boot time
+ 226              		.loc 1 218 0
+ 227 0004 4FF4FA70 		mov	r0, #500
+ 228 0008 FFF7FEFF 		bl	CyDelay
+ 229              	.LVL24:
+ 230              	.LBB4:
+ 219:main.c        **** 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 9
+
+
+ 220:main.c        ****     // flush startup packets
+ 221:main.c        ****     for(int i = 0; i < 15; i++)
+ 231              		.loc 1 221 0
+ 232 000c 0024     		movs	r4, #0
+ 233 000e 07E0     		b	.L18
+ 234              	.LVL25:
+ 235              	.L19:
+ 222:main.c        ****     {
+ 223:main.c        ****         ReadPacket(&ch);
+ 236              		.loc 1 223 0 discriminator 3
+ 237 0010 0DF10700 		add	r0, sp, #7
+ 238 0014 FFF7FEFF 		bl	ReadPacket
+ 239              	.LVL26:
+ 224:main.c        ****         CyDelay(20);
+ 240              		.loc 1 224 0 discriminator 3
+ 241 0018 1420     		movs	r0, #20
+ 242 001a FFF7FEFF 		bl	CyDelay
+ 243              	.LVL27:
+ 221:main.c        ****     {
+ 244              		.loc 1 221 0 discriminator 3
+ 245 001e 0134     		adds	r4, r4, #1
+ 246              	.LVL28:
+ 247              	.L18:
+ 221:main.c        ****     {
+ 248              		.loc 1 221 0 is_stmt 0 discriminator 1
+ 249 0020 0E2C     		cmp	r4, #14
+ 250 0022 F5DD     		ble	.L19
+ 251              	.LBE4:
+ 225:main.c        ****     }
+ 226:main.c        **** }
+ 252              		.loc 1 226 0 is_stmt 1
+ 253 0024 02B0     		add	sp, sp, #8
+ 254              		.cfi_def_cfa_offset 8
+ 255              		@ sp needed
+ 256 0026 10BD     		pop	{r4, pc}
+ 257              		.cfi_endproc
+ 258              	.LFE67:
+ 259              		.size	BNO085_Handshake, .-BNO085_Handshake
+ 260              		.section	.text.EnableRotationVector,"ax",%progbits
+ 261              		.align	2
+ 262              		.global	EnableRotationVector
+ 263              		.thumb
+ 264              		.thumb_func
+ 265              		.type	EnableRotationVector, %function
+ 266              	EnableRotationVector:
+ 267              	.LFB68:
+ 227:main.c        **** 
+ 228:main.c        **** // -------------------------
+ 229:main.c        **** // ENABLE ROTATION VECTOR
+ 230:main.c        **** // -------------------------
+ 231:main.c        **** void EnableRotationVector(void)
+ 232:main.c        **** {
+ 268              		.loc 1 232 0
+ 269              		.cfi_startproc
+ 270              		@ args = 0, pretend = 0, frame = 24
+ 271              		@ frame_needed = 0, uses_anonymous_args = 0
+ 272 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 10
+
+
+ 273              		.cfi_def_cfa_offset 8
+ 274              		.cfi_offset 4, -8
+ 275              		.cfi_offset 14, -4
+ 276 0002 86B0     		sub	sp, sp, #24
+ 277              		.cfi_def_cfa_offset 32
+ 233:main.c        ****     uint8_t cmd[17];
+ 234:main.c        **** 
+ 235:main.c        ****     // --- SHTP HEADER ---
+ 236:main.c        ****     cmd[0] = 17;          // Length LSB
+ 278              		.loc 1 236 0
+ 279 0004 1121     		movs	r1, #17
+ 280 0006 8DF80410 		strb	r1, [sp, #4]
+ 237:main.c        ****     cmd[1] = 0;           // Length MSB
+ 281              		.loc 1 237 0
+ 282 000a 0023     		movs	r3, #0
+ 283 000c 8DF80530 		strb	r3, [sp, #5]
+ 238:main.c        ****     cmd[2] = 2;           // Channel 2 (sensor hub)
+ 284              		.loc 1 238 0
+ 285 0010 0222     		movs	r2, #2
+ 286 0012 8DF80620 		strb	r2, [sp, #6]
+ 239:main.c        ****     cmd[3] = seq[2]++;    // Sequence number
+ 287              		.loc 1 239 0
+ 288 0016 1448     		ldr	r0, .L23
+ 289 0018 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
+ 290 001a 541C     		adds	r4, r2, #1
+ 291 001c 8470     		strb	r4, [r0, #2]
+ 292 001e 8DF80720 		strb	r2, [sp, #7]
+ 240:main.c        **** 
+ 241:main.c        ****     // --- SH-2 PAYLOAD ---
+ 242:main.c        ****     cmd[4] = 0xFD;        // SET_FEATURE
+ 293              		.loc 1 242 0
+ 294 0022 FD22     		movs	r2, #253
+ 295 0024 8DF80820 		strb	r2, [sp, #8]
+ 243:main.c        ****     cmd[5] = 0x01;
+ 296              		.loc 1 243 0
+ 297 0028 0122     		movs	r2, #1
+ 298 002a 8DF80920 		strb	r2, [sp, #9]
+ 244:main.c        **** 
+ 245:main.c        ****     cmd[6] = 0x05;        // Rotation Vector report
+ 299              		.loc 1 245 0
+ 300 002e 0522     		movs	r2, #5
+ 301 0030 8DF80A20 		strb	r2, [sp, #10]
+ 246:main.c        **** 
+ 247:main.c        ****     // Report interval = 100 ms (10 Hz)
+ 248:main.c        ****     cmd[7]  = 0x00;
+ 302              		.loc 1 248 0
+ 303 0034 8DF80B30 		strb	r3, [sp, #11]
+ 249:main.c        ****     cmd[8]  = 0x00;
+ 304              		.loc 1 249 0
+ 305 0038 8DF80C30 		strb	r3, [sp, #12]
+ 250:main.c        ****     cmd[9]  = 0x64;
+ 306              		.loc 1 250 0
+ 307 003c 6422     		movs	r2, #100
+ 308 003e 8DF80D20 		strb	r2, [sp, #13]
+ 251:main.c        ****     cmd[10] = 0x00;
+ 309              		.loc 1 251 0
+ 310 0042 8DF80E30 		strb	r3, [sp, #14]
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 11
+
+
+ 252:main.c        **** 
+ 253:main.c        ****     // Latency
+ 254:main.c        ****     cmd[11] = 0x00;
+ 311              		.loc 1 254 0
+ 312 0046 8DF80F30 		strb	r3, [sp, #15]
+ 255:main.c        ****     cmd[12] = 0x00;
+ 313              		.loc 1 255 0
+ 314 004a 8DF81030 		strb	r3, [sp, #16]
+ 256:main.c        ****     cmd[13] = 0x00;
+ 315              		.loc 1 256 0
+ 316 004e 8DF81130 		strb	r3, [sp, #17]
+ 257:main.c        ****     cmd[14] = 0x00;
+ 317              		.loc 1 257 0
+ 318 0052 8DF81230 		strb	r3, [sp, #18]
+ 258:main.c        **** 
+ 259:main.c        ****     // Flags
+ 260:main.c        ****     cmd[15] = 0x00;
+ 319              		.loc 1 260 0
+ 320 0056 8DF81330 		strb	r3, [sp, #19]
+ 261:main.c        ****     cmd[16] = 0x00;
+ 321              		.loc 1 261 0
+ 322 005a 8DF81430 		strb	r3, [sp, #20]
+ 262:main.c        **** 
+ 263:main.c        ****     I2C_Write(cmd, 17);
+ 323              		.loc 1 263 0
+ 324 005e 01A8     		add	r0, sp, #4
+ 325 0060 FFF7FEFF 		bl	I2C_Write
+ 326              	.LVL29:
+ 264:main.c        **** }
+ 327              		.loc 1 264 0
+ 328 0064 06B0     		add	sp, sp, #24
+ 329              		.cfi_def_cfa_offset 8
+ 330              		@ sp needed
+ 331 0066 10BD     		pop	{r4, pc}
+ 332              	.L24:
+ 333              		.align	2
+ 334              	.L23:
+ 335 0068 00000000 		.word	.LANCHOR0
+ 336              		.cfi_endproc
+ 337              	.LFE68:
+ 338              		.size	EnableRotationVector, .-EnableRotationVector
+ 339              		.section	.text.ProcessPackets,"ax",%progbits
+ 340              		.align	2
+ 341              		.global	ProcessPackets
+ 342              		.thumb
+ 343              		.thumb_func
+ 344              		.type	ProcessPackets, %function
+ 345              	ProcessPackets:
+ 346              	.LFB69:
+ 265:main.c        **** 
+ 266:main.c        **** // -------------------------
+ 267:main.c        **** // PROCESS INCOMING DATA
+ 268:main.c        **** // -------------------------
+ 269:main.c        **** void ProcessPackets(void)
+ 270:main.c        **** {
+ 347              		.loc 1 270 0
+ 348              		.cfi_startproc
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 12
+
+
+ 349              		@ args = 0, pretend = 0, frame = 8
+ 350              		@ frame_needed = 0, uses_anonymous_args = 0
+ 351 0000 30B5     		push	{r4, r5, lr}
+ 352              		.cfi_def_cfa_offset 12
+ 353              		.cfi_offset 4, -12
+ 354              		.cfi_offset 5, -8
+ 355              		.cfi_offset 14, -4
+ 356 0002 83B0     		sub	sp, sp, #12
+ 357              		.cfi_def_cfa_offset 24
+ 271:main.c        ****     uint8_t ch;
+ 272:main.c        ****     uint16_t len = ReadPacket(&ch);
+ 358              		.loc 1 272 0
+ 359 0004 0DF10700 		add	r0, sp, #7
+ 360 0008 FFF7FEFF 		bl	ReadPacket
+ 361              	.LVL30:
+ 273:main.c        **** 
+ 274:main.c        ****     if(len > 0 && ch == 2)   // only sensor data channel
+ 362              		.loc 1 274 0
+ 363 000c F0B1     		cbz	r0, .L25
+ 364 000e 0546     		mov	r5, r0
+ 365              		.loc 1 274 0 is_stmt 0 discriminator 1
+ 366 0010 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 367 0014 022B     		cmp	r3, #2
+ 368 0016 19D1     		bne	.L25
+ 275:main.c        ****     {
+ 276:main.c        ****         // check report ID (Rotation Vector = 0x05)
+ 277:main.c        ****         if(buffer[0] == 0x05)
+ 369              		.loc 1 277 0 is_stmt 1
+ 370 0018 0D4B     		ldr	r3, .L30
+ 371 001a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 372 001c 052B     		cmp	r3, #5
+ 373 001e 15D1     		bne	.L25
+ 278:main.c        ****         {
+ 279:main.c        ****             USBUART_PutString("ROT: ");
+ 374              		.loc 1 279 0
+ 375 0020 0C48     		ldr	r0, .L30+4
+ 376              	.LVL31:
+ 377 0022 FFF7FEFF 		bl	USBUART_PutString
+ 378              	.LVL32:
+ 379              	.LBB5:
+ 280:main.c        **** 
+ 281:main.c        ****             for(uint16_t i = 0; i < len - 4; i++)
+ 380              		.loc 1 281 0
+ 381 0026 0024     		movs	r4, #0
+ 382 0028 0AE0     		b	.L27
+ 383              	.LVL33:
+ 384              	.L28:
+ 385              	.LBB6:
+ 282:main.c        ****             {
+ 283:main.c        ****                 char msg[6];
+ 284:main.c        ****                 sprintf(msg, "%02X ", buffer[i]);
+ 386              		.loc 1 284 0 discriminator 3
+ 387 002a 094B     		ldr	r3, .L30
+ 388 002c 1A5D     		ldrb	r2, [r3, r4]	@ zero_extendqisi2
+ 389 002e 0A49     		ldr	r1, .L30+8
+ 390 0030 6846     		mov	r0, sp
+ 391 0032 FFF7FEFF 		bl	sprintf
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 13
+
+
+ 392              	.LVL34:
+ 285:main.c        ****                 USBUART_PutString(msg);
+ 393              		.loc 1 285 0 discriminator 3
+ 394 0036 6846     		mov	r0, sp
+ 395 0038 FFF7FEFF 		bl	USBUART_PutString
+ 396              	.LVL35:
+ 397              	.LBE6:
+ 281:main.c        ****             {
+ 398              		.loc 1 281 0 discriminator 3
+ 399 003c 0134     		adds	r4, r4, #1
+ 400              	.LVL36:
+ 401 003e A4B2     		uxth	r4, r4
+ 402              	.LVL37:
+ 403              	.L27:
+ 281:main.c        ****             {
+ 404              		.loc 1 281 0 is_stmt 0 discriminator 1
+ 405 0040 2B1F     		subs	r3, r5, #4
+ 406 0042 9C42     		cmp	r4, r3
+ 407 0044 F1DB     		blt	.L28
+ 408              	.LBE5:
+ 286:main.c        ****             }
+ 287:main.c        **** 
+ 288:main.c        ****             USBUART_PutString("\r\n");
+ 409              		.loc 1 288 0 is_stmt 1
+ 410 0046 0548     		ldr	r0, .L30+12
+ 411 0048 FFF7FEFF 		bl	USBUART_PutString
+ 412              	.LVL38:
+ 413              	.L25:
+ 289:main.c        ****         }
+ 290:main.c        ****     }
+ 291:main.c        **** }
+ 414              		.loc 1 291 0
+ 415 004c 03B0     		add	sp, sp, #12
+ 416              		.cfi_def_cfa_offset 12
+ 417              		@ sp needed
+ 418 004e 30BD     		pop	{r4, r5, pc}
+ 419              	.L31:
+ 420              		.align	2
+ 421              	.L30:
+ 422 0050 00000000 		.word	buffer
+ 423 0054 00000000 		.word	.LC0
+ 424 0058 08000000 		.word	.LC1
+ 425 005c 10000000 		.word	.LC2
+ 426              		.cfi_endproc
+ 427              	.LFE69:
+ 428              		.size	ProcessPackets, .-ProcessPackets
+ 429              		.section	.text.main,"ax",%progbits
+ 430              		.align	2
+ 431              		.global	main
+ 432              		.thumb
+ 433              		.thumb_func
+ 434              		.type	main, %function
+ 435              	main:
+ 436              	.LFB70:
+ 292:main.c        **** 
+ 293:main.c        **** // -------------------------
+ 294:main.c        **** // MAIN
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 14
+
+
+ 295:main.c        **** // -------------------------
+ 296:main.c        **** int main(void)
+ 297:main.c        **** {
+ 437              		.loc 1 297 0
+ 438              		.cfi_startproc
+ 439              		@ Volatile: function does not return.
+ 440              		@ args = 0, pretend = 0, frame = 0
+ 441              		@ frame_needed = 0, uses_anonymous_args = 0
+ 442 0000 08B5     		push	{r3, lr}
+ 443              		.cfi_def_cfa_offset 8
+ 444              		.cfi_offset 3, -8
+ 445              		.cfi_offset 14, -4
+ 298:main.c        ****     CyGlobalIntEnable;
+ 446              		.loc 1 298 0
+ 447              		.syntax unified
+ 448              	@ 298 "main.c" 1
+ 449 0002 62B6     		CPSIE   i
+ 450              	@ 0 "" 2
+ 299:main.c        **** 
+ 300:main.c        ****     I2C_Start();
+ 451              		.loc 1 300 0
+ 452              		.thumb
+ 453              		.syntax unified
+ 454 0004 FFF7FEFF 		bl	I2C_Start
+ 455              	.LVL39:
+ 301:main.c        **** 
+ 302:main.c        ****     USBUART_Start(0, USBUART_5V_OPERATION);
+ 456              		.loc 1 302 0
+ 457 0008 0121     		movs	r1, #1
+ 458 000a 0020     		movs	r0, #0
+ 459 000c FFF7FEFF 		bl	USBUART_Start
+ 460              	.LVL40:
+ 461              	.L33:
+ 303:main.c        ****     while(!USBUART_GetConfiguration());
+ 462              		.loc 1 303 0 discriminator 1
+ 463 0010 FFF7FEFF 		bl	USBUART_GetConfiguration
+ 464              	.LVL41:
+ 465 0014 0028     		cmp	r0, #0
+ 466 0016 FBD0     		beq	.L33
+ 304:main.c        **** 
+ 305:main.c        ****     // 1. Handshake (sync with sensor)
+ 306:main.c        ****     BNO085_Handshake();
+ 467              		.loc 1 306 0
+ 468 0018 FFF7FEFF 		bl	BNO085_Handshake
+ 469              	.LVL42:
+ 307:main.c        **** 
+ 308:main.c        ****     // 2. Enable rotation vector
+ 309:main.c        ****     EnableRotationVector();
+ 470              		.loc 1 309 0
+ 471 001c FFF7FEFF 		bl	EnableRotationVector
+ 472              	.LVL43:
+ 310:main.c        **** 
+ 311:main.c        ****     CyDelay(200);
+ 473              		.loc 1 311 0
+ 474 0020 C820     		movs	r0, #200
+ 475 0022 FFF7FEFF 		bl	CyDelay
+ 476              	.LVL44:
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 15
+
+
+ 477              	.L34:
+ 312:main.c        **** 
+ 313:main.c        ****     // 3. Main loop
+ 314:main.c        ****     for(;;)
+ 315:main.c        ****     {
+ 316:main.c        **** 
+ 317:main.c        ****         ProcessPackets();
+ 478              		.loc 1 317 0 discriminator 1
+ 479 0026 FFF7FEFF 		bl	ProcessPackets
+ 480              	.LVL45:
+ 318:main.c        ****         CyDelay(100);
+ 481              		.loc 1 318 0 discriminator 1
+ 482 002a 6420     		movs	r0, #100
+ 483 002c FFF7FEFF 		bl	CyDelay
+ 484              	.LVL46:
+ 485 0030 F9E7     		b	.L34
+ 486              		.cfi_endproc
+ 487              	.LFE70:
+ 488              		.size	main, .-main
+ 489              		.comm	buffer,128,4
+ 490              		.global	seq
+ 491 0032 00BF     		.section	.rodata.str1.4,"aMS",%progbits,1
+ 492              		.align	2
+ 493              	.LC0:
+ 494 0000 524F543A 		.ascii	"ROT: \000"
+ 494      2000
+ 495 0006 0000     		.space	2
+ 496              	.LC1:
+ 497 0008 25303258 		.ascii	"%02X \000"
+ 497      2000
+ 498 000e 0000     		.space	2
+ 499              	.LC2:
+ 500 0010 0D0A00   		.ascii	"\015\012\000"
+ 501              		.bss
+ 502              		.align	2
+ 503              		.set	.LANCHOR0,. + 0
+ 504              		.type	seq, %object
+ 505              		.size	seq, 6
+ 506              	seq:
+ 507 0000 00000000 		.space	6
+ 507      0000
+ 508              		.text
+ 509              	.Letext0:
+ 510              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 511              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 512              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+ 513              		.file 5 "Generated_Source\\PSoC5/I2C.h"
+ 514              		.file 6 "Generated_Source\\PSoC5/CyLib.h"
+ 515              		.file 7 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 516              		.file 8 "Generated_Source\\PSoC5/USBUART_cdc.h"
+ 517              		.file 9 "Generated_Source\\PSoC5/USBUART.h"
+ 518              		.section	.debug_info,"",%progbits
+ 519              	.Ldebug_info0:
+ 520 0000 36050000 		.4byte	0x536
+ 521 0004 0400     		.2byte	0x4
+ 522 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 523 000a 04       		.byte	0x4
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 16
+
+
+ 524 000b 01       		.uleb128 0x1
+ 525 000c A2000000 		.4byte	.LASF41
+ 526 0010 0C       		.byte	0xc
+ 527 0011 87020000 		.4byte	.LASF42
+ 528 0015 DF010000 		.4byte	.LASF43
+ 529 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 530 001d 00000000 		.4byte	0
+ 531 0021 00000000 		.4byte	.Ldebug_line0
+ 532 0025 02       		.uleb128 0x2
+ 533 0026 01       		.byte	0x1
+ 534 0027 06       		.byte	0x6
+ 535 0028 ED020000 		.4byte	.LASF0
+ 536 002c 03       		.uleb128 0x3
+ 537 002d 2B000000 		.4byte	.LASF3
+ 538 0031 02       		.byte	0x2
+ 539 0032 1D       		.byte	0x1d
+ 540 0033 37000000 		.4byte	0x37
+ 541 0037 02       		.uleb128 0x2
+ 542 0038 01       		.byte	0x1
+ 543 0039 08       		.byte	0x8
+ 544 003a 76010000 		.4byte	.LASF1
+ 545 003e 02       		.uleb128 0x2
+ 546 003f 02       		.byte	0x2
+ 547 0040 05       		.byte	0x5
+ 548 0041 B7020000 		.4byte	.LASF2
+ 549 0045 03       		.uleb128 0x3
+ 550 0046 84010000 		.4byte	.LASF4
+ 551 004a 02       		.byte	0x2
+ 552 004b 2B       		.byte	0x2b
+ 553 004c 50000000 		.4byte	0x50
+ 554 0050 02       		.uleb128 0x2
+ 555 0051 02       		.byte	0x2
+ 556 0052 07       		.byte	0x7
+ 557 0053 42010000 		.4byte	.LASF5
+ 558 0057 03       		.uleb128 0x3
+ 559 0058 35000000 		.4byte	.LASF6
+ 560 005c 02       		.byte	0x2
+ 561 005d 3F       		.byte	0x3f
+ 562 005e 62000000 		.4byte	0x62
+ 563 0062 02       		.uleb128 0x2
+ 564 0063 04       		.byte	0x4
+ 565 0064 05       		.byte	0x5
+ 566 0065 D8020000 		.4byte	.LASF7
+ 567 0069 02       		.uleb128 0x2
+ 568 006a 04       		.byte	0x4
+ 569 006b 07       		.byte	0x7
+ 570 006c 30010000 		.4byte	.LASF8
+ 571 0070 02       		.uleb128 0x2
+ 572 0071 08       		.byte	0x8
+ 573 0072 05       		.byte	0x5
+ 574 0073 79020000 		.4byte	.LASF9
+ 575 0077 02       		.uleb128 0x2
+ 576 0078 08       		.byte	0x8
+ 577 0079 07       		.byte	0x7
+ 578 007a C0010000 		.4byte	.LASF10
+ 579 007e 04       		.uleb128 0x4
+ 580 007f 04       		.byte	0x4
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 17
+
+
+ 581 0080 05       		.byte	0x5
+ 582 0081 696E7400 		.ascii	"int\000"
+ 583 0085 02       		.uleb128 0x2
+ 584 0086 04       		.byte	0x4
+ 585 0087 07       		.byte	0x7
+ 586 0088 B3010000 		.4byte	.LASF11
+ 587 008c 03       		.uleb128 0x3
+ 588 008d D7010000 		.4byte	.LASF12
+ 589 0091 03       		.byte	0x3
+ 590 0092 18       		.byte	0x18
+ 591 0093 2C000000 		.4byte	0x2c
+ 592 0097 03       		.uleb128 0x3
+ 593 0098 C8020000 		.4byte	.LASF13
+ 594 009c 03       		.byte	0x3
+ 595 009d 24       		.byte	0x24
+ 596 009e 45000000 		.4byte	0x45
+ 597 00a2 03       		.uleb128 0x3
+ 598 00a3 53020000 		.4byte	.LASF14
+ 599 00a7 03       		.byte	0x3
+ 600 00a8 2C       		.byte	0x2c
+ 601 00a9 57000000 		.4byte	0x57
+ 602 00ad 02       		.uleb128 0x2
+ 603 00ae 04       		.byte	0x4
+ 604 00af 04       		.byte	0x4
+ 605 00b0 88000000 		.4byte	.LASF15
+ 606 00b4 02       		.uleb128 0x2
+ 607 00b5 08       		.byte	0x8
+ 608 00b6 04       		.byte	0x4
+ 609 00b7 8F010000 		.4byte	.LASF16
+ 610 00bb 02       		.uleb128 0x2
+ 611 00bc 01       		.byte	0x1
+ 612 00bd 08       		.byte	0x8
+ 613 00be 8E020000 		.4byte	.LASF17
+ 614 00c2 02       		.uleb128 0x2
+ 615 00c3 08       		.byte	0x8
+ 616 00c4 04       		.byte	0x4
+ 617 00c5 E1020000 		.4byte	.LASF18
+ 618 00c9 02       		.uleb128 0x2
+ 619 00ca 04       		.byte	0x4
+ 620 00cb 07       		.byte	0x7
+ 621 00cc 5B020000 		.4byte	.LASF19
+ 622 00d0 05       		.uleb128 0x5
+ 623 00d1 96010000 		.4byte	.LASF21
+ 624 00d5 01       		.byte	0x1
+ 625 00d6 A2       		.byte	0xa2
+ 626 00d7 00000000 		.4byte	.LFB64
+ 627 00db 26000000 		.4byte	.LFE64-.LFB64
+ 628 00df 01       		.uleb128 0x1
+ 629 00e0 9C       		.byte	0x9c
+ 630 00e1 4A010000 		.4byte	0x14a
+ 631 00e5 06       		.uleb128 0x6
+ 632 00e6 8E000000 		.4byte	.LASF20
+ 633 00ea 01       		.byte	0x1
+ 634 00eb A2       		.byte	0xa2
+ 635 00ec 4A010000 		.4byte	0x14a
+ 636 00f0 00000000 		.4byte	.LLST0
+ 637 00f4 07       		.uleb128 0x7
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 18
+
+
+ 638 00f5 6C656E00 		.ascii	"len\000"
+ 639 00f9 01       		.byte	0x1
+ 640 00fa A2       		.byte	0xa2
+ 641 00fb 97000000 		.4byte	0x97
+ 642 00ff 1E000000 		.4byte	.LLST1
+ 643 0103 08       		.uleb128 0x8
+ 644 0104 0E000000 		.4byte	.LBB2
+ 645 0108 12000000 		.4byte	.LBE2-.LBB2
+ 646 010c 27010000 		.4byte	0x127
+ 647 0110 09       		.uleb128 0x9
+ 648 0111 6900     		.ascii	"i\000"
+ 649 0113 01       		.byte	0x1
+ 650 0114 A6       		.byte	0xa6
+ 651 0115 97000000 		.4byte	0x97
+ 652 0119 3F000000 		.4byte	.LLST2
+ 653 011d 0A       		.uleb128 0xa
+ 654 011e 18000000 		.4byte	.LVL5
+ 655 0122 C9040000 		.4byte	0x4c9
+ 656 0126 00       		.byte	0
+ 657 0127 0B       		.uleb128 0xb
+ 658 0128 0E000000 		.4byte	.LVL3
+ 659 012c D4040000 		.4byte	0x4d4
+ 660 0130 40010000 		.4byte	0x140
+ 661 0134 0C       		.uleb128 0xc
+ 662 0135 01       		.uleb128 0x1
+ 663 0136 50       		.byte	0x50
+ 664 0137 02       		.uleb128 0x2
+ 665 0138 08       		.byte	0x8
+ 666 0139 4A       		.byte	0x4a
+ 667 013a 0C       		.uleb128 0xc
+ 668 013b 01       		.uleb128 0x1
+ 669 013c 51       		.byte	0x51
+ 670 013d 01       		.uleb128 0x1
+ 671 013e 30       		.byte	0x30
+ 672 013f 00       		.byte	0
+ 673 0140 0A       		.uleb128 0xa
+ 674 0141 24000000 		.4byte	.LVL8
+ 675 0145 DF040000 		.4byte	0x4df
+ 676 0149 00       		.byte	0
+ 677 014a 0D       		.uleb128 0xd
+ 678 014b 04       		.byte	0x4
+ 679 014c 8C000000 		.4byte	0x8c
+ 680 0150 05       		.uleb128 0x5
+ 681 0151 00000000 		.4byte	.LASF22
+ 682 0155 01       		.byte	0x1
+ 683 0156 AF       		.byte	0xaf
+ 684 0157 00000000 		.4byte	.LFB65
+ 685 015b 34000000 		.4byte	.LFE65-.LFB65
+ 686 015f 01       		.uleb128 0x1
+ 687 0160 9C       		.byte	0x9c
+ 688 0161 CA010000 		.4byte	0x1ca
+ 689 0165 07       		.uleb128 0x7
+ 690 0166 62756600 		.ascii	"buf\000"
+ 691 016a 01       		.byte	0x1
+ 692 016b AF       		.byte	0xaf
+ 693 016c 4A010000 		.4byte	0x14a
+ 694 0170 69000000 		.4byte	.LLST3
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 19
+
+
+ 695 0174 07       		.uleb128 0x7
+ 696 0175 6C656E00 		.ascii	"len\000"
+ 697 0179 01       		.byte	0x1
+ 698 017a AF       		.byte	0xaf
+ 699 017b 97000000 		.4byte	0x97
+ 700 017f 87000000 		.4byte	.LLST4
+ 701 0183 08       		.uleb128 0x8
+ 702 0184 0E000000 		.4byte	.LBB3
+ 703 0188 20000000 		.4byte	.LBE3-.LBB3
+ 704 018c A7010000 		.4byte	0x1a7
+ 705 0190 09       		.uleb128 0x9
+ 706 0191 6900     		.ascii	"i\000"
+ 707 0193 01       		.byte	0x1
+ 708 0194 B3       		.byte	0xb3
+ 709 0195 97000000 		.4byte	0x97
+ 710 0199 A8000000 		.4byte	.LLST5
+ 711 019d 0A       		.uleb128 0xa
+ 712 019e 24000000 		.4byte	.LVL14
+ 713 01a2 EA040000 		.4byte	0x4ea
+ 714 01a6 00       		.byte	0
+ 715 01a7 0B       		.uleb128 0xb
+ 716 01a8 0E000000 		.4byte	.LVL12
+ 717 01ac D4040000 		.4byte	0x4d4
+ 718 01b0 C0010000 		.4byte	0x1c0
+ 719 01b4 0C       		.uleb128 0xc
+ 720 01b5 01       		.uleb128 0x1
+ 721 01b6 50       		.byte	0x50
+ 722 01b7 02       		.uleb128 0x2
+ 723 01b8 08       		.byte	0x8
+ 724 01b9 4A       		.byte	0x4a
+ 725 01ba 0C       		.uleb128 0xc
+ 726 01bb 01       		.uleb128 0x1
+ 727 01bc 51       		.byte	0x51
+ 728 01bd 01       		.uleb128 0x1
+ 729 01be 31       		.byte	0x31
+ 730 01bf 00       		.byte	0
+ 731 01c0 0A       		.uleb128 0xa
+ 732 01c1 32000000 		.4byte	.LVL17
+ 733 01c5 DF040000 		.4byte	0x4df
+ 734 01c9 00       		.byte	0
+ 735 01ca 0E       		.uleb128 0xe
+ 736 01cb 09030000 		.4byte	.LASF44
+ 737 01cf 01       		.byte	0x1
+ 738 01d0 C0       		.byte	0xc0
+ 739 01d1 97000000 		.4byte	0x97
+ 740 01d5 00000000 		.4byte	.LFB66
+ 741 01d9 40000000 		.4byte	.LFE66-.LFB66
+ 742 01dd 01       		.uleb128 0x1
+ 743 01de 9C       		.byte	0x9c
+ 744 01df 42020000 		.4byte	0x242
+ 745 01e3 06       		.uleb128 0x6
+ 746 01e4 23000000 		.4byte	.LASF23
+ 747 01e8 01       		.byte	0x1
+ 748 01e9 C0       		.byte	0xc0
+ 749 01ea 4A010000 		.4byte	0x14a
+ 750 01ee D2000000 		.4byte	.LLST6
+ 751 01f2 0F       		.uleb128 0xf
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 20
+
+
+ 752 01f3 09000000 		.4byte	.LASF24
+ 753 01f7 01       		.byte	0x1
+ 754 01f8 C2       		.byte	0xc2
+ 755 01f9 42020000 		.4byte	0x242
+ 756 01fd 02       		.uleb128 0x2
+ 757 01fe 91       		.byte	0x91
+ 758 01ff 6C       		.sleb128 -20
+ 759 0200 10       		.uleb128 0x10
+ 760 0201 D1020000 		.4byte	.LASF25
+ 761 0205 01       		.byte	0x1
+ 762 0206 C7       		.byte	0xc7
+ 763 0207 97000000 		.4byte	0x97
+ 764 020b FE000000 		.4byte	.LLST7
+ 765 020f 0B       		.uleb128 0xb
+ 766 0210 10000000 		.4byte	.LVL20
+ 767 0214 50010000 		.4byte	0x150
+ 768 0218 28020000 		.4byte	0x228
+ 769 021c 0C       		.uleb128 0xc
+ 770 021d 01       		.uleb128 0x1
+ 771 021e 50       		.byte	0x50
+ 772 021f 02       		.uleb128 0x2
+ 773 0220 91       		.byte	0x91
+ 774 0221 6C       		.sleb128 -20
+ 775 0222 0C       		.uleb128 0xc
+ 776 0223 01       		.uleb128 0x1
+ 777 0224 51       		.byte	0x51
+ 778 0225 01       		.uleb128 0x1
+ 779 0226 34       		.byte	0x34
+ 780 0227 00       		.byte	0
+ 781 0228 11       		.uleb128 0x11
+ 782 0229 30000000 		.4byte	.LVL22
+ 783 022d 50010000 		.4byte	0x150
+ 784 0231 0C       		.uleb128 0xc
+ 785 0232 01       		.uleb128 0x1
+ 786 0233 50       		.byte	0x50
+ 787 0234 05       		.uleb128 0x5
+ 788 0235 03       		.byte	0x3
+ 789 0236 00000000 		.4byte	buffer
+ 790 023a 0C       		.uleb128 0xc
+ 791 023b 01       		.uleb128 0x1
+ 792 023c 51       		.byte	0x51
+ 793 023d 02       		.uleb128 0x2
+ 794 023e 74       		.byte	0x74
+ 795 023f 7C       		.sleb128 -4
+ 796 0240 00       		.byte	0
+ 797 0241 00       		.byte	0
+ 798 0242 12       		.uleb128 0x12
+ 799 0243 8C000000 		.4byte	0x8c
+ 800 0247 52020000 		.4byte	0x252
+ 801 024b 13       		.uleb128 0x13
+ 802 024c C9000000 		.4byte	0xc9
+ 803 0250 03       		.byte	0x3
+ 804 0251 00       		.byte	0
+ 805 0252 05       		.uleb128 0x5
+ 806 0253 93020000 		.4byte	.LASF26
+ 807 0257 01       		.byte	0x1
+ 808 0258 D6       		.byte	0xd6
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 21
+
+
+ 809 0259 00000000 		.4byte	.LFB67
+ 810 025d 28000000 		.4byte	.LFE67-.LFB67
+ 811 0261 01       		.uleb128 0x1
+ 812 0262 9C       		.byte	0x9c
+ 813 0263 C4020000 		.4byte	0x2c4
+ 814 0267 14       		.uleb128 0x14
+ 815 0268 636800   		.ascii	"ch\000"
+ 816 026b 01       		.byte	0x1
+ 817 026c D8       		.byte	0xd8
+ 818 026d 8C000000 		.4byte	0x8c
+ 819 0271 02       		.uleb128 0x2
+ 820 0272 91       		.byte	0x91
+ 821 0273 77       		.sleb128 -9
+ 822 0274 08       		.uleb128 0x8
+ 823 0275 0C000000 		.4byte	.LBB4
+ 824 0279 18000000 		.4byte	.LBE4-.LBB4
+ 825 027d B2020000 		.4byte	0x2b2
+ 826 0281 09       		.uleb128 0x9
+ 827 0282 6900     		.ascii	"i\000"
+ 828 0284 01       		.byte	0x1
+ 829 0285 DD       		.byte	0xdd
+ 830 0286 7E000000 		.4byte	0x7e
+ 831 028a 11010000 		.4byte	.LLST8
+ 832 028e 0B       		.uleb128 0xb
+ 833 028f 18000000 		.4byte	.LVL26
+ 834 0293 CA010000 		.4byte	0x1ca
+ 835 0297 A2020000 		.4byte	0x2a2
+ 836 029b 0C       		.uleb128 0xc
+ 837 029c 01       		.uleb128 0x1
+ 838 029d 50       		.byte	0x50
+ 839 029e 02       		.uleb128 0x2
+ 840 029f 91       		.byte	0x91
+ 841 02a0 77       		.sleb128 -9
+ 842 02a1 00       		.byte	0
+ 843 02a2 11       		.uleb128 0x11
+ 844 02a3 1E000000 		.4byte	.LVL27
+ 845 02a7 F5040000 		.4byte	0x4f5
+ 846 02ab 0C       		.uleb128 0xc
+ 847 02ac 01       		.uleb128 0x1
+ 848 02ad 50       		.byte	0x50
+ 849 02ae 01       		.uleb128 0x1
+ 850 02af 44       		.byte	0x44
+ 851 02b0 00       		.byte	0
+ 852 02b1 00       		.byte	0
+ 853 02b2 11       		.uleb128 0x11
+ 854 02b3 0C000000 		.4byte	.LVL24
+ 855 02b7 F5040000 		.4byte	0x4f5
+ 856 02bb 0C       		.uleb128 0xc
+ 857 02bc 01       		.uleb128 0x1
+ 858 02bd 50       		.byte	0x50
+ 859 02be 03       		.uleb128 0x3
+ 860 02bf 0A       		.byte	0xa
+ 861 02c0 F401     		.2byte	0x1f4
+ 862 02c2 00       		.byte	0
+ 863 02c3 00       		.byte	0
+ 864 02c4 05       		.uleb128 0x5
+ 865 02c5 64020000 		.4byte	.LASF27
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 22
+
+
+ 866 02c9 01       		.byte	0x1
+ 867 02ca E7       		.byte	0xe7
+ 868 02cb 00000000 		.4byte	.LFB68
+ 869 02cf 6C000000 		.4byte	.LFE68-.LFB68
+ 870 02d3 01       		.uleb128 0x1
+ 871 02d4 9C       		.byte	0x9c
+ 872 02d5 FD020000 		.4byte	0x2fd
+ 873 02d9 14       		.uleb128 0x14
+ 874 02da 636D6400 		.ascii	"cmd\000"
+ 875 02de 01       		.byte	0x1
+ 876 02df E9       		.byte	0xe9
+ 877 02e0 FD020000 		.4byte	0x2fd
+ 878 02e4 02       		.uleb128 0x2
+ 879 02e5 91       		.byte	0x91
+ 880 02e6 64       		.sleb128 -28
+ 881 02e7 11       		.uleb128 0x11
+ 882 02e8 64000000 		.4byte	.LVL29
+ 883 02ec D0000000 		.4byte	0xd0
+ 884 02f0 0C       		.uleb128 0xc
+ 885 02f1 01       		.uleb128 0x1
+ 886 02f2 50       		.byte	0x50
+ 887 02f3 02       		.uleb128 0x2
+ 888 02f4 91       		.byte	0x91
+ 889 02f5 64       		.sleb128 -28
+ 890 02f6 0C       		.uleb128 0xc
+ 891 02f7 01       		.uleb128 0x1
+ 892 02f8 51       		.byte	0x51
+ 893 02f9 01       		.uleb128 0x1
+ 894 02fa 41       		.byte	0x41
+ 895 02fb 00       		.byte	0
+ 896 02fc 00       		.byte	0
+ 897 02fd 12       		.uleb128 0x12
+ 898 02fe 8C000000 		.4byte	0x8c
+ 899 0302 0D030000 		.4byte	0x30d
+ 900 0306 13       		.uleb128 0x13
+ 901 0307 C9000000 		.4byte	0xc9
+ 902 030b 10       		.byte	0x10
+ 903 030c 00       		.byte	0
+ 904 030d 15       		.uleb128 0x15
+ 905 030e 93000000 		.4byte	.LASF28
+ 906 0312 01       		.byte	0x1
+ 907 0313 0D01     		.2byte	0x10d
+ 908 0315 00000000 		.4byte	.LFB69
+ 909 0319 60000000 		.4byte	.LFE69-.LFB69
+ 910 031d 01       		.uleb128 0x1
+ 911 031e 9C       		.byte	0x9c
+ 912 031f E2030000 		.4byte	0x3e2
+ 913 0323 16       		.uleb128 0x16
+ 914 0324 636800   		.ascii	"ch\000"
+ 915 0327 01       		.byte	0x1
+ 916 0328 0F01     		.2byte	0x10f
+ 917 032a 8C000000 		.4byte	0x8c
+ 918 032e 02       		.uleb128 0x2
+ 919 032f 91       		.byte	0x91
+ 920 0330 6F       		.sleb128 -17
+ 921 0331 17       		.uleb128 0x17
+ 922 0332 6C656E00 		.ascii	"len\000"
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 23
+
+
+ 923 0336 01       		.byte	0x1
+ 924 0337 1001     		.2byte	0x110
+ 925 0339 97000000 		.4byte	0x97
+ 926 033d 30010000 		.4byte	.LLST9
+ 927 0341 08       		.uleb128 0x8
+ 928 0342 26000000 		.4byte	.LBB5
+ 929 0346 20000000 		.4byte	.LBE5-.LBB5
+ 930 034a A3030000 		.4byte	0x3a3
+ 931 034e 17       		.uleb128 0x17
+ 932 034f 6900     		.ascii	"i\000"
+ 933 0351 01       		.byte	0x1
+ 934 0352 1901     		.2byte	0x119
+ 935 0354 97000000 		.4byte	0x97
+ 936 0358 43010000 		.4byte	.LLST10
+ 937 035c 18       		.uleb128 0x18
+ 938 035d 2A000000 		.4byte	.LBB6
+ 939 0361 12000000 		.4byte	.LBE6-.LBB6
+ 940 0365 16       		.uleb128 0x16
+ 941 0366 6D736700 		.ascii	"msg\000"
+ 942 036a 01       		.byte	0x1
+ 943 036b 1B01     		.2byte	0x11b
+ 944 036d E2030000 		.4byte	0x3e2
+ 945 0371 02       		.uleb128 0x2
+ 946 0372 91       		.byte	0x91
+ 947 0373 68       		.sleb128 -24
+ 948 0374 0B       		.uleb128 0xb
+ 949 0375 36000000 		.4byte	.LVL34
+ 950 0379 00050000 		.4byte	0x500
+ 951 037d 91030000 		.4byte	0x391
+ 952 0381 0C       		.uleb128 0xc
+ 953 0382 01       		.uleb128 0x1
+ 954 0383 50       		.byte	0x50
+ 955 0384 02       		.uleb128 0x2
+ 956 0385 7D       		.byte	0x7d
+ 957 0386 00       		.sleb128 0
+ 958 0387 0C       		.uleb128 0xc
+ 959 0388 01       		.uleb128 0x1
+ 960 0389 51       		.byte	0x51
+ 961 038a 05       		.uleb128 0x5
+ 962 038b 03       		.byte	0x3
+ 963 038c 08000000 		.4byte	.LC1
+ 964 0390 00       		.byte	0
+ 965 0391 11       		.uleb128 0x11
+ 966 0392 3C000000 		.4byte	.LVL35
+ 967 0396 0B050000 		.4byte	0x50b
+ 968 039a 0C       		.uleb128 0xc
+ 969 039b 01       		.uleb128 0x1
+ 970 039c 50       		.byte	0x50
+ 971 039d 02       		.uleb128 0x2
+ 972 039e 7D       		.byte	0x7d
+ 973 039f 00       		.sleb128 0
+ 974 03a0 00       		.byte	0
+ 975 03a1 00       		.byte	0
+ 976 03a2 00       		.byte	0
+ 977 03a3 0B       		.uleb128 0xb
+ 978 03a4 0C000000 		.4byte	.LVL30
+ 979 03a8 CA010000 		.4byte	0x1ca
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 24
+
+
+ 980 03ac B7030000 		.4byte	0x3b7
+ 981 03b0 0C       		.uleb128 0xc
+ 982 03b1 01       		.uleb128 0x1
+ 983 03b2 50       		.byte	0x50
+ 984 03b3 02       		.uleb128 0x2
+ 985 03b4 91       		.byte	0x91
+ 986 03b5 6F       		.sleb128 -17
+ 987 03b6 00       		.byte	0
+ 988 03b7 0B       		.uleb128 0xb
+ 989 03b8 26000000 		.4byte	.LVL32
+ 990 03bc 0B050000 		.4byte	0x50b
+ 991 03c0 CE030000 		.4byte	0x3ce
+ 992 03c4 0C       		.uleb128 0xc
+ 993 03c5 01       		.uleb128 0x1
+ 994 03c6 50       		.byte	0x50
+ 995 03c7 05       		.uleb128 0x5
+ 996 03c8 03       		.byte	0x3
+ 997 03c9 00000000 		.4byte	.LC0
+ 998 03cd 00       		.byte	0
+ 999 03ce 11       		.uleb128 0x11
+ 1000 03cf 4C000000 		.4byte	.LVL38
+ 1001 03d3 0B050000 		.4byte	0x50b
+ 1002 03d7 0C       		.uleb128 0xc
+ 1003 03d8 01       		.uleb128 0x1
+ 1004 03d9 50       		.byte	0x50
+ 1005 03da 05       		.uleb128 0x5
+ 1006 03db 03       		.byte	0x3
+ 1007 03dc 10000000 		.4byte	.LC2
+ 1008 03e0 00       		.byte	0
+ 1009 03e1 00       		.byte	0
+ 1010 03e2 12       		.uleb128 0x12
+ 1011 03e3 BB000000 		.4byte	0xbb
+ 1012 03e7 F2030000 		.4byte	0x3f2
+ 1013 03eb 13       		.uleb128 0x13
+ 1014 03ec C9000000 		.4byte	0xc9
+ 1015 03f0 05       		.byte	0x5
+ 1016 03f1 00       		.byte	0
+ 1017 03f2 19       		.uleb128 0x19
+ 1018 03f3 A0010000 		.4byte	.LASF45
+ 1019 03f7 01       		.byte	0x1
+ 1020 03f8 2801     		.2byte	0x128
+ 1021 03fa 7E000000 		.4byte	0x7e
+ 1022 03fe 00000000 		.4byte	.LFB70
+ 1023 0402 32000000 		.4byte	.LFE70-.LFB70
+ 1024 0406 01       		.uleb128 0x1
+ 1025 0407 9C       		.byte	0x9c
+ 1026 0408 76040000 		.4byte	0x476
+ 1027 040c 0A       		.uleb128 0xa
+ 1028 040d 08000000 		.4byte	.LVL39
+ 1029 0411 16050000 		.4byte	0x516
+ 1030 0415 0B       		.uleb128 0xb
+ 1031 0416 10000000 		.4byte	.LVL40
+ 1032 041a 21050000 		.4byte	0x521
+ 1033 041e 2D040000 		.4byte	0x42d
+ 1034 0422 0C       		.uleb128 0xc
+ 1035 0423 01       		.uleb128 0x1
+ 1036 0424 50       		.byte	0x50
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 25
+
+
+ 1037 0425 01       		.uleb128 0x1
+ 1038 0426 30       		.byte	0x30
+ 1039 0427 0C       		.uleb128 0xc
+ 1040 0428 01       		.uleb128 0x1
+ 1041 0429 51       		.byte	0x51
+ 1042 042a 01       		.uleb128 0x1
+ 1043 042b 31       		.byte	0x31
+ 1044 042c 00       		.byte	0
+ 1045 042d 0A       		.uleb128 0xa
+ 1046 042e 14000000 		.4byte	.LVL41
+ 1047 0432 2D050000 		.4byte	0x52d
+ 1048 0436 0A       		.uleb128 0xa
+ 1049 0437 1C000000 		.4byte	.LVL42
+ 1050 043b 52020000 		.4byte	0x252
+ 1051 043f 0A       		.uleb128 0xa
+ 1052 0440 20000000 		.4byte	.LVL43
+ 1053 0444 C4020000 		.4byte	0x2c4
+ 1054 0448 0B       		.uleb128 0xb
+ 1055 0449 26000000 		.4byte	.LVL44
+ 1056 044d F5040000 		.4byte	0x4f5
+ 1057 0451 5C040000 		.4byte	0x45c
+ 1058 0455 0C       		.uleb128 0xc
+ 1059 0456 01       		.uleb128 0x1
+ 1060 0457 50       		.byte	0x50
+ 1061 0458 02       		.uleb128 0x2
+ 1062 0459 08       		.byte	0x8
+ 1063 045a C8       		.byte	0xc8
+ 1064 045b 00       		.byte	0
+ 1065 045c 0A       		.uleb128 0xa
+ 1066 045d 2A000000 		.4byte	.LVL45
+ 1067 0461 0D030000 		.4byte	0x30d
+ 1068 0465 11       		.uleb128 0x11
+ 1069 0466 30000000 		.4byte	.LVL46
+ 1070 046a F5040000 		.4byte	0x4f5
+ 1071 046e 0C       		.uleb128 0xc
+ 1072 046f 01       		.uleb128 0x1
+ 1073 0470 50       		.byte	0x50
+ 1074 0471 02       		.uleb128 0x2
+ 1075 0472 08       		.byte	0x8
+ 1076 0473 64       		.byte	0x64
+ 1077 0474 00       		.byte	0
+ 1078 0475 00       		.byte	0
+ 1079 0476 1A       		.uleb128 0x1a
+ 1080 0477 69010000 		.4byte	.LASF29
+ 1081 047b 04       		.byte	0x4
+ 1082 047c 1207     		.2byte	0x712
+ 1083 047e 82040000 		.4byte	0x482
+ 1084 0482 1B       		.uleb128 0x1b
+ 1085 0483 A2000000 		.4byte	0xa2
+ 1086 0487 12       		.uleb128 0x12
+ 1087 0488 8C000000 		.4byte	0x8c
+ 1088 048c 97040000 		.4byte	0x497
+ 1089 0490 13       		.uleb128 0x13
+ 1090 0491 C9000000 		.4byte	0xc9
+ 1091 0495 05       		.byte	0x5
+ 1092 0496 00       		.byte	0
+ 1093 0497 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 26
+
+
+ 1094 0498 73657100 		.ascii	"seq\000"
+ 1095 049c 01       		.byte	0x1
+ 1096 049d 9A       		.byte	0x9a
+ 1097 049e 87040000 		.4byte	0x487
+ 1098 04a2 05       		.uleb128 0x5
+ 1099 04a3 03       		.byte	0x3
+ 1100 04a4 00000000 		.4byte	seq
+ 1101 04a8 12       		.uleb128 0x12
+ 1102 04a9 8C000000 		.4byte	0x8c
+ 1103 04ad B8040000 		.4byte	0x4b8
+ 1104 04b1 13       		.uleb128 0x13
+ 1105 04b2 C9000000 		.4byte	0xc9
+ 1106 04b6 7F       		.byte	0x7f
+ 1107 04b7 00       		.byte	0
+ 1108 04b8 1D       		.uleb128 0x1d
+ 1109 04b9 C1020000 		.4byte	.LASF30
+ 1110 04bd 01       		.byte	0x1
+ 1111 04be 9D       		.byte	0x9d
+ 1112 04bf A8040000 		.4byte	0x4a8
+ 1113 04c3 05       		.uleb128 0x5
+ 1114 04c4 03       		.byte	0x3
+ 1115 04c5 00000000 		.4byte	buffer
+ 1116 04c9 1E       		.uleb128 0x1e
+ 1117 04ca 3F000000 		.4byte	.LASF31
+ 1118 04ce 3F000000 		.4byte	.LASF31
+ 1119 04d2 05       		.byte	0x5
+ 1120 04d3 B6       		.byte	0xb6
+ 1121 04d4 1E       		.uleb128 0x1e
+ 1122 04d5 55010000 		.4byte	.LASF32
+ 1123 04d9 55010000 		.4byte	.LASF32
+ 1124 04dd 05       		.byte	0x5
+ 1125 04de B1       		.byte	0xb1
+ 1126 04df 1E       		.uleb128 0x1e
+ 1127 04e0 10000000 		.4byte	.LASF33
+ 1128 04e4 10000000 		.4byte	.LASF33
+ 1129 04e8 05       		.byte	0x5
+ 1130 04e9 B5       		.byte	0xb5
+ 1131 04ea 1E       		.uleb128 0x1e
+ 1132 04eb A4020000 		.4byte	.LASF34
+ 1133 04ef A4020000 		.4byte	.LASF34
+ 1134 04f3 05       		.byte	0x5
+ 1135 04f4 B7       		.byte	0xb7
+ 1136 04f5 1E       		.uleb128 0x1e
+ 1137 04f6 01030000 		.4byte	.LASF35
+ 1138 04fa 01030000 		.4byte	.LASF35
+ 1139 04fe 06       		.byte	0x6
+ 1140 04ff 76       		.byte	0x76
+ 1141 0500 1E       		.uleb128 0x1e
+ 1142 0501 F9020000 		.4byte	.LASF36
+ 1143 0505 F9020000 		.4byte	.LASF36
+ 1144 0509 07       		.byte	0x7
+ 1145 050a E7       		.byte	0xe7
+ 1146 050b 1E       		.uleb128 0x1e
+ 1147 050c 53000000 		.4byte	.LASF37
+ 1148 0510 53000000 		.4byte	.LASF37
+ 1149 0514 08       		.byte	0x8
+ 1150 0515 24       		.byte	0x24
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 27
+
+
+ 1151 0516 1E       		.uleb128 0x1e
+ 1152 0517 7E000000 		.4byte	.LASF38
+ 1153 051b 7E000000 		.4byte	.LASF38
+ 1154 051f 05       		.byte	0x5
+ 1155 0520 93       		.byte	0x93
+ 1156 0521 1F       		.uleb128 0x1f
+ 1157 0522 A5010000 		.4byte	.LASF39
+ 1158 0526 A5010000 		.4byte	.LASF39
+ 1159 052a 09       		.byte	0x9
+ 1160 052b 2A01     		.2byte	0x12a
+ 1161 052d 1F       		.uleb128 0x1f
+ 1162 052e 65000000 		.4byte	.LASF40
+ 1163 0532 65000000 		.4byte	.LASF40
+ 1164 0536 09       		.byte	0x9
+ 1165 0537 2D01     		.2byte	0x12d
+ 1166 0539 00       		.byte	0
+ 1167              		.section	.debug_abbrev,"",%progbits
+ 1168              	.Ldebug_abbrev0:
+ 1169 0000 01       		.uleb128 0x1
+ 1170 0001 11       		.uleb128 0x11
+ 1171 0002 01       		.byte	0x1
+ 1172 0003 25       		.uleb128 0x25
+ 1173 0004 0E       		.uleb128 0xe
+ 1174 0005 13       		.uleb128 0x13
+ 1175 0006 0B       		.uleb128 0xb
+ 1176 0007 03       		.uleb128 0x3
+ 1177 0008 0E       		.uleb128 0xe
+ 1178 0009 1B       		.uleb128 0x1b
+ 1179 000a 0E       		.uleb128 0xe
+ 1180 000b 55       		.uleb128 0x55
+ 1181 000c 17       		.uleb128 0x17
+ 1182 000d 11       		.uleb128 0x11
+ 1183 000e 01       		.uleb128 0x1
+ 1184 000f 10       		.uleb128 0x10
+ 1185 0010 17       		.uleb128 0x17
+ 1186 0011 00       		.byte	0
+ 1187 0012 00       		.byte	0
+ 1188 0013 02       		.uleb128 0x2
+ 1189 0014 24       		.uleb128 0x24
+ 1190 0015 00       		.byte	0
+ 1191 0016 0B       		.uleb128 0xb
+ 1192 0017 0B       		.uleb128 0xb
+ 1193 0018 3E       		.uleb128 0x3e
+ 1194 0019 0B       		.uleb128 0xb
+ 1195 001a 03       		.uleb128 0x3
+ 1196 001b 0E       		.uleb128 0xe
+ 1197 001c 00       		.byte	0
+ 1198 001d 00       		.byte	0
+ 1199 001e 03       		.uleb128 0x3
+ 1200 001f 16       		.uleb128 0x16
+ 1201 0020 00       		.byte	0
+ 1202 0021 03       		.uleb128 0x3
+ 1203 0022 0E       		.uleb128 0xe
+ 1204 0023 3A       		.uleb128 0x3a
+ 1205 0024 0B       		.uleb128 0xb
+ 1206 0025 3B       		.uleb128 0x3b
+ 1207 0026 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 28
+
+
+ 1208 0027 49       		.uleb128 0x49
+ 1209 0028 13       		.uleb128 0x13
+ 1210 0029 00       		.byte	0
+ 1211 002a 00       		.byte	0
+ 1212 002b 04       		.uleb128 0x4
+ 1213 002c 24       		.uleb128 0x24
+ 1214 002d 00       		.byte	0
+ 1215 002e 0B       		.uleb128 0xb
+ 1216 002f 0B       		.uleb128 0xb
+ 1217 0030 3E       		.uleb128 0x3e
+ 1218 0031 0B       		.uleb128 0xb
+ 1219 0032 03       		.uleb128 0x3
+ 1220 0033 08       		.uleb128 0x8
+ 1221 0034 00       		.byte	0
+ 1222 0035 00       		.byte	0
+ 1223 0036 05       		.uleb128 0x5
+ 1224 0037 2E       		.uleb128 0x2e
+ 1225 0038 01       		.byte	0x1
+ 1226 0039 3F       		.uleb128 0x3f
+ 1227 003a 19       		.uleb128 0x19
+ 1228 003b 03       		.uleb128 0x3
+ 1229 003c 0E       		.uleb128 0xe
+ 1230 003d 3A       		.uleb128 0x3a
+ 1231 003e 0B       		.uleb128 0xb
+ 1232 003f 3B       		.uleb128 0x3b
+ 1233 0040 0B       		.uleb128 0xb
+ 1234 0041 27       		.uleb128 0x27
+ 1235 0042 19       		.uleb128 0x19
+ 1236 0043 11       		.uleb128 0x11
+ 1237 0044 01       		.uleb128 0x1
+ 1238 0045 12       		.uleb128 0x12
+ 1239 0046 06       		.uleb128 0x6
+ 1240 0047 40       		.uleb128 0x40
+ 1241 0048 18       		.uleb128 0x18
+ 1242 0049 9742     		.uleb128 0x2117
+ 1243 004b 19       		.uleb128 0x19
+ 1244 004c 01       		.uleb128 0x1
+ 1245 004d 13       		.uleb128 0x13
+ 1246 004e 00       		.byte	0
+ 1247 004f 00       		.byte	0
+ 1248 0050 06       		.uleb128 0x6
+ 1249 0051 05       		.uleb128 0x5
+ 1250 0052 00       		.byte	0
+ 1251 0053 03       		.uleb128 0x3
+ 1252 0054 0E       		.uleb128 0xe
+ 1253 0055 3A       		.uleb128 0x3a
+ 1254 0056 0B       		.uleb128 0xb
+ 1255 0057 3B       		.uleb128 0x3b
+ 1256 0058 0B       		.uleb128 0xb
+ 1257 0059 49       		.uleb128 0x49
+ 1258 005a 13       		.uleb128 0x13
+ 1259 005b 02       		.uleb128 0x2
+ 1260 005c 17       		.uleb128 0x17
+ 1261 005d 00       		.byte	0
+ 1262 005e 00       		.byte	0
+ 1263 005f 07       		.uleb128 0x7
+ 1264 0060 05       		.uleb128 0x5
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 29
+
+
+ 1265 0061 00       		.byte	0
+ 1266 0062 03       		.uleb128 0x3
+ 1267 0063 08       		.uleb128 0x8
+ 1268 0064 3A       		.uleb128 0x3a
+ 1269 0065 0B       		.uleb128 0xb
+ 1270 0066 3B       		.uleb128 0x3b
+ 1271 0067 0B       		.uleb128 0xb
+ 1272 0068 49       		.uleb128 0x49
+ 1273 0069 13       		.uleb128 0x13
+ 1274 006a 02       		.uleb128 0x2
+ 1275 006b 17       		.uleb128 0x17
+ 1276 006c 00       		.byte	0
+ 1277 006d 00       		.byte	0
+ 1278 006e 08       		.uleb128 0x8
+ 1279 006f 0B       		.uleb128 0xb
+ 1280 0070 01       		.byte	0x1
+ 1281 0071 11       		.uleb128 0x11
+ 1282 0072 01       		.uleb128 0x1
+ 1283 0073 12       		.uleb128 0x12
+ 1284 0074 06       		.uleb128 0x6
+ 1285 0075 01       		.uleb128 0x1
+ 1286 0076 13       		.uleb128 0x13
+ 1287 0077 00       		.byte	0
+ 1288 0078 00       		.byte	0
+ 1289 0079 09       		.uleb128 0x9
+ 1290 007a 34       		.uleb128 0x34
+ 1291 007b 00       		.byte	0
+ 1292 007c 03       		.uleb128 0x3
+ 1293 007d 08       		.uleb128 0x8
+ 1294 007e 3A       		.uleb128 0x3a
+ 1295 007f 0B       		.uleb128 0xb
+ 1296 0080 3B       		.uleb128 0x3b
+ 1297 0081 0B       		.uleb128 0xb
+ 1298 0082 49       		.uleb128 0x49
+ 1299 0083 13       		.uleb128 0x13
+ 1300 0084 02       		.uleb128 0x2
+ 1301 0085 17       		.uleb128 0x17
+ 1302 0086 00       		.byte	0
+ 1303 0087 00       		.byte	0
+ 1304 0088 0A       		.uleb128 0xa
+ 1305 0089 898201   		.uleb128 0x4109
+ 1306 008c 00       		.byte	0
+ 1307 008d 11       		.uleb128 0x11
+ 1308 008e 01       		.uleb128 0x1
+ 1309 008f 31       		.uleb128 0x31
+ 1310 0090 13       		.uleb128 0x13
+ 1311 0091 00       		.byte	0
+ 1312 0092 00       		.byte	0
+ 1313 0093 0B       		.uleb128 0xb
+ 1314 0094 898201   		.uleb128 0x4109
+ 1315 0097 01       		.byte	0x1
+ 1316 0098 11       		.uleb128 0x11
+ 1317 0099 01       		.uleb128 0x1
+ 1318 009a 31       		.uleb128 0x31
+ 1319 009b 13       		.uleb128 0x13
+ 1320 009c 01       		.uleb128 0x1
+ 1321 009d 13       		.uleb128 0x13
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 30
+
+
+ 1322 009e 00       		.byte	0
+ 1323 009f 00       		.byte	0
+ 1324 00a0 0C       		.uleb128 0xc
+ 1325 00a1 8A8201   		.uleb128 0x410a
+ 1326 00a4 00       		.byte	0
+ 1327 00a5 02       		.uleb128 0x2
+ 1328 00a6 18       		.uleb128 0x18
+ 1329 00a7 9142     		.uleb128 0x2111
+ 1330 00a9 18       		.uleb128 0x18
+ 1331 00aa 00       		.byte	0
+ 1332 00ab 00       		.byte	0
+ 1333 00ac 0D       		.uleb128 0xd
+ 1334 00ad 0F       		.uleb128 0xf
+ 1335 00ae 00       		.byte	0
+ 1336 00af 0B       		.uleb128 0xb
+ 1337 00b0 0B       		.uleb128 0xb
+ 1338 00b1 49       		.uleb128 0x49
+ 1339 00b2 13       		.uleb128 0x13
+ 1340 00b3 00       		.byte	0
+ 1341 00b4 00       		.byte	0
+ 1342 00b5 0E       		.uleb128 0xe
+ 1343 00b6 2E       		.uleb128 0x2e
+ 1344 00b7 01       		.byte	0x1
+ 1345 00b8 3F       		.uleb128 0x3f
+ 1346 00b9 19       		.uleb128 0x19
+ 1347 00ba 03       		.uleb128 0x3
+ 1348 00bb 0E       		.uleb128 0xe
+ 1349 00bc 3A       		.uleb128 0x3a
+ 1350 00bd 0B       		.uleb128 0xb
+ 1351 00be 3B       		.uleb128 0x3b
+ 1352 00bf 0B       		.uleb128 0xb
+ 1353 00c0 27       		.uleb128 0x27
+ 1354 00c1 19       		.uleb128 0x19
+ 1355 00c2 49       		.uleb128 0x49
+ 1356 00c3 13       		.uleb128 0x13
+ 1357 00c4 11       		.uleb128 0x11
+ 1358 00c5 01       		.uleb128 0x1
+ 1359 00c6 12       		.uleb128 0x12
+ 1360 00c7 06       		.uleb128 0x6
+ 1361 00c8 40       		.uleb128 0x40
+ 1362 00c9 18       		.uleb128 0x18
+ 1363 00ca 9742     		.uleb128 0x2117
+ 1364 00cc 19       		.uleb128 0x19
+ 1365 00cd 01       		.uleb128 0x1
+ 1366 00ce 13       		.uleb128 0x13
+ 1367 00cf 00       		.byte	0
+ 1368 00d0 00       		.byte	0
+ 1369 00d1 0F       		.uleb128 0xf
+ 1370 00d2 34       		.uleb128 0x34
+ 1371 00d3 00       		.byte	0
+ 1372 00d4 03       		.uleb128 0x3
+ 1373 00d5 0E       		.uleb128 0xe
+ 1374 00d6 3A       		.uleb128 0x3a
+ 1375 00d7 0B       		.uleb128 0xb
+ 1376 00d8 3B       		.uleb128 0x3b
+ 1377 00d9 0B       		.uleb128 0xb
+ 1378 00da 49       		.uleb128 0x49
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 31
+
+
+ 1379 00db 13       		.uleb128 0x13
+ 1380 00dc 02       		.uleb128 0x2
+ 1381 00dd 18       		.uleb128 0x18
+ 1382 00de 00       		.byte	0
+ 1383 00df 00       		.byte	0
+ 1384 00e0 10       		.uleb128 0x10
+ 1385 00e1 34       		.uleb128 0x34
+ 1386 00e2 00       		.byte	0
+ 1387 00e3 03       		.uleb128 0x3
+ 1388 00e4 0E       		.uleb128 0xe
+ 1389 00e5 3A       		.uleb128 0x3a
+ 1390 00e6 0B       		.uleb128 0xb
+ 1391 00e7 3B       		.uleb128 0x3b
+ 1392 00e8 0B       		.uleb128 0xb
+ 1393 00e9 49       		.uleb128 0x49
+ 1394 00ea 13       		.uleb128 0x13
+ 1395 00eb 02       		.uleb128 0x2
+ 1396 00ec 17       		.uleb128 0x17
+ 1397 00ed 00       		.byte	0
+ 1398 00ee 00       		.byte	0
+ 1399 00ef 11       		.uleb128 0x11
+ 1400 00f0 898201   		.uleb128 0x4109
+ 1401 00f3 01       		.byte	0x1
+ 1402 00f4 11       		.uleb128 0x11
+ 1403 00f5 01       		.uleb128 0x1
+ 1404 00f6 31       		.uleb128 0x31
+ 1405 00f7 13       		.uleb128 0x13
+ 1406 00f8 00       		.byte	0
+ 1407 00f9 00       		.byte	0
+ 1408 00fa 12       		.uleb128 0x12
+ 1409 00fb 01       		.uleb128 0x1
+ 1410 00fc 01       		.byte	0x1
+ 1411 00fd 49       		.uleb128 0x49
+ 1412 00fe 13       		.uleb128 0x13
+ 1413 00ff 01       		.uleb128 0x1
+ 1414 0100 13       		.uleb128 0x13
+ 1415 0101 00       		.byte	0
+ 1416 0102 00       		.byte	0
+ 1417 0103 13       		.uleb128 0x13
+ 1418 0104 21       		.uleb128 0x21
+ 1419 0105 00       		.byte	0
+ 1420 0106 49       		.uleb128 0x49
+ 1421 0107 13       		.uleb128 0x13
+ 1422 0108 2F       		.uleb128 0x2f
+ 1423 0109 0B       		.uleb128 0xb
+ 1424 010a 00       		.byte	0
+ 1425 010b 00       		.byte	0
+ 1426 010c 14       		.uleb128 0x14
+ 1427 010d 34       		.uleb128 0x34
+ 1428 010e 00       		.byte	0
+ 1429 010f 03       		.uleb128 0x3
+ 1430 0110 08       		.uleb128 0x8
+ 1431 0111 3A       		.uleb128 0x3a
+ 1432 0112 0B       		.uleb128 0xb
+ 1433 0113 3B       		.uleb128 0x3b
+ 1434 0114 0B       		.uleb128 0xb
+ 1435 0115 49       		.uleb128 0x49
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 32
+
+
+ 1436 0116 13       		.uleb128 0x13
+ 1437 0117 02       		.uleb128 0x2
+ 1438 0118 18       		.uleb128 0x18
+ 1439 0119 00       		.byte	0
+ 1440 011a 00       		.byte	0
+ 1441 011b 15       		.uleb128 0x15
+ 1442 011c 2E       		.uleb128 0x2e
+ 1443 011d 01       		.byte	0x1
+ 1444 011e 3F       		.uleb128 0x3f
+ 1445 011f 19       		.uleb128 0x19
+ 1446 0120 03       		.uleb128 0x3
+ 1447 0121 0E       		.uleb128 0xe
+ 1448 0122 3A       		.uleb128 0x3a
+ 1449 0123 0B       		.uleb128 0xb
+ 1450 0124 3B       		.uleb128 0x3b
+ 1451 0125 05       		.uleb128 0x5
+ 1452 0126 27       		.uleb128 0x27
+ 1453 0127 19       		.uleb128 0x19
+ 1454 0128 11       		.uleb128 0x11
+ 1455 0129 01       		.uleb128 0x1
+ 1456 012a 12       		.uleb128 0x12
+ 1457 012b 06       		.uleb128 0x6
+ 1458 012c 40       		.uleb128 0x40
+ 1459 012d 18       		.uleb128 0x18
+ 1460 012e 9742     		.uleb128 0x2117
+ 1461 0130 19       		.uleb128 0x19
+ 1462 0131 01       		.uleb128 0x1
+ 1463 0132 13       		.uleb128 0x13
+ 1464 0133 00       		.byte	0
+ 1465 0134 00       		.byte	0
+ 1466 0135 16       		.uleb128 0x16
+ 1467 0136 34       		.uleb128 0x34
+ 1468 0137 00       		.byte	0
+ 1469 0138 03       		.uleb128 0x3
+ 1470 0139 08       		.uleb128 0x8
+ 1471 013a 3A       		.uleb128 0x3a
+ 1472 013b 0B       		.uleb128 0xb
+ 1473 013c 3B       		.uleb128 0x3b
+ 1474 013d 05       		.uleb128 0x5
+ 1475 013e 49       		.uleb128 0x49
+ 1476 013f 13       		.uleb128 0x13
+ 1477 0140 02       		.uleb128 0x2
+ 1478 0141 18       		.uleb128 0x18
+ 1479 0142 00       		.byte	0
+ 1480 0143 00       		.byte	0
+ 1481 0144 17       		.uleb128 0x17
+ 1482 0145 34       		.uleb128 0x34
+ 1483 0146 00       		.byte	0
+ 1484 0147 03       		.uleb128 0x3
+ 1485 0148 08       		.uleb128 0x8
+ 1486 0149 3A       		.uleb128 0x3a
+ 1487 014a 0B       		.uleb128 0xb
+ 1488 014b 3B       		.uleb128 0x3b
+ 1489 014c 05       		.uleb128 0x5
+ 1490 014d 49       		.uleb128 0x49
+ 1491 014e 13       		.uleb128 0x13
+ 1492 014f 02       		.uleb128 0x2
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 33
+
+
+ 1493 0150 17       		.uleb128 0x17
+ 1494 0151 00       		.byte	0
+ 1495 0152 00       		.byte	0
+ 1496 0153 18       		.uleb128 0x18
+ 1497 0154 0B       		.uleb128 0xb
+ 1498 0155 01       		.byte	0x1
+ 1499 0156 11       		.uleb128 0x11
+ 1500 0157 01       		.uleb128 0x1
+ 1501 0158 12       		.uleb128 0x12
+ 1502 0159 06       		.uleb128 0x6
+ 1503 015a 00       		.byte	0
+ 1504 015b 00       		.byte	0
+ 1505 015c 19       		.uleb128 0x19
+ 1506 015d 2E       		.uleb128 0x2e
+ 1507 015e 01       		.byte	0x1
+ 1508 015f 3F       		.uleb128 0x3f
+ 1509 0160 19       		.uleb128 0x19
+ 1510 0161 03       		.uleb128 0x3
+ 1511 0162 0E       		.uleb128 0xe
+ 1512 0163 3A       		.uleb128 0x3a
+ 1513 0164 0B       		.uleb128 0xb
+ 1514 0165 3B       		.uleb128 0x3b
+ 1515 0166 05       		.uleb128 0x5
+ 1516 0167 27       		.uleb128 0x27
+ 1517 0168 19       		.uleb128 0x19
+ 1518 0169 49       		.uleb128 0x49
+ 1519 016a 13       		.uleb128 0x13
+ 1520 016b 8701     		.uleb128 0x87
+ 1521 016d 19       		.uleb128 0x19
+ 1522 016e 11       		.uleb128 0x11
+ 1523 016f 01       		.uleb128 0x1
+ 1524 0170 12       		.uleb128 0x12
+ 1525 0171 06       		.uleb128 0x6
+ 1526 0172 40       		.uleb128 0x40
+ 1527 0173 18       		.uleb128 0x18
+ 1528 0174 9742     		.uleb128 0x2117
+ 1529 0176 19       		.uleb128 0x19
+ 1530 0177 01       		.uleb128 0x1
+ 1531 0178 13       		.uleb128 0x13
+ 1532 0179 00       		.byte	0
+ 1533 017a 00       		.byte	0
+ 1534 017b 1A       		.uleb128 0x1a
+ 1535 017c 34       		.uleb128 0x34
+ 1536 017d 00       		.byte	0
+ 1537 017e 03       		.uleb128 0x3
+ 1538 017f 0E       		.uleb128 0xe
+ 1539 0180 3A       		.uleb128 0x3a
+ 1540 0181 0B       		.uleb128 0xb
+ 1541 0182 3B       		.uleb128 0x3b
+ 1542 0183 05       		.uleb128 0x5
+ 1543 0184 49       		.uleb128 0x49
+ 1544 0185 13       		.uleb128 0x13
+ 1545 0186 3F       		.uleb128 0x3f
+ 1546 0187 19       		.uleb128 0x19
+ 1547 0188 3C       		.uleb128 0x3c
+ 1548 0189 19       		.uleb128 0x19
+ 1549 018a 00       		.byte	0
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 34
+
+
+ 1550 018b 00       		.byte	0
+ 1551 018c 1B       		.uleb128 0x1b
+ 1552 018d 35       		.uleb128 0x35
+ 1553 018e 00       		.byte	0
+ 1554 018f 49       		.uleb128 0x49
+ 1555 0190 13       		.uleb128 0x13
+ 1556 0191 00       		.byte	0
+ 1557 0192 00       		.byte	0
+ 1558 0193 1C       		.uleb128 0x1c
+ 1559 0194 34       		.uleb128 0x34
+ 1560 0195 00       		.byte	0
+ 1561 0196 03       		.uleb128 0x3
+ 1562 0197 08       		.uleb128 0x8
+ 1563 0198 3A       		.uleb128 0x3a
+ 1564 0199 0B       		.uleb128 0xb
+ 1565 019a 3B       		.uleb128 0x3b
+ 1566 019b 0B       		.uleb128 0xb
+ 1567 019c 49       		.uleb128 0x49
+ 1568 019d 13       		.uleb128 0x13
+ 1569 019e 3F       		.uleb128 0x3f
+ 1570 019f 19       		.uleb128 0x19
+ 1571 01a0 02       		.uleb128 0x2
+ 1572 01a1 18       		.uleb128 0x18
+ 1573 01a2 00       		.byte	0
+ 1574 01a3 00       		.byte	0
+ 1575 01a4 1D       		.uleb128 0x1d
+ 1576 01a5 34       		.uleb128 0x34
+ 1577 01a6 00       		.byte	0
+ 1578 01a7 03       		.uleb128 0x3
+ 1579 01a8 0E       		.uleb128 0xe
+ 1580 01a9 3A       		.uleb128 0x3a
+ 1581 01aa 0B       		.uleb128 0xb
+ 1582 01ab 3B       		.uleb128 0x3b
+ 1583 01ac 0B       		.uleb128 0xb
+ 1584 01ad 49       		.uleb128 0x49
+ 1585 01ae 13       		.uleb128 0x13
+ 1586 01af 3F       		.uleb128 0x3f
+ 1587 01b0 19       		.uleb128 0x19
+ 1588 01b1 02       		.uleb128 0x2
+ 1589 01b2 18       		.uleb128 0x18
+ 1590 01b3 00       		.byte	0
+ 1591 01b4 00       		.byte	0
+ 1592 01b5 1E       		.uleb128 0x1e
+ 1593 01b6 2E       		.uleb128 0x2e
+ 1594 01b7 00       		.byte	0
+ 1595 01b8 3F       		.uleb128 0x3f
+ 1596 01b9 19       		.uleb128 0x19
+ 1597 01ba 3C       		.uleb128 0x3c
+ 1598 01bb 19       		.uleb128 0x19
+ 1599 01bc 6E       		.uleb128 0x6e
+ 1600 01bd 0E       		.uleb128 0xe
+ 1601 01be 03       		.uleb128 0x3
+ 1602 01bf 0E       		.uleb128 0xe
+ 1603 01c0 3A       		.uleb128 0x3a
+ 1604 01c1 0B       		.uleb128 0xb
+ 1605 01c2 3B       		.uleb128 0x3b
+ 1606 01c3 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 35
+
+
+ 1607 01c4 00       		.byte	0
+ 1608 01c5 00       		.byte	0
+ 1609 01c6 1F       		.uleb128 0x1f
+ 1610 01c7 2E       		.uleb128 0x2e
+ 1611 01c8 00       		.byte	0
+ 1612 01c9 3F       		.uleb128 0x3f
+ 1613 01ca 19       		.uleb128 0x19
+ 1614 01cb 3C       		.uleb128 0x3c
+ 1615 01cc 19       		.uleb128 0x19
+ 1616 01cd 6E       		.uleb128 0x6e
+ 1617 01ce 0E       		.uleb128 0xe
+ 1618 01cf 03       		.uleb128 0x3
+ 1619 01d0 0E       		.uleb128 0xe
+ 1620 01d1 3A       		.uleb128 0x3a
+ 1621 01d2 0B       		.uleb128 0xb
+ 1622 01d3 3B       		.uleb128 0x3b
+ 1623 01d4 05       		.uleb128 0x5
+ 1624 01d5 00       		.byte	0
+ 1625 01d6 00       		.byte	0
+ 1626 01d7 00       		.byte	0
+ 1627              		.section	.debug_loc,"",%progbits
+ 1628              	.Ldebug_loc0:
+ 1629              	.LLST0:
+ 1630 0000 00000000 		.4byte	.LVL0
+ 1631 0004 0A000000 		.4byte	.LVL2
+ 1632 0008 0100     		.2byte	0x1
+ 1633 000a 50       		.byte	0x50
+ 1634 000b 0A000000 		.4byte	.LVL2
+ 1635 000f 26000000 		.4byte	.LFE64
+ 1636 0013 0100     		.2byte	0x1
+ 1637 0015 56       		.byte	0x56
+ 1638 0016 00000000 		.4byte	0
+ 1639 001a 00000000 		.4byte	0
+ 1640              	.LLST1:
+ 1641 001e 00000000 		.4byte	.LVL0
+ 1642 0022 08000000 		.4byte	.LVL1
+ 1643 0026 0100     		.2byte	0x1
+ 1644 0028 51       		.byte	0x51
+ 1645 0029 08000000 		.4byte	.LVL1
+ 1646 002d 26000000 		.4byte	.LFE64
+ 1647 0031 0400     		.2byte	0x4
+ 1648 0033 F3       		.byte	0xf3
+ 1649 0034 01       		.uleb128 0x1
+ 1650 0035 51       		.byte	0x51
+ 1651 0036 9F       		.byte	0x9f
+ 1652 0037 00000000 		.4byte	0
+ 1653 003b 00000000 		.4byte	0
+ 1654              	.LLST2:
+ 1655 003f 0E000000 		.4byte	.LVL3
+ 1656 0043 12000000 		.4byte	.LVL4
+ 1657 0047 0200     		.2byte	0x2
+ 1658 0049 30       		.byte	0x30
+ 1659 004a 9F       		.byte	0x9f
+ 1660 004b 12000000 		.4byte	.LVL4
+ 1661 004f 1A000000 		.4byte	.LVL6
+ 1662 0053 0100     		.2byte	0x1
+ 1663 0055 54       		.byte	0x54
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 36
+
+
+ 1664 0056 1C000000 		.4byte	.LVL7
+ 1665 005a 26000000 		.4byte	.LFE64
+ 1666 005e 0100     		.2byte	0x1
+ 1667 0060 54       		.byte	0x54
+ 1668 0061 00000000 		.4byte	0
+ 1669 0065 00000000 		.4byte	0
+ 1670              	.LLST3:
+ 1671 0069 00000000 		.4byte	.LVL9
+ 1672 006d 0A000000 		.4byte	.LVL11
+ 1673 0071 0100     		.2byte	0x1
+ 1674 0073 50       		.byte	0x50
+ 1675 0074 0A000000 		.4byte	.LVL11
+ 1676 0078 34000000 		.4byte	.LFE65
+ 1677 007c 0100     		.2byte	0x1
+ 1678 007e 57       		.byte	0x57
+ 1679 007f 00000000 		.4byte	0
+ 1680 0083 00000000 		.4byte	0
+ 1681              	.LLST4:
+ 1682 0087 00000000 		.4byte	.LVL9
+ 1683 008b 08000000 		.4byte	.LVL10
+ 1684 008f 0100     		.2byte	0x1
+ 1685 0091 51       		.byte	0x51
+ 1686 0092 08000000 		.4byte	.LVL10
+ 1687 0096 34000000 		.4byte	.LFE65
+ 1688 009a 0400     		.2byte	0x4
+ 1689 009c F3       		.byte	0xf3
+ 1690 009d 01       		.uleb128 0x1
+ 1691 009e 51       		.byte	0x51
+ 1692 009f 9F       		.byte	0x9f
+ 1693 00a0 00000000 		.4byte	0
+ 1694 00a4 00000000 		.4byte	0
+ 1695              	.LLST5:
+ 1696 00a8 0E000000 		.4byte	.LVL12
+ 1697 00ac 12000000 		.4byte	.LVL13
+ 1698 00b0 0200     		.2byte	0x2
+ 1699 00b2 30       		.byte	0x30
+ 1700 00b3 9F       		.byte	0x9f
+ 1701 00b4 12000000 		.4byte	.LVL13
+ 1702 00b8 28000000 		.4byte	.LVL15
+ 1703 00bc 0100     		.2byte	0x1
+ 1704 00be 54       		.byte	0x54
+ 1705 00bf 2A000000 		.4byte	.LVL16
+ 1706 00c3 34000000 		.4byte	.LFE65
+ 1707 00c7 0100     		.2byte	0x1
+ 1708 00c9 54       		.byte	0x54
+ 1709 00ca 00000000 		.4byte	0
+ 1710 00ce 00000000 		.4byte	0
+ 1711              	.LLST6:
+ 1712 00d2 00000000 		.4byte	.LVL18
+ 1713 00d6 0C000000 		.4byte	.LVL19
+ 1714 00da 0100     		.2byte	0x1
+ 1715 00dc 50       		.byte	0x50
+ 1716 00dd 0C000000 		.4byte	.LVL19
+ 1717 00e1 3A000000 		.4byte	.LVL23
+ 1718 00e5 0100     		.2byte	0x1
+ 1719 00e7 55       		.byte	0x55
+ 1720 00e8 3A000000 		.4byte	.LVL23
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 37
+
+
+ 1721 00ec 40000000 		.4byte	.LFE66
+ 1722 00f0 0400     		.2byte	0x4
+ 1723 00f2 F3       		.byte	0xf3
+ 1724 00f3 01       		.uleb128 0x1
+ 1725 00f4 50       		.byte	0x50
+ 1726 00f5 9F       		.byte	0x9f
+ 1727 00f6 00000000 		.4byte	0
+ 1728 00fa 00000000 		.4byte	0
+ 1729              	.LLST7:
+ 1730 00fe 1C000000 		.4byte	.LVL21
+ 1731 0102 3A000000 		.4byte	.LVL23
+ 1732 0106 0100     		.2byte	0x1
+ 1733 0108 54       		.byte	0x54
+ 1734 0109 00000000 		.4byte	0
+ 1735 010d 00000000 		.4byte	0
+ 1736              	.LLST8:
+ 1737 0111 0C000000 		.4byte	.LVL24
+ 1738 0115 10000000 		.4byte	.LVL25
+ 1739 0119 0200     		.2byte	0x2
+ 1740 011b 30       		.byte	0x30
+ 1741 011c 9F       		.byte	0x9f
+ 1742 011d 10000000 		.4byte	.LVL25
+ 1743 0121 28000000 		.4byte	.LFE67
+ 1744 0125 0100     		.2byte	0x1
+ 1745 0127 54       		.byte	0x54
+ 1746 0128 00000000 		.4byte	0
+ 1747 012c 00000000 		.4byte	0
+ 1748              	.LLST9:
+ 1749 0130 0C000000 		.4byte	.LVL30
+ 1750 0134 22000000 		.4byte	.LVL31
+ 1751 0138 0100     		.2byte	0x1
+ 1752 013a 50       		.byte	0x50
+ 1753 013b 00000000 		.4byte	0
+ 1754 013f 00000000 		.4byte	0
+ 1755              	.LLST10:
+ 1756 0143 26000000 		.4byte	.LVL32
+ 1757 0147 2A000000 		.4byte	.LVL33
+ 1758 014b 0200     		.2byte	0x2
+ 1759 014d 30       		.byte	0x30
+ 1760 014e 9F       		.byte	0x9f
+ 1761 014f 2A000000 		.4byte	.LVL33
+ 1762 0153 3E000000 		.4byte	.LVL36
+ 1763 0157 0100     		.2byte	0x1
+ 1764 0159 54       		.byte	0x54
+ 1765 015a 40000000 		.4byte	.LVL37
+ 1766 015e 4C000000 		.4byte	.LVL38
+ 1767 0162 0100     		.2byte	0x1
+ 1768 0164 54       		.byte	0x54
+ 1769 0165 00000000 		.4byte	0
+ 1770 0169 00000000 		.4byte	0
+ 1771              		.section	.debug_aranges,"",%progbits
+ 1772 0000 4C000000 		.4byte	0x4c
+ 1773 0004 0200     		.2byte	0x2
+ 1774 0006 00000000 		.4byte	.Ldebug_info0
+ 1775 000a 04       		.byte	0x4
+ 1776 000b 00       		.byte	0
+ 1777 000c 0000     		.2byte	0
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 38
+
+
+ 1778 000e 0000     		.2byte	0
+ 1779 0010 00000000 		.4byte	.LFB64
+ 1780 0014 26000000 		.4byte	.LFE64-.LFB64
+ 1781 0018 00000000 		.4byte	.LFB65
+ 1782 001c 34000000 		.4byte	.LFE65-.LFB65
+ 1783 0020 00000000 		.4byte	.LFB66
+ 1784 0024 40000000 		.4byte	.LFE66-.LFB66
+ 1785 0028 00000000 		.4byte	.LFB67
+ 1786 002c 28000000 		.4byte	.LFE67-.LFB67
+ 1787 0030 00000000 		.4byte	.LFB68
+ 1788 0034 6C000000 		.4byte	.LFE68-.LFB68
+ 1789 0038 00000000 		.4byte	.LFB69
+ 1790 003c 60000000 		.4byte	.LFE69-.LFB69
+ 1791 0040 00000000 		.4byte	.LFB70
+ 1792 0044 32000000 		.4byte	.LFE70-.LFB70
+ 1793 0048 00000000 		.4byte	0
+ 1794 004c 00000000 		.4byte	0
+ 1795              		.section	.debug_ranges,"",%progbits
+ 1796              	.Ldebug_ranges0:
+ 1797 0000 00000000 		.4byte	.LFB64
+ 1798 0004 26000000 		.4byte	.LFE64
+ 1799 0008 00000000 		.4byte	.LFB65
+ 1800 000c 34000000 		.4byte	.LFE65
+ 1801 0010 00000000 		.4byte	.LFB66
+ 1802 0014 40000000 		.4byte	.LFE66
+ 1803 0018 00000000 		.4byte	.LFB67
+ 1804 001c 28000000 		.4byte	.LFE67
+ 1805 0020 00000000 		.4byte	.LFB68
+ 1806 0024 6C000000 		.4byte	.LFE68
+ 1807 0028 00000000 		.4byte	.LFB69
+ 1808 002c 60000000 		.4byte	.LFE69
+ 1809 0030 00000000 		.4byte	.LFB70
+ 1810 0034 32000000 		.4byte	.LFE70
+ 1811 0038 00000000 		.4byte	0
+ 1812 003c 00000000 		.4byte	0
+ 1813              		.section	.debug_line,"",%progbits
+ 1814              	.Ldebug_line0:
+ 1815 0000 F4020000 		.section	.debug_str,"MS",%progbits,1
+ 1815      0200E401 
+ 1815      00000201 
+ 1815      FB0E0D00 
+ 1815      01010101 
+ 1816              	.LASF22:
+ 1817 0000 4932435F 		.ascii	"I2C_Read\000"
+ 1817      52656164 
+ 1817      00
+ 1818              	.LASF24:
+ 1819 0009 68656164 		.ascii	"header\000"
+ 1819      657200
+ 1820              	.LASF33:
+ 1821 0010 4932435F 		.ascii	"I2C_MasterSendStop\000"
+ 1821      4D617374 
+ 1821      65725365 
+ 1821      6E645374 
+ 1821      6F7000
+ 1822              	.LASF23:
+ 1823 0023 6368616E 		.ascii	"channel\000"
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 39
+
+
+ 1823      6E656C00 
+ 1824              	.LASF3:
+ 1825 002b 5F5F7569 		.ascii	"__uint8_t\000"
+ 1825      6E74385F 
+ 1825      7400
+ 1826              	.LASF6:
+ 1827 0035 5F5F696E 		.ascii	"__int32_t\000"
+ 1827      7433325F 
+ 1827      7400
+ 1828              	.LASF31:
+ 1829 003f 4932435F 		.ascii	"I2C_MasterWriteByte\000"
+ 1829      4D617374 
+ 1829      65725772 
+ 1829      69746542 
+ 1829      79746500 
+ 1830              	.LASF37:
+ 1831 0053 55534255 		.ascii	"USBUART_PutString\000"
+ 1831      4152545F 
+ 1831      50757453 
+ 1831      7472696E 
+ 1831      6700
+ 1832              	.LASF40:
+ 1833 0065 55534255 		.ascii	"USBUART_GetConfiguration\000"
+ 1833      4152545F 
+ 1833      47657443 
+ 1833      6F6E6669 
+ 1833      67757261 
+ 1834              	.LASF38:
+ 1835 007e 4932435F 		.ascii	"I2C_Start\000"
+ 1835      53746172 
+ 1835      7400
+ 1836              	.LASF15:
+ 1837 0088 666C6F61 		.ascii	"float\000"
+ 1837      7400
+ 1838              	.LASF20:
+ 1839 008e 64617461 		.ascii	"data\000"
+ 1839      00
+ 1840              	.LASF28:
+ 1841 0093 50726F63 		.ascii	"ProcessPackets\000"
+ 1841      65737350 
+ 1841      61636B65 
+ 1841      747300
+ 1842              	.LASF41:
+ 1843 00a2 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1843      43313120 
+ 1843      352E342E 
+ 1843      31203230 
+ 1843      31363036 
+ 1844 00d5 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1844      20726576 
+ 1844      6973696F 
+ 1844      6E203233 
+ 1844      37373135 
+ 1845 0108 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1845      66756E63 
+ 1845      74696F6E 
+ 1845      2D736563 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 40
+
+
+ 1845      74696F6E 
+ 1846              	.LASF8:
+ 1847 0130 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1847      20756E73 
+ 1847      69676E65 
+ 1847      6420696E 
+ 1847      7400
+ 1848              	.LASF5:
+ 1849 0142 73686F72 		.ascii	"short unsigned int\000"
+ 1849      7420756E 
+ 1849      7369676E 
+ 1849      65642069 
+ 1849      6E7400
+ 1850              	.LASF32:
+ 1851 0155 4932435F 		.ascii	"I2C_MasterSendStart\000"
+ 1851      4D617374 
+ 1851      65725365 
+ 1851      6E645374 
+ 1851      61727400 
+ 1852              	.LASF29:
+ 1853 0169 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1853      52784275 
+ 1853      66666572 
+ 1853      00
+ 1854              	.LASF1:
+ 1855 0176 756E7369 		.ascii	"unsigned char\000"
+ 1855      676E6564 
+ 1855      20636861 
+ 1855      7200
+ 1856              	.LASF4:
+ 1857 0184 5F5F7569 		.ascii	"__uint16_t\000"
+ 1857      6E743136 
+ 1857      5F7400
+ 1858              	.LASF16:
+ 1859 018f 646F7562 		.ascii	"double\000"
+ 1859      6C6500
+ 1860              	.LASF21:
+ 1861 0196 4932435F 		.ascii	"I2C_Write\000"
+ 1861      57726974 
+ 1861      6500
+ 1862              	.LASF45:
+ 1863 01a0 6D61696E 		.ascii	"main\000"
+ 1863      00
+ 1864              	.LASF39:
+ 1865 01a5 55534255 		.ascii	"USBUART_Start\000"
+ 1865      4152545F 
+ 1865      53746172 
+ 1865      7400
+ 1866              	.LASF11:
+ 1867 01b3 756E7369 		.ascii	"unsigned int\000"
+ 1867      676E6564 
+ 1867      20696E74 
+ 1867      00
+ 1868              	.LASF10:
+ 1869 01c0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1869      206C6F6E 
+ 1869      6720756E 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 41
+
+
+ 1869      7369676E 
+ 1869      65642069 
+ 1870              	.LASF12:
+ 1871 01d7 75696E74 		.ascii	"uint8_t\000"
+ 1871      385F7400 
+ 1872              	.LASF43:
+ 1873 01df 433A5C55 		.ascii	"C:\\Users\\Anton\\Documents\\GitHub repository\\Ele"
+ 1873      73657273 
+ 1873      5C416E74 
+ 1873      6F6E5C44 
+ 1873      6F63756D 
+ 1874 020d 6B74726F 		.ascii	"ktroteknologi-Projekt-1\\Accelerometer kode\\I2C te"
+ 1874      74656B6E 
+ 1874      6F6C6F67 
+ 1874      692D5072 
+ 1874      6F6A656B 
+ 1875 023e 73745C54 		.ascii	"st\\Test af I2C.cydsn\000"
+ 1875      65737420 
+ 1875      61662049 
+ 1875      32432E63 
+ 1875      7964736E 
+ 1876              	.LASF14:
+ 1877 0253 696E7433 		.ascii	"int32_t\000"
+ 1877      325F7400 
+ 1878              	.LASF19:
+ 1879 025b 73697A65 		.ascii	"sizetype\000"
+ 1879      74797065 
+ 1879      00
+ 1880              	.LASF27:
+ 1881 0264 456E6162 		.ascii	"EnableRotationVector\000"
+ 1881      6C65526F 
+ 1881      74617469 
+ 1881      6F6E5665 
+ 1881      63746F72 
+ 1882              	.LASF9:
+ 1883 0279 6C6F6E67 		.ascii	"long long int\000"
+ 1883      206C6F6E 
+ 1883      6720696E 
+ 1883      7400
+ 1884              	.LASF42:
+ 1885 0287 6D61696E 		.ascii	"main.c\000"
+ 1885      2E6300
+ 1886              	.LASF17:
+ 1887 028e 63686172 		.ascii	"char\000"
+ 1887      00
+ 1888              	.LASF26:
+ 1889 0293 424E4F30 		.ascii	"BNO085_Handshake\000"
+ 1889      38355F48 
+ 1889      616E6473 
+ 1889      68616B65 
+ 1889      00
+ 1890              	.LASF34:
+ 1891 02a4 4932435F 		.ascii	"I2C_MasterReadByte\000"
+ 1891      4D617374 
+ 1891      65725265 
+ 1891      61644279 
+ 1891      746500
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccrkOZ6w.s 			page 42
+
+
+ 1892              	.LASF2:
+ 1893 02b7 73686F72 		.ascii	"short int\000"
+ 1893      7420696E 
+ 1893      7400
+ 1894              	.LASF30:
+ 1895 02c1 62756666 		.ascii	"buffer\000"
+ 1895      657200
+ 1896              	.LASF13:
+ 1897 02c8 75696E74 		.ascii	"uint16_t\000"
+ 1897      31365F74 
+ 1897      00
+ 1898              	.LASF25:
+ 1899 02d1 6C656E67 		.ascii	"length\000"
+ 1899      746800
+ 1900              	.LASF7:
+ 1901 02d8 6C6F6E67 		.ascii	"long int\000"
+ 1901      20696E74 
+ 1901      00
+ 1902              	.LASF18:
+ 1903 02e1 6C6F6E67 		.ascii	"long double\000"
+ 1903      20646F75 
+ 1903      626C6500 
+ 1904              	.LASF0:
+ 1905 02ed 7369676E 		.ascii	"signed char\000"
+ 1905      65642063 
+ 1905      68617200 
+ 1906              	.LASF36:
+ 1907 02f9 73707269 		.ascii	"sprintf\000"
+ 1907      6E746600 
+ 1908              	.LASF35:
+ 1909 0301 43794465 		.ascii	"CyDelay\000"
+ 1909      6C617900 
+ 1910              	.LASF44:
+ 1911 0309 52656164 		.ascii	"ReadPacket\000"
+ 1911      5061636B 
+ 1911      657400
+ 1912              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

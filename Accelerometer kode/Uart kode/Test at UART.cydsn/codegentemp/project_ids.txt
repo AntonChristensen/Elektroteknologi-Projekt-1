@@ -1,6 +1,6 @@
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|7625dbb5-e591-4555-a5ac-9b1327978974
-C:\Users\Anton\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|aeb63605-e072-4ece-bcc6-a01c5a4bc2be
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|f0273a38-2f85-4006-8af2-5b65fe374e5a
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|5ef193d2-ac61-4d2b-97e1-68c646849e7d
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|49e1035d-d4fb-4f2c-b673-8500de60b779
-C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\Test at UART.cyprj|09434686-e30c-40db-ac27-185528a59747
+C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\Test at UART.cyprj|bdf74222-ab9d-4936-9af2-51802d49793f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a22111c0-a4a3-4a5a-88f2-fd0e346eca71
+C:\Users\Anton\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|dc39a1e5-0f59-4809-b5f3-36bf6ee43624
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|84c26c98-9f19-4197-a573-c52854106333
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|1d83aeb1-dc7a-428c-a489-5cc2c7b8894e
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b32c7f96-ff6d-4df4-be33-15ef39ccb595

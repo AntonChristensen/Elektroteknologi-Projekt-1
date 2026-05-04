@@ -1,0 +1,878 @@
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB63:
+  27              		.file 1 "main.c"
+   1:main.c        **** // brug software real term
+   2:main.c        **** #include "project.h"
+   3:main.c        **** #include <string.h>
+   4:main.c        **** 
+   5:main.c        **** int main(void)
+   6:main.c        **** {
+  28              		.loc 1 6 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 00B5     		push	{lr}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 83B0     		sub	sp, sp, #12
+  36              		.cfi_def_cfa_offset 16
+   7:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  37              		.loc 1 7 0
+  38              		.syntax unified
+  39              	@ 7 "main.c" 1
+  40 0004 62B6     		CPSIE   i
+  41              	@ 0 "" 2
+   8:main.c        ****   
+   9:main.c        ****     const char8 occ[] = "Hej";
+  42              		.loc 1 9 0
+  43              		.thumb
+  44              		.syntax unified
+  45 0006 154B     		ldr	r3, .L7
+  46 0008 0193     		str	r3, [sp, #4]
+  10:main.c        ****     
+  11:main.c        ****     USBUART_Start(0, USBUART_5V_OPERATION); // see datasheet
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 2
+
+
+  47              		.loc 1 11 0
+  48 000a 0121     		movs	r1, #1
+  49 000c 0020     		movs	r0, #0
+  50 000e FFF7FEFF 		bl	USBUART_Start
+  51              	.LVL0:
+  12:main.c        ****     UART_Start(); // see datasheet
+  52              		.loc 1 12 0
+  53 0012 FFF7FEFF 		bl	UART_Start
+  54              	.LVL1:
+  55              	.L2:
+  13:main.c        **** 
+  14:main.c        ****     while(0u == USBUART_GetConfiguration()){}
+  56              		.loc 1 14 0 discriminator 1
+  57 0016 FFF7FEFF 		bl	USBUART_GetConfiguration
+  58              	.LVL2:
+  59 001a 0028     		cmp	r0, #0
+  60 001c FBD0     		beq	.L2
+  15:main.c        ****     CyDelay(5);
+  61              		.loc 1 15 0
+  62 001e 0520     		movs	r0, #5
+  63 0020 FFF7FEFF 		bl	CyDelay
+  64              	.LVL3:
+  65              	.L3:
+  16:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  17:main.c        **** 
+  18:main.c        **** for(;;)
+  19:main.c        **** {
+  20:main.c        ****     CyDelay(1); 
+  66              		.loc 1 20 0
+  67 0024 0120     		movs	r0, #1
+  68 0026 FFF7FEFF 		bl	CyDelay
+  69              	.LVL4:
+  21:main.c        ****     
+  22:main.c        **** 
+  23:main.c        ****     UART_PutString(occ);
+  70              		.loc 1 23 0
+  71 002a 01A8     		add	r0, sp, #4
+  72 002c FFF7FEFF 		bl	UART_PutString
+  73              	.LVL5:
+  24:main.c        ****     
+  25:main.c        ****     if(UART_ReadTxStatus() & UART_TX_STS_COMPLETE) {
+  74              		.loc 1 25 0
+  75 0030 FFF7FEFF 		bl	UART_ReadTxStatus
+  76              	.LVL6:
+  77 0034 10F0010F 		tst	r0, #1
+  78 0038 07D0     		beq	.L4
+  26:main.c        ****         if(USBUART_CDCIsReady()){
+  79              		.loc 1 26 0
+  80 003a FFF7FEFF 		bl	USBUART_CDCIsReady
+  81              	.LVL7:
+  82 003e 0028     		cmp	r0, #0
+  83 0040 F0D0     		beq	.L3
+  27:main.c        ****             USBUART_PutString("Send\r\n");
+  84              		.loc 1 27 0
+  85 0042 0748     		ldr	r0, .L7+4
+  86 0044 FFF7FEFF 		bl	USBUART_PutString
+  87              	.LVL8:
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 3
+
+
+  88 0048 ECE7     		b	.L3
+  89              	.L4:
+  28:main.c        ****         }
+  29:main.c        ****     } else {
+  30:main.c        ****         if(USBUART_CDCIsReady()){
+  90              		.loc 1 30 0
+  91 004a FFF7FEFF 		bl	USBUART_CDCIsReady
+  92              	.LVL9:
+  93 004e 0028     		cmp	r0, #0
+  94 0050 E8D0     		beq	.L3
+  31:main.c        ****             USBUART_PutString("Not Send\r\n");
+  95              		.loc 1 31 0
+  96 0052 0448     		ldr	r0, .L7+8
+  97 0054 FFF7FEFF 		bl	USBUART_PutString
+  98              	.LVL10:
+  99 0058 E4E7     		b	.L3
+ 100              	.L8:
+ 101 005a 00BF     		.align	2
+ 102              	.L7:
+ 103 005c 48656A00 		.word	6972744
+ 104 0060 00000000 		.word	.LC0
+ 105 0064 08000000 		.word	.LC1
+ 106              		.cfi_endproc
+ 107              	.LFE63:
+ 108              		.size	main, .-main
+ 109              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 110              		.align	2
+ 111              	.LC0:
+ 112 0000 53656E64 		.ascii	"Send\015\012\000"
+ 112      0D0A00
+ 113 0007 00       		.space	1
+ 114              	.LC1:
+ 115 0008 4E6F7420 		.ascii	"Not Send\015\012\000"
+ 115      53656E64 
+ 115      0D0A00
+ 116              		.text
+ 117              	.Letext0:
+ 118              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 119              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 120              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 121              		.file 5 "Generated_Source\\PSoC5/USBUART.h"
+ 122              		.file 6 "Generated_Source\\PSoC5/UART.h"
+ 123              		.file 7 "Generated_Source\\PSoC5/CyLib.h"
+ 124              		.file 8 "Generated_Source\\PSoC5/USBUART_cdc.h"
+ 125              		.file 9 "Generated_Source\\PSoC5/core_cm3.h"
+ 126              		.section	.debug_info,"",%progbits
+ 127              	.Ldebug_info0:
+ 128 0000 0F020000 		.4byte	0x20f
+ 129 0004 0400     		.2byte	0x4
+ 130 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 131 000a 04       		.byte	0x4
+ 132 000b 01       		.uleb128 0x1
+ 133 000c 5C000000 		.4byte	.LASF26
+ 134 0010 0C       		.byte	0xc
+ 135 0011 19020000 		.4byte	.LASF27
+ 136 0015 7D010000 		.4byte	.LASF28
+ 137 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 4
+
+
+ 138 001d 00000000 		.4byte	0
+ 139 0021 00000000 		.4byte	.Ldebug_line0
+ 140 0025 02       		.uleb128 0x2
+ 141 0026 01       		.byte	0x1
+ 142 0027 06       		.byte	0x6
+ 143 0028 4A020000 		.4byte	.LASF0
+ 144 002c 02       		.uleb128 0x2
+ 145 002d 01       		.byte	0x1
+ 146 002e 08       		.byte	0x8
+ 147 002f 4E000000 		.4byte	.LASF1
+ 148 0033 02       		.uleb128 0x2
+ 149 0034 02       		.byte	0x2
+ 150 0035 05       		.byte	0x5
+ 151 0036 25020000 		.4byte	.LASF2
+ 152 003a 02       		.uleb128 0x2
+ 153 003b 02       		.byte	0x2
+ 154 003c 07       		.byte	0x7
+ 155 003d 02010000 		.4byte	.LASF3
+ 156 0041 03       		.uleb128 0x3
+ 157 0042 00000000 		.4byte	.LASF9
+ 158 0046 02       		.byte	0x2
+ 159 0047 3F       		.byte	0x3f
+ 160 0048 4C000000 		.4byte	0x4c
+ 161 004c 02       		.uleb128 0x2
+ 162 004d 04       		.byte	0x4
+ 163 004e 05       		.byte	0x5
+ 164 004f 35020000 		.4byte	.LASF4
+ 165 0053 02       		.uleb128 0x2
+ 166 0054 04       		.byte	0x4
+ 167 0055 07       		.byte	0x7
+ 168 0056 F0000000 		.4byte	.LASF5
+ 169 005a 02       		.uleb128 0x2
+ 170 005b 08       		.byte	0x8
+ 171 005c 05       		.byte	0x5
+ 172 005d 0B020000 		.4byte	.LASF6
+ 173 0061 02       		.uleb128 0x2
+ 174 0062 08       		.byte	0x8
+ 175 0063 07       		.byte	0x7
+ 176 0064 66010000 		.4byte	.LASF7
+ 177 0068 04       		.uleb128 0x4
+ 178 0069 04       		.byte	0x4
+ 179 006a 05       		.byte	0x5
+ 180 006b 696E7400 		.ascii	"int\000"
+ 181 006f 02       		.uleb128 0x2
+ 182 0070 04       		.byte	0x4
+ 183 0071 07       		.byte	0x7
+ 184 0072 47010000 		.4byte	.LASF8
+ 185 0076 03       		.uleb128 0x3
+ 186 0077 FA010000 		.4byte	.LASF10
+ 187 007b 03       		.byte	0x3
+ 188 007c 2C       		.byte	0x2c
+ 189 007d 41000000 		.4byte	0x41
+ 190 0081 05       		.uleb128 0x5
+ 191 0082 2F020000 		.4byte	.LASF11
+ 192 0086 04       		.byte	0x4
+ 193 0087 E801     		.2byte	0x1e8
+ 194 0089 2C000000 		.4byte	0x2c
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 5
+
+
+ 195 008d 02       		.uleb128 0x2
+ 196 008e 04       		.byte	0x4
+ 197 008f 04       		.byte	0x4
+ 198 0090 48000000 		.4byte	.LASF12
+ 199 0094 02       		.uleb128 0x2
+ 200 0095 08       		.byte	0x8
+ 201 0096 04       		.byte	0x4
+ 202 0097 2D010000 		.4byte	.LASF13
+ 203 009b 05       		.uleb128 0x5
+ 204 009c EA000000 		.4byte	.LASF14
+ 205 00a0 04       		.byte	0x4
+ 206 00a1 F901     		.2byte	0x1f9
+ 207 00a3 A7000000 		.4byte	0xa7
+ 208 00a7 02       		.uleb128 0x2
+ 209 00a8 01       		.byte	0x1
+ 210 00a9 08       		.byte	0x8
+ 211 00aa 20020000 		.4byte	.LASF15
+ 212 00ae 02       		.uleb128 0x2
+ 213 00af 08       		.byte	0x8
+ 214 00b0 04       		.byte	0x4
+ 215 00b1 3E020000 		.4byte	.LASF16
+ 216 00b5 02       		.uleb128 0x2
+ 217 00b6 04       		.byte	0x4
+ 218 00b7 07       		.byte	0x7
+ 219 00b8 02020000 		.4byte	.LASF17
+ 220 00bc 06       		.uleb128 0x6
+ 221 00bd 34010000 		.4byte	.LASF29
+ 222 00c1 01       		.byte	0x1
+ 223 00c2 05       		.byte	0x5
+ 224 00c3 68000000 		.4byte	0x68
+ 225 00c7 00000000 		.4byte	.LFB63
+ 226 00cb 68000000 		.4byte	.LFE63-.LFB63
+ 227 00cf 01       		.uleb128 0x1
+ 228 00d0 9C       		.byte	0x9c
+ 229 00d1 8D010000 		.4byte	0x18d
+ 230 00d5 07       		.uleb128 0x7
+ 231 00d6 6F636300 		.ascii	"occ\000"
+ 232 00da 01       		.byte	0x1
+ 233 00db 09       		.byte	0x9
+ 234 00dc A2010000 		.4byte	0x1a2
+ 235 00e0 02       		.uleb128 0x2
+ 236 00e1 91       		.byte	0x91
+ 237 00e2 74       		.sleb128 -12
+ 238 00e3 08       		.uleb128 0x8
+ 239 00e4 12000000 		.4byte	.LVL0
+ 240 00e8 B8010000 		.4byte	0x1b8
+ 241 00ec FB000000 		.4byte	0xfb
+ 242 00f0 09       		.uleb128 0x9
+ 243 00f1 01       		.uleb128 0x1
+ 244 00f2 50       		.byte	0x50
+ 245 00f3 01       		.uleb128 0x1
+ 246 00f4 30       		.byte	0x30
+ 247 00f5 09       		.uleb128 0x9
+ 248 00f6 01       		.uleb128 0x1
+ 249 00f7 51       		.byte	0x51
+ 250 00f8 01       		.uleb128 0x1
+ 251 00f9 31       		.byte	0x31
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 6
+
+
+ 252 00fa 00       		.byte	0
+ 253 00fb 0A       		.uleb128 0xa
+ 254 00fc 16000000 		.4byte	.LVL1
+ 255 0100 C4010000 		.4byte	0x1c4
+ 256 0104 0A       		.uleb128 0xa
+ 257 0105 1A000000 		.4byte	.LVL2
+ 258 0109 CF010000 		.4byte	0x1cf
+ 259 010d 08       		.uleb128 0x8
+ 260 010e 24000000 		.4byte	.LVL3
+ 261 0112 DB010000 		.4byte	0x1db
+ 262 0116 20010000 		.4byte	0x120
+ 263 011a 09       		.uleb128 0x9
+ 264 011b 01       		.uleb128 0x1
+ 265 011c 50       		.byte	0x50
+ 266 011d 01       		.uleb128 0x1
+ 267 011e 35       		.byte	0x35
+ 268 011f 00       		.byte	0
+ 269 0120 08       		.uleb128 0x8
+ 270 0121 2A000000 		.4byte	.LVL4
+ 271 0125 DB010000 		.4byte	0x1db
+ 272 0129 33010000 		.4byte	0x133
+ 273 012d 09       		.uleb128 0x9
+ 274 012e 01       		.uleb128 0x1
+ 275 012f 50       		.byte	0x50
+ 276 0130 01       		.uleb128 0x1
+ 277 0131 31       		.byte	0x31
+ 278 0132 00       		.byte	0
+ 279 0133 08       		.uleb128 0x8
+ 280 0134 30000000 		.4byte	.LVL5
+ 281 0138 E6010000 		.4byte	0x1e6
+ 282 013c 47010000 		.4byte	0x147
+ 283 0140 09       		.uleb128 0x9
+ 284 0141 01       		.uleb128 0x1
+ 285 0142 50       		.byte	0x50
+ 286 0143 02       		.uleb128 0x2
+ 287 0144 91       		.byte	0x91
+ 288 0145 74       		.sleb128 -12
+ 289 0146 00       		.byte	0
+ 290 0147 0A       		.uleb128 0xa
+ 291 0148 34000000 		.4byte	.LVL6
+ 292 014c F1010000 		.4byte	0x1f1
+ 293 0150 0A       		.uleb128 0xa
+ 294 0151 3E000000 		.4byte	.LVL7
+ 295 0155 FC010000 		.4byte	0x1fc
+ 296 0159 08       		.uleb128 0x8
+ 297 015a 48000000 		.4byte	.LVL8
+ 298 015e 07020000 		.4byte	0x207
+ 299 0162 70010000 		.4byte	0x170
+ 300 0166 09       		.uleb128 0x9
+ 301 0167 01       		.uleb128 0x1
+ 302 0168 50       		.byte	0x50
+ 303 0169 05       		.uleb128 0x5
+ 304 016a 03       		.byte	0x3
+ 305 016b 00000000 		.4byte	.LC0
+ 306 016f 00       		.byte	0
+ 307 0170 0A       		.uleb128 0xa
+ 308 0171 4E000000 		.4byte	.LVL9
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 7
+
+
+ 309 0175 FC010000 		.4byte	0x1fc
+ 310 0179 0B       		.uleb128 0xb
+ 311 017a 58000000 		.4byte	.LVL10
+ 312 017e 07020000 		.4byte	0x207
+ 313 0182 09       		.uleb128 0x9
+ 314 0183 01       		.uleb128 0x1
+ 315 0184 50       		.byte	0x50
+ 316 0185 05       		.uleb128 0x5
+ 317 0186 03       		.byte	0x3
+ 318 0187 08000000 		.4byte	.LC1
+ 319 018b 00       		.byte	0
+ 320 018c 00       		.byte	0
+ 321 018d 0C       		.uleb128 0xc
+ 322 018e 9D010000 		.4byte	0x19d
+ 323 0192 9D010000 		.4byte	0x19d
+ 324 0196 0D       		.uleb128 0xd
+ 325 0197 B5000000 		.4byte	0xb5
+ 326 019b 03       		.byte	0x3
+ 327 019c 00       		.byte	0
+ 328 019d 0E       		.uleb128 0xe
+ 329 019e 9B000000 		.4byte	0x9b
+ 330 01a2 0E       		.uleb128 0xe
+ 331 01a3 8D010000 		.4byte	0x18d
+ 332 01a7 0F       		.uleb128 0xf
+ 333 01a8 20010000 		.4byte	.LASF30
+ 334 01ac 09       		.byte	0x9
+ 335 01ad 1207     		.2byte	0x712
+ 336 01af B3010000 		.4byte	0x1b3
+ 337 01b3 10       		.uleb128 0x10
+ 338 01b4 76000000 		.4byte	0x76
+ 339 01b8 11       		.uleb128 0x11
+ 340 01b9 39010000 		.4byte	.LASF18
+ 341 01bd 39010000 		.4byte	.LASF18
+ 342 01c1 05       		.byte	0x5
+ 343 01c2 2A01     		.2byte	0x12a
+ 344 01c4 12       		.uleb128 0x12
+ 345 01c5 15010000 		.4byte	.LASF19
+ 346 01c9 15010000 		.4byte	.LASF19
+ 347 01cd 06       		.byte	0x6
+ 348 01ce 54       		.byte	0x54
+ 349 01cf 11       		.uleb128 0x11
+ 350 01d0 1C000000 		.4byte	.LASF20
+ 351 01d4 1C000000 		.4byte	.LASF20
+ 352 01d8 05       		.byte	0x5
+ 353 01d9 2D01     		.2byte	0x12d
+ 354 01db 12       		.uleb128 0x12
+ 355 01dc 65020000 		.4byte	.LASF21
+ 356 01e0 65020000 		.4byte	.LASF21
+ 357 01e4 07       		.byte	0x7
+ 358 01e5 76       		.byte	0x76
+ 359 01e6 12       		.uleb128 0x12
+ 360 01e7 56020000 		.4byte	.LASF22
+ 361 01eb 56020000 		.4byte	.LASF22
+ 362 01ef 06       		.byte	0x6
+ 363 01f0 8B       		.byte	0x8b
+ 364 01f1 12       		.uleb128 0x12
+ 365 01f2 54010000 		.4byte	.LASF23
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 8
+
+
+ 366 01f6 54010000 		.4byte	.LASF23
+ 367 01fa 06       		.byte	0x6
+ 368 01fb 89       		.byte	0x89
+ 369 01fc 12       		.uleb128 0x12
+ 370 01fd 35000000 		.4byte	.LASF24
+ 371 0201 35000000 		.4byte	.LASF24
+ 372 0205 08       		.byte	0x8
+ 373 0206 28       		.byte	0x28
+ 374 0207 12       		.uleb128 0x12
+ 375 0208 0A000000 		.4byte	.LASF25
+ 376 020c 0A000000 		.4byte	.LASF25
+ 377 0210 08       		.byte	0x8
+ 378 0211 24       		.byte	0x24
+ 379 0212 00       		.byte	0
+ 380              		.section	.debug_abbrev,"",%progbits
+ 381              	.Ldebug_abbrev0:
+ 382 0000 01       		.uleb128 0x1
+ 383 0001 11       		.uleb128 0x11
+ 384 0002 01       		.byte	0x1
+ 385 0003 25       		.uleb128 0x25
+ 386 0004 0E       		.uleb128 0xe
+ 387 0005 13       		.uleb128 0x13
+ 388 0006 0B       		.uleb128 0xb
+ 389 0007 03       		.uleb128 0x3
+ 390 0008 0E       		.uleb128 0xe
+ 391 0009 1B       		.uleb128 0x1b
+ 392 000a 0E       		.uleb128 0xe
+ 393 000b 55       		.uleb128 0x55
+ 394 000c 17       		.uleb128 0x17
+ 395 000d 11       		.uleb128 0x11
+ 396 000e 01       		.uleb128 0x1
+ 397 000f 10       		.uleb128 0x10
+ 398 0010 17       		.uleb128 0x17
+ 399 0011 00       		.byte	0
+ 400 0012 00       		.byte	0
+ 401 0013 02       		.uleb128 0x2
+ 402 0014 24       		.uleb128 0x24
+ 403 0015 00       		.byte	0
+ 404 0016 0B       		.uleb128 0xb
+ 405 0017 0B       		.uleb128 0xb
+ 406 0018 3E       		.uleb128 0x3e
+ 407 0019 0B       		.uleb128 0xb
+ 408 001a 03       		.uleb128 0x3
+ 409 001b 0E       		.uleb128 0xe
+ 410 001c 00       		.byte	0
+ 411 001d 00       		.byte	0
+ 412 001e 03       		.uleb128 0x3
+ 413 001f 16       		.uleb128 0x16
+ 414 0020 00       		.byte	0
+ 415 0021 03       		.uleb128 0x3
+ 416 0022 0E       		.uleb128 0xe
+ 417 0023 3A       		.uleb128 0x3a
+ 418 0024 0B       		.uleb128 0xb
+ 419 0025 3B       		.uleb128 0x3b
+ 420 0026 0B       		.uleb128 0xb
+ 421 0027 49       		.uleb128 0x49
+ 422 0028 13       		.uleb128 0x13
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 9
+
+
+ 423 0029 00       		.byte	0
+ 424 002a 00       		.byte	0
+ 425 002b 04       		.uleb128 0x4
+ 426 002c 24       		.uleb128 0x24
+ 427 002d 00       		.byte	0
+ 428 002e 0B       		.uleb128 0xb
+ 429 002f 0B       		.uleb128 0xb
+ 430 0030 3E       		.uleb128 0x3e
+ 431 0031 0B       		.uleb128 0xb
+ 432 0032 03       		.uleb128 0x3
+ 433 0033 08       		.uleb128 0x8
+ 434 0034 00       		.byte	0
+ 435 0035 00       		.byte	0
+ 436 0036 05       		.uleb128 0x5
+ 437 0037 16       		.uleb128 0x16
+ 438 0038 00       		.byte	0
+ 439 0039 03       		.uleb128 0x3
+ 440 003a 0E       		.uleb128 0xe
+ 441 003b 3A       		.uleb128 0x3a
+ 442 003c 0B       		.uleb128 0xb
+ 443 003d 3B       		.uleb128 0x3b
+ 444 003e 05       		.uleb128 0x5
+ 445 003f 49       		.uleb128 0x49
+ 446 0040 13       		.uleb128 0x13
+ 447 0041 00       		.byte	0
+ 448 0042 00       		.byte	0
+ 449 0043 06       		.uleb128 0x6
+ 450 0044 2E       		.uleb128 0x2e
+ 451 0045 01       		.byte	0x1
+ 452 0046 3F       		.uleb128 0x3f
+ 453 0047 19       		.uleb128 0x19
+ 454 0048 03       		.uleb128 0x3
+ 455 0049 0E       		.uleb128 0xe
+ 456 004a 3A       		.uleb128 0x3a
+ 457 004b 0B       		.uleb128 0xb
+ 458 004c 3B       		.uleb128 0x3b
+ 459 004d 0B       		.uleb128 0xb
+ 460 004e 27       		.uleb128 0x27
+ 461 004f 19       		.uleb128 0x19
+ 462 0050 49       		.uleb128 0x49
+ 463 0051 13       		.uleb128 0x13
+ 464 0052 8701     		.uleb128 0x87
+ 465 0054 19       		.uleb128 0x19
+ 466 0055 11       		.uleb128 0x11
+ 467 0056 01       		.uleb128 0x1
+ 468 0057 12       		.uleb128 0x12
+ 469 0058 06       		.uleb128 0x6
+ 470 0059 40       		.uleb128 0x40
+ 471 005a 18       		.uleb128 0x18
+ 472 005b 9742     		.uleb128 0x2117
+ 473 005d 19       		.uleb128 0x19
+ 474 005e 01       		.uleb128 0x1
+ 475 005f 13       		.uleb128 0x13
+ 476 0060 00       		.byte	0
+ 477 0061 00       		.byte	0
+ 478 0062 07       		.uleb128 0x7
+ 479 0063 34       		.uleb128 0x34
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 10
+
+
+ 480 0064 00       		.byte	0
+ 481 0065 03       		.uleb128 0x3
+ 482 0066 08       		.uleb128 0x8
+ 483 0067 3A       		.uleb128 0x3a
+ 484 0068 0B       		.uleb128 0xb
+ 485 0069 3B       		.uleb128 0x3b
+ 486 006a 0B       		.uleb128 0xb
+ 487 006b 49       		.uleb128 0x49
+ 488 006c 13       		.uleb128 0x13
+ 489 006d 02       		.uleb128 0x2
+ 490 006e 18       		.uleb128 0x18
+ 491 006f 00       		.byte	0
+ 492 0070 00       		.byte	0
+ 493 0071 08       		.uleb128 0x8
+ 494 0072 898201   		.uleb128 0x4109
+ 495 0075 01       		.byte	0x1
+ 496 0076 11       		.uleb128 0x11
+ 497 0077 01       		.uleb128 0x1
+ 498 0078 31       		.uleb128 0x31
+ 499 0079 13       		.uleb128 0x13
+ 500 007a 01       		.uleb128 0x1
+ 501 007b 13       		.uleb128 0x13
+ 502 007c 00       		.byte	0
+ 503 007d 00       		.byte	0
+ 504 007e 09       		.uleb128 0x9
+ 505 007f 8A8201   		.uleb128 0x410a
+ 506 0082 00       		.byte	0
+ 507 0083 02       		.uleb128 0x2
+ 508 0084 18       		.uleb128 0x18
+ 509 0085 9142     		.uleb128 0x2111
+ 510 0087 18       		.uleb128 0x18
+ 511 0088 00       		.byte	0
+ 512 0089 00       		.byte	0
+ 513 008a 0A       		.uleb128 0xa
+ 514 008b 898201   		.uleb128 0x4109
+ 515 008e 00       		.byte	0
+ 516 008f 11       		.uleb128 0x11
+ 517 0090 01       		.uleb128 0x1
+ 518 0091 31       		.uleb128 0x31
+ 519 0092 13       		.uleb128 0x13
+ 520 0093 00       		.byte	0
+ 521 0094 00       		.byte	0
+ 522 0095 0B       		.uleb128 0xb
+ 523 0096 898201   		.uleb128 0x4109
+ 524 0099 01       		.byte	0x1
+ 525 009a 11       		.uleb128 0x11
+ 526 009b 01       		.uleb128 0x1
+ 527 009c 31       		.uleb128 0x31
+ 528 009d 13       		.uleb128 0x13
+ 529 009e 00       		.byte	0
+ 530 009f 00       		.byte	0
+ 531 00a0 0C       		.uleb128 0xc
+ 532 00a1 01       		.uleb128 0x1
+ 533 00a2 01       		.byte	0x1
+ 534 00a3 49       		.uleb128 0x49
+ 535 00a4 13       		.uleb128 0x13
+ 536 00a5 01       		.uleb128 0x1
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 11
+
+
+ 537 00a6 13       		.uleb128 0x13
+ 538 00a7 00       		.byte	0
+ 539 00a8 00       		.byte	0
+ 540 00a9 0D       		.uleb128 0xd
+ 541 00aa 21       		.uleb128 0x21
+ 542 00ab 00       		.byte	0
+ 543 00ac 49       		.uleb128 0x49
+ 544 00ad 13       		.uleb128 0x13
+ 545 00ae 2F       		.uleb128 0x2f
+ 546 00af 0B       		.uleb128 0xb
+ 547 00b0 00       		.byte	0
+ 548 00b1 00       		.byte	0
+ 549 00b2 0E       		.uleb128 0xe
+ 550 00b3 26       		.uleb128 0x26
+ 551 00b4 00       		.byte	0
+ 552 00b5 49       		.uleb128 0x49
+ 553 00b6 13       		.uleb128 0x13
+ 554 00b7 00       		.byte	0
+ 555 00b8 00       		.byte	0
+ 556 00b9 0F       		.uleb128 0xf
+ 557 00ba 34       		.uleb128 0x34
+ 558 00bb 00       		.byte	0
+ 559 00bc 03       		.uleb128 0x3
+ 560 00bd 0E       		.uleb128 0xe
+ 561 00be 3A       		.uleb128 0x3a
+ 562 00bf 0B       		.uleb128 0xb
+ 563 00c0 3B       		.uleb128 0x3b
+ 564 00c1 05       		.uleb128 0x5
+ 565 00c2 49       		.uleb128 0x49
+ 566 00c3 13       		.uleb128 0x13
+ 567 00c4 3F       		.uleb128 0x3f
+ 568 00c5 19       		.uleb128 0x19
+ 569 00c6 3C       		.uleb128 0x3c
+ 570 00c7 19       		.uleb128 0x19
+ 571 00c8 00       		.byte	0
+ 572 00c9 00       		.byte	0
+ 573 00ca 10       		.uleb128 0x10
+ 574 00cb 35       		.uleb128 0x35
+ 575 00cc 00       		.byte	0
+ 576 00cd 49       		.uleb128 0x49
+ 577 00ce 13       		.uleb128 0x13
+ 578 00cf 00       		.byte	0
+ 579 00d0 00       		.byte	0
+ 580 00d1 11       		.uleb128 0x11
+ 581 00d2 2E       		.uleb128 0x2e
+ 582 00d3 00       		.byte	0
+ 583 00d4 3F       		.uleb128 0x3f
+ 584 00d5 19       		.uleb128 0x19
+ 585 00d6 3C       		.uleb128 0x3c
+ 586 00d7 19       		.uleb128 0x19
+ 587 00d8 6E       		.uleb128 0x6e
+ 588 00d9 0E       		.uleb128 0xe
+ 589 00da 03       		.uleb128 0x3
+ 590 00db 0E       		.uleb128 0xe
+ 591 00dc 3A       		.uleb128 0x3a
+ 592 00dd 0B       		.uleb128 0xb
+ 593 00de 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 12
+
+
+ 594 00df 05       		.uleb128 0x5
+ 595 00e0 00       		.byte	0
+ 596 00e1 00       		.byte	0
+ 597 00e2 12       		.uleb128 0x12
+ 598 00e3 2E       		.uleb128 0x2e
+ 599 00e4 00       		.byte	0
+ 600 00e5 3F       		.uleb128 0x3f
+ 601 00e6 19       		.uleb128 0x19
+ 602 00e7 3C       		.uleb128 0x3c
+ 603 00e8 19       		.uleb128 0x19
+ 604 00e9 6E       		.uleb128 0x6e
+ 605 00ea 0E       		.uleb128 0xe
+ 606 00eb 03       		.uleb128 0x3
+ 607 00ec 0E       		.uleb128 0xe
+ 608 00ed 3A       		.uleb128 0x3a
+ 609 00ee 0B       		.uleb128 0xb
+ 610 00ef 3B       		.uleb128 0x3b
+ 611 00f0 0B       		.uleb128 0xb
+ 612 00f1 00       		.byte	0
+ 613 00f2 00       		.byte	0
+ 614 00f3 00       		.byte	0
+ 615              		.section	.debug_aranges,"",%progbits
+ 616 0000 1C000000 		.4byte	0x1c
+ 617 0004 0200     		.2byte	0x2
+ 618 0006 00000000 		.4byte	.Ldebug_info0
+ 619 000a 04       		.byte	0x4
+ 620 000b 00       		.byte	0
+ 621 000c 0000     		.2byte	0
+ 622 000e 0000     		.2byte	0
+ 623 0010 00000000 		.4byte	.LFB63
+ 624 0014 68000000 		.4byte	.LFE63-.LFB63
+ 625 0018 00000000 		.4byte	0
+ 626 001c 00000000 		.4byte	0
+ 627              		.section	.debug_ranges,"",%progbits
+ 628              	.Ldebug_ranges0:
+ 629 0000 00000000 		.4byte	.LFB63
+ 630 0004 68000000 		.4byte	.LFE63
+ 631 0008 00000000 		.4byte	0
+ 632 000c 00000000 		.4byte	0
+ 633              		.section	.debug_line,"",%progbits
+ 634              	.Ldebug_line0:
+ 635 0000 A3010000 		.section	.debug_str,"MS",%progbits,1
+ 635      02007F01 
+ 635      00000201 
+ 635      FB0E0D00 
+ 635      01010101 
+ 636              	.LASF9:
+ 637 0000 5F5F696E 		.ascii	"__int32_t\000"
+ 637      7433325F 
+ 637      7400
+ 638              	.LASF25:
+ 639 000a 55534255 		.ascii	"USBUART_PutString\000"
+ 639      4152545F 
+ 639      50757453 
+ 639      7472696E 
+ 639      6700
+ 640              	.LASF20:
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 13
+
+
+ 641 001c 55534255 		.ascii	"USBUART_GetConfiguration\000"
+ 641      4152545F 
+ 641      47657443 
+ 641      6F6E6669 
+ 641      67757261 
+ 642              	.LASF24:
+ 643 0035 55534255 		.ascii	"USBUART_CDCIsReady\000"
+ 643      4152545F 
+ 643      43444349 
+ 643      73526561 
+ 643      647900
+ 644              	.LASF12:
+ 645 0048 666C6F61 		.ascii	"float\000"
+ 645      7400
+ 646              	.LASF1:
+ 647 004e 756E7369 		.ascii	"unsigned char\000"
+ 647      676E6564 
+ 647      20636861 
+ 647      7200
+ 648              	.LASF26:
+ 649 005c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 649      43313120 
+ 649      352E342E 
+ 649      31203230 
+ 649      31363036 
+ 650 008f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 650      20726576 
+ 650      6973696F 
+ 650      6E203233 
+ 650      37373135 
+ 651 00c2 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 651      66756E63 
+ 651      74696F6E 
+ 651      2D736563 
+ 651      74696F6E 
+ 652              	.LASF14:
+ 653 00ea 63686172 		.ascii	"char8\000"
+ 653      3800
+ 654              	.LASF5:
+ 655 00f0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 655      20756E73 
+ 655      69676E65 
+ 655      6420696E 
+ 655      7400
+ 656              	.LASF3:
+ 657 0102 73686F72 		.ascii	"short unsigned int\000"
+ 657      7420756E 
+ 657      7369676E 
+ 657      65642069 
+ 657      6E7400
+ 658              	.LASF19:
+ 659 0115 55415254 		.ascii	"UART_Start\000"
+ 659      5F537461 
+ 659      727400
+ 660              	.LASF30:
+ 661 0120 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 661      52784275 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 14
+
+
+ 661      66666572 
+ 661      00
+ 662              	.LASF13:
+ 663 012d 646F7562 		.ascii	"double\000"
+ 663      6C6500
+ 664              	.LASF29:
+ 665 0134 6D61696E 		.ascii	"main\000"
+ 665      00
+ 666              	.LASF18:
+ 667 0139 55534255 		.ascii	"USBUART_Start\000"
+ 667      4152545F 
+ 667      53746172 
+ 667      7400
+ 668              	.LASF8:
+ 669 0147 756E7369 		.ascii	"unsigned int\000"
+ 669      676E6564 
+ 669      20696E74 
+ 669      00
+ 670              	.LASF23:
+ 671 0154 55415254 		.ascii	"UART_ReadTxStatus\000"
+ 671      5F526561 
+ 671      64547853 
+ 671      74617475 
+ 671      7300
+ 672              	.LASF7:
+ 673 0166 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 673      206C6F6E 
+ 673      6720756E 
+ 673      7369676E 
+ 673      65642069 
+ 674              	.LASF28:
+ 675 017d 433A5C55 		.ascii	"C:\\Users\\Anton\\Documents\\GitHub repository\\Ele"
+ 675      73657273 
+ 675      5C416E74 
+ 675      6F6E5C44 
+ 675      6F63756D 
+ 676 01ab 6B74726F 		.ascii	"ktroteknologi-Projekt-1\\Accelerometer kode\\Uart k"
+ 676      74656B6E 
+ 676      6F6C6F67 
+ 676      692D5072 
+ 676      6F6A656B 
+ 677 01dc 6F646520 		.ascii	"ode - Kopi\\Test at UART.cydsn\000"
+ 677      2D204B6F 
+ 677      70695C54 
+ 677      65737420 
+ 677      61742055 
+ 678              	.LASF10:
+ 679 01fa 696E7433 		.ascii	"int32_t\000"
+ 679      325F7400 
+ 680              	.LASF17:
+ 681 0202 73697A65 		.ascii	"sizetype\000"
+ 681      74797065 
+ 681      00
+ 682              	.LASF6:
+ 683 020b 6C6F6E67 		.ascii	"long long int\000"
+ 683      206C6F6E 
+ 683      6720696E 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cctPfHYi.s 			page 15
+
+
+ 683      7400
+ 684              	.LASF27:
+ 685 0219 6D61696E 		.ascii	"main.c\000"
+ 685      2E6300
+ 686              	.LASF15:
+ 687 0220 63686172 		.ascii	"char\000"
+ 687      00
+ 688              	.LASF2:
+ 689 0225 73686F72 		.ascii	"short int\000"
+ 689      7420696E 
+ 689      7400
+ 690              	.LASF11:
+ 691 022f 75696E74 		.ascii	"uint8\000"
+ 691      3800
+ 692              	.LASF4:
+ 693 0235 6C6F6E67 		.ascii	"long int\000"
+ 693      20696E74 
+ 693      00
+ 694              	.LASF16:
+ 695 023e 6C6F6E67 		.ascii	"long double\000"
+ 695      20646F75 
+ 695      626C6500 
+ 696              	.LASF0:
+ 697 024a 7369676E 		.ascii	"signed char\000"
+ 697      65642063 
+ 697      68617200 
+ 698              	.LASF22:
+ 699 0256 55415254 		.ascii	"UART_PutString\000"
+ 699      5F507574 
+ 699      53747269 
+ 699      6E6700
+ 700              	.LASF21:
+ 701 0265 43794465 		.ascii	"CyDelay\000"
+ 701      6C617900 
+ 702              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

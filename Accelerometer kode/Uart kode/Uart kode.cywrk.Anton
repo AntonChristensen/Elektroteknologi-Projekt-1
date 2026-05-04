@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Uart kode\Test at UART\Generated_Source">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Uart kode\Test at UART\Source Files\main.c">
 <ExpandedNodeIds>
 <v>Uart kode</v>
 <v>Uart kode\Test at UART</v>
@@ -148,7 +148,6 @@
 <v>Uart kode\Test at UART\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
 <v>Uart kode\Test at UART\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
 <v>Uart kode\Test at UART\CortexM3\ARM_GCC_541\Debug\Test at UART.elf</v>
-<v>Uart kode\Test at UART\CortexM3\ARM_GCC_541\Debug\Test at UART.hex</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -164,6 +163,9 @@
 <v>Uart kode\Test at UART\CY8C58LP Family Datasheet</v>
 <v>Uart kode\Test at UART\System Reference Guides</v>
 <v>Uart kode\Test at UART\System Reference Guides\cy_boot_v6_0</v>
+<v>Uart kode\Test at UART\cy_pins_v2_20</v>
+<v>Uart kode\Test at UART\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Uart kode\Test at UART\UART_v2_50.pdf</v>
 <v>Uart kode\Test at UART\USBFS_v3_20.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
@@ -173,6 +175,9 @@
 <v>Uart kode\Test at UART\CY8C58LP Family Datasheet</v>
 <v>Uart kode\Test at UART\System Reference Guides</v>
 <v>Uart kode\Test at UART\System Reference Guides\cy_boot_v6_0</v>
+<v>Uart kode\Test at UART\cy_pins_v2_20</v>
+<v>Uart kode\Test at UART\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Uart kode\Test at UART\UART_v2_50.pdf</v>
 <v>Uart kode\Test at UART\USBFS_v3_20.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
@@ -198,7 +203,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1055, 508" SelectedTabbedMdiWindow="7d57b86a-d0d7-4bb2-9080-54aaf32bbfd2"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="951f9a07-49cd-496d-8079-be518e6a8a97" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\TopDesign\TopDesign.cysch" Guid="7d57b86a-d0d7-4bb2-9080-54aaf32bbfd2" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\main.c" Guid="9dd44411-b750-4103-bee1-6975234c9de9" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\Test at UART.cydwr" Guid="4fd819c2-a3f2-4d7d-9c21-a8e59b440b9f" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="505, 499" SelectedTabbedMdiWindow="9dd44411-b750-4103-bee1-6975234c9de9"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="951f9a07-49cd-496d-8079-be518e6a8a97" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\TopDesign\TopDesign.cysch" Guid="7d57b86a-d0d7-4bb2-9080-54aaf32bbfd2" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\main.c" Guid="9dd44411-b750-4103-bee1-6975234c9de9" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\Test at UART.cydwr" Guid="4fd819c2-a3f2-4d7d-9c21-a8e59b440b9f" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

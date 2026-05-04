@@ -9,7 +9,8 @@ int main(void)
     uint32 signal;
     char TransmitBuffer[64u];
     
-USBUART_Start(0, USBUART_5V_OPERATION); // see datasheet
+//USBUART_Start(0, USBUART_5V_OPERATION); // see datasheet
+UART_1_Start(0, UART_1_5V_OPERATION); // see datasheet
 while(0u == USBUART_GetConfiguration()){}  // see datasheet:
 
 CyDelay(5);

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="I2C test\Test af I2C\Source Files\main.c">
+<ExpandedNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\TopDesign</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Pins</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Analog</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Clocks</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Interrupts</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\DMA</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\System</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Directives</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Flash Security</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\EEPROM</v>
+<v>I2C test\Test af I2C\Header Files</v>
+<v>I2C test\Test af I2C\Header Files\cyapicallbacks.h</v>
+<v>I2C test\Test af I2C\Source Files</v>
+<v>I2C test\Test af I2C\Source Files\main.c</v>
+<v>I2C test\Test af I2C\Generated_Source</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\TopDesign</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Pins</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Analog</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Clocks</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Interrupts</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\DMA</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\System</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Directives</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\Flash Security</v>
+<v>I2C test\Test af I2C\Test af I2C.cydwr\EEPROM</v>
+<v>I2C test\Test af I2C\Header Files</v>
+<v>I2C test\Test af I2C\Header Files\cyapicallbacks.h</v>
+<v>I2C test\Test af I2C\Source Files</v>
+<v>I2C test\Test af I2C\Source Files\main.c</v>
+<v>I2C test\Test af I2C\Generated_Source</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cy_boot</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\I2C</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\INTPin</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\SCL_1</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\SDA_1</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\USBUART</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\USBUART_Dm</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\USBUART_Dp</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cydevice.h</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>I2C test\Test af I2C\Generated_Source\PSoC5\cydeviceiar.inc</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\TopDesign</v>
+<v>I2C test\Test af I2C\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\TopDesign</v>
+<v>I2C test\Test af I2C\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\CortexM3</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_BOOT.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_INT.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_MASTER.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_PM.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_SLAVE.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\INTPin.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_1.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\SDA_1.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_episr.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_hid.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_midi.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_msc.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_pm.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Test af I2C.elf</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Test af I2C.hex</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Test af I2C.map</v>
+<v>I2C test\Test af I2C\Test af I2C.gpdsc</v>
+<v>I2C test\Test af I2C\Test af I2C.rpt</v>
+<v>I2C test\Test af I2C\Test af I2C_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\CortexM3</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_BOOT.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_INT.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_MASTER.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_PM.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_SLAVE.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\INTPin.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_1.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\SDA_1.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>I2C test\Test af I2C\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\PSoC 5LP Architecture TRM</v>
+<v>I2C test\Test af I2C\CY8C58LP Family Datasheet</v>
+<v>I2C test\Test af I2C\System Reference Guides</v>
+<v>I2C test\Test af I2C\System Reference Guides\cy_boot_v6_0</v>
+<v>I2C test\Test af I2C\cy_pins_v2_20</v>
+<v>I2C test\Test af I2C\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>I2C test\Test af I2C\I2C_v3_50.pdf</v>
+<v>I2C test\Test af I2C\USBFS_v3_20.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>I2C test</v>
+<v>I2C test\Test af I2C</v>
+<v>I2C test\Test af I2C\PSoC 5LP Architecture TRM</v>
+<v>I2C test\Test af I2C\CY8C58LP Family Datasheet</v>
+<v>I2C test\Test af I2C\System Reference Guides</v>
+<v>I2C test\Test af I2C\System Reference Guides\cy_boot_v6_0</v>
+<v>I2C test\Test af I2C\cy_pins_v2_20</v>
+<v>I2C test\Test af I2C\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>I2C test\Test af I2C\I2C_v3_50.pdf</v>
+<v>I2C test\Test af I2C\USBFS_v3_20.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\Test af I2C.cydsn\main.c" />
+<name v=".\Test af I2C.cydsn\cyapicallbacks.h" />
+<name v=".\Test af I2C.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\Test af I2C.cydsn\Test af I2C.cydwr" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1270, 508" SelectedTabbedMdiWindow="c59280f0-76a8-43a7-a254-2af14dcd8ff4"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="951f9a07-49cd-496d-8079-be518e6a8a97" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\I2C test\Test af I2C.cydsn\main.c" Guid="c59280f0-76a8-43a7-a254-2af14dcd8ff4" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\I2C test\Test af I2C.cydsn\cyapicallbacks.h" Guid="1c6ff238-d059-4b94-9bd6-04794e0538b1" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\I2C test\Test af I2C.cydsn\TopDesign\TopDesign.cysch" Guid="2cfc8b87-326e-4fc8-afd6-f7c0abd9fada" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\I2C test\Test af I2C.cydsn\Test af I2C.cydwr" Guid="5c221d43-dd73-4fb4-92e9-3b629a47cfc4" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

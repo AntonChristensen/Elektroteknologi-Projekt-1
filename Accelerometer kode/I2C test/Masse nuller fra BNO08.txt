@@ -1,0 +1,82 @@
+Denne kode får en masse nuller ud
+
+#include "project.h"
+#define BNO085_ADDR 0x4A
+
+
+void BNO085_Write(uint8 *data, uint8 len)
+{
+    I2C_MasterSendStart(BNO085_ADDR, I2C_WRITE_XFER_MODE);
+
+    for(uint8 i = 0; i < len; i++)
+    {
+        I2C_MasterWriteByte(data[i]);
+    }
+
+    I2C_MasterSendStop();
+}
+
+uint8 BNO085_Read(uint8 *buf, uint8 len)
+{
+    uint8 i;
+
+    I2C_MasterSendStart(BNO085_ADDR, I2C_READ_XFER_MODE);
+
+    for(i = 0; i < len; i++)
+    {
+        buf[i] = I2C_MasterReadByte((i < (len - 1)) ? I2C_ACK_DATA : I2C_NAK_DATA);
+    }
+
+    I2C_MasterSendStop();
+
+    return i;
+}
+
+void BNO085_EnableRotationVector(void)
+{
+    uint8 cmd[] =
+    {
+        0xFD, 0x02,   // SHTP header (channel + length)
+        0x01, 0x17,   // SET_FEATURE command
+        0x00, 0x00, 0x00, 0x00, // report interval (placeholder)
+        0x00, 0x00, 0x00, 0x00, // latency
+        0x00, 0x00              // flags
+    };
+
+    BNO085_Write(cmd, sizeof(cmd));
+}
+
+int main(void)
+{
+    CyGlobalIntEnable;
+
+    I2C_Start();
+    USBUART_Start(0, USBUART_5V_OPERATION); // see datasheet
+    while(0u == USBUART_GetConfiguration()){} 
+
+    CyDelay(100);
+
+    BNO085_EnableRotationVector();
+
+    uint8 buffer[32];
+
+    for(;;)
+    {
+        uint8 len = BNO085_Read(buffer, 32);
+
+        if(len > 0)
+        {
+            // crude debug: print raw bytes
+            for(uint8 i = 0; i < len; i++)
+            {
+                char msg[10];
+                sprintf(msg, "%02X ", buffer[i]);
+                USBUART_PutString(msg);
+            }
+
+            USBUART_PutString("\r\n");
+        }
+
+        CyDelay(50);
+    }
+}

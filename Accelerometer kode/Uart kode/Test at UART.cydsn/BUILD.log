@@ -1,23 +1,39 @@
---------------- Build Started: 04/20/2026 10:55:29 Project: Test at UART, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
-The code generation step is up to date.
+--------------- Build Started: 04/27/2026 11:35:35 Project: Test at UART, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+cydsfit.exe -.appdatapath "C:\Users\Anton\AppData\Local\Cypress Semiconductor\PSoC Creator\4.4" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p "C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\Test at UART.cyprj" -d CY8C5888LTI-LP097 -s "C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\Generated_Source\PSoC5" -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+HDL Generation...
+Synthesis...
+Tech Mapping...
+ADD: pft.M0040: information: The following 2 pin(s) will be assigned a location by the fitter: \USBUART:Dm(0)\, \USBUART:Dp(0)\
+Analog Placement...
+Analog Routing...
+Analog Code Generation...
+Digital Placement...
+Digital Routing...
+Bitstream Generation...
+Bitstream Verification...
+Static timing analysis...
+API Generation...
+Dependency Generation...
+Cleanup...
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 main.c: In function 'main':
-main.c:24:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+main.c:13:17: error: 'UART_1_5V_OPERATION' undeclared (first use in this function)
+ UART_1_Start(0, UART_1_5V_OPERATION); // see datasheet
+                 ^
+main.c:13:17: note: each undeclared identifier is reported only once for each function it appears in
+main.c:13:1: error: too many arguments to function 'UART_1_Start'
+ UART_1_Start(0, UART_1_5V_OPERATION); // see datasheet
+ ^
+In file included from Generated_Source\PSoC5/project.h:30:0,
+                 from main.c:2:
+Generated_Source\PSoC5/UART_1.h:84:6: note: declared here
+ void UART_1_Start(void) ;
+      ^
+main.c:25:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
      sprintf(TransmitBuffer, "%ld\r\n", signal);
      ^
-main.c:24:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-main.c:24:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-main.c:22:12: warning: 'signal' may be used uninitialized in this function [-Wmaybe-uninitialized]
-     signal += 1;
-            ^
-arm-none-eabi-ar.exe -rs ".\CortexM3\ARM_GCC_541\Debug\Test at UART.a" .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\USBUART.o .\CortexM3\ARM_GCC_541\Debug\USBUART_audio.o .\CortexM3\ARM_GCC_541\Debug\USBUART_boot.o .\CortexM3\ARM_GCC_541\Debug\USBUART_cdc.o .\CortexM3\ARM_GCC_541\Debug\USBUART_cls.o .\CortexM3\ARM_GCC_541\Debug\USBUART_descr.o .\CortexM3\ARM_GCC_541\Debug\USBUART_drv.o .\CortexM3\ARM_GCC_541\Debug\USBUART_episr.o .\CortexM3\ARM_GCC_541\Debug\USBUART_hid.o .\CortexM3\ARM_GCC_541\Debug\USBUART_pm.o .\CortexM3\ARM_GCC_541\Debug\USBUART_std.o .\CortexM3\ARM_GCC_541\Debug\USBUART_vnd.o .\CortexM3\ARM_GCC_541\Debug\USBUART_midi.o .\CortexM3\ARM_GCC_541\Debug\USBUART_msc.o .\CortexM3\ARM_GCC_541\Debug\USBUART_Dm.o .\CortexM3\ARM_GCC_541\Debug\USBUART_Dp.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
-arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\Test at UART.a
-arm-none-eabi-gcc.exe -Wl,--start-group -o "C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\CortexM3\ARM_GCC_541\Debug\Test at UART.elf" .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o ".\CortexM3\ARM_GCC_541\Debug\Test at UART.a" "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 "-Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/Test at UART.map" -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
-cyelftool.exe -C "C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\CortexM3\ARM_GCC_541\Debug\Test at UART.elf" --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
-No ELF section .cychecksum found, creating one
-Application checksum calculated and stored in ELF section .cychecksum
-Checksum calculated and stored in ELF section .cymeta
-cyelftool.exe -S "C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer kode\Uart kode\Test at UART.cydsn\CortexM3\ARM_GCC_541\Debug\Test at UART.elf"
-Flash used: 9200 of 262144 bytes (3,5 %).
-SRAM used: 2785 of 65536 bytes (4,2 %). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 04/20/2026 10:55:30 ---------------
+main.c:25:5: warning: incompatible implicit declaration of built-in function 'sprintf'
+main.c:25:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+The command 'arm-none-eabi-gcc.exe' failed with exit code '1'.
+--------------- Build Failed: 04/27/2026 11:35:58 ---------------
