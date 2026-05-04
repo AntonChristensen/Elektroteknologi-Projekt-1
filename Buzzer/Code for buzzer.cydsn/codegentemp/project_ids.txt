@@ -1,0 +1,7 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a602dd56-f60c-47c4-9f9f-083c64a69b0d
+C:\Users\Anton\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|38d85b63-68a8-46fc-989f-8278db954bdc
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|b5a2662a-90da-42dd-9b28-59357158ceba
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|bda5900a-3cfb-4c5b-8438-b403b6757a48
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5e5726fa-c623-4bc6-abda-7bdd56bbfb13
+C:\Users\Anton\Documents\PSoC Creator\Buzzer\Code for buzzer.cydsn\Code for buzzer.cyprj|d519c00d-c5ad-4af4-9118-16762da8014b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|f816f328-fbf9-4de0-aaa0-739a1c320d20
