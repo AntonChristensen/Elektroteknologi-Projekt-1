@@ -219,8 +219,8 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\Accelerometer mega til psoc.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\Accelerometer mega til psoc.cydsn\Accelerometer mega til psoc.cydwr" />
 <name v=".\Accelerometer mega til psoc.cydsn\main.c" />
+<name v=".\Accelerometer mega til psoc.cydsn\Accelerometer mega til psoc.cydwr" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -228,7 +228,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1270, 442" SelectedTabbedMdiWindow="c0779058-25ac-43b3-acfd-531a8e8547dc"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="951f9a07-49cd-496d-8079-be518e6a8a97" /><DocumentWindow Key="C:\Users\Anton\Documents\PSoC Creator\Accelerometer koden\Accelerometer mega til psoc.cydsn\TopDesign\TopDesign.cysch" Guid="58587f52-e058-44ba-b115-1e5857981aba" /><DocumentWindow Key="C:\Users\Anton\Documents\PSoC Creator\Accelerometer koden\Accelerometer mega til psoc.cydsn\Accelerometer mega til psoc.cydwr" Guid="0f645e63-b194-4a3a-a386-b2efc2ed5146" /><DocumentWindow Key="C:\Users\Anton\Documents\PSoC Creator\Accelerometer koden\Accelerometer mega til psoc.cydsn\main.c" Guid="c0779058-25ac-43b3-acfd-531a8e8547dc" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1270, 442" SelectedTabbedMdiWindow="3212416e-1a06-4d58-9ae7-bfc1124ad43d"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="951f9a07-49cd-496d-8079-be518e6a8a97" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer koden\Accelerometer mega til psoc.cydsn\TopDesign\TopDesign.cysch" Guid="c2b44ccc-9c8f-4e44-82ba-ba3ed66c7439" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer koden\Accelerometer mega til psoc.cydsn\main.c" Guid="3212416e-1a06-4d58-9ae7-bfc1124ad43d" /><DocumentWindow Key="C:\Users\Anton\Documents\GitHub repository\Elektroteknologi-Projekt-1\Accelerometer koden\Accelerometer mega til psoc.cydsn\Accelerometer mega til psoc.cydwr" Guid="feeacfb9-38c8-4b16-b94a-ae7fb6580dd2" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
