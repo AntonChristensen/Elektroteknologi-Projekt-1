@@ -517,7 +517,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J2.16"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -535,7 +535,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J2.15"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -733,7 +733,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J2.4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -787,7 +787,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J2.1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -805,7 +805,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J2.25"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -823,7 +823,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J1.1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -841,7 +841,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J1.2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -859,7 +859,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J2.26"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -877,7 +877,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J1.26"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -895,7 +895,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J1.25"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -913,7 +913,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J1.24"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -931,7 +931,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J1.23"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -949,7 +949,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "J1.22"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4140,7 +4140,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_QFP:TQFP-64_14x14mm_P0.8mm"
+		(property "Footprint" "Module:MODULE_CY8CKIT-059 PSOC5"
 			(at 187.96 139.7 0)
 			(effects
 				(font
@@ -4206,34 +4206,34 @@
 		(pin ""
 			(uuid "3ce2ac83-2337-4009-88b3-914649e35bda")
 		)
-		(pin ""
+		(pin "J2.26"
 			(uuid "744cae47-472d-4033-b80c-b20bcd9054d9")
 		)
 		(pin ""
 			(uuid "1d00547b-553d-4dde-ade0-b6b7eac4b5d0")
 		)
-		(pin ""
+		(pin "J2.4"
 			(uuid "1a8b8080-b59b-4ecf-ad4d-7c070d2f7926")
 		)
 		(pin ""
 			(uuid "0a0ce62c-effe-45df-a916-c83e89d5a715")
 		)
-		(pin ""
+		(pin "J2.16"
 			(uuid "f4512cf2-0fcb-4008-837f-ef1823a79200")
 		)
 		(pin ""
 			(uuid "67ddf450-5b76-4dc0-bbf7-0080d98f230f")
 		)
-		(pin ""
+		(pin "J2.25"
 			(uuid "98a22257-03df-468f-97d8-1d33a5d308b1")
 		)
 		(pin ""
 			(uuid "8ee7781f-7f7d-4b49-b01a-4ca0cd28dc9f")
 		)
-		(pin ""
+		(pin "J2.15"
 			(uuid "b353ae5f-4e3a-4387-bc08-6cce088ec896")
 		)
-		(pin ""
+		(pin "J1.1"
 			(uuid "a0e7ad7b-fd73-4fc4-a71f-9dd6aa2e44cd")
 		)
 		(pin ""
@@ -4257,28 +4257,28 @@
 		(pin ""
 			(uuid "7ddabb9b-c5f0-4c22-992b-9e1102fbc0cb")
 		)
-		(pin ""
+		(pin "J1.2"
 			(uuid "12af0d17-81bd-4ff1-8ea7-42f4499ac264")
 		)
 		(pin ""
 			(uuid "ff8fcb8e-9c7d-4136-b70e-aa0397cf9c42")
 		)
-		(pin ""
+		(pin "J1.24"
 			(uuid "60541b06-0f4e-46c1-8252-71f915b62b33")
 		)
 		(pin ""
 			(uuid "e795e6e1-2af0-4fcc-9d85-b400990bbc16")
 		)
-		(pin ""
+		(pin "J1.26"
 			(uuid "aae903a7-2b55-432e-ac68-bf82670eeb36")
 		)
-		(pin ""
+		(pin "J1.23"
 			(uuid "50da773c-4a33-4b2c-9f2a-8bec740e1cca")
 		)
-		(pin ""
+		(pin "J1.22"
 			(uuid "d36c9aff-2071-4565-920a-58eaa5b1b282")
 		)
-		(pin ""
+		(pin "J2.1"
 			(uuid "fc28ba89-fe9e-4ea0-ba6a-24e204ca81f8")
 		)
 		(pin ""
@@ -4305,7 +4305,7 @@
 		(pin ""
 			(uuid "3d2549fd-4def-4a68-a421-b7b2a4ac2e53")
 		)
-		(pin ""
+		(pin "J1.25"
 			(uuid "5a684d6c-bf40-4821-b62d-6dddf758cfc8")
 		)
 		(pin ""
@@ -4564,7 +4564,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Module:Adafruit_BNO08x home made"
 			(at 90.17 110.49 0)
 			(effects
 				(font
@@ -5216,7 +5216,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal"
 			(at 54.61 47.498 90)
 			(effects
 				(font
@@ -5353,7 +5353,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_THT:TO-92"
 			(at 7.62 45.72 0)
 			(effects
 				(font
