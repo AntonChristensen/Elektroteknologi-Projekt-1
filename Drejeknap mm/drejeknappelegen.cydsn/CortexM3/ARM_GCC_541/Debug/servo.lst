@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 1
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 1
 
 
    1              		.syntax unified
@@ -30,15 +30,19 @@ ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 1
   27              		.file 1 "servo.c"
    1:servo.c       **** #include "project.h"
    2:servo.c       **** #include "servo.h"
-   3:servo.c       **** #define SERVO_OPEN_PWM 2000
-   4:servo.c       **** #define SERVO_CLOSE_PWM 1000
-   5:servo.c       **** #define SERVO_OPEN_POS 3500
-   6:servo.c       **** #define SERVO_CLOSE_POS 1500
-   7:servo.c       **** #define TOL 100
-   8:servo.c       **** 
-   9:servo.c       **** void Servo_Init(void)
-  10:servo.c       **** {
-  28              		.loc 1 10 0
+   3:servo.c       **** #include "led.h"
+   4:servo.c       **** 
+   5:servo.c       **** #define SERVO_OPEN_PWM 20
+   6:servo.c       **** #define SERVO_CLOSE_PWM 10
+   7:servo.c       **** #define SERVO_OPEN_POS 35
+   8:servo.c       **** #define SERVO_CLOSE_POS 15
+   9:servo.c       **** #define TOL 100
+  10:servo.c       **** 
+  11:servo.c       **** static uint8_t servo_is_open = 0;
+  12:servo.c       **** 
+  13:servo.c       **** void Servo_Init(void)
+  14:servo.c       **** {
+  28              		.loc 1 14 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -46,721 +50,1001 @@ ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 1
   33              		.cfi_def_cfa_offset 8
   34              		.cfi_offset 3, -8
   35              		.cfi_offset 14, -4
-  11:servo.c       ****     PWM_Servo_Start();
-  36              		.loc 1 11 0
+  15:servo.c       ****     PWM_Servo_Start();
+  36              		.loc 1 15 0
   37 0002 FFF7FEFF 		bl	PWM_Servo_Start
   38              	.LVL0:
-  39 0006 08BD     		pop	{r3, pc}
-  40              		.cfi_endproc
-  41              	.LFE63:
-  42              		.size	Servo_Init, .-Servo_Init
-  43              		.section	.text.Servo_Open,"ax",%progbits
-  44              		.align	2
-  45              		.global	Servo_Open
-  46              		.thumb
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 2
+  16:servo.c       ****     ADC_ServoFB_Start();
+  39              		.loc 1 16 0
+  40 0006 FFF7FEFF 		bl	ADC_ServoFB_Start
+  41              	.LVL1:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 2
 
 
-  47              		.thumb_func
-  48              		.type	Servo_Open, %function
-  49              	Servo_Open:
-  50              	.LFB64:
-  12:servo.c       **** }
-  13:servo.c       **** 
-  14:servo.c       **** servo_status_t Servo_Open(void)
-  15:servo.c       **** {
-  51              		.loc 1 15 0
-  52              		.cfi_startproc
-  53              		@ args = 0, pretend = 0, frame = 0
-  54              		@ frame_needed = 0, uses_anonymous_args = 0
-  55 0000 08B5     		push	{r3, lr}
-  56              		.cfi_def_cfa_offset 8
-  57              		.cfi_offset 3, -8
-  58              		.cfi_offset 14, -4
-  16:servo.c       ****     PWM_Servo_WriteCompare(SERVO_OPEN_PWM);
-  59              		.loc 1 16 0
-  60 0002 D020     		movs	r0, #208
-  61 0004 FFF7FEFF 		bl	PWM_Servo_WriteCompare
-  62              	.LVL1:
-  17:servo.c       ****     CyDelay(500);
-  63              		.loc 1 17 0
-  64 0008 4FF4FA70 		mov	r0, #500
-  65 000c FFF7FEFF 		bl	CyDelay
-  66              	.LVL2:
-  18:servo.c       ****     return SERVO_OK;
-  19:servo.c       **** }
-  67              		.loc 1 19 0
-  68 0010 0020     		movs	r0, #0
-  69 0012 08BD     		pop	{r3, pc}
-  70              		.cfi_endproc
-  71              	.LFE64:
-  72              		.size	Servo_Open, .-Servo_Open
-  73              		.section	.text.Servo_Close,"ax",%progbits
-  74              		.align	2
-  75              		.global	Servo_Close
-  76              		.thumb
-  77              		.thumb_func
-  78              		.type	Servo_Close, %function
-  79              	Servo_Close:
-  80              	.LFB65:
-  20:servo.c       **** 
-  21:servo.c       **** servo_status_t Servo_Close(void)
-  22:servo.c       **** {
-  81              		.loc 1 22 0
-  82              		.cfi_startproc
-  83              		@ args = 0, pretend = 0, frame = 0
-  84              		@ frame_needed = 0, uses_anonymous_args = 0
-  85 0000 08B5     		push	{r3, lr}
-  86              		.cfi_def_cfa_offset 8
-  87              		.cfi_offset 3, -8
-  88              		.cfi_offset 14, -4
-  23:servo.c       ****     PWM_Servo_WriteCompare(SERVO_CLOSE_PWM);
-  89              		.loc 1 23 0
-  90 0002 E820     		movs	r0, #232
-  91 0004 FFF7FEFF 		bl	PWM_Servo_WriteCompare
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 3
+  42 000a 08BD     		pop	{r3, pc}
+  43              		.cfi_endproc
+  44              	.LFE63:
+  45              		.size	Servo_Init, .-Servo_Init
+  46              		.section	.text.Servo_Open,"ax",%progbits
+  47              		.align	2
+  48              		.global	Servo_Open
+  49              		.thumb
+  50              		.thumb_func
+  51              		.type	Servo_Open, %function
+  52              	Servo_Open:
+  53              	.LFB64:
+  17:servo.c       **** }
+  18:servo.c       **** 
+  19:servo.c       **** servo_status_t Servo_Open(void)
+  20:servo.c       **** {
+  54              		.loc 1 20 0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58 0000 08B5     		push	{r3, lr}
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 3, -8
+  61              		.cfi_offset 14, -4
+  21:servo.c       ****     PWM_Servo_WriteCompare(SERVO_OPEN_PWM);
+  62              		.loc 1 21 0
+  63 0002 1420     		movs	r0, #20
+  64 0004 FFF7FEFF 		bl	PWM_Servo_WriteCompare
+  65              	.LVL2:
+  22:servo.c       ****     LED_ServoOpen();
+  66              		.loc 1 22 0
+  67 0008 FFF7FEFF 		bl	LED_ServoOpen
+  68              	.LVL3:
+  23:servo.c       ****     servo_is_open = 1;
+  69              		.loc 1 23 0
+  70 000c 0122     		movs	r2, #1
+  71 000e 024B     		ldr	r3, .L5
+  72 0010 1A70     		strb	r2, [r3]
+  24:servo.c       ****     return SERVO_OK;
+  25:servo.c       **** }
+  73              		.loc 1 25 0
+  74 0012 0020     		movs	r0, #0
+  75 0014 08BD     		pop	{r3, pc}
+  76              	.L6:
+  77 0016 00BF     		.align	2
+  78              	.L5:
+  79 0018 00000000 		.word	.LANCHOR0
+  80              		.cfi_endproc
+  81              	.LFE64:
+  82              		.size	Servo_Open, .-Servo_Open
+  83              		.section	.text.Servo_Close,"ax",%progbits
+  84              		.align	2
+  85              		.global	Servo_Close
+  86              		.thumb
+  87              		.thumb_func
+  88              		.type	Servo_Close, %function
+  89              	Servo_Close:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 3
 
 
-  92              	.LVL3:
-  24:servo.c       ****     CyDelay(500);
-  93              		.loc 1 24 0
-  94 0008 4FF4FA70 		mov	r0, #500
-  95 000c FFF7FEFF 		bl	CyDelay
-  96              	.LVL4:
-  25:servo.c       ****     return SERVO_OK;
-  26:servo.c       **** }
-  97              		.loc 1 26 0
-  98 0010 0020     		movs	r0, #0
-  99 0012 08BD     		pop	{r3, pc}
- 100              		.cfi_endproc
- 101              	.LFE65:
- 102              		.size	Servo_Close, .-Servo_Close
- 103              		.text
- 104              	.Letext0:
- 105              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 106              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 107              		.file 4 "servo.h"
- 108              		.file 5 "Generated_Source\\PSoC5/PWM_Servo.h"
- 109              		.file 6 "Generated_Source\\PSoC5/CyLib.h"
- 110              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
- 111              		.section	.debug_info,"",%progbits
- 112              	.Ldebug_info0:
- 113 0000 94010000 		.4byte	0x194
- 114 0004 0400     		.2byte	0x4
- 115 0006 00000000 		.4byte	.Ldebug_abbrev0
- 116 000a 04       		.byte	0x4
- 117 000b 01       		.uleb128 0x1
- 118 000c A5000000 		.4byte	.LASF24
- 119 0010 0C       		.byte	0xc
- 120 0011 97010000 		.4byte	.LASF25
- 121 0015 21000000 		.4byte	.LASF26
- 122 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 123 001d 00000000 		.4byte	0
- 124 0021 00000000 		.4byte	.Ldebug_line0
- 125 0025 02       		.uleb128 0x2
- 126 0026 01       		.byte	0x1
- 127 0027 06       		.byte	0x6
- 128 0028 DF010000 		.4byte	.LASF0
- 129 002c 02       		.uleb128 0x2
- 130 002d 01       		.byte	0x1
- 131 002e 08       		.byte	0x8
- 132 002f 9F010000 		.4byte	.LASF1
- 133 0033 02       		.uleb128 0x2
- 134 0034 02       		.byte	0x2
- 135 0035 05       		.byte	0x5
- 136 0036 13020000 		.4byte	.LASF2
- 137 003a 02       		.uleb128 0x2
- 138 003b 02       		.byte	0x2
- 139 003c 07       		.byte	0x7
- 140 003d 0E000000 		.4byte	.LASF3
- 141 0041 03       		.uleb128 0x3
- 142 0042 03020000 		.4byte	.LASF9
- 143 0046 02       		.byte	0x2
- 144 0047 3F       		.byte	0x3f
- 145 0048 4C000000 		.4byte	0x4c
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 4
+  90              	.LFB65:
+  26:servo.c       **** 
+  27:servo.c       **** servo_status_t Servo_Close(void)
+  28:servo.c       **** {
+  91              		.loc 1 28 0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95 0000 08B5     		push	{r3, lr}
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 3, -8
+  98              		.cfi_offset 14, -4
+  29:servo.c       ****     PWM_Servo_WriteCompare(SERVO_CLOSE_PWM);
+  99              		.loc 1 29 0
+ 100 0002 0A20     		movs	r0, #10
+ 101 0004 FFF7FEFF 		bl	PWM_Servo_WriteCompare
+ 102              	.LVL4:
+  30:servo.c       ****     LED_ServoClose();
+ 103              		.loc 1 30 0
+ 104 0008 FFF7FEFF 		bl	LED_ServoClose
+ 105              	.LVL5:
+  31:servo.c       ****     if (ADC_ServoFB_CountsTo_mVolts(ADC_ServoFB_GetResult16()) > 2)
+ 106              		.loc 1 31 0
+ 107 000c FFF7FEFF 		bl	ADC_ServoFB_GetResult16
+ 108              	.LVL6:
+ 109 0010 FFF7FEFF 		bl	ADC_ServoFB_CountsTo_mVolts
+ 110              	.LVL7:
+ 111 0014 0228     		cmp	r0, #2
+ 112 0016 03DD     		ble	.L9
+  32:servo.c       ****     {
+  33:servo.c       ****         servo_is_open = 0;
+ 113              		.loc 1 33 0
+ 114 0018 0020     		movs	r0, #0
+ 115 001a 024B     		ldr	r3, .L11
+ 116 001c 1870     		strb	r0, [r3]
+  34:servo.c       ****         return SERVO_OK;
+ 117              		.loc 1 34 0
+ 118 001e 08BD     		pop	{r3, pc}
+ 119              	.L9:
+  35:servo.c       ****     }
+  36:servo.c       ****     return SERVO_ERROR;
+ 120              		.loc 1 36 0
+ 121 0020 0120     		movs	r0, #1
+  37:servo.c       **** }
+ 122              		.loc 1 37 0
+ 123 0022 08BD     		pop	{r3, pc}
+ 124              	.L12:
+ 125              		.align	2
+ 126              	.L11:
+ 127 0024 00000000 		.word	.LANCHOR0
+ 128              		.cfi_endproc
+ 129              	.LFE65:
+ 130              		.size	Servo_Close, .-Servo_Close
+ 131              		.section	.text.Servo_IsOpen,"ax",%progbits
+ 132              		.align	2
+ 133              		.global	Servo_IsOpen
+ 134              		.thumb
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 4
 
 
- 146 004c 02       		.uleb128 0x2
- 147 004d 04       		.byte	0x4
- 148 004e 05       		.byte	0x5
- 149 004f B2010000 		.4byte	.LASF4
- 150 0053 02       		.uleb128 0x2
- 151 0054 04       		.byte	0x4
- 152 0055 07       		.byte	0x7
- 153 0056 3C010000 		.4byte	.LASF5
- 154 005a 02       		.uleb128 0x2
- 155 005b 08       		.byte	0x8
- 156 005c 05       		.byte	0x5
- 157 005d 00000000 		.4byte	.LASF6
- 158 0061 02       		.uleb128 0x2
- 159 0062 08       		.byte	0x8
- 160 0063 07       		.byte	0x7
- 161 0064 4E010000 		.4byte	.LASF7
- 162 0068 04       		.uleb128 0x4
- 163 0069 04       		.byte	0x4
- 164 006a 05       		.byte	0x5
- 165 006b 696E7400 		.ascii	"int\000"
- 166 006f 02       		.uleb128 0x2
- 167 0070 04       		.byte	0x4
- 168 0071 07       		.byte	0x7
- 169 0072 7A000000 		.4byte	.LASF8
- 170 0076 03       		.uleb128 0x3
- 171 0077 1D020000 		.4byte	.LASF10
- 172 007b 03       		.byte	0x3
- 173 007c 2C       		.byte	0x2c
- 174 007d 41000000 		.4byte	0x41
- 175 0081 02       		.uleb128 0x2
- 176 0082 04       		.byte	0x4
- 177 0083 04       		.byte	0x4
- 178 0084 0D020000 		.4byte	.LASF11
- 179 0088 02       		.uleb128 0x2
- 180 0089 08       		.byte	0x8
- 181 008a 04       		.byte	0x4
- 182 008b CB010000 		.4byte	.LASF12
- 183 008f 02       		.uleb128 0x2
- 184 0090 01       		.byte	0x1
- 185 0091 08       		.byte	0x8
- 186 0092 AD010000 		.4byte	.LASF13
- 187 0096 02       		.uleb128 0x2
- 188 0097 08       		.byte	0x8
- 189 0098 04       		.byte	0x4
- 190 0099 EB010000 		.4byte	.LASF14
- 191 009d 02       		.uleb128 0x2
- 192 009e 04       		.byte	0x4
- 193 009f 07       		.byte	0x7
- 194 00a0 25020000 		.4byte	.LASF15
- 195 00a4 05       		.uleb128 0x5
- 196 00a5 01       		.byte	0x1
- 197 00a6 2C000000 		.4byte	0x2c
- 198 00aa 04       		.byte	0x4
- 199 00ab 04       		.byte	0x4
- 200 00ac BD000000 		.4byte	0xbd
- 201 00b0 06       		.uleb128 0x6
- 202 00b1 33010000 		.4byte	.LASF16
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 5
+ 135              		.thumb_func
+ 136              		.type	Servo_IsOpen, %function
+ 137              	Servo_IsOpen:
+ 138              	.LFB66:
+  38:servo.c       **** 
+  39:servo.c       **** uint8_t Servo_IsOpen(void)
+  40:servo.c       **** {
+ 139              		.loc 1 40 0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143              		@ link register save eliminated.
+  41:servo.c       ****     return servo_is_open;
+  42:servo.c       **** }
+ 144              		.loc 1 42 0
+ 145 0000 014B     		ldr	r3, .L14
+ 146 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 147 0004 7047     		bx	lr
+ 148              	.L15:
+ 149 0006 00BF     		.align	2
+ 150              	.L14:
+ 151 0008 00000000 		.word	.LANCHOR0
+ 152              		.cfi_endproc
+ 153              	.LFE66:
+ 154              		.size	Servo_IsOpen, .-Servo_IsOpen
+ 155              		.section	.text.Servo_GetPosition,"ax",%progbits
+ 156              		.align	2
+ 157              		.global	Servo_GetPosition
+ 158              		.thumb
+ 159              		.thumb_func
+ 160              		.type	Servo_GetPosition, %function
+ 161              	Servo_GetPosition:
+ 162              	.LFB67:
+  43:servo.c       **** 
+  44:servo.c       **** uint16_t Servo_GetPosition(void)
+  45:servo.c       **** {
+ 163              		.loc 1 45 0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167 0000 08B5     		push	{r3, lr}
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 3, -8
+ 170              		.cfi_offset 14, -4
+  46:servo.c       ****     return ADC_ServoFB_CountsTo_mVolts(ADC_ServoFB_GetResult16());
+ 171              		.loc 1 46 0
+ 172 0002 FFF7FEFF 		bl	ADC_ServoFB_GetResult16
+ 173              	.LVL8:
+ 174 0006 FFF7FEFF 		bl	ADC_ServoFB_CountsTo_mVolts
+ 175              	.LVL9:
+  47:servo.c       **** }
+ 176              		.loc 1 47 0
+ 177 000a 80B2     		uxth	r0, r0
+ 178 000c 08BD     		pop	{r3, pc}
+ 179              		.cfi_endproc
+ 180              	.LFE67:
+ 181              		.size	Servo_GetPosition, .-Servo_GetPosition
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 5
 
 
- 203 00b5 00       		.byte	0
- 204 00b6 06       		.uleb128 0x6
- 205 00b7 8B010000 		.4byte	.LASF17
- 206 00bb 01       		.byte	0x1
- 207 00bc 00       		.byte	0
- 208 00bd 03       		.uleb128 0x3
- 209 00be 7C010000 		.4byte	.LASF18
- 210 00c2 04       		.byte	0x4
- 211 00c3 04       		.byte	0x4
- 212 00c4 A4000000 		.4byte	0xa4
- 213 00c8 07       		.uleb128 0x7
- 214 00c9 9A000000 		.4byte	.LASF27
- 215 00cd 01       		.byte	0x1
- 216 00ce 09       		.byte	0x9
- 217 00cf 00000000 		.4byte	.LFB63
- 218 00d3 08000000 		.4byte	.LFE63-.LFB63
- 219 00d7 01       		.uleb128 0x1
- 220 00d8 9C       		.byte	0x9c
- 221 00d9 E7000000 		.4byte	0xe7
- 222 00dd 08       		.uleb128 0x8
- 223 00de 06000000 		.4byte	.LVL0
- 224 00e2 76010000 		.4byte	0x176
- 225 00e6 00       		.byte	0
- 226 00e7 09       		.uleb128 0x9
- 227 00e8 87000000 		.4byte	.LASF19
- 228 00ec 01       		.byte	0x1
- 229 00ed 0E       		.byte	0xe
- 230 00ee BD000000 		.4byte	0xbd
- 231 00f2 00000000 		.4byte	.LFB64
- 232 00f6 14000000 		.4byte	.LFE64-.LFB64
- 233 00fa 01       		.uleb128 0x1
- 234 00fb 9C       		.byte	0x9c
- 235 00fc 26010000 		.4byte	0x126
- 236 0100 0A       		.uleb128 0xa
- 237 0101 08000000 		.4byte	.LVL1
- 238 0105 81010000 		.4byte	0x181
- 239 0109 14010000 		.4byte	0x114
- 240 010d 0B       		.uleb128 0xb
- 241 010e 01       		.uleb128 0x1
- 242 010f 50       		.byte	0x50
- 243 0110 02       		.uleb128 0x2
- 244 0111 09       		.byte	0x9
- 245 0112 D0       		.byte	0xd0
- 246 0113 00       		.byte	0
- 247 0114 0C       		.uleb128 0xc
- 248 0115 10000000 		.4byte	.LVL2
- 249 0119 8C010000 		.4byte	0x18c
- 250 011d 0B       		.uleb128 0xb
- 251 011e 01       		.uleb128 0x1
- 252 011f 50       		.byte	0x50
- 253 0120 03       		.uleb128 0x3
- 254 0121 0A       		.byte	0xa
- 255 0122 F401     		.2byte	0x1f4
- 256 0124 00       		.byte	0
- 257 0125 00       		.byte	0
- 258 0126 09       		.uleb128 0x9
- 259 0127 F7010000 		.4byte	.LASF20
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 6
+ 182 000e 00BF     		.bss
+ 183              		.set	.LANCHOR0,. + 0
+ 184              		.type	servo_is_open, %object
+ 185              		.size	servo_is_open, 1
+ 186              	servo_is_open:
+ 187 0000 00       		.space	1
+ 188              		.text
+ 189              	.Letext0:
+ 190              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 191              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 192              		.file 4 "servo.h"
+ 193              		.file 5 "Generated_Source\\PSoC5/PWM_Servo.h"
+ 194              		.file 6 "Generated_Source\\PSoC5/ADC_ServoFB.h"
+ 195              		.file 7 "led.h"
+ 196              		.file 8 "Generated_Source\\PSoC5/core_cm3.h"
+ 197              		.section	.debug_info,"",%progbits
+ 198              	.Ldebug_info0:
+ 199 0000 47020000 		.4byte	0x247
+ 200 0004 0400     		.2byte	0x4
+ 201 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 202 000a 04       		.byte	0x4
+ 203 000b 01       		.uleb128 0x1
+ 204 000c C4000000 		.4byte	.LASF33
+ 205 0010 0C       		.byte	0xc
+ 206 0011 AF010000 		.4byte	.LASF34
+ 207 0015 4E020000 		.4byte	.LASF35
+ 208 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 209 001d 00000000 		.4byte	0
+ 210 0021 00000000 		.4byte	.Ldebug_line0
+ 211 0025 02       		.uleb128 0x2
+ 212 0026 01       		.byte	0x1
+ 213 0027 06       		.byte	0x6
+ 214 0028 BE020000 		.4byte	.LASF0
+ 215 002c 03       		.uleb128 0x3
+ 216 002d 4A000000 		.4byte	.LASF3
+ 217 0031 02       		.byte	0x2
+ 218 0032 1D       		.byte	0x1d
+ 219 0033 37000000 		.4byte	0x37
+ 220 0037 02       		.uleb128 0x2
+ 221 0038 01       		.byte	0x1
+ 222 0039 08       		.byte	0x8
+ 223 003a B6000000 		.4byte	.LASF1
+ 224 003e 02       		.uleb128 0x2
+ 225 003f 02       		.byte	0x2
+ 226 0040 05       		.byte	0x5
+ 227 0041 15020000 		.4byte	.LASF2
+ 228 0045 03       		.uleb128 0x3
+ 229 0046 84010000 		.4byte	.LASF4
+ 230 004a 02       		.byte	0x2
+ 231 004b 2B       		.byte	0x2b
+ 232 004c 50000000 		.4byte	0x50
+ 233 0050 02       		.uleb128 0x2
+ 234 0051 02       		.byte	0x2
+ 235 0052 07       		.byte	0x7
+ 236 0053 64010000 		.4byte	.LASF5
+ 237 0057 03       		.uleb128 0x3
+ 238 0058 5F000000 		.4byte	.LASF6
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 6
 
 
- 260 012b 01       		.byte	0x1
- 261 012c 15       		.byte	0x15
- 262 012d BD000000 		.4byte	0xbd
- 263 0131 00000000 		.4byte	.LFB65
- 264 0135 14000000 		.4byte	.LFE65-.LFB65
- 265 0139 01       		.uleb128 0x1
- 266 013a 9C       		.byte	0x9c
- 267 013b 65010000 		.4byte	0x165
- 268 013f 0A       		.uleb128 0xa
- 269 0140 08000000 		.4byte	.LVL3
- 270 0144 81010000 		.4byte	0x181
- 271 0148 53010000 		.4byte	0x153
- 272 014c 0B       		.uleb128 0xb
- 273 014d 01       		.uleb128 0x1
- 274 014e 50       		.byte	0x50
- 275 014f 02       		.uleb128 0x2
- 276 0150 09       		.byte	0x9
- 277 0151 E8       		.byte	0xe8
- 278 0152 00       		.byte	0
- 279 0153 0C       		.uleb128 0xc
- 280 0154 10000000 		.4byte	.LVL4
- 281 0158 8C010000 		.4byte	0x18c
- 282 015c 0B       		.uleb128 0xb
- 283 015d 01       		.uleb128 0x1
- 284 015e 50       		.byte	0x50
- 285 015f 03       		.uleb128 0x3
- 286 0160 0A       		.byte	0xa
- 287 0161 F401     		.2byte	0x1f4
- 288 0163 00       		.byte	0
- 289 0164 00       		.byte	0
- 290 0165 0D       		.uleb128 0xd
- 291 0166 D2010000 		.4byte	.LASF28
- 292 016a 07       		.byte	0x7
- 293 016b 1207     		.2byte	0x712
- 294 016d 71010000 		.4byte	0x171
- 295 0171 0E       		.uleb128 0xe
- 296 0172 76000000 		.4byte	0x76
- 297 0176 0F       		.uleb128 0xf
- 298 0177 BB010000 		.4byte	.LASF21
- 299 017b BB010000 		.4byte	.LASF21
- 300 017f 05       		.byte	0x5
- 301 0180 92       		.byte	0x92
- 302 0181 0F       		.uleb128 0xf
- 303 0182 65010000 		.4byte	.LASF22
- 304 0186 65010000 		.4byte	.LASF22
- 305 018a 05       		.byte	0x5
- 306 018b C3       		.byte	0xc3
- 307 018c 0F       		.uleb128 0xf
- 308 018d 92000000 		.4byte	.LASF23
- 309 0191 92000000 		.4byte	.LASF23
- 310 0195 06       		.byte	0x6
- 311 0196 76       		.byte	0x76
- 312 0197 00       		.byte	0
- 313              		.section	.debug_abbrev,"",%progbits
- 314              	.Ldebug_abbrev0:
- 315 0000 01       		.uleb128 0x1
- 316 0001 11       		.uleb128 0x11
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 7
+ 239 005c 02       		.byte	0x2
+ 240 005d 3F       		.byte	0x3f
+ 241 005e 62000000 		.4byte	0x62
+ 242 0062 02       		.uleb128 0x2
+ 243 0063 04       		.byte	0x4
+ 244 0064 05       		.byte	0x5
+ 245 0065 A0020000 		.4byte	.LASF7
+ 246 0069 02       		.uleb128 0x2
+ 247 006a 04       		.byte	0x4
+ 248 006b 07       		.byte	0x7
+ 249 006c 52010000 		.4byte	.LASF8
+ 250 0070 02       		.uleb128 0x2
+ 251 0071 08       		.byte	0x8
+ 252 0072 05       		.byte	0x5
+ 253 0073 02020000 		.4byte	.LASF9
+ 254 0077 02       		.uleb128 0x2
+ 255 0078 08       		.byte	0x8
+ 256 0079 07       		.byte	0x7
+ 257 007a 8F000000 		.4byte	.LASF10
+ 258 007e 04       		.uleb128 0x4
+ 259 007f 04       		.byte	0x4
+ 260 0080 05       		.byte	0x5
+ 261 0081 696E7400 		.ascii	"int\000"
+ 262 0085 02       		.uleb128 0x2
+ 263 0086 04       		.byte	0x4
+ 264 0087 07       		.byte	0x7
+ 265 0088 A2010000 		.4byte	.LASF11
+ 266 008c 03       		.uleb128 0x3
+ 267 008d B7010000 		.4byte	.LASF12
+ 268 0091 03       		.byte	0x3
+ 269 0092 18       		.byte	0x18
+ 270 0093 2C000000 		.4byte	0x2c
+ 271 0097 03       		.uleb128 0x3
+ 272 0098 36020000 		.4byte	.LASF13
+ 273 009c 03       		.byte	0x3
+ 274 009d 24       		.byte	0x24
+ 275 009e 45000000 		.4byte	0x45
+ 276 00a2 03       		.uleb128 0x3
+ 277 00a3 F1010000 		.4byte	.LASF14
+ 278 00a7 03       		.byte	0x3
+ 279 00a8 2C       		.byte	0x2c
+ 280 00a9 57000000 		.4byte	0x57
+ 281 00ad 02       		.uleb128 0x2
+ 282 00ae 04       		.byte	0x4
+ 283 00af 04       		.byte	0x4
+ 284 00b0 89000000 		.4byte	.LASF15
+ 285 00b4 02       		.uleb128 0x2
+ 286 00b5 08       		.byte	0x8
+ 287 00b6 04       		.byte	0x4
+ 288 00b7 8F010000 		.4byte	.LASF16
+ 289 00bb 02       		.uleb128 0x2
+ 290 00bc 01       		.byte	0x1
+ 291 00bd 08       		.byte	0x8
+ 292 00be 10020000 		.4byte	.LASF17
+ 293 00c2 02       		.uleb128 0x2
+ 294 00c3 08       		.byte	0x8
+ 295 00c4 04       		.byte	0x4
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 7
 
 
- 317 0002 01       		.byte	0x1
- 318 0003 25       		.uleb128 0x25
- 319 0004 0E       		.uleb128 0xe
- 320 0005 13       		.uleb128 0x13
- 321 0006 0B       		.uleb128 0xb
- 322 0007 03       		.uleb128 0x3
- 323 0008 0E       		.uleb128 0xe
- 324 0009 1B       		.uleb128 0x1b
- 325 000a 0E       		.uleb128 0xe
- 326 000b 55       		.uleb128 0x55
- 327 000c 17       		.uleb128 0x17
- 328 000d 11       		.uleb128 0x11
- 329 000e 01       		.uleb128 0x1
- 330 000f 10       		.uleb128 0x10
- 331 0010 17       		.uleb128 0x17
- 332 0011 00       		.byte	0
- 333 0012 00       		.byte	0
- 334 0013 02       		.uleb128 0x2
- 335 0014 24       		.uleb128 0x24
- 336 0015 00       		.byte	0
- 337 0016 0B       		.uleb128 0xb
- 338 0017 0B       		.uleb128 0xb
- 339 0018 3E       		.uleb128 0x3e
- 340 0019 0B       		.uleb128 0xb
- 341 001a 03       		.uleb128 0x3
- 342 001b 0E       		.uleb128 0xe
- 343 001c 00       		.byte	0
- 344 001d 00       		.byte	0
- 345 001e 03       		.uleb128 0x3
- 346 001f 16       		.uleb128 0x16
- 347 0020 00       		.byte	0
- 348 0021 03       		.uleb128 0x3
- 349 0022 0E       		.uleb128 0xe
- 350 0023 3A       		.uleb128 0x3a
- 351 0024 0B       		.uleb128 0xb
- 352 0025 3B       		.uleb128 0x3b
- 353 0026 0B       		.uleb128 0xb
- 354 0027 49       		.uleb128 0x49
- 355 0028 13       		.uleb128 0x13
- 356 0029 00       		.byte	0
- 357 002a 00       		.byte	0
- 358 002b 04       		.uleb128 0x4
- 359 002c 24       		.uleb128 0x24
- 360 002d 00       		.byte	0
- 361 002e 0B       		.uleb128 0xb
- 362 002f 0B       		.uleb128 0xb
- 363 0030 3E       		.uleb128 0x3e
- 364 0031 0B       		.uleb128 0xb
- 365 0032 03       		.uleb128 0x3
- 366 0033 08       		.uleb128 0x8
- 367 0034 00       		.byte	0
- 368 0035 00       		.byte	0
- 369 0036 05       		.uleb128 0x5
- 370 0037 04       		.uleb128 0x4
- 371 0038 01       		.byte	0x1
- 372 0039 0B       		.uleb128 0xb
- 373 003a 0B       		.uleb128 0xb
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 8
+ 296 00c5 A9020000 		.4byte	.LASF18
+ 297 00c9 02       		.uleb128 0x2
+ 298 00ca 04       		.byte	0x4
+ 299 00cb 07       		.byte	0x7
+ 300 00cc F9010000 		.4byte	.LASF19
+ 301 00d0 05       		.uleb128 0x5
+ 302 00d1 01       		.byte	0x1
+ 303 00d2 37000000 		.4byte	0x37
+ 304 00d6 04       		.byte	0x4
+ 305 00d7 05       		.byte	0x5
+ 306 00d8 E9000000 		.4byte	0xe9
+ 307 00dc 06       		.uleb128 0x6
+ 308 00dd B5020000 		.4byte	.LASF20
+ 309 00e1 00       		.byte	0
+ 310 00e2 06       		.uleb128 0x6
+ 311 00e3 BF010000 		.4byte	.LASF21
+ 312 00e7 01       		.byte	0x1
+ 313 00e8 00       		.byte	0
+ 314 00e9 03       		.uleb128 0x3
+ 315 00ea 3F020000 		.4byte	.LASF22
+ 316 00ee 04       		.byte	0x4
+ 317 00ef 08       		.byte	0x8
+ 318 00f0 D0000000 		.4byte	0xd0
+ 319 00f4 07       		.uleb128 0x7
+ 320 00f5 CA020000 		.4byte	.LASF36
+ 321 00f9 01       		.byte	0x1
+ 322 00fa 0D       		.byte	0xd
+ 323 00fb 00000000 		.4byte	.LFB63
+ 324 00ff 0C000000 		.4byte	.LFE63-.LFB63
+ 325 0103 01       		.uleb128 0x1
+ 326 0104 9C       		.byte	0x9c
+ 327 0105 1C010000 		.4byte	0x11c
+ 328 0109 08       		.uleb128 0x8
+ 329 010a 06000000 		.4byte	.LVL0
+ 330 010e FD010000 		.4byte	0x1fd
+ 331 0112 08       		.uleb128 0x8
+ 332 0113 0A000000 		.4byte	.LVL1
+ 333 0117 08020000 		.4byte	0x208
+ 334 011b 00       		.byte	0
+ 335 011c 09       		.uleb128 0x9
+ 336 011d 54000000 		.4byte	.LASF23
+ 337 0121 01       		.byte	0x1
+ 338 0122 13       		.byte	0x13
+ 339 0123 E9000000 		.4byte	0xe9
+ 340 0127 00000000 		.4byte	.LFB64
+ 341 012b 1C000000 		.4byte	.LFE64-.LFB64
+ 342 012f 01       		.uleb128 0x1
+ 343 0130 9C       		.byte	0x9c
+ 344 0131 52010000 		.4byte	0x152
+ 345 0135 0A       		.uleb128 0xa
+ 346 0136 08000000 		.4byte	.LVL2
+ 347 013a 13020000 		.4byte	0x213
+ 348 013e 48010000 		.4byte	0x148
+ 349 0142 0B       		.uleb128 0xb
+ 350 0143 01       		.uleb128 0x1
+ 351 0144 50       		.byte	0x50
+ 352 0145 01       		.uleb128 0x1
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 8
 
 
- 374 003b 49       		.uleb128 0x49
- 375 003c 13       		.uleb128 0x13
- 376 003d 3A       		.uleb128 0x3a
- 377 003e 0B       		.uleb128 0xb
- 378 003f 3B       		.uleb128 0x3b
- 379 0040 0B       		.uleb128 0xb
- 380 0041 01       		.uleb128 0x1
- 381 0042 13       		.uleb128 0x13
- 382 0043 00       		.byte	0
- 383 0044 00       		.byte	0
- 384 0045 06       		.uleb128 0x6
- 385 0046 28       		.uleb128 0x28
- 386 0047 00       		.byte	0
- 387 0048 03       		.uleb128 0x3
- 388 0049 0E       		.uleb128 0xe
- 389 004a 1C       		.uleb128 0x1c
- 390 004b 0B       		.uleb128 0xb
- 391 004c 00       		.byte	0
- 392 004d 00       		.byte	0
- 393 004e 07       		.uleb128 0x7
- 394 004f 2E       		.uleb128 0x2e
- 395 0050 01       		.byte	0x1
- 396 0051 3F       		.uleb128 0x3f
- 397 0052 19       		.uleb128 0x19
- 398 0053 03       		.uleb128 0x3
- 399 0054 0E       		.uleb128 0xe
- 400 0055 3A       		.uleb128 0x3a
- 401 0056 0B       		.uleb128 0xb
- 402 0057 3B       		.uleb128 0x3b
- 403 0058 0B       		.uleb128 0xb
- 404 0059 27       		.uleb128 0x27
- 405 005a 19       		.uleb128 0x19
- 406 005b 11       		.uleb128 0x11
- 407 005c 01       		.uleb128 0x1
- 408 005d 12       		.uleb128 0x12
- 409 005e 06       		.uleb128 0x6
- 410 005f 40       		.uleb128 0x40
- 411 0060 18       		.uleb128 0x18
- 412 0061 9742     		.uleb128 0x2117
- 413 0063 19       		.uleb128 0x19
- 414 0064 01       		.uleb128 0x1
- 415 0065 13       		.uleb128 0x13
- 416 0066 00       		.byte	0
- 417 0067 00       		.byte	0
- 418 0068 08       		.uleb128 0x8
- 419 0069 898201   		.uleb128 0x4109
- 420 006c 00       		.byte	0
- 421 006d 11       		.uleb128 0x11
- 422 006e 01       		.uleb128 0x1
- 423 006f 31       		.uleb128 0x31
- 424 0070 13       		.uleb128 0x13
- 425 0071 00       		.byte	0
- 426 0072 00       		.byte	0
- 427 0073 09       		.uleb128 0x9
- 428 0074 2E       		.uleb128 0x2e
- 429 0075 01       		.byte	0x1
- 430 0076 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 9
+ 353 0146 44       		.byte	0x44
+ 354 0147 00       		.byte	0
+ 355 0148 08       		.uleb128 0x8
+ 356 0149 0C000000 		.4byte	.LVL3
+ 357 014d 1E020000 		.4byte	0x21e
+ 358 0151 00       		.byte	0
+ 359 0152 09       		.uleb128 0x9
+ 360 0153 96010000 		.4byte	.LASF24
+ 361 0157 01       		.byte	0x1
+ 362 0158 1B       		.byte	0x1b
+ 363 0159 E9000000 		.4byte	0xe9
+ 364 015d 00000000 		.4byte	.LFB65
+ 365 0161 28000000 		.4byte	.LFE65-.LFB65
+ 366 0165 01       		.uleb128 0x1
+ 367 0166 9C       		.byte	0x9c
+ 368 0167 9A010000 		.4byte	0x19a
+ 369 016b 0A       		.uleb128 0xa
+ 370 016c 08000000 		.4byte	.LVL4
+ 371 0170 13020000 		.4byte	0x213
+ 372 0174 7E010000 		.4byte	0x17e
+ 373 0178 0B       		.uleb128 0xb
+ 374 0179 01       		.uleb128 0x1
+ 375 017a 50       		.byte	0x50
+ 376 017b 01       		.uleb128 0x1
+ 377 017c 3A       		.byte	0x3a
+ 378 017d 00       		.byte	0
+ 379 017e 08       		.uleb128 0x8
+ 380 017f 0C000000 		.4byte	.LVL5
+ 381 0183 29020000 		.4byte	0x229
+ 382 0187 08       		.uleb128 0x8
+ 383 0188 10000000 		.4byte	.LVL6
+ 384 018c 34020000 		.4byte	0x234
+ 385 0190 08       		.uleb128 0x8
+ 386 0191 14000000 		.4byte	.LVL7
+ 387 0195 3F020000 		.4byte	0x23f
+ 388 0199 00       		.byte	0
+ 389 019a 0C       		.uleb128 0xc
+ 390 019b 12000000 		.4byte	.LASF37
+ 391 019f 01       		.byte	0x1
+ 392 01a0 27       		.byte	0x27
+ 393 01a1 8C000000 		.4byte	0x8c
+ 394 01a5 00000000 		.4byte	.LFB66
+ 395 01a9 0C000000 		.4byte	.LFE66-.LFB66
+ 396 01ad 01       		.uleb128 0x1
+ 397 01ae 9C       		.byte	0x9c
+ 398 01af 09       		.uleb128 0x9
+ 399 01b0 00000000 		.4byte	.LASF25
+ 400 01b4 01       		.byte	0x1
+ 401 01b5 2C       		.byte	0x2c
+ 402 01b6 97000000 		.4byte	0x97
+ 403 01ba 00000000 		.4byte	.LFB67
+ 404 01be 0E000000 		.4byte	.LFE67-.LFB67
+ 405 01c2 01       		.uleb128 0x1
+ 406 01c3 9C       		.byte	0x9c
+ 407 01c4 DB010000 		.4byte	0x1db
+ 408 01c8 08       		.uleb128 0x8
+ 409 01c9 06000000 		.4byte	.LVL8
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 9
 
 
- 431 0077 19       		.uleb128 0x19
- 432 0078 03       		.uleb128 0x3
- 433 0079 0E       		.uleb128 0xe
- 434 007a 3A       		.uleb128 0x3a
- 435 007b 0B       		.uleb128 0xb
- 436 007c 3B       		.uleb128 0x3b
- 437 007d 0B       		.uleb128 0xb
- 438 007e 27       		.uleb128 0x27
- 439 007f 19       		.uleb128 0x19
- 440 0080 49       		.uleb128 0x49
- 441 0081 13       		.uleb128 0x13
- 442 0082 11       		.uleb128 0x11
- 443 0083 01       		.uleb128 0x1
- 444 0084 12       		.uleb128 0x12
- 445 0085 06       		.uleb128 0x6
- 446 0086 40       		.uleb128 0x40
- 447 0087 18       		.uleb128 0x18
- 448 0088 9742     		.uleb128 0x2117
- 449 008a 19       		.uleb128 0x19
- 450 008b 01       		.uleb128 0x1
- 451 008c 13       		.uleb128 0x13
- 452 008d 00       		.byte	0
- 453 008e 00       		.byte	0
- 454 008f 0A       		.uleb128 0xa
- 455 0090 898201   		.uleb128 0x4109
- 456 0093 01       		.byte	0x1
- 457 0094 11       		.uleb128 0x11
- 458 0095 01       		.uleb128 0x1
- 459 0096 31       		.uleb128 0x31
- 460 0097 13       		.uleb128 0x13
- 461 0098 01       		.uleb128 0x1
- 462 0099 13       		.uleb128 0x13
- 463 009a 00       		.byte	0
- 464 009b 00       		.byte	0
- 465 009c 0B       		.uleb128 0xb
- 466 009d 8A8201   		.uleb128 0x410a
- 467 00a0 00       		.byte	0
- 468 00a1 02       		.uleb128 0x2
- 469 00a2 18       		.uleb128 0x18
- 470 00a3 9142     		.uleb128 0x2111
- 471 00a5 18       		.uleb128 0x18
- 472 00a6 00       		.byte	0
- 473 00a7 00       		.byte	0
- 474 00a8 0C       		.uleb128 0xc
- 475 00a9 898201   		.uleb128 0x4109
- 476 00ac 01       		.byte	0x1
- 477 00ad 11       		.uleb128 0x11
- 478 00ae 01       		.uleb128 0x1
- 479 00af 31       		.uleb128 0x31
- 480 00b0 13       		.uleb128 0x13
- 481 00b1 00       		.byte	0
- 482 00b2 00       		.byte	0
- 483 00b3 0D       		.uleb128 0xd
- 484 00b4 34       		.uleb128 0x34
- 485 00b5 00       		.byte	0
- 486 00b6 03       		.uleb128 0x3
- 487 00b7 0E       		.uleb128 0xe
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 10
+ 410 01cd 34020000 		.4byte	0x234
+ 411 01d1 08       		.uleb128 0x8
+ 412 01d2 0A000000 		.4byte	.LVL9
+ 413 01d6 3F020000 		.4byte	0x23f
+ 414 01da 00       		.byte	0
+ 415 01db 0D       		.uleb128 0xd
+ 416 01dc 7B000000 		.4byte	.LASF38
+ 417 01e0 01       		.byte	0x1
+ 418 01e1 0B       		.byte	0xb
+ 419 01e2 8C000000 		.4byte	0x8c
+ 420 01e6 05       		.uleb128 0x5
+ 421 01e7 03       		.byte	0x3
+ 422 01e8 00000000 		.4byte	servo_is_open
+ 423 01ec 0E       		.uleb128 0xe
+ 424 01ed 77010000 		.4byte	.LASF39
+ 425 01f1 08       		.byte	0x8
+ 426 01f2 1207     		.2byte	0x712
+ 427 01f4 F8010000 		.4byte	0x1f8
+ 428 01f8 0F       		.uleb128 0xf
+ 429 01f9 A2000000 		.4byte	0xa2
+ 430 01fd 10       		.uleb128 0x10
+ 431 01fe A6000000 		.4byte	.LASF26
+ 432 0202 A6000000 		.4byte	.LASF26
+ 433 0206 05       		.byte	0x5
+ 434 0207 92       		.byte	0x92
+ 435 0208 10       		.uleb128 0x10
+ 436 0209 69000000 		.4byte	.LASF27
+ 437 020d 69000000 		.4byte	.LASF27
+ 438 0211 06       		.byte	0x6
+ 439 0212 34       		.byte	0x34
+ 440 0213 10       		.uleb128 0x10
+ 441 0214 1F020000 		.4byte	.LASF28
+ 442 0218 1F020000 		.4byte	.LASF28
+ 443 021c 05       		.byte	0x5
+ 444 021d C3       		.byte	0xc3
+ 445 021e 10       		.uleb128 0x10
+ 446 021f CB010000 		.4byte	.LASF29
+ 447 0223 CB010000 		.4byte	.LASF29
+ 448 0227 07       		.byte	0x7
+ 449 0228 09       		.byte	0x9
+ 450 0229 10       		.uleb128 0x10
+ 451 022a 1F000000 		.4byte	.LASF30
+ 452 022e 1F000000 		.4byte	.LASF30
+ 453 0232 07       		.byte	0x7
+ 454 0233 0A       		.byte	0xa
+ 455 0234 10       		.uleb128 0x10
+ 456 0235 D9010000 		.4byte	.LASF31
+ 457 0239 D9010000 		.4byte	.LASF31
+ 458 023d 06       		.byte	0x6
+ 459 023e 3B       		.byte	0x3b
+ 460 023f 10       		.uleb128 0x10
+ 461 0240 2E000000 		.4byte	.LASF32
+ 462 0244 2E000000 		.4byte	.LASF32
+ 463 0248 06       		.byte	0x6
+ 464 0249 3F       		.byte	0x3f
+ 465 024a 00       		.byte	0
+ 466              		.section	.debug_abbrev,"",%progbits
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 10
 
 
- 488 00b8 3A       		.uleb128 0x3a
- 489 00b9 0B       		.uleb128 0xb
- 490 00ba 3B       		.uleb128 0x3b
- 491 00bb 05       		.uleb128 0x5
- 492 00bc 49       		.uleb128 0x49
- 493 00bd 13       		.uleb128 0x13
- 494 00be 3F       		.uleb128 0x3f
- 495 00bf 19       		.uleb128 0x19
- 496 00c0 3C       		.uleb128 0x3c
- 497 00c1 19       		.uleb128 0x19
- 498 00c2 00       		.byte	0
- 499 00c3 00       		.byte	0
- 500 00c4 0E       		.uleb128 0xe
- 501 00c5 35       		.uleb128 0x35
- 502 00c6 00       		.byte	0
- 503 00c7 49       		.uleb128 0x49
- 504 00c8 13       		.uleb128 0x13
- 505 00c9 00       		.byte	0
- 506 00ca 00       		.byte	0
- 507 00cb 0F       		.uleb128 0xf
- 508 00cc 2E       		.uleb128 0x2e
- 509 00cd 00       		.byte	0
- 510 00ce 3F       		.uleb128 0x3f
- 511 00cf 19       		.uleb128 0x19
- 512 00d0 3C       		.uleb128 0x3c
- 513 00d1 19       		.uleb128 0x19
- 514 00d2 6E       		.uleb128 0x6e
- 515 00d3 0E       		.uleb128 0xe
- 516 00d4 03       		.uleb128 0x3
- 517 00d5 0E       		.uleb128 0xe
- 518 00d6 3A       		.uleb128 0x3a
- 519 00d7 0B       		.uleb128 0xb
- 520 00d8 3B       		.uleb128 0x3b
- 521 00d9 0B       		.uleb128 0xb
- 522 00da 00       		.byte	0
- 523 00db 00       		.byte	0
- 524 00dc 00       		.byte	0
- 525              		.section	.debug_aranges,"",%progbits
- 526 0000 2C000000 		.4byte	0x2c
- 527 0004 0200     		.2byte	0x2
- 528 0006 00000000 		.4byte	.Ldebug_info0
- 529 000a 04       		.byte	0x4
- 530 000b 00       		.byte	0
- 531 000c 0000     		.2byte	0
- 532 000e 0000     		.2byte	0
- 533 0010 00000000 		.4byte	.LFB63
- 534 0014 08000000 		.4byte	.LFE63-.LFB63
- 535 0018 00000000 		.4byte	.LFB64
- 536 001c 14000000 		.4byte	.LFE64-.LFB64
- 537 0020 00000000 		.4byte	.LFB65
- 538 0024 14000000 		.4byte	.LFE65-.LFB65
- 539 0028 00000000 		.4byte	0
- 540 002c 00000000 		.4byte	0
- 541              		.section	.debug_ranges,"",%progbits
- 542              	.Ldebug_ranges0:
- 543 0000 00000000 		.4byte	.LFB63
- 544 0004 08000000 		.4byte	.LFE63
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 11
+ 467              	.Ldebug_abbrev0:
+ 468 0000 01       		.uleb128 0x1
+ 469 0001 11       		.uleb128 0x11
+ 470 0002 01       		.byte	0x1
+ 471 0003 25       		.uleb128 0x25
+ 472 0004 0E       		.uleb128 0xe
+ 473 0005 13       		.uleb128 0x13
+ 474 0006 0B       		.uleb128 0xb
+ 475 0007 03       		.uleb128 0x3
+ 476 0008 0E       		.uleb128 0xe
+ 477 0009 1B       		.uleb128 0x1b
+ 478 000a 0E       		.uleb128 0xe
+ 479 000b 55       		.uleb128 0x55
+ 480 000c 17       		.uleb128 0x17
+ 481 000d 11       		.uleb128 0x11
+ 482 000e 01       		.uleb128 0x1
+ 483 000f 10       		.uleb128 0x10
+ 484 0010 17       		.uleb128 0x17
+ 485 0011 00       		.byte	0
+ 486 0012 00       		.byte	0
+ 487 0013 02       		.uleb128 0x2
+ 488 0014 24       		.uleb128 0x24
+ 489 0015 00       		.byte	0
+ 490 0016 0B       		.uleb128 0xb
+ 491 0017 0B       		.uleb128 0xb
+ 492 0018 3E       		.uleb128 0x3e
+ 493 0019 0B       		.uleb128 0xb
+ 494 001a 03       		.uleb128 0x3
+ 495 001b 0E       		.uleb128 0xe
+ 496 001c 00       		.byte	0
+ 497 001d 00       		.byte	0
+ 498 001e 03       		.uleb128 0x3
+ 499 001f 16       		.uleb128 0x16
+ 500 0020 00       		.byte	0
+ 501 0021 03       		.uleb128 0x3
+ 502 0022 0E       		.uleb128 0xe
+ 503 0023 3A       		.uleb128 0x3a
+ 504 0024 0B       		.uleb128 0xb
+ 505 0025 3B       		.uleb128 0x3b
+ 506 0026 0B       		.uleb128 0xb
+ 507 0027 49       		.uleb128 0x49
+ 508 0028 13       		.uleb128 0x13
+ 509 0029 00       		.byte	0
+ 510 002a 00       		.byte	0
+ 511 002b 04       		.uleb128 0x4
+ 512 002c 24       		.uleb128 0x24
+ 513 002d 00       		.byte	0
+ 514 002e 0B       		.uleb128 0xb
+ 515 002f 0B       		.uleb128 0xb
+ 516 0030 3E       		.uleb128 0x3e
+ 517 0031 0B       		.uleb128 0xb
+ 518 0032 03       		.uleb128 0x3
+ 519 0033 08       		.uleb128 0x8
+ 520 0034 00       		.byte	0
+ 521 0035 00       		.byte	0
+ 522 0036 05       		.uleb128 0x5
+ 523 0037 04       		.uleb128 0x4
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 11
 
 
- 545 0008 00000000 		.4byte	.LFB64
- 546 000c 14000000 		.4byte	.LFE64
- 547 0010 00000000 		.4byte	.LFB65
- 548 0014 14000000 		.4byte	.LFE65
- 549 0018 00000000 		.4byte	0
- 550 001c 00000000 		.4byte	0
- 551              		.section	.debug_line,"",%progbits
- 552              	.Ldebug_line0:
- 553 0000 9F010000 		.section	.debug_str,"MS",%progbits,1
- 553      02006501 
- 553      00000201 
- 553      FB0E0D00 
- 553      01010101 
- 554              	.LASF6:
- 555 0000 6C6F6E67 		.ascii	"long long int\000"
- 555      206C6F6E 
- 555      6720696E 
- 555      7400
- 556              	.LASF3:
- 557 000e 73686F72 		.ascii	"short unsigned int\000"
- 557      7420756E 
- 557      7369676E 
- 557      65642069 
- 557      6E7400
- 558              	.LASF26:
- 559 0021 433A5C55 		.ascii	"C:\\Users\\ke\\Gitfis\\Elektroteknologi-Projekt-1\\"
- 559      73657273 
- 559      5C6B655C 
- 559      47697466 
- 559      69735C45 
- 560 004f 55495C64 		.ascii	"UI\\drejeknap - Kopi\\drejeknappelegen.cydsn\000"
- 560      72656A65 
- 560      6B6E6170 
- 560      202D204B 
- 560      6F70695C 
- 561              	.LASF8:
- 562 007a 756E7369 		.ascii	"unsigned int\000"
- 562      676E6564 
- 562      20696E74 
- 562      00
- 563              	.LASF19:
- 564 0087 53657276 		.ascii	"Servo_Open\000"
- 564      6F5F4F70 
- 564      656E00
- 565              	.LASF23:
- 566 0092 43794465 		.ascii	"CyDelay\000"
- 566      6C617900 
- 567              	.LASF27:
- 568 009a 53657276 		.ascii	"Servo_Init\000"
- 568      6F5F496E 
- 568      697400
- 569              	.LASF24:
- 570 00a5 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 570      43313120 
- 570      352E342E 
- 570      31203230 
- 570      31363036 
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 12
+ 524 0038 01       		.byte	0x1
+ 525 0039 0B       		.uleb128 0xb
+ 526 003a 0B       		.uleb128 0xb
+ 527 003b 49       		.uleb128 0x49
+ 528 003c 13       		.uleb128 0x13
+ 529 003d 3A       		.uleb128 0x3a
+ 530 003e 0B       		.uleb128 0xb
+ 531 003f 3B       		.uleb128 0x3b
+ 532 0040 0B       		.uleb128 0xb
+ 533 0041 01       		.uleb128 0x1
+ 534 0042 13       		.uleb128 0x13
+ 535 0043 00       		.byte	0
+ 536 0044 00       		.byte	0
+ 537 0045 06       		.uleb128 0x6
+ 538 0046 28       		.uleb128 0x28
+ 539 0047 00       		.byte	0
+ 540 0048 03       		.uleb128 0x3
+ 541 0049 0E       		.uleb128 0xe
+ 542 004a 1C       		.uleb128 0x1c
+ 543 004b 0B       		.uleb128 0xb
+ 544 004c 00       		.byte	0
+ 545 004d 00       		.byte	0
+ 546 004e 07       		.uleb128 0x7
+ 547 004f 2E       		.uleb128 0x2e
+ 548 0050 01       		.byte	0x1
+ 549 0051 3F       		.uleb128 0x3f
+ 550 0052 19       		.uleb128 0x19
+ 551 0053 03       		.uleb128 0x3
+ 552 0054 0E       		.uleb128 0xe
+ 553 0055 3A       		.uleb128 0x3a
+ 554 0056 0B       		.uleb128 0xb
+ 555 0057 3B       		.uleb128 0x3b
+ 556 0058 0B       		.uleb128 0xb
+ 557 0059 27       		.uleb128 0x27
+ 558 005a 19       		.uleb128 0x19
+ 559 005b 11       		.uleb128 0x11
+ 560 005c 01       		.uleb128 0x1
+ 561 005d 12       		.uleb128 0x12
+ 562 005e 06       		.uleb128 0x6
+ 563 005f 40       		.uleb128 0x40
+ 564 0060 18       		.uleb128 0x18
+ 565 0061 9742     		.uleb128 0x2117
+ 566 0063 19       		.uleb128 0x19
+ 567 0064 01       		.uleb128 0x1
+ 568 0065 13       		.uleb128 0x13
+ 569 0066 00       		.byte	0
+ 570 0067 00       		.byte	0
+ 571 0068 08       		.uleb128 0x8
+ 572 0069 898201   		.uleb128 0x4109
+ 573 006c 00       		.byte	0
+ 574 006d 11       		.uleb128 0x11
+ 575 006e 01       		.uleb128 0x1
+ 576 006f 31       		.uleb128 0x31
+ 577 0070 13       		.uleb128 0x13
+ 578 0071 00       		.byte	0
+ 579 0072 00       		.byte	0
+ 580 0073 09       		.uleb128 0x9
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 12
 
 
- 571 00d8 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 571      20726576 
- 571      6973696F 
- 571      6E203233 
- 571      37373135 
- 572 010b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 572      66756E63 
- 572      74696F6E 
- 572      2D736563 
- 572      74696F6E 
- 573              	.LASF16:
- 574 0133 53455256 		.ascii	"SERVO_OK\000"
- 574      4F5F4F4B 
- 574      00
- 575              	.LASF5:
- 576 013c 6C6F6E67 		.ascii	"long unsigned int\000"
- 576      20756E73 
- 576      69676E65 
- 576      6420696E 
- 576      7400
- 577              	.LASF7:
- 578 014e 6C6F6E67 		.ascii	"long long unsigned int\000"
- 578      206C6F6E 
- 578      6720756E 
- 578      7369676E 
- 578      65642069 
- 579              	.LASF22:
- 580 0165 50574D5F 		.ascii	"PWM_Servo_WriteCompare\000"
- 580      53657276 
- 580      6F5F5772 
- 580      69746543 
- 580      6F6D7061 
- 581              	.LASF18:
- 582 017c 73657276 		.ascii	"servo_status_t\000"
- 582      6F5F7374 
- 582      61747573 
- 582      5F7400
- 583              	.LASF17:
- 584 018b 53455256 		.ascii	"SERVO_ERROR\000"
- 584      4F5F4552 
- 584      524F5200 
- 585              	.LASF25:
- 586 0197 73657276 		.ascii	"servo.c\000"
- 586      6F2E6300 
- 587              	.LASF1:
- 588 019f 756E7369 		.ascii	"unsigned char\000"
- 588      676E6564 
- 588      20636861 
- 588      7200
- 589              	.LASF13:
- 590 01ad 63686172 		.ascii	"char\000"
- 590      00
- 591              	.LASF4:
- 592 01b2 6C6F6E67 		.ascii	"long int\000"
- 592      20696E74 
- 592      00
- 593              	.LASF21:
-ARM GAS  C:\Users\ke\AppData\Local\Temp\cckhpax1.s 			page 13
+ 581 0074 2E       		.uleb128 0x2e
+ 582 0075 01       		.byte	0x1
+ 583 0076 3F       		.uleb128 0x3f
+ 584 0077 19       		.uleb128 0x19
+ 585 0078 03       		.uleb128 0x3
+ 586 0079 0E       		.uleb128 0xe
+ 587 007a 3A       		.uleb128 0x3a
+ 588 007b 0B       		.uleb128 0xb
+ 589 007c 3B       		.uleb128 0x3b
+ 590 007d 0B       		.uleb128 0xb
+ 591 007e 27       		.uleb128 0x27
+ 592 007f 19       		.uleb128 0x19
+ 593 0080 49       		.uleb128 0x49
+ 594 0081 13       		.uleb128 0x13
+ 595 0082 11       		.uleb128 0x11
+ 596 0083 01       		.uleb128 0x1
+ 597 0084 12       		.uleb128 0x12
+ 598 0085 06       		.uleb128 0x6
+ 599 0086 40       		.uleb128 0x40
+ 600 0087 18       		.uleb128 0x18
+ 601 0088 9742     		.uleb128 0x2117
+ 602 008a 19       		.uleb128 0x19
+ 603 008b 01       		.uleb128 0x1
+ 604 008c 13       		.uleb128 0x13
+ 605 008d 00       		.byte	0
+ 606 008e 00       		.byte	0
+ 607 008f 0A       		.uleb128 0xa
+ 608 0090 898201   		.uleb128 0x4109
+ 609 0093 01       		.byte	0x1
+ 610 0094 11       		.uleb128 0x11
+ 611 0095 01       		.uleb128 0x1
+ 612 0096 31       		.uleb128 0x31
+ 613 0097 13       		.uleb128 0x13
+ 614 0098 01       		.uleb128 0x1
+ 615 0099 13       		.uleb128 0x13
+ 616 009a 00       		.byte	0
+ 617 009b 00       		.byte	0
+ 618 009c 0B       		.uleb128 0xb
+ 619 009d 8A8201   		.uleb128 0x410a
+ 620 00a0 00       		.byte	0
+ 621 00a1 02       		.uleb128 0x2
+ 622 00a2 18       		.uleb128 0x18
+ 623 00a3 9142     		.uleb128 0x2111
+ 624 00a5 18       		.uleb128 0x18
+ 625 00a6 00       		.byte	0
+ 626 00a7 00       		.byte	0
+ 627 00a8 0C       		.uleb128 0xc
+ 628 00a9 2E       		.uleb128 0x2e
+ 629 00aa 00       		.byte	0
+ 630 00ab 3F       		.uleb128 0x3f
+ 631 00ac 19       		.uleb128 0x19
+ 632 00ad 03       		.uleb128 0x3
+ 633 00ae 0E       		.uleb128 0xe
+ 634 00af 3A       		.uleb128 0x3a
+ 635 00b0 0B       		.uleb128 0xb
+ 636 00b1 3B       		.uleb128 0x3b
+ 637 00b2 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 13
 
 
- 594 01bb 50574D5F 		.ascii	"PWM_Servo_Start\000"
- 594      53657276 
- 594      6F5F5374 
- 594      61727400 
- 595              	.LASF12:
- 596 01cb 646F7562 		.ascii	"double\000"
- 596      6C6500
- 597              	.LASF28:
- 598 01d2 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 598      52784275 
- 598      66666572 
- 598      00
- 599              	.LASF0:
- 600 01df 7369676E 		.ascii	"signed char\000"
- 600      65642063 
- 600      68617200 
- 601              	.LASF14:
- 602 01eb 6C6F6E67 		.ascii	"long double\000"
- 602      20646F75 
- 602      626C6500 
- 603              	.LASF20:
- 604 01f7 53657276 		.ascii	"Servo_Close\000"
- 604      6F5F436C 
- 604      6F736500 
- 605              	.LASF9:
- 606 0203 5F5F696E 		.ascii	"__int32_t\000"
- 606      7433325F 
- 606      7400
- 607              	.LASF11:
- 608 020d 666C6F61 		.ascii	"float\000"
- 608      7400
- 609              	.LASF2:
- 610 0213 73686F72 		.ascii	"short int\000"
- 610      7420696E 
- 610      7400
- 611              	.LASF10:
- 612 021d 696E7433 		.ascii	"int32_t\000"
- 612      325F7400 
- 613              	.LASF15:
- 614 0225 73697A65 		.ascii	"sizetype\000"
- 614      74797065 
- 614      00
- 615              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 638 00b3 27       		.uleb128 0x27
+ 639 00b4 19       		.uleb128 0x19
+ 640 00b5 49       		.uleb128 0x49
+ 641 00b6 13       		.uleb128 0x13
+ 642 00b7 11       		.uleb128 0x11
+ 643 00b8 01       		.uleb128 0x1
+ 644 00b9 12       		.uleb128 0x12
+ 645 00ba 06       		.uleb128 0x6
+ 646 00bb 40       		.uleb128 0x40
+ 647 00bc 18       		.uleb128 0x18
+ 648 00bd 9742     		.uleb128 0x2117
+ 649 00bf 19       		.uleb128 0x19
+ 650 00c0 00       		.byte	0
+ 651 00c1 00       		.byte	0
+ 652 00c2 0D       		.uleb128 0xd
+ 653 00c3 34       		.uleb128 0x34
+ 654 00c4 00       		.byte	0
+ 655 00c5 03       		.uleb128 0x3
+ 656 00c6 0E       		.uleb128 0xe
+ 657 00c7 3A       		.uleb128 0x3a
+ 658 00c8 0B       		.uleb128 0xb
+ 659 00c9 3B       		.uleb128 0x3b
+ 660 00ca 0B       		.uleb128 0xb
+ 661 00cb 49       		.uleb128 0x49
+ 662 00cc 13       		.uleb128 0x13
+ 663 00cd 02       		.uleb128 0x2
+ 664 00ce 18       		.uleb128 0x18
+ 665 00cf 00       		.byte	0
+ 666 00d0 00       		.byte	0
+ 667 00d1 0E       		.uleb128 0xe
+ 668 00d2 34       		.uleb128 0x34
+ 669 00d3 00       		.byte	0
+ 670 00d4 03       		.uleb128 0x3
+ 671 00d5 0E       		.uleb128 0xe
+ 672 00d6 3A       		.uleb128 0x3a
+ 673 00d7 0B       		.uleb128 0xb
+ 674 00d8 3B       		.uleb128 0x3b
+ 675 00d9 05       		.uleb128 0x5
+ 676 00da 49       		.uleb128 0x49
+ 677 00db 13       		.uleb128 0x13
+ 678 00dc 3F       		.uleb128 0x3f
+ 679 00dd 19       		.uleb128 0x19
+ 680 00de 3C       		.uleb128 0x3c
+ 681 00df 19       		.uleb128 0x19
+ 682 00e0 00       		.byte	0
+ 683 00e1 00       		.byte	0
+ 684 00e2 0F       		.uleb128 0xf
+ 685 00e3 35       		.uleb128 0x35
+ 686 00e4 00       		.byte	0
+ 687 00e5 49       		.uleb128 0x49
+ 688 00e6 13       		.uleb128 0x13
+ 689 00e7 00       		.byte	0
+ 690 00e8 00       		.byte	0
+ 691 00e9 10       		.uleb128 0x10
+ 692 00ea 2E       		.uleb128 0x2e
+ 693 00eb 00       		.byte	0
+ 694 00ec 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 14
+
+
+ 695 00ed 19       		.uleb128 0x19
+ 696 00ee 3C       		.uleb128 0x3c
+ 697 00ef 19       		.uleb128 0x19
+ 698 00f0 6E       		.uleb128 0x6e
+ 699 00f1 0E       		.uleb128 0xe
+ 700 00f2 03       		.uleb128 0x3
+ 701 00f3 0E       		.uleb128 0xe
+ 702 00f4 3A       		.uleb128 0x3a
+ 703 00f5 0B       		.uleb128 0xb
+ 704 00f6 3B       		.uleb128 0x3b
+ 705 00f7 0B       		.uleb128 0xb
+ 706 00f8 00       		.byte	0
+ 707 00f9 00       		.byte	0
+ 708 00fa 00       		.byte	0
+ 709              		.section	.debug_aranges,"",%progbits
+ 710 0000 3C000000 		.4byte	0x3c
+ 711 0004 0200     		.2byte	0x2
+ 712 0006 00000000 		.4byte	.Ldebug_info0
+ 713 000a 04       		.byte	0x4
+ 714 000b 00       		.byte	0
+ 715 000c 0000     		.2byte	0
+ 716 000e 0000     		.2byte	0
+ 717 0010 00000000 		.4byte	.LFB63
+ 718 0014 0C000000 		.4byte	.LFE63-.LFB63
+ 719 0018 00000000 		.4byte	.LFB64
+ 720 001c 1C000000 		.4byte	.LFE64-.LFB64
+ 721 0020 00000000 		.4byte	.LFB65
+ 722 0024 28000000 		.4byte	.LFE65-.LFB65
+ 723 0028 00000000 		.4byte	.LFB66
+ 724 002c 0C000000 		.4byte	.LFE66-.LFB66
+ 725 0030 00000000 		.4byte	.LFB67
+ 726 0034 0E000000 		.4byte	.LFE67-.LFB67
+ 727 0038 00000000 		.4byte	0
+ 728 003c 00000000 		.4byte	0
+ 729              		.section	.debug_ranges,"",%progbits
+ 730              	.Ldebug_ranges0:
+ 731 0000 00000000 		.4byte	.LFB63
+ 732 0004 0C000000 		.4byte	.LFE63
+ 733 0008 00000000 		.4byte	.LFB64
+ 734 000c 1C000000 		.4byte	.LFE64
+ 735 0010 00000000 		.4byte	.LFB65
+ 736 0014 28000000 		.4byte	.LFE65
+ 737 0018 00000000 		.4byte	.LFB66
+ 738 001c 0C000000 		.4byte	.LFE66
+ 739 0020 00000000 		.4byte	.LFB67
+ 740 0024 0E000000 		.4byte	.LFE67
+ 741 0028 00000000 		.4byte	0
+ 742 002c 00000000 		.4byte	0
+ 743              		.section	.debug_line,"",%progbits
+ 744              	.Ldebug_line0:
+ 745 0000 D5010000 		.section	.debug_str,"MS",%progbits,1
+ 745      02007401 
+ 745      00000201 
+ 745      FB0E0D00 
+ 745      01010101 
+ 746              	.LASF25:
+ 747 0000 53657276 		.ascii	"Servo_GetPosition\000"
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 15
+
+
+ 747      6F5F4765 
+ 747      74506F73 
+ 747      6974696F 
+ 747      6E00
+ 748              	.LASF37:
+ 749 0012 53657276 		.ascii	"Servo_IsOpen\000"
+ 749      6F5F4973 
+ 749      4F70656E 
+ 749      00
+ 750              	.LASF30:
+ 751 001f 4C45445F 		.ascii	"LED_ServoClose\000"
+ 751      53657276 
+ 751      6F436C6F 
+ 751      736500
+ 752              	.LASF32:
+ 753 002e 4144435F 		.ascii	"ADC_ServoFB_CountsTo_mVolts\000"
+ 753      53657276 
+ 753      6F46425F 
+ 753      436F756E 
+ 753      7473546F 
+ 754              	.LASF3:
+ 755 004a 5F5F7569 		.ascii	"__uint8_t\000"
+ 755      6E74385F 
+ 755      7400
+ 756              	.LASF23:
+ 757 0054 53657276 		.ascii	"Servo_Open\000"
+ 757      6F5F4F70 
+ 757      656E00
+ 758              	.LASF6:
+ 759 005f 5F5F696E 		.ascii	"__int32_t\000"
+ 759      7433325F 
+ 759      7400
+ 760              	.LASF27:
+ 761 0069 4144435F 		.ascii	"ADC_ServoFB_Start\000"
+ 761      53657276 
+ 761      6F46425F 
+ 761      53746172 
+ 761      7400
+ 762              	.LASF38:
+ 763 007b 73657276 		.ascii	"servo_is_open\000"
+ 763      6F5F6973 
+ 763      5F6F7065 
+ 763      6E00
+ 764              	.LASF15:
+ 765 0089 666C6F61 		.ascii	"float\000"
+ 765      7400
+ 766              	.LASF10:
+ 767 008f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 767      206C6F6E 
+ 767      6720756E 
+ 767      7369676E 
+ 767      65642069 
+ 768              	.LASF26:
+ 769 00a6 50574D5F 		.ascii	"PWM_Servo_Start\000"
+ 769      53657276 
+ 769      6F5F5374 
+ 769      61727400 
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 16
+
+
+ 770              	.LASF1:
+ 771 00b6 756E7369 		.ascii	"unsigned char\000"
+ 771      676E6564 
+ 771      20636861 
+ 771      7200
+ 772              	.LASF33:
+ 773 00c4 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 773      43313120 
+ 773      352E342E 
+ 773      31203230 
+ 773      31363036 
+ 774 00f7 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 774      20726576 
+ 774      6973696F 
+ 774      6E203233 
+ 774      37373135 
+ 775 012a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 775      66756E63 
+ 775      74696F6E 
+ 775      2D736563 
+ 775      74696F6E 
+ 776              	.LASF8:
+ 777 0152 6C6F6E67 		.ascii	"long unsigned int\000"
+ 777      20756E73 
+ 777      69676E65 
+ 777      6420696E 
+ 777      7400
+ 778              	.LASF5:
+ 779 0164 73686F72 		.ascii	"short unsigned int\000"
+ 779      7420756E 
+ 779      7369676E 
+ 779      65642069 
+ 779      6E7400
+ 780              	.LASF39:
+ 781 0177 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 781      52784275 
+ 781      66666572 
+ 781      00
+ 782              	.LASF4:
+ 783 0184 5F5F7569 		.ascii	"__uint16_t\000"
+ 783      6E743136 
+ 783      5F7400
+ 784              	.LASF16:
+ 785 018f 646F7562 		.ascii	"double\000"
+ 785      6C6500
+ 786              	.LASF24:
+ 787 0196 53657276 		.ascii	"Servo_Close\000"
+ 787      6F5F436C 
+ 787      6F736500 
+ 788              	.LASF11:
+ 789 01a2 756E7369 		.ascii	"unsigned int\000"
+ 789      676E6564 
+ 789      20696E74 
+ 789      00
+ 790              	.LASF34:
+ 791 01af 73657276 		.ascii	"servo.c\000"
+ 791      6F2E6300 
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 17
+
+
+ 792              	.LASF12:
+ 793 01b7 75696E74 		.ascii	"uint8_t\000"
+ 793      385F7400 
+ 794              	.LASF21:
+ 795 01bf 53455256 		.ascii	"SERVO_ERROR\000"
+ 795      4F5F4552 
+ 795      524F5200 
+ 796              	.LASF29:
+ 797 01cb 4C45445F 		.ascii	"LED_ServoOpen\000"
+ 797      53657276 
+ 797      6F4F7065 
+ 797      6E00
+ 798              	.LASF31:
+ 799 01d9 4144435F 		.ascii	"ADC_ServoFB_GetResult16\000"
+ 799      53657276 
+ 799      6F46425F 
+ 799      47657452 
+ 799      6573756C 
+ 800              	.LASF14:
+ 801 01f1 696E7433 		.ascii	"int32_t\000"
+ 801      325F7400 
+ 802              	.LASF19:
+ 803 01f9 73697A65 		.ascii	"sizetype\000"
+ 803      74797065 
+ 803      00
+ 804              	.LASF9:
+ 805 0202 6C6F6E67 		.ascii	"long long int\000"
+ 805      206C6F6E 
+ 805      6720696E 
+ 805      7400
+ 806              	.LASF17:
+ 807 0210 63686172 		.ascii	"char\000"
+ 807      00
+ 808              	.LASF2:
+ 809 0215 73686F72 		.ascii	"short int\000"
+ 809      7420696E 
+ 809      7400
+ 810              	.LASF28:
+ 811 021f 50574D5F 		.ascii	"PWM_Servo_WriteCompare\000"
+ 811      53657276 
+ 811      6F5F5772 
+ 811      69746543 
+ 811      6F6D7061 
+ 812              	.LASF13:
+ 813 0236 75696E74 		.ascii	"uint16_t\000"
+ 813      31365F74 
+ 813      00
+ 814              	.LASF22:
+ 815 023f 73657276 		.ascii	"servo_status_t\000"
+ 815      6F5F7374 
+ 815      61747573 
+ 815      5F7400
+ 816              	.LASF35:
+ 817 024e 433A5C55 		.ascii	"C:\\Users\\ke\\Gitfis\\Elektroteknologi-Projekt-1\\"
+ 817      73657273 
+ 817      5C6B655C 
+ 817      47697466 
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cckzoNEn.s 			page 18
+
+
+ 817      69735C45 
+ 818 027c 4472656A 		.ascii	"Drejeknap mm\\drejeknappelegen.cydsn\000"
+ 818      656B6E61 
+ 818      70206D6D 
+ 818      5C647265 
+ 818      6A656B6E 
+ 819              	.LASF7:
+ 820 02a0 6C6F6E67 		.ascii	"long int\000"
+ 820      20696E74 
+ 820      00
+ 821              	.LASF18:
+ 822 02a9 6C6F6E67 		.ascii	"long double\000"
+ 822      20646F75 
+ 822      626C6500 
+ 823              	.LASF20:
+ 824 02b5 53455256 		.ascii	"SERVO_OK\000"
+ 824      4F5F4F4B 
+ 824      00
+ 825              	.LASF0:
+ 826 02be 7369676E 		.ascii	"signed char\000"
+ 826      65642063 
+ 826      68617200 
+ 827              	.LASF36:
+ 828 02ca 53657276 		.ascii	"Servo_Init\000"
+ 828      6F5F496E 
+ 828      697400
+ 829              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

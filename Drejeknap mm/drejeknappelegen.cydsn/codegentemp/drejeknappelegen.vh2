@@ -2,7 +2,7 @@
 --	Conversion of drejeknappelegen.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon May 04 09:10:55 2026
+--	Sun May 10 18:20:26 2026
 --
 
 USE cypress.cypress.all;
@@ -476,6 +476,21 @@ TERMINAL \ADC_ServoFB:Net_209\ : bit;
 TERMINAL \ADC_ServoFB:Net_255\ : bit;
 TERMINAL \ADC_ServoFB:Net_368\ : bit;
 SIGNAL \ADC_ServoFB:Net_383\ : bit;
+SIGNAL tmpOE__alarm_LED_net_0 : bit;
+SIGNAL tmpFB_0__alarm_LED_net_0 : bit;
+SIGNAL tmpIO_0__alarm_LED_net_0 : bit;
+TERMINAL tmpSIOVREF__alarm_LED_net_0 : bit;
+SIGNAL tmpINTERRUPT_0__alarm_LED_net_0 : bit;
+SIGNAL Net_1293 : bit;
+SIGNAL Net_1295 : bit;
+SIGNAL \SysTickTimer:Net_260\ : bit;
+SIGNAL \SysTickTimer:Net_266\ : bit;
+SIGNAL \SysTickTimer:Net_51\ : bit;
+SIGNAL \SysTickTimer:Net_261\ : bit;
+SIGNAL \SysTickTimer:Net_57\ : bit;
+SIGNAL Net_1306 : bit;
+SIGNAL Net_1305 : bit;
+SIGNAL \SysTickTimer:Net_102\ : bit;
 SIGNAL \Deb_Butt:DEBOUNCER[0]:d_sync_0\\D\ : bit;
 SIGNAL \Deb_Butt:DEBOUNCER[0]:d_sync_1\\D\ : bit;
 SIGNAL Net_103D : bit;
@@ -626,9 +641,9 @@ Rot_B:cy_psoc3_pins_v1_10
 		interrupt=>tmpINTERRUPT_0__Rot_B_net_0);
 Rot_A:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba",
-		drive_mode=>"001",
+		drive_mode=>"010",
 		ibuf_enabled=>"1",
-		init_dr_st=>"0",
+		init_dr_st=>"1",
 		input_sync=>"0",
 		input_clk_en=>'0',
 		input_sync_mode=>"0",
@@ -1212,7 +1227,7 @@ Servo_FB:cy_psoc3_pins_v1_10
 		id=>"5f54b036-a64f-4ae0-87d6-83efba1f542b/696a0979-21fc-4185-bf38-6c79febcde7a",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"83333291.6666875",
+		period=>"107142803.571455",
 		is_direct=>'0',
 		is_digital=>'0')
 	PORT MAP(clock_out=>\ADC_ServoFB:Net_385\,
@@ -1343,6 +1358,100 @@ Clock_2:cy_clock_v1_0
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_1110,
 		dig_domain_out=>open);
+alarm_LED:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"6ea6ff34-b662-432a-aac1-096c425e9d9a",
+		drive_mode=>"110",
+		ibuf_enabled=>"1",
+		init_dr_st=>"0",
+		input_sync=>"1",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"0",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"O",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"10",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(one),
+		y=>(zero),
+		fb=>(tmpFB_0__alarm_LED_net_0),
+		analog=>(open),
+		io=>(tmpIO_0__alarm_LED_net_0),
+		siovref=>(tmpSIOVREF__alarm_LED_net_0),
+		annotation=>(open),
+		in_clock=>zero,
+		in_clock_en=>one,
+		in_reset=>zero,
+		out_clock=>zero,
+		out_clock_en=>one,
+		out_reset=>zero,
+		interrupt=>tmpINTERRUPT_0__alarm_LED_net_0);
+systick_clock:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"8525a970-3d7a-4079-a402-8783920cbb4c",
+		source_clock_id=>"75C2148C-3656-4d8a-846D-0CAE99AB6FF7",
+		divisor=>0,
+		period=>"0",
+		is_direct=>'1',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_1293,
+		dig_domain_out=>open);
+\SysTickTimer:TimerHW\:cy_psoc3_timer_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(clock=>Net_1293,
+		kill=>zero,
+		enable=>one,
+		capture=>zero,
+		timer_reset=>zero,
+		tc=>\SysTickTimer:Net_51\,
+		compare=>\SysTickTimer:Net_261\,
+		interrupt=>Net_1306);
+systick_isr:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_1306);
 \Deb_Butt:DEBOUNCER[0]:d_sync_0\:cy_dff
 	PORT MAP(d=>Net_24,
 		clk=>\Deb_Butt:op_clk\,

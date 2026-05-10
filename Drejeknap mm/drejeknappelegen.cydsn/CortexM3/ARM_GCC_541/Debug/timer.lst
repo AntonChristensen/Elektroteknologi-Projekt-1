@@ -1,0 +1,697 @@
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"timer.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Input_Timeout_Activate,"ax",%progbits
+  20              		.align	2
+  21              		.global	Input_Timeout_Activate
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Input_Timeout_Activate, %function
+  25              	Input_Timeout_Activate:
+  26              	.LFB0:
+  27              		.file 1 "timer.c"
+   1:timer.c       **** #include "systick.h"
+   2:timer.c       **** #include "timer.h"
+   3:timer.c       **** 
+   4:timer.c       **** static uint8_t timeout_active = 0;
+   5:timer.c       **** static uint32_t timeout_deadline = 0;
+   6:timer.c       **** 
+   7:timer.c       **** void Input_Timeout_Activate(void)
+   8:timer.c       **** {
+  28              		.loc 1 8 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   9:timer.c       ****     timeout_active = 1;
+  33              		.loc 1 9 0
+  34 0000 044A     		ldr	r2, .L2
+  35 0002 0123     		movs	r3, #1
+  36 0004 1370     		strb	r3, [r2]
+  10:timer.c       ****     timeout_deadline = tick_ms + INPUT_TIMEOUT_MS;
+  37              		.loc 1 10 0
+  38 0006 044B     		ldr	r3, .L2+4
+  39 0008 1B68     		ldr	r3, [r3]
+  40 000a 03F59C53 		add	r3, r3, #4992
+  41 000e 0833     		adds	r3, r3, #8
+  42 0010 5360     		str	r3, [r2, #4]
+  43 0012 7047     		bx	lr
+  44              	.L3:
+  45              		.align	2
+  46              	.L2:
+  47 0014 00000000 		.word	.LANCHOR0
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 2
+
+
+  48 0018 00000000 		.word	tick_ms
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	Input_Timeout_Activate, .-Input_Timeout_Activate
+  52              		.section	.text.Input_Timeout_Deactivate,"ax",%progbits
+  53              		.align	2
+  54              		.global	Input_Timeout_Deactivate
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	Input_Timeout_Deactivate, %function
+  58              	Input_Timeout_Deactivate:
+  59              	.LFB1:
+  11:timer.c       **** }
+  12:timer.c       **** 
+  13:timer.c       **** void Input_Timeout_Deactivate(void)
+  14:timer.c       **** {
+  60              		.loc 1 14 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  15:timer.c       ****     timeout_active = 0;
+  65              		.loc 1 15 0
+  66 0000 0022     		movs	r2, #0
+  67 0002 014B     		ldr	r3, .L5
+  68 0004 1A70     		strb	r2, [r3]
+  69 0006 7047     		bx	lr
+  70              	.L6:
+  71              		.align	2
+  72              	.L5:
+  73 0008 00000000 		.word	.LANCHOR0
+  74              		.cfi_endproc
+  75              	.LFE1:
+  76              		.size	Input_Timeout_Deactivate, .-Input_Timeout_Deactivate
+  77              		.section	.text.Input_Timeout_Reset,"ax",%progbits
+  78              		.align	2
+  79              		.global	Input_Timeout_Reset
+  80              		.thumb
+  81              		.thumb_func
+  82              		.type	Input_Timeout_Reset, %function
+  83              	Input_Timeout_Reset:
+  84              	.LFB2:
+  16:timer.c       **** }
+  17:timer.c       **** 
+  18:timer.c       **** void Input_Timeout_Reset(void)
+  19:timer.c       **** {
+  85              		.loc 1 19 0
+  86              		.cfi_startproc
+  87              		@ args = 0, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              		@ link register save eliminated.
+  20:timer.c       ****     if (timeout_active)
+  90              		.loc 1 20 0
+  91 0000 054B     		ldr	r3, .L9
+  92 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  93 0004 33B1     		cbz	r3, .L7
+  21:timer.c       ****     {
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 3
+
+
+  22:timer.c       ****         timeout_deadline = tick_ms + INPUT_TIMEOUT_MS;
+  94              		.loc 1 22 0
+  95 0006 054B     		ldr	r3, .L9+4
+  96 0008 1B68     		ldr	r3, [r3]
+  97 000a 03F59C53 		add	r3, r3, #4992
+  98 000e 0833     		adds	r3, r3, #8
+  99 0010 014A     		ldr	r2, .L9
+ 100 0012 5360     		str	r3, [r2, #4]
+ 101              	.L7:
+ 102 0014 7047     		bx	lr
+ 103              	.L10:
+ 104 0016 00BF     		.align	2
+ 105              	.L9:
+ 106 0018 00000000 		.word	.LANCHOR0
+ 107 001c 00000000 		.word	tick_ms
+ 108              		.cfi_endproc
+ 109              	.LFE2:
+ 110              		.size	Input_Timeout_Reset, .-Input_Timeout_Reset
+ 111              		.section	.text.Input_Timeout_HasExpired,"ax",%progbits
+ 112              		.align	2
+ 113              		.global	Input_Timeout_HasExpired
+ 114              		.thumb
+ 115              		.thumb_func
+ 116              		.type	Input_Timeout_HasExpired, %function
+ 117              	Input_Timeout_HasExpired:
+ 118              	.LFB3:
+  23:timer.c       ****     }
+  24:timer.c       **** }
+  25:timer.c       **** 
+  26:timer.c       **** uint8_t Input_Timeout_HasExpired(void)
+  27:timer.c       **** {
+ 119              		.loc 1 27 0
+ 120              		.cfi_startproc
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		@ link register save eliminated.
+  28:timer.c       ****     return timeout_active && 
+ 124              		.loc 1 28 0
+ 125 0000 074B     		ldr	r3, .L15
+ 126 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 127 0004 43B1     		cbz	r3, .L13
+  29:timer.c       ****         ((int32_t)(tick_ms - timeout_deadline) >= 0);
+ 128              		.loc 1 29 0 discriminator 1
+ 129 0006 074B     		ldr	r3, .L15+4
+ 130 0008 1B68     		ldr	r3, [r3]
+ 131 000a 054A     		ldr	r2, .L15
+ 132 000c 5268     		ldr	r2, [r2, #4]
+ 133 000e 9B1A     		subs	r3, r3, r2
+  28:timer.c       ****     return timeout_active && 
+ 134              		.loc 1 28 0 discriminator 1
+ 135 0010 002B     		cmp	r3, #0
+ 136 0012 03DA     		bge	.L14
+  28:timer.c       ****     return timeout_active && 
+ 137              		.loc 1 28 0 is_stmt 0
+ 138 0014 0020     		movs	r0, #0
+ 139 0016 7047     		bx	lr
+ 140              	.L13:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 4
+
+
+ 141 0018 0020     		movs	r0, #0
+ 142 001a 7047     		bx	lr
+ 143              	.L14:
+ 144 001c 0120     		movs	r0, #1
+  30:timer.c       **** }...
+ 145              		.loc 1 30 0 is_stmt 1
+ 146 001e 7047     		bx	lr
+ 147              	.L16:
+ 148              		.align	2
+ 149              	.L15:
+ 150 0020 00000000 		.word	.LANCHOR0
+ 151 0024 00000000 		.word	tick_ms
+ 152              		.cfi_endproc
+ 153              	.LFE3:
+ 154              		.size	Input_Timeout_HasExpired, .-Input_Timeout_HasExpired
+ 155              		.bss
+ 156              		.align	2
+ 157              		.set	.LANCHOR0,. + 0
+ 158              		.type	timeout_active, %object
+ 159              		.size	timeout_active, 1
+ 160              	timeout_active:
+ 161 0000 00       		.space	1
+ 162 0001 000000   		.space	3
+ 163              		.type	timeout_deadline, %object
+ 164              		.size	timeout_deadline, 4
+ 165              	timeout_deadline:
+ 166 0004 00000000 		.space	4
+ 167              		.text
+ 168              	.Letext0:
+ 169              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 170              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 171              		.file 4 "timer.h"
+ 172              		.section	.debug_info,"",%progbits
+ 173              	.Ldebug_info0:
+ 174 0000 24010000 		.4byte	0x124
+ 175 0004 0400     		.2byte	0x4
+ 176 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 177 000a 04       		.byte	0x4
+ 178 000b 01       		.uleb128 0x1
+ 179 000c 6C000000 		.4byte	.LASF20
+ 180 0010 0C       		.byte	0xc
+ 181 0011 4E000000 		.4byte	.LASF21
+ 182 0015 87010000 		.4byte	.LASF22
+ 183 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 184 001d 00000000 		.4byte	0
+ 185 0021 00000000 		.4byte	.Ldebug_line0
+ 186 0025 02       		.uleb128 0x2
+ 187 0026 01       		.byte	0x1
+ 188 0027 06       		.byte	0x6
+ 189 0028 1D020000 		.4byte	.LASF0
+ 190 002c 03       		.uleb128 0x3
+ 191 002d 00000000 		.4byte	.LASF4
+ 192 0031 02       		.byte	0x2
+ 193 0032 1D       		.byte	0x1d
+ 194 0033 37000000 		.4byte	0x37
+ 195 0037 02       		.uleb128 0x2
+ 196 0038 01       		.byte	0x1
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 5
+
+
+ 197 0039 08       		.byte	0x8
+ 198 003a 5E000000 		.4byte	.LASF1
+ 199 003e 02       		.uleb128 0x2
+ 200 003f 02       		.byte	0x2
+ 201 0040 05       		.byte	0x5
+ 202 0041 7D010000 		.4byte	.LASF2
+ 203 0045 02       		.uleb128 0x2
+ 204 0046 02       		.byte	0x2
+ 205 0047 07       		.byte	0x7
+ 206 0048 0C010000 		.4byte	.LASF3
+ 207 004c 03       		.uleb128 0x3
+ 208 004d 44000000 		.4byte	.LASF5
+ 209 0051 02       		.byte	0x2
+ 210 0052 3F       		.byte	0x3f
+ 211 0053 57000000 		.4byte	0x57
+ 212 0057 02       		.uleb128 0x2
+ 213 0058 04       		.byte	0x4
+ 214 0059 05       		.byte	0x5
+ 215 005a E2010000 		.4byte	.LASF6
+ 216 005e 03       		.uleb128 0x3
+ 217 005f 1F010000 		.4byte	.LASF7
+ 218 0063 02       		.byte	0x2
+ 219 0064 41       		.byte	0x41
+ 220 0065 69000000 		.4byte	0x69
+ 221 0069 02       		.uleb128 0x2
+ 222 006a 04       		.byte	0x4
+ 223 006b 07       		.byte	0x7
+ 224 006c FA000000 		.4byte	.LASF8
+ 225 0070 02       		.uleb128 0x2
+ 226 0071 08       		.byte	0x8
+ 227 0072 05       		.byte	0x5
+ 228 0073 6F010000 		.4byte	.LASF9
+ 229 0077 02       		.uleb128 0x2
+ 230 0078 08       		.byte	0x8
+ 231 0079 07       		.byte	0x7
+ 232 007a 37010000 		.4byte	.LASF10
+ 233 007e 04       		.uleb128 0x4
+ 234 007f 04       		.byte	0x4
+ 235 0080 05       		.byte	0x5
+ 236 0081 696E7400 		.ascii	"int\000"
+ 237 0085 02       		.uleb128 0x2
+ 238 0086 04       		.byte	0x4
+ 239 0087 07       		.byte	0x7
+ 240 0088 2A010000 		.4byte	.LASF11
+ 241 008c 03       		.uleb128 0x3
+ 242 008d 4E010000 		.4byte	.LASF12
+ 243 0091 03       		.byte	0x3
+ 244 0092 18       		.byte	0x18
+ 245 0093 2C000000 		.4byte	0x2c
+ 246 0097 03       		.uleb128 0x3
+ 247 0098 67010000 		.4byte	.LASF13
+ 248 009c 03       		.byte	0x3
+ 249 009d 2C       		.byte	0x2c
+ 250 009e 4C000000 		.4byte	0x4c
+ 251 00a2 03       		.uleb128 0x3
+ 252 00a3 D9010000 		.4byte	.LASF14
+ 253 00a7 03       		.byte	0x3
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 6
+
+
+ 254 00a8 30       		.byte	0x30
+ 255 00a9 5E000000 		.4byte	0x5e
+ 256 00ad 05       		.uleb128 0x5
+ 257 00ae 19000000 		.4byte	.LASF15
+ 258 00b2 01       		.byte	0x1
+ 259 00b3 07       		.byte	0x7
+ 260 00b4 00000000 		.4byte	.LFB0
+ 261 00b8 1C000000 		.4byte	.LFE0-.LFB0
+ 262 00bc 01       		.uleb128 0x1
+ 263 00bd 9C       		.byte	0x9c
+ 264 00be 05       		.uleb128 0x5
+ 265 00bf EB010000 		.4byte	.LASF16
+ 266 00c3 01       		.byte	0x1
+ 267 00c4 0D       		.byte	0xd
+ 268 00c5 00000000 		.4byte	.LFB1
+ 269 00c9 0C000000 		.4byte	.LFE1-.LFB1
+ 270 00cd 01       		.uleb128 0x1
+ 271 00ce 9C       		.byte	0x9c
+ 272 00cf 05       		.uleb128 0x5
+ 273 00d0 30000000 		.4byte	.LASF17
+ 274 00d4 01       		.byte	0x1
+ 275 00d5 12       		.byte	0x12
+ 276 00d6 00000000 		.4byte	.LFB2
+ 277 00da 20000000 		.4byte	.LFE2-.LFB2
+ 278 00de 01       		.uleb128 0x1
+ 279 00df 9C       		.byte	0x9c
+ 280 00e0 06       		.uleb128 0x6
+ 281 00e1 04020000 		.4byte	.LASF23
+ 282 00e5 01       		.byte	0x1
+ 283 00e6 1A       		.byte	0x1a
+ 284 00e7 8C000000 		.4byte	0x8c
+ 285 00eb 00000000 		.4byte	.LFB3
+ 286 00ef 28000000 		.4byte	.LFE3-.LFB3
+ 287 00f3 01       		.uleb128 0x1
+ 288 00f4 9C       		.byte	0x9c
+ 289 00f5 07       		.uleb128 0x7
+ 290 00f6 0A000000 		.4byte	.LASF18
+ 291 00fa 01       		.byte	0x1
+ 292 00fb 04       		.byte	0x4
+ 293 00fc 8C000000 		.4byte	0x8c
+ 294 0100 05       		.uleb128 0x5
+ 295 0101 03       		.byte	0x3
+ 296 0102 00000000 		.4byte	timeout_active
+ 297 0106 07       		.uleb128 0x7
+ 298 0107 56010000 		.4byte	.LASF19
+ 299 010b 01       		.byte	0x1
+ 300 010c 05       		.byte	0x5
+ 301 010d A2000000 		.4byte	0xa2
+ 302 0111 05       		.uleb128 0x5
+ 303 0112 03       		.byte	0x3
+ 304 0113 04000000 		.4byte	timeout_deadline
+ 305 0117 08       		.uleb128 0x8
+ 306 0118 56000000 		.4byte	.LASF24
+ 307 011c 04       		.byte	0x4
+ 308 011d 07       		.byte	0x7
+ 309 011e 22010000 		.4byte	0x122
+ 310 0122 09       		.uleb128 0x9
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 7
+
+
+ 311 0123 A2000000 		.4byte	0xa2
+ 312 0127 00       		.byte	0
+ 313              		.section	.debug_abbrev,"",%progbits
+ 314              	.Ldebug_abbrev0:
+ 315 0000 01       		.uleb128 0x1
+ 316 0001 11       		.uleb128 0x11
+ 317 0002 01       		.byte	0x1
+ 318 0003 25       		.uleb128 0x25
+ 319 0004 0E       		.uleb128 0xe
+ 320 0005 13       		.uleb128 0x13
+ 321 0006 0B       		.uleb128 0xb
+ 322 0007 03       		.uleb128 0x3
+ 323 0008 0E       		.uleb128 0xe
+ 324 0009 1B       		.uleb128 0x1b
+ 325 000a 0E       		.uleb128 0xe
+ 326 000b 55       		.uleb128 0x55
+ 327 000c 17       		.uleb128 0x17
+ 328 000d 11       		.uleb128 0x11
+ 329 000e 01       		.uleb128 0x1
+ 330 000f 10       		.uleb128 0x10
+ 331 0010 17       		.uleb128 0x17
+ 332 0011 00       		.byte	0
+ 333 0012 00       		.byte	0
+ 334 0013 02       		.uleb128 0x2
+ 335 0014 24       		.uleb128 0x24
+ 336 0015 00       		.byte	0
+ 337 0016 0B       		.uleb128 0xb
+ 338 0017 0B       		.uleb128 0xb
+ 339 0018 3E       		.uleb128 0x3e
+ 340 0019 0B       		.uleb128 0xb
+ 341 001a 03       		.uleb128 0x3
+ 342 001b 0E       		.uleb128 0xe
+ 343 001c 00       		.byte	0
+ 344 001d 00       		.byte	0
+ 345 001e 03       		.uleb128 0x3
+ 346 001f 16       		.uleb128 0x16
+ 347 0020 00       		.byte	0
+ 348 0021 03       		.uleb128 0x3
+ 349 0022 0E       		.uleb128 0xe
+ 350 0023 3A       		.uleb128 0x3a
+ 351 0024 0B       		.uleb128 0xb
+ 352 0025 3B       		.uleb128 0x3b
+ 353 0026 0B       		.uleb128 0xb
+ 354 0027 49       		.uleb128 0x49
+ 355 0028 13       		.uleb128 0x13
+ 356 0029 00       		.byte	0
+ 357 002a 00       		.byte	0
+ 358 002b 04       		.uleb128 0x4
+ 359 002c 24       		.uleb128 0x24
+ 360 002d 00       		.byte	0
+ 361 002e 0B       		.uleb128 0xb
+ 362 002f 0B       		.uleb128 0xb
+ 363 0030 3E       		.uleb128 0x3e
+ 364 0031 0B       		.uleb128 0xb
+ 365 0032 03       		.uleb128 0x3
+ 366 0033 08       		.uleb128 0x8
+ 367 0034 00       		.byte	0
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 8
+
+
+ 368 0035 00       		.byte	0
+ 369 0036 05       		.uleb128 0x5
+ 370 0037 2E       		.uleb128 0x2e
+ 371 0038 00       		.byte	0
+ 372 0039 3F       		.uleb128 0x3f
+ 373 003a 19       		.uleb128 0x19
+ 374 003b 03       		.uleb128 0x3
+ 375 003c 0E       		.uleb128 0xe
+ 376 003d 3A       		.uleb128 0x3a
+ 377 003e 0B       		.uleb128 0xb
+ 378 003f 3B       		.uleb128 0x3b
+ 379 0040 0B       		.uleb128 0xb
+ 380 0041 27       		.uleb128 0x27
+ 381 0042 19       		.uleb128 0x19
+ 382 0043 11       		.uleb128 0x11
+ 383 0044 01       		.uleb128 0x1
+ 384 0045 12       		.uleb128 0x12
+ 385 0046 06       		.uleb128 0x6
+ 386 0047 40       		.uleb128 0x40
+ 387 0048 18       		.uleb128 0x18
+ 388 0049 9742     		.uleb128 0x2117
+ 389 004b 19       		.uleb128 0x19
+ 390 004c 00       		.byte	0
+ 391 004d 00       		.byte	0
+ 392 004e 06       		.uleb128 0x6
+ 393 004f 2E       		.uleb128 0x2e
+ 394 0050 00       		.byte	0
+ 395 0051 3F       		.uleb128 0x3f
+ 396 0052 19       		.uleb128 0x19
+ 397 0053 03       		.uleb128 0x3
+ 398 0054 0E       		.uleb128 0xe
+ 399 0055 3A       		.uleb128 0x3a
+ 400 0056 0B       		.uleb128 0xb
+ 401 0057 3B       		.uleb128 0x3b
+ 402 0058 0B       		.uleb128 0xb
+ 403 0059 27       		.uleb128 0x27
+ 404 005a 19       		.uleb128 0x19
+ 405 005b 49       		.uleb128 0x49
+ 406 005c 13       		.uleb128 0x13
+ 407 005d 11       		.uleb128 0x11
+ 408 005e 01       		.uleb128 0x1
+ 409 005f 12       		.uleb128 0x12
+ 410 0060 06       		.uleb128 0x6
+ 411 0061 40       		.uleb128 0x40
+ 412 0062 18       		.uleb128 0x18
+ 413 0063 9742     		.uleb128 0x2117
+ 414 0065 19       		.uleb128 0x19
+ 415 0066 00       		.byte	0
+ 416 0067 00       		.byte	0
+ 417 0068 07       		.uleb128 0x7
+ 418 0069 34       		.uleb128 0x34
+ 419 006a 00       		.byte	0
+ 420 006b 03       		.uleb128 0x3
+ 421 006c 0E       		.uleb128 0xe
+ 422 006d 3A       		.uleb128 0x3a
+ 423 006e 0B       		.uleb128 0xb
+ 424 006f 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 9
+
+
+ 425 0070 0B       		.uleb128 0xb
+ 426 0071 49       		.uleb128 0x49
+ 427 0072 13       		.uleb128 0x13
+ 428 0073 02       		.uleb128 0x2
+ 429 0074 18       		.uleb128 0x18
+ 430 0075 00       		.byte	0
+ 431 0076 00       		.byte	0
+ 432 0077 08       		.uleb128 0x8
+ 433 0078 34       		.uleb128 0x34
+ 434 0079 00       		.byte	0
+ 435 007a 03       		.uleb128 0x3
+ 436 007b 0E       		.uleb128 0xe
+ 437 007c 3A       		.uleb128 0x3a
+ 438 007d 0B       		.uleb128 0xb
+ 439 007e 3B       		.uleb128 0x3b
+ 440 007f 0B       		.uleb128 0xb
+ 441 0080 49       		.uleb128 0x49
+ 442 0081 13       		.uleb128 0x13
+ 443 0082 3F       		.uleb128 0x3f
+ 444 0083 19       		.uleb128 0x19
+ 445 0084 3C       		.uleb128 0x3c
+ 446 0085 19       		.uleb128 0x19
+ 447 0086 00       		.byte	0
+ 448 0087 00       		.byte	0
+ 449 0088 09       		.uleb128 0x9
+ 450 0089 35       		.uleb128 0x35
+ 451 008a 00       		.byte	0
+ 452 008b 49       		.uleb128 0x49
+ 453 008c 13       		.uleb128 0x13
+ 454 008d 00       		.byte	0
+ 455 008e 00       		.byte	0
+ 456 008f 00       		.byte	0
+ 457              		.section	.debug_aranges,"",%progbits
+ 458 0000 34000000 		.4byte	0x34
+ 459 0004 0200     		.2byte	0x2
+ 460 0006 00000000 		.4byte	.Ldebug_info0
+ 461 000a 04       		.byte	0x4
+ 462 000b 00       		.byte	0
+ 463 000c 0000     		.2byte	0
+ 464 000e 0000     		.2byte	0
+ 465 0010 00000000 		.4byte	.LFB0
+ 466 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 467 0018 00000000 		.4byte	.LFB1
+ 468 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 469 0020 00000000 		.4byte	.LFB2
+ 470 0024 20000000 		.4byte	.LFE2-.LFB2
+ 471 0028 00000000 		.4byte	.LFB3
+ 472 002c 28000000 		.4byte	.LFE3-.LFB3
+ 473 0030 00000000 		.4byte	0
+ 474 0034 00000000 		.4byte	0
+ 475              		.section	.debug_ranges,"",%progbits
+ 476              	.Ldebug_ranges0:
+ 477 0000 00000000 		.4byte	.LFB0
+ 478 0004 1C000000 		.4byte	.LFE0
+ 479 0008 00000000 		.4byte	.LFB1
+ 480 000c 0C000000 		.4byte	.LFE1
+ 481 0010 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 10
+
+
+ 482 0014 20000000 		.4byte	.LFE2
+ 483 0018 00000000 		.4byte	.LFB3
+ 484 001c 28000000 		.4byte	.LFE3
+ 485 0020 00000000 		.4byte	0
+ 486 0024 00000000 		.4byte	0
+ 487              		.section	.debug_line,"",%progbits
+ 488              	.Ldebug_line0:
+ 489 0000 7A010000 		.section	.debug_str,"MS",%progbits,1
+ 489      02002601 
+ 489      00000201 
+ 489      FB0E0D00 
+ 489      01010101 
+ 490              	.LASF4:
+ 491 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 491      6E74385F 
+ 491      7400
+ 492              	.LASF18:
+ 493 000a 74696D65 		.ascii	"timeout_active\000"
+ 493      6F75745F 
+ 493      61637469 
+ 493      766500
+ 494              	.LASF15:
+ 495 0019 496E7075 		.ascii	"Input_Timeout_Activate\000"
+ 495      745F5469 
+ 495      6D656F75 
+ 495      745F4163 
+ 495      74697661 
+ 496              	.LASF17:
+ 497 0030 496E7075 		.ascii	"Input_Timeout_Reset\000"
+ 497      745F5469 
+ 497      6D656F75 
+ 497      745F5265 
+ 497      73657400 
+ 498              	.LASF5:
+ 499 0044 5F5F696E 		.ascii	"__int32_t\000"
+ 499      7433325F 
+ 499      7400
+ 500              	.LASF21:
+ 501 004e 74696D65 		.ascii	"timer.c\000"
+ 501      722E6300 
+ 502              	.LASF24:
+ 503 0056 7469636B 		.ascii	"tick_ms\000"
+ 503      5F6D7300 
+ 504              	.LASF1:
+ 505 005e 756E7369 		.ascii	"unsigned char\000"
+ 505      676E6564 
+ 505      20636861 
+ 505      7200
+ 506              	.LASF20:
+ 507 006c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 507      43313120 
+ 507      352E342E 
+ 507      31203230 
+ 507      31363036 
+ 508 009f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 508      20726576 
+ 508      6973696F 
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 11
+
+
+ 508      6E203233 
+ 508      37373135 
+ 509 00d2 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 509      66756E63 
+ 509      74696F6E 
+ 509      2D736563 
+ 509      74696F6E 
+ 510              	.LASF8:
+ 511 00fa 6C6F6E67 		.ascii	"long unsigned int\000"
+ 511      20756E73 
+ 511      69676E65 
+ 511      6420696E 
+ 511      7400
+ 512              	.LASF3:
+ 513 010c 73686F72 		.ascii	"short unsigned int\000"
+ 513      7420756E 
+ 513      7369676E 
+ 513      65642069 
+ 513      6E7400
+ 514              	.LASF7:
+ 515 011f 5F5F7569 		.ascii	"__uint32_t\000"
+ 515      6E743332 
+ 515      5F7400
+ 516              	.LASF11:
+ 517 012a 756E7369 		.ascii	"unsigned int\000"
+ 517      676E6564 
+ 517      20696E74 
+ 517      00
+ 518              	.LASF10:
+ 519 0137 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 519      206C6F6E 
+ 519      6720756E 
+ 519      7369676E 
+ 519      65642069 
+ 520              	.LASF12:
+ 521 014e 75696E74 		.ascii	"uint8_t\000"
+ 521      385F7400 
+ 522              	.LASF19:
+ 523 0156 74696D65 		.ascii	"timeout_deadline\000"
+ 523      6F75745F 
+ 523      64656164 
+ 523      6C696E65 
+ 523      00
+ 524              	.LASF13:
+ 525 0167 696E7433 		.ascii	"int32_t\000"
+ 525      325F7400 
+ 526              	.LASF9:
+ 527 016f 6C6F6E67 		.ascii	"long long int\000"
+ 527      206C6F6E 
+ 527      6720696E 
+ 527      7400
+ 528              	.LASF2:
+ 529 017d 73686F72 		.ascii	"short int\000"
+ 529      7420696E 
+ 529      7400
+ 530              	.LASF22:
+ 531 0187 433A5C55 		.ascii	"C:\\Users\\ke\\Gitfis\\Elektroteknologi-Projekt-1\\"
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cclkkteW.s 			page 12
+
+
+ 531      73657273 
+ 531      5C6B655C 
+ 531      47697466 
+ 531      69735C45 
+ 532 01b5 4472656A 		.ascii	"Drejeknap mm\\drejeknappelegen.cydsn\000"
+ 532      656B6E61 
+ 532      70206D6D 
+ 532      5C647265 
+ 532      6A656B6E 
+ 533              	.LASF14:
+ 534 01d9 75696E74 		.ascii	"uint32_t\000"
+ 534      33325F74 
+ 534      00
+ 535              	.LASF6:
+ 536 01e2 6C6F6E67 		.ascii	"long int\000"
+ 536      20696E74 
+ 536      00
+ 537              	.LASF16:
+ 538 01eb 496E7075 		.ascii	"Input_Timeout_Deactivate\000"
+ 538      745F5469 
+ 538      6D656F75 
+ 538      745F4465 
+ 538      61637469 
+ 539              	.LASF23:
+ 540 0204 496E7075 		.ascii	"Input_Timeout_HasExpired\000"
+ 540      745F5469 
+ 540      6D656F75 
+ 540      745F4861 
+ 540      73457870 
+ 541              	.LASF0:
+ 542 021d 7369676E 		.ascii	"signed char\000"
+ 542      65642063 
+ 542      68617200 
+ 543              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

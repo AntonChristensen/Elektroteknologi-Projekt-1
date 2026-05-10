@@ -3,7 +3,7 @@ Archive member included to satisfy reference by file (symbol)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
                               .\CortexM3\ARM_GCC_541\Debug\rotary.o (isr_Rot_StartEx)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
-                              .\CortexM3\ARM_GCC_541\Debug\keypad.o (Green_LED_Write)
+                              .\CortexM3\ARM_GCC_541\Debug\main.o (Green_LED_Write)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
                               .\CortexM3\ARM_GCC_541\Debug\alarm.o (Red_LED_Write)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
@@ -16,12 +16,34 @@ Archive member included to satisfy reference by file (symbol)
                               .\CortexM3\ARM_GCC_541\Debug\keypad.o (isr_Button_StartEx)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
                               .\CortexM3\ARM_GCC_541\Debug\servo.o (PWM_Servo_WriteCompare)
+.\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                              .\CortexM3\ARM_GCC_541\Debug\servo.o (ADC_ServoFB_Start)
+.\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+                              .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o) (ADC_ServoFB_ISR)
+.\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+                              .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o) (ADC_ServoFB_theACLK_SetModeRegister)
+.\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+                              .\CortexM3\ARM_GCC_541\Debug\alarm.o (alarm_LED_Write)
+.\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                              .\CortexM3\ARM_GCC_541\Debug\systick.o (SysTickTimer_ReadStatusRegister)
+.\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+                              .\CortexM3\ARM_GCC_541\Debug\systick.o (systick_isr_StartEx)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
                               .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o (CyDelayCycles)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
                               .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o) (CyFlash_SetWaitCycles)
 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
                               .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o) (CySpcStart)
+c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                              .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o) (__aeabi_i2f)
+c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+                              .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o) (__aeabi_fmul)
+c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+                              .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o) (__aeabi_ldivmod)
+c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+                              c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__udivmoddi4)
+c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+                              c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__aeabi_ldiv0)
 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
                               .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o (__errno)
 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
@@ -38,6 +60,12 @@ c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.
 Allocating common symbols
 Common symbol       size              file
 
+ADC_ServoFB_offset  0x2               .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ADC_ServoFB_countsPer10Volt
+                    0x4               .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ADC_ServoFB_countsPerVolt
+                    0x2               .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ADC_ServoFB_shift   0x2               .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
 dieTemperature      0x2               .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
 
 Discarded input sections
@@ -60,7 +88,6 @@ Discarded input sections
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\keypad.o
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\lock.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\lock.o
- .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\lock.o
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\main.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\main.o
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\main.o
@@ -68,9 +95,18 @@ Discarded input sections
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\rotary.o
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\servo.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\servo.o
- .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\servo.o
- .text.Servo_Close
-                0x00000000       0x14 .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .text.Servo_GetPosition
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .text.LED_Init
+                0x00000000       0x1c .\CortexM3\ARM_GCC_541\Debug\led.o
+ .text.LED_TimeoutBlink
+                0x00000000       0x28 .\CortexM3\ARM_GCC_541\Debug\led.o
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
@@ -198,7 +234,6 @@ Discarded input sections
                 0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .text.CyXTAL_SetWdVoltage
                 0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .text.CyHalt   0x00000000        0x4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .text.CyPLL_OUT_SetPQ
                 0x00000000       0x60 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .text.CyPLL_OUT_SetSource
@@ -247,12 +282,8 @@ Discarded input sections
                 0x00000000       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .text.CyIntGetSysVector
                 0x00000000       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .text.CyIntSetVector
-                0x00000000       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .text.CyIntGetVector
                 0x00000000       0x24 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .text.CyIntSetPriority
-                0x00000000       0x30 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .text.CyIntGetPriority
                 0x00000000       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .text.CyIntGetState
@@ -360,6 +391,104 @@ Discarded input sections
                 0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
  .text.PWM_Servo_ReadPeriod
                 0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_Stop
+                0x00000000       0x48 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_SetPower
+                0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_StartConvert
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_StopConvert
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_IsEndConversion
+                0x00000000       0x24 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_GetResult8
+                0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_SetOffset
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_SetGain
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_SetScaledGain
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_CountsTo_uVolts
+                0x00000000       0x48 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_CountsTo_Volts
+                0x00000000       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_Start
+                0x00000000       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_Stop
+                0x00000000       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_StopBlock
+                0x00000000       0x6c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_StandbyPower
+                0x00000000       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_GetDividerRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_ClearModeRegister
+                0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_GetModeRegister
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_GetSourceRegister
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_SetDividerRegister
+                0x00000000       0xd8 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_SetSourceRegister
+                0x00000000       0x5c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_SetPhaseRegister
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text.ADC_ServoFB_theACLK_GetPhaseRegister
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .text.alarm_LED_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .text.alarm_LED_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .text.alarm_LED_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text.SysTickTimer_Stop
+                0x00000000       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text.SysTickTimer_SoftwareCapture
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text.SysTickTimer_ReadControlRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text.SysTickTimer_WriteControlRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text.SysTickTimer_ReadPeriod
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text.SysTickTimer_ReadCapture
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text.SysTickTimer_ReadCounter
+                0x00000000       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_Interrupt
+                0x00000000        0x4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_GetVector
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_GetPriority
+                0x00000000        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_GetState
+                0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_Start
+                0x00000000       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_Stop
+                0x00000000       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_SetPending
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .text.systick_isr_ClearPending
+                0x00000000       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
@@ -423,6 +552,23 @@ Discarded input sections
                 0x00000000       0x38 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
  .text.CySpcGetAlgorithm
                 0x00000000       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .text          0x00000000      0x21c c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .text          0x00000000      0x2a0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .text          0x00000000       0xa0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .text          0x00000000      0x2ec c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .text          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
  .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
  .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
@@ -471,6 +617,9 @@ LOAD .\CortexM3\ARM_GCC_541\Debug\lock.o
 LOAD .\CortexM3\ARM_GCC_541\Debug\main.o
 LOAD .\CortexM3\ARM_GCC_541\Debug\rotary.o
 LOAD .\CortexM3\ARM_GCC_541\Debug\servo.o
+LOAD .\CortexM3\ARM_GCC_541\Debug\timer.o
+LOAD .\CortexM3\ARM_GCC_541\Debug\systick.o
+LOAD .\CortexM3\ARM_GCC_541\Debug\led.o
 LOAD .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
 LOAD .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
 LOAD .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
@@ -519,7 +668,7 @@ END GROUP
                 0x00000800                ee_size = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?(CY_EE_SIZE / CY_APPL_MAX):CY_EE_SIZE
                 [!provide]                PROVIDE (CY_ECC_OFFSET, ecc_offset)
 
-.text           0x00000000      0x87e
+.text           0x00000000     0x1006
  CREATE_OBJECT_SYMBOLS
                 0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
  *(.romvectors)
@@ -542,254 +691,379 @@ END GROUP
  .text.Accel_MovementDetected
                 0x00000088        0x4 .\CortexM3\ARM_GCC_541\Debug\accel.o
                 0x00000088                Accel_MovementDetected
+ .text.Alarm_Arm
+                0x0000008c       0x10 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                0x0000008c                Alarm_Arm
  .text.Alarm_Trigger
-                0x0000008c        0xc .\CortexM3\ARM_GCC_541\Debug\alarm.o
-                0x0000008c                Alarm_Trigger
+                0x0000009c       0x20 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                0x0000009c                Alarm_Trigger
  .text.Alarm_Stop
-                0x00000098       0x14 .\CortexM3\ARM_GCC_541\Debug\alarm.o
-                0x00000098                Alarm_Stop
- .text.Alarm_IsActive
-                0x000000ac        0xc .\CortexM3\ARM_GCC_541\Debug\alarm.o
-                0x000000ac                Alarm_IsActive
+                0x000000bc       0x20 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                0x000000bc                Alarm_Stop
+ .text.Alarm_IsArmed
+                0x000000dc        0xc .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                0x000000dc                Alarm_IsArmed
+ .text.Alarm_IsTriggered
+                0x000000e8        0xc .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                0x000000e8                Alarm_IsTriggered
  .text.Alarm_Run
-                0x000000b8       0x28 .\CortexM3\ARM_GCC_541\Debug\alarm.o
-                0x000000b8                Alarm_Run
- .text.isr_Button
-                0x000000e0       0x24 .\CortexM3\ARM_GCC_541\Debug\keypad.o
-                0x000000e0                isr_Button
- .text.ShowDigit
-                0x00000104       0x34 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x000000f4       0x38 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                0x000000f4                Alarm_Run
  .text.Keypad_Init
-                0x00000138       0x14 .\CortexM3\ARM_GCC_541\Debug\keypad.o
-                0x00000138                Keypad_Init
+                0x0000012c       0x14 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x0000012c                Keypad_Init
+ .text.Keypad_Activate
+                0x00000140       0x1c .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x00000140                Keypad_Activate
  .text.Keypad_Update
-                0x0000014c       0x38 .\CortexM3\ARM_GCC_541\Debug\keypad.o
-                0x0000014c                Keypad_Update
+                0x0000015c       0x3c .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x0000015c                Keypad_Update
  .text.Keypad_IsComplete
-                0x00000184       0x14 .\CortexM3\ARM_GCC_541\Debug\keypad.o
-                0x00000184                Keypad_IsComplete
+                0x00000198       0x14 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x00000198                Keypad_IsComplete
  .text.Keypad_GetCode
-                0x00000198        0xc .\CortexM3\ARM_GCC_541\Debug\keypad.o
-                0x00000198                Keypad_GetCode
+                0x000001ac        0xc .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x000001ac                Keypad_GetCode
+ .text.Keypad_isActive
+                0x000001b8        0xc .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x000001b8                Keypad_isActive
  .text.Keypad_Reset
-                0x000001a4       0x10 .\CortexM3\ARM_GCC_541\Debug\keypad.o
-                0x000001a4                Keypad_Reset
+                0x000001c4       0x18 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x000001c4                Keypad_Reset
+ .text.isr_Button
+                0x000001dc       0x50 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x000001dc                isr_Button
  .text.Lock_Handle
-                0x000001b4       0x24 .\CortexM3\ARM_GCC_541\Debug\lock.o
-                0x000001b4                Lock_Handle
- .text.main     0x000001d8       0x44 .\CortexM3\ARM_GCC_541\Debug\main.o
-                0x000001d8                main
- .text.isr_Rot  0x0000021c       0x2c .\CortexM3\ARM_GCC_541\Debug\rotary.o
-                0x0000021c                isr_Rot
+                0x0000022c       0x58 .\CortexM3\ARM_GCC_541\Debug\lock.o
+                0x0000022c                Lock_Handle
+ .text.main     0x00000284       0x84 .\CortexM3\ARM_GCC_541\Debug\main.o
+                0x00000284                main
+ .text.isr_Rot  0x00000308       0x3c .\CortexM3\ARM_GCC_541\Debug\rotary.o
+                0x00000308                isr_Rot
  .text.Rotary_Init
-                0x00000248       0x10 .\CortexM3\ARM_GCC_541\Debug\rotary.o
-                0x00000248                Rotary_Init
+                0x00000344       0x10 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+                0x00000344                Rotary_Init
  .text.Rotary_GetDelta
-                0x00000258       0x10 .\CortexM3\ARM_GCC_541\Debug\rotary.o
-                0x00000258                Rotary_GetDelta
+                0x00000354       0x10 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+                0x00000354                Rotary_GetDelta
  .text.Servo_Init
-                0x00000268        0x8 .\CortexM3\ARM_GCC_541\Debug\servo.o
-                0x00000268                Servo_Init
+                0x00000364        0xc .\CortexM3\ARM_GCC_541\Debug\servo.o
+                0x00000364                Servo_Init
  .text.Servo_Open
-                0x00000270       0x14 .\CortexM3\ARM_GCC_541\Debug\servo.o
-                0x00000270                Servo_Open
+                0x00000370       0x1c .\CortexM3\ARM_GCC_541\Debug\servo.o
+                0x00000370                Servo_Open
+ .text.Servo_Close
+                0x0000038c       0x28 .\CortexM3\ARM_GCC_541\Debug\servo.o
+                0x0000038c                Servo_Close
+ .text.Servo_IsOpen
+                0x000003b4        0xc .\CortexM3\ARM_GCC_541\Debug\servo.o
+                0x000003b4                Servo_IsOpen
+ .text.Input_Timeout_Activate
+                0x000003c0       0x1c .\CortexM3\ARM_GCC_541\Debug\timer.o
+                0x000003c0                Input_Timeout_Activate
+ .text.Input_Timeout_Deactivate
+                0x000003dc        0xc .\CortexM3\ARM_GCC_541\Debug\timer.o
+                0x000003dc                Input_Timeout_Deactivate
+ .text.Input_Timeout_Reset
+                0x000003e8       0x20 .\CortexM3\ARM_GCC_541\Debug\timer.o
+                0x000003e8                Input_Timeout_Reset
+ .text.Input_Timeout_HasExpired
+                0x00000408       0x28 .\CortexM3\ARM_GCC_541\Debug\timer.o
+                0x00000408                Input_Timeout_HasExpired
+ .text.systick_isr
+                0x00000430       0x14 .\CortexM3\ARM_GCC_541\Debug\systick.o
+                0x00000430                systick_isr
+ .text.SysTick_Init
+                0x00000444       0x14 .\CortexM3\ARM_GCC_541\Debug\systick.o
+                0x00000444                SysTick_Init
+ .text.UpdateKeypadBlink
+                0x00000458       0x80 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .text.UpdateServoGreen
+                0x000004d8       0x40 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .text.UpdateServoRed
+                0x00000518       0x58 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .text.UpdateTimeoutBlink
+                0x00000570       0x4c .\CortexM3\ARM_GCC_541\Debug\led.o
+ .text.LED_KeypadShowDigit
+                0x000005bc       0x24 .\CortexM3\ARM_GCC_541\Debug\led.o
+                0x000005bc                LED_KeypadShowDigit
+ .text.LED_ServoOpen
+                0x000005e0       0x24 .\CortexM3\ARM_GCC_541\Debug\led.o
+                0x000005e0                LED_ServoOpen
+ .text.LED_ServoClose
+                0x00000604       0x24 .\CortexM3\ARM_GCC_541\Debug\led.o
+                0x00000604                LED_ServoClose
+ .text.LED_Update
+                0x00000628       0x30 .\CortexM3\ARM_GCC_541\Debug\led.o
+                0x00000628                LED_Update
  .text.CyClockStartupError
-                0x00000284        0x4 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000658        0x4 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.cfg_write_bytes32
-                0x00000288       0x34 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x0000065c       0x34 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.CYMEMZERO
-                0x000002bc        0xc .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000690        0xc .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.AnalogSetDefault
-                0x000002c8       0x74 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x0000069c       0x74 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.CYCONFIGCPY
-                0x0000033c        0x8 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000710        0x8 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.ClockSetup
-                0x00000344       0xf4 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000718       0xf4 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.cyfitter_cfg
-                0x00000438       0xf0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
-                0x00000438                cyfitter_cfg
+                0x0000080c       0xf0 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x0000080c                cyfitter_cfg
  .text.IntDefaultHandler
-                0x00000528       0x10 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
-                0x00000528                IntDefaultHandler
- .text.Start_c  0x00000538       0x4c .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
-                0x00000538                Start_c
+                0x000008fc       0x10 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                0x000008fc                IntDefaultHandler
+ .text.Start_c  0x0000090c       0x4c .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                0x0000090c                Start_c
  .text.initialize_psoc
-                0x00000584       0x68 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
-                0x00000584                initialize_psoc
+                0x00000958       0x68 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                0x00000958                initialize_psoc
  .text.isr_Rot_SetVector
-                0x000005ec        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
-                0x000005ec                isr_Rot_SetVector
+                0x000009c0        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                0x000009c0                isr_Rot_SetVector
  .text.isr_Rot_SetPriority
-                0x000005f8       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
-                0x000005f8                isr_Rot_SetPriority
+                0x000009cc       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                0x000009cc                isr_Rot_SetPriority
  .text.isr_Rot_Enable
-                0x00000608        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
-                0x00000608                isr_Rot_Enable
+                0x000009dc        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                0x000009dc                isr_Rot_Enable
  .text.isr_Rot_Disable
-                0x00000614        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
-                0x00000614                isr_Rot_Disable
+                0x000009e8        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                0x000009e8                isr_Rot_Disable
  .text.isr_Rot_StartEx
-                0x00000620       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
-                0x00000620                isr_Rot_StartEx
+                0x000009f4       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                0x000009f4                isr_Rot_StartEx
  .text.Green_LED_Write
-                0x0000063c       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
-                0x0000063c                Green_LED_Write
+                0x00000a10       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+                0x00000a10                Green_LED_Write
  .text.Red_LED_Write
-                0x00000654       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
-                0x00000654                Red_LED_Write
+                0x00000a28       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+                0x00000a28                Red_LED_Write
  .text.Status_Rot_B_Read
-                0x0000066c        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
-                0x0000066c                Status_Rot_B_Read
- .text.CyDelay  0x00000678       0x2c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
-                0x00000678                CyDelay
+                0x00000a40        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+                0x00000a40                Status_Rot_B_Read
+ .text.CyHalt   0x00000a4c        0x4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                0x00000a4c                CyHalt
+ .text.CyDelay  0x00000a50       0x2c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                0x00000a50                CyDelay
  .text.CyDelayUs
-                0x000006a4       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
-                0x000006a4                CyDelayUs
+                0x00000a7c       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                0x00000a7c                CyDelayUs
+ .text.CyIntSetVector
+                0x00000a90       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                0x00000a90                CyIntSetVector
+ .text.CyIntSetPriority
+                0x00000ab8       0x30 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                0x00000ab8                CyIntSetPriority
  .text.isr_Button_SetVector
-                0x000006b8        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
-                0x000006b8                isr_Button_SetVector
+                0x00000ae8        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                0x00000ae8                isr_Button_SetVector
  .text.isr_Button_SetPriority
-                0x000006c4       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
-                0x000006c4                isr_Button_SetPriority
+                0x00000af4       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                0x00000af4                isr_Button_SetPriority
  .text.isr_Button_Enable
-                0x000006d4        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
-                0x000006d4                isr_Button_Enable
+                0x00000b04        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                0x00000b04                isr_Button_Enable
  .text.isr_Button_Disable
-                0x000006e0        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
-                0x000006e0                isr_Button_Disable
+                0x00000b10        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                0x00000b10                isr_Button_Disable
  .text.isr_Button_StartEx
-                0x000006ec       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
-                0x000006ec                isr_Button_StartEx
+                0x00000b1c       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                0x00000b1c                isr_Button_StartEx
  .text.PWM_Servo_Enable
-                0x00000708       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000708                PWM_Servo_Enable
+                0x00000b38       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b38                PWM_Servo_Enable
  .text.PWM_Servo_WriteCounter
-                0x00000718        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000718                PWM_Servo_WriteCounter
+                0x00000b48        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b48                PWM_Servo_WriteCounter
  .text.PWM_Servo_WritePeriod
-                0x00000724        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000724                PWM_Servo_WritePeriod
+                0x00000b54        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b54                PWM_Servo_WritePeriod
  .text.PWM_Servo_WriteCompare
-                0x00000730        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000730                PWM_Servo_WriteCompare
+                0x00000b60        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b60                PWM_Servo_WriteCompare
  .text.PWM_Servo_SetInterruptMode
-                0x0000073c        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x0000073c                PWM_Servo_SetInterruptMode
+                0x00000b6c        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b6c                PWM_Servo_SetInterruptMode
  .text.PWM_Servo_ReadStatusRegister
-                0x00000748        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000748                PWM_Servo_ReadStatusRegister
+                0x00000b78        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b78                PWM_Servo_ReadStatusRegister
  .text.PWM_Servo_ReadCapture
-                0x00000754        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000754                PWM_Servo_ReadCapture
+                0x00000b84        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b84                PWM_Servo_ReadCapture
  .text.PWM_Servo_ClearFIFO
-                0x00000760       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000760                PWM_Servo_ClearFIFO
+                0x00000b90       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000b90                PWM_Servo_ClearFIFO
  .text.PWM_Servo_Init
-                0x00000774       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x00000774                PWM_Servo_Init
+                0x00000ba4       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000ba4                PWM_Servo_Init
  .text.PWM_Servo_Start
-                0x000007c4       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x000007c4                PWM_Servo_Start
- .text          0x000007e0       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
-                0x000007e0                CyDelayCycles
-                0x000007f0                CyEnterCriticalSection
-                0x000007f8                CyExitCriticalSection
- .text.__errno  0x00000800        0xc c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
-                0x00000800                __errno
+                0x00000bf4       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000bf4                PWM_Servo_Start
+ .text.ADC_ServoFB_CalcGain
+                0x00000c10       0x5c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .text.ADC_ServoFB_Enable
+                0x00000c6c       0x94 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x00000c6c                ADC_ServoFB_Enable
+ .text.ADC_ServoFB_SetResolution
+                0x00000d00       0x38 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x00000d00                ADC_ServoFB_SetResolution
+ .text.ADC_ServoFB_Init
+                0x00000d38       0x3c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x00000d38                ADC_ServoFB_Init
+ .text.ADC_ServoFB_Start
+                0x00000d74       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x00000d74                ADC_ServoFB_Start
+ .text.ADC_ServoFB_GetResult16
+                0x00000d90       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x00000d90                ADC_ServoFB_GetResult16
+ .text.ADC_ServoFB_CountsTo_mVolts
+                0x00000da8       0x58 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x00000da8                ADC_ServoFB_CountsTo_mVolts
+ .text.ADC_ServoFB_ISR
+                0x00000e00        0x4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+                0x00000e00                ADC_ServoFB_ISR
+ .text.ADC_ServoFB_theACLK_SetModeRegister
+                0x00000e04       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+                0x00000e04                ADC_ServoFB_theACLK_SetModeRegister
+ .text.alarm_LED_Write
+                0x00000e18       0x18 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+                0x00000e18                alarm_LED_Write
+ .text.SysTickTimer_Enable
+                0x00000e30       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x00000e30                SysTickTimer_Enable
+ .text.SysTickTimer_SetInterruptMode
+                0x00000e58        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x00000e58                SysTickTimer_SetInterruptMode
+ .text.SysTickTimer_ReadStatusRegister
+                0x00000e64        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x00000e64                SysTickTimer_ReadStatusRegister
+ .text.SysTickTimer_WritePeriod
+                0x00000e70        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x00000e70                SysTickTimer_WritePeriod
+ .text.SysTickTimer_WriteCounter
+                0x00000e7c        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x00000e7c                SysTickTimer_WriteCounter
+ .text.SysTickTimer_Init
+                0x00000e88       0x68 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x00000e88                SysTickTimer_Init
+ .text.SysTickTimer_Start
+                0x00000ef0       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x00000ef0                SysTickTimer_Start
+ .text.systick_isr_SetVector
+                0x00000f0c       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+                0x00000f0c                systick_isr_SetVector
+ .text.systick_isr_SetPriority
+                0x00000f1c       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+                0x00000f1c                systick_isr_SetPriority
+ .text.systick_isr_Enable
+                0x00000f2c       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+                0x00000f2c                systick_isr_Enable
+ .text.systick_isr_Disable
+                0x00000f3c       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+                0x00000f3c                systick_isr_Disable
+ .text.systick_isr_StartEx
+                0x00000f4c       0x1c .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+                0x00000f4c                systick_isr_StartEx
+ .text          0x00000f68       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
+                0x00000f68                CyDelayCycles
+                0x00000f78                CyEnterCriticalSection
+                0x00000f80                CyExitCriticalSection
+ .text.__errno  0x00000f88        0xc c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+                0x00000f88                __errno
  .text.__libc_init_array
-                0x0000080c       0x4c c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
-                0x0000080c                __libc_init_array
- .text.memcpy   0x00000858       0x16 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
-                0x00000858                memcpy
- .text.memset   0x0000086e       0x10 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
-                0x0000086e                memset
+                0x00000f94       0x4c c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                0x00000f94                __libc_init_array
+ .text.memcpy   0x00000fe0       0x16 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x00000fe0                memcpy
+ .text.memset   0x00000ff6       0x10 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                0x00000ff6                memset
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x0000087e        0x0 linker stubs
+ .glue_7t       0x00001006        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x0000087e        0x0 linker stubs
+ .glue_7        0x00001006        0x0 linker stubs
  *(.vfp11_veneer)
- .vfp11_veneer  0x0000087e        0x0 linker stubs
+ .vfp11_veneer  0x00001006        0x0 linker stubs
  *(.bootloader)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x00000880        0x0
- .v4_bx         0x00000880        0x0 linker stubs
+.v4_bx          0x00001008        0x0
+ .v4_bx         0x00001008        0x0 linker stubs
 
-.iplt           0x00000880        0x0
- .iplt          0x00000880        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+.iplt           0x00001008        0x0
+ .iplt          0x00001008        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00000880        0x4
+.eh_frame       0x00001008        0x4
  *(.eh_frame)
- .eh_frame      0x00000880        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
- .eh_frame      0x00000880        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ .eh_frame      0x00001008        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .eh_frame      0x00001008        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
                 [!provide]                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00000884                __exidx_end = .
+                0x0000100c                __exidx_end = .
 
-.rodata         0x00000884       0x6c
+.rodata         0x0000100c       0x6c
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x00000884       0x30 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .rodata        0x0000100c       0x36 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .rodata.str1.1
-                0x000008b4        0x2 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
-                0x000008b8                . = ALIGN (0x4)
- *fill*         0x000008b6        0x2 
+                0x00001042        0x2 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x00001044                . = ALIGN (0x4)
  *(.init)
- .init          0x000008b8        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
-                0x000008b8                _init
- .init          0x000008bc        0x8 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
-                0x000008c4                . = ALIGN (0x4)
-                0x000008c4                __preinit_array_start = .
+ .init          0x00001044        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+                0x00001044                _init
+ .init          0x00001048        0x8 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x00001050                . = ALIGN (0x4)
+                0x00001050                __preinit_array_start = .
  *(.preinit_array)
-                0x000008c4                __preinit_array_end = .
-                0x000008c4                . = ALIGN (0x4)
-                0x000008c4                __init_array_start = .
+                0x00001050                __preinit_array_end = .
+                0x00001050                . = ALIGN (0x4)
+                0x00001050                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x000008c4        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
- .init_array    0x000008c8        0x4 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
-                0x000008cc                __init_array_end = .
-                0x000008cc                . = ALIGN (0x4)
+ .init_array    0x00001050        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .init_array    0x00001054        0x4 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                0x00001058                __init_array_end = .
+                0x00001058                . = ALIGN (0x4)
  *(.fini)
- .fini          0x000008cc        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
-                0x000008cc                _fini
- .fini          0x000008d0        0x8 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
-                0x000008d8                . = ALIGN (0x4)
-                0x000008d8                __fini_array_start = .
+ .fini          0x00001058        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crti.o
+                0x00001058                _fini
+ .fini          0x0000105c        0x8 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x00001064                . = ALIGN (0x4)
+                0x00001064                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x000008d8        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+ .fini_array    0x00001064        0x4 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x000008dc                __fini_array_end = .
-                0x000008dc                . = ALIGN (0x4)
+                0x00001068                __fini_array_end = .
+                0x00001068                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x000008dc                . = ALIGN (0x4)
+                0x00001068                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x000008dc                . = ALIGN (0x4)
-                0x000008dc                __cy_regions = .
-                0x000008dc        0x4 LONG 0x8f0 __cy_region_init_ram
-                0x000008e0        0x4 LONG 0x1fff80c8 __cy_region_start_data
-                0x000008e4        0x4 LONG 0x78 __cy_region_init_size_ram
-                0x000008e8        0x4 LONG 0x30 __cy_region_zero_size_ram
-                0x000008ec                __cy_regions_end = .
-                0x000008f0                . = ALIGN (0x8)
- *fill*         0x000008ec        0x4 
-                0x000008f0                _etext = .
+                0x00001068                . = ALIGN (0x4)
+                0x00001068                __cy_regions = .
+                0x00001068        0x4 LONG 0x1078 __cy_region_init_ram
+                0x0000106c        0x4 LONG 0x1fff80c8 __cy_region_start_data
+                0x00001070        0x4 LONG 0x78 __cy_region_init_size_ram
+                0x00001074        0x4 LONG 0x58 __cy_region_zero_size_ram
+                0x00001078                __cy_regions_end = .
+                0x00001078                . = ALIGN (0x8)
+                0x00001078                _etext = .
 
 .cy_checksum_exclude
-                0x000008f0        0x0
+                0x00001078        0x0
  *(.cy_checksum_exclude)
 
 .ramvectors     0x1fff8000       0xc0
@@ -803,7 +1077,7 @@ END GROUP
  .noinit        0x1fff80c0        0x1 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
                 0x1fff80c0                CyResetStatus
 
-.data           0x1fff80c8       0x78 load address 0x000008f0
+.data           0x1fff80c8       0x78 load address 0x00001078
                 0x1fff80c8                __cy_region_start_data = .
  *(.jcr)
  .jcr           0x1fff80c8        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
@@ -826,37 +1100,52 @@ END GROUP
  *(.ram)
                 0x1fff8140                _edata = .
 
-.igot.plt       0x1fff8140        0x0 load address 0x00000968
+.igot.plt       0x1fff8140        0x0 load address 0x000010f0
  .igot.plt      0x1fff8140        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
 
-.bss            0x1fff8140       0x30 load address 0x00000968
+.bss            0x1fff8140       0x58 load address 0x000010f0
                 0x1fff8140                PROVIDE (__bss_start__, .)
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss           0x1fff8140       0x1c c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
- .bss           0x1fff815c        0x1 .\CortexM3\ARM_GCC_541\Debug\alarm.o
- *fill*         0x1fff815d        0x3 
- .bss           0x1fff8160        0x9 .\CortexM3\ARM_GCC_541\Debug\keypad.o
- .bss           0x1fff8169        0x1 .\CortexM3\ARM_GCC_541\Debug\rotary.o
- .bss           0x1fff816a        0x1 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                0x1fff816a                PWM_Servo_initVar
+ .bss           0x1fff815c        0x9 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+ *fill*         0x1fff8165        0x3 
+ .bss           0x1fff8168        0x9 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+ .bss           0x1fff8171        0x1 .\CortexM3\ARM_GCC_541\Debug\lock.o
+ .bss           0x1fff8172        0x1 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+ .bss           0x1fff8173        0x1 .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .bss           0x1fff8174        0x8 .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .bss           0x1fff817c        0x4 .\CortexM3\ARM_GCC_541\Debug\systick.o
+                0x1fff817c                tick_ms
+ .bss           0x1fff8180        0x8 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .bss           0x1fff8188        0x1 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x1fff8188                PWM_Servo_initVar
+ .bss           0x1fff8189        0x1 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x1fff8189                ADC_ServoFB_initVar
+ .bss           0x1fff818a        0x1 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                0x1fff818a                SysTickTimer_initVar
  *(COMMON)
-                0x1fff8170                . = ALIGN (0x8)
- *fill*         0x1fff816b        0x5 
+ *fill*         0x1fff818b        0x1 
+ COMMON         0x1fff818c        0xc .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                0x1fff818c                ADC_ServoFB_offset
+                0x1fff8190                ADC_ServoFB_countsPer10Volt
+                0x1fff8194                ADC_ServoFB_countsPerVolt
+                0x1fff8196                ADC_ServoFB_shift
+                0x1fff8198                . = ALIGN (0x8)
  *(.ram.b)
-                0x1fff8170                _end = .
-                0x1fff8170                __end = .
-                0x1fff8170                PROVIDE (end, .)
-                0x1fff8170                PROVIDE (__bss_end__, .)
-                0x000008f0                __cy_region_init_ram = LOADADDR (.data)
+                0x1fff8198                _end = .
+                0x1fff8198                __end = .
+                0x1fff8198                PROVIDE (end, .)
+                0x1fff8198                PROVIDE (__bss_end__, .)
+                0x00001078                __cy_region_init_ram = LOADADDR (.data)
                 0x00000078                __cy_region_init_size_ram = (_edata - ADDR (.data))
-                0x00000030                __cy_region_zero_size_ram = (_end - _edata)
+                0x00000058                __cy_region_zero_size_ram = (_end - _edata)
 
-.heap           0x1fff8170       0x80 load address 0x00000968
-                0x1fff8170                . = _end
-                0x1fff81f0                . = (. + 0x80)
- *fill*         0x1fff8170       0x80 
-                0x1fff81f0                __cy_heap_limit = .
+.heap           0x1fff8198       0x80 load address 0x000010f0
+                0x1fff8198                . = _end
+                0x1fff8218                . = (. + 0x80)
+ *fill*         0x1fff8198       0x80 
+                0x1fff8218                __cy_heap_limit = .
 
 .stack          0x20007800      0x800
                 0x20007800                __cy_stack_limit = .
@@ -872,9 +1161,9 @@ END GROUP
 .cyloadablemeta
  *(.cyloadablemeta)
 
-.cyconfigecc    0x80000000      0x1ac
+.cyconfigecc    0x80000000      0x1c0
  *(.cyconfigecc)
- .cyconfigecc   0x80000000      0x1ac .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .cyconfigecc   0x80000000      0x1c0 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
                 0x80000000                cy_meta_configecc
 
 .cycustnvl      0x90000000        0x4
@@ -903,8 +1192,8 @@ END GROUP
  .cymeta        0x90500000        0xc .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
                 0x90500000                cy_metadata
 
-.rel.dyn        0x00000968        0x0 load address 0x9050000c
- .rel.iplt      0x00000968        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
+.rel.dyn        0x000010f0        0x0 load address 0x9050000c
+ .rel.iplt      0x000010f0        0x0 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtbegin.o
 
 .stab
  *(.stab)
@@ -924,237 +1213,326 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x8b0
+.debug_aranges  0x00000000      0xc28
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x28 .\CortexM3\ARM_GCC_541\Debug\accel.o
  .debug_aranges
-                0x00000028       0x38 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                0x00000028       0x48 .\CortexM3\ARM_GCC_541\Debug\alarm.o
  .debug_aranges
-                0x00000060       0x50 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                0x00000070       0x58 .\CortexM3\ARM_GCC_541\Debug\keypad.o
  .debug_aranges
-                0x000000b0       0x20 .\CortexM3\ARM_GCC_541\Debug\lock.o
+                0x000000c8       0x20 .\CortexM3\ARM_GCC_541\Debug\lock.o
  .debug_aranges
-                0x000000d0       0x20 .\CortexM3\ARM_GCC_541\Debug\main.o
+                0x000000e8       0x20 .\CortexM3\ARM_GCC_541\Debug\main.o
  .debug_aranges
-                0x000000f0       0x30 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+                0x00000108       0x30 .\CortexM3\ARM_GCC_541\Debug\rotary.o
  .debug_aranges
-                0x00000120       0x30 .\CortexM3\ARM_GCC_541\Debug\servo.o
+                0x00000138       0x40 .\CortexM3\ARM_GCC_541\Debug\servo.o
  .debug_aranges
-                0x00000150       0x58 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000178       0x38 .\CortexM3\ARM_GCC_541\Debug\timer.o
  .debug_aranges
-                0x000001a8       0x18 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+                0x000001b0       0x28 .\CortexM3\ARM_GCC_541\Debug\systick.o
  .debug_aranges
-                0x000001c0       0x48 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                0x000001d8       0x68 .\CortexM3\ARM_GCC_541\Debug\led.o
  .debug_aranges
-                0x00000208       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                0x00000240       0x58 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .debug_aranges
-                0x00000288       0x38 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+                0x00000298       0x18 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
  .debug_aranges
-                0x000002c0       0x38 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+                0x000002b0       0x48 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
  .debug_aranges
-                0x000002f8       0x40 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+                0x000002f8       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
  .debug_aranges
-                0x00000338      0x2a0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                0x00000378       0x38 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
  .debug_aranges
-                0x000005d8       0x98 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+                0x000003b0       0x38 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
  .debug_aranges
-                0x00000670       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                0x000003e8       0x40 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
  .debug_aranges
-                0x000006f0       0x98 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x00000428      0x2a0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .debug_aranges
-                0x00000788       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
+                0x000006c8       0x98 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
  .debug_aranges
-                0x000007a8       0x88 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+                0x00000760       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
  .debug_aranges
-                0x00000830       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+                0x000007e0       0x98 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .debug_aranges
+                0x00000878       0xa8 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .debug_aranges
+                0x00000920       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .debug_aranges
+                0x00000940       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .debug_aranges
+                0x000009c0       0x38 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .debug_aranges
+                0x000009f8       0x88 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .debug_aranges
+                0x00000a80       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .debug_aranges
+                0x00000b00       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
+ .debug_aranges
+                0x00000b20       0x88 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .debug_aranges
+                0x00000ba8       0x80 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x4b5b
+.debug_info     0x00000000     0x6538
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0xa8 .\CortexM3\ARM_GCC_541\Debug\accel.o
- .debug_info    0x000000a8      0x19e .\CortexM3\ARM_GCC_541\Debug\alarm.o
- .debug_info    0x00000246      0x2b2 .\CortexM3\ARM_GCC_541\Debug\keypad.o
- .debug_info    0x000004f8      0x105 .\CortexM3\ARM_GCC_541\Debug\lock.o
- .debug_info    0x000005fd      0x1d4 .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_info    0x000007d1      0x165 .\CortexM3\ARM_GCC_541\Debug\rotary.o
- .debug_info    0x00000936      0x198 .\CortexM3\ARM_GCC_541\Debug\servo.o
- .debug_info    0x00000ace      0x528 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_info    0x00000ff6      0x135 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
- .debug_info    0x0000112b      0x3bb .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_info    0x000014e6      0x2d2 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
- .debug_info    0x000017b8      0x11f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
- .debug_info    0x000018d7      0x11f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
- .debug_info    0x000019f6      0x17d .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
- .debug_info    0x00001b73     0x1374 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .debug_info    0x00002ee7      0xa2a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
- .debug_info    0x00003911      0x2d2 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
- .debug_info    0x00003be3      0x334 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
- .debug_info    0x00003f17       0xa7 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
- .debug_info    0x00003fbe      0x64d .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
- .debug_info    0x0000460b      0x550 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .debug_info    0x000000a8      0x200 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+ .debug_info    0x000002a8      0x2f9 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+ .debug_info    0x000005a1      0x203 .\CortexM3\ARM_GCC_541\Debug\lock.o
+ .debug_info    0x000007a4      0x2ce .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_info    0x00000a72      0x1a1 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+ .debug_info    0x00000c13      0x24b .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .debug_info    0x00000e5e      0x128 .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .debug_info    0x00000f86      0x154 .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .debug_info    0x000010da      0x43d .\CortexM3\ARM_GCC_541\Debug\led.o
+ .debug_info    0x00001517      0x528 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_info    0x00001a3f      0x135 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_info    0x00001b74      0x3bb .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_info    0x00001f2f      0x2d2 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+ .debug_info    0x00002201      0x11f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+ .debug_info    0x00002320      0x11f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+ .debug_info    0x0000243f      0x17d .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+ .debug_info    0x000025bc     0x1374 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+ .debug_info    0x00003930      0xa2a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+ .debug_info    0x0000435a      0x2d2 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+ .debug_info    0x0000462c      0x333 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .debug_info    0x0000495f      0x5c0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .debug_info    0x00004f1f       0x92 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .debug_info    0x00004fb1      0x2c4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .debug_info    0x00005275      0x11f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .debug_info    0x00005394      0x295 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .debug_info    0x00005629      0x2d2 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .debug_info    0x000058fb       0xa0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
+ .debug_info    0x0000599b      0x64d .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .debug_info    0x00005fe8      0x550 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
 
-.debug_abbrev   0x00000000     0x16d0
+.debug_abbrev   0x00000000     0x1f90
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x69 .\CortexM3\ARM_GCC_541\Debug\accel.o
- .debug_abbrev  0x00000069       0xdf .\CortexM3\ARM_GCC_541\Debug\alarm.o
- .debug_abbrev  0x00000148      0x138 .\CortexM3\ARM_GCC_541\Debug\keypad.o
- .debug_abbrev  0x00000280       0x94 .\CortexM3\ARM_GCC_541\Debug\lock.o
- .debug_abbrev  0x00000314       0x8a .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_abbrev  0x0000039e       0xd6 .\CortexM3\ARM_GCC_541\Debug\rotary.o
- .debug_abbrev  0x00000474       0xdd .\CortexM3\ARM_GCC_541\Debug\servo.o
- .debug_abbrev  0x00000551      0x1fe .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_abbrev  0x0000074f       0x66 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
- .debug_abbrev  0x000007b5      0x1e8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_abbrev  0x0000099d      0x173 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
- .debug_abbrev  0x00000b10       0x90 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
- .debug_abbrev  0x00000ba0       0x90 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
- .debug_abbrev  0x00000c30       0xac .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
- .debug_abbrev  0x00000cdc      0x254 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .debug_abbrev  0x00000f30      0x1ab .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
- .debug_abbrev  0x000010db      0x173 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
- .debug_abbrev  0x0000124e      0x133 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
- .debug_abbrev  0x00001381       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
- .debug_abbrev  0x00001395      0x1a7 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
- .debug_abbrev  0x0000153c      0x194 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .debug_abbrev  0x00000069      0x10a .\CortexM3\ARM_GCC_541\Debug\alarm.o
+ .debug_abbrev  0x00000173       0xd4 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+ .debug_abbrev  0x00000247       0xd4 .\CortexM3\ARM_GCC_541\Debug\lock.o
+ .debug_abbrev  0x0000031b       0xa3 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_abbrev  0x000003be       0xd6 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+ .debug_abbrev  0x00000494       0xfb .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .debug_abbrev  0x0000058f       0x90 .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .debug_abbrev  0x0000061f       0xad .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .debug_abbrev  0x000006cc      0x119 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .debug_abbrev  0x000007e5      0x1fe .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_abbrev  0x000009e3       0x66 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_abbrev  0x00000a49      0x1e8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_abbrev  0x00000c31      0x173 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+ .debug_abbrev  0x00000da4       0x90 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+ .debug_abbrev  0x00000e34       0x90 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+ .debug_abbrev  0x00000ec4       0xac .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+ .debug_abbrev  0x00000f70      0x254 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+ .debug_abbrev  0x000011c4      0x1ab .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+ .debug_abbrev  0x0000136f      0x173 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+ .debug_abbrev  0x000014e2      0x133 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .debug_abbrev  0x00001615      0x1ac .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .debug_abbrev  0x000017c1       0x42 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .debug_abbrev  0x00001803      0x121 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .debug_abbrev  0x00001924       0x90 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .debug_abbrev  0x000019b4      0x11a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .debug_abbrev  0x00001ace      0x173 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .debug_abbrev  0x00001c41       0x14 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00001c55      0x1a7 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .debug_abbrev  0x00001dfc      0x194 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
 
-.debug_line     0x00000000     0x26d1
+.debug_line     0x00000000     0x34c3
  *(.debug_line)
  .debug_line    0x00000000      0x140 .\CortexM3\ARM_GCC_541\Debug\accel.o
- .debug_line    0x00000140      0x1a3 .\CortexM3\ARM_GCC_541\Debug\alarm.o
- .debug_line    0x000002e3      0x222 .\CortexM3\ARM_GCC_541\Debug\keypad.o
- .debug_line    0x00000505      0x156 .\CortexM3\ARM_GCC_541\Debug\lock.o
- .debug_line    0x0000065b      0x1a0 .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_line    0x000007fb      0x1a2 .\CortexM3\ARM_GCC_541\Debug\rotary.o
- .debug_line    0x0000099d      0x1a3 .\CortexM3\ARM_GCC_541\Debug\servo.o
- .debug_line    0x00000b40      0x1ea .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_line    0x00000d2a      0x141 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
- .debug_line    0x00000e6b      0x234 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_line    0x0000109f      0x134 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
- .debug_line    0x000011d3       0x96 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
- .debug_line    0x00001269       0x94 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
- .debug_line    0x000012fd       0xb7 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
- .debug_line    0x000013b4      0x816 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .debug_line    0x00001bca      0x367 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
- .debug_line    0x00001f31      0x137 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
- .debug_line    0x00002068      0x189 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
- .debug_line    0x000021f1       0x66 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
- .debug_line    0x00002257      0x21a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
- .debug_line    0x00002471      0x260 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .debug_line    0x00000140      0x1e3 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+ .debug_line    0x00000323      0x22f .\CortexM3\ARM_GCC_541\Debug\keypad.o
+ .debug_line    0x00000552      0x1ab .\CortexM3\ARM_GCC_541\Debug\lock.o
+ .debug_line    0x000006fd      0x1f9 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_line    0x000008f6      0x1b6 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+ .debug_line    0x00000aac      0x1d9 .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .debug_line    0x00000c85      0x17e .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .debug_line    0x00000e03      0x18f .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .debug_line    0x00000f92      0x259 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .debug_line    0x000011eb      0x1ea .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_line    0x000013d5      0x141 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_line    0x00001516      0x234 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_line    0x0000174a      0x134 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+ .debug_line    0x0000187e       0x96 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+ .debug_line    0x00001914       0x94 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+ .debug_line    0x000019a8       0xb7 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+ .debug_line    0x00001a5f      0x816 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+ .debug_line    0x00002275      0x367 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+ .debug_line    0x000025dc      0x137 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+ .debug_line    0x00002713      0x189 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .debug_line    0x0000289c      0x222 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .debug_line    0x00002abe       0x58 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .debug_line    0x00002b16      0x1a5 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .debug_line    0x00002cbb       0x96 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .debug_line    0x00002d51      0x15a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .debug_line    0x00002eab      0x138 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .debug_line    0x00002fe3       0x66 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
+ .debug_line    0x00003049      0x21a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .debug_line    0x00003263      0x260 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
 
-.debug_frame    0x00000000     0x155c
+.debug_frame    0x00000000     0x1d40
  *(.debug_frame)
  .debug_frame   0x00000000       0x30 .\CortexM3\ARM_GCC_541\Debug\accel.o
- .debug_frame   0x00000030       0x68 .\CortexM3\ARM_GCC_541\Debug\alarm.o
- .debug_frame   0x00000098       0xa8 .\CortexM3\ARM_GCC_541\Debug\keypad.o
- .debug_frame   0x00000140       0x2c .\CortexM3\ARM_GCC_541\Debug\lock.o
- .debug_frame   0x0000016c       0x2c .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_frame   0x00000198       0x58 .\CortexM3\ARM_GCC_541\Debug\rotary.o
- .debug_frame   0x000001f0       0x64 .\CortexM3\ARM_GCC_541\Debug\servo.o
- .debug_frame   0x00000254       0xfc .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_frame   0x00000350       0xb8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_frame   0x00000408      0x104 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
- .debug_frame   0x0000050c       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
- .debug_frame   0x0000055c       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
- .debug_frame   0x000005ac       0x78 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
- .debug_frame   0x00000624      0x738 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .debug_frame   0x00000d5c      0x1f8 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
- .debug_frame   0x00000f54      0x104 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
- .debug_frame   0x00001058      0x134 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
- .debug_frame   0x0000118c      0x194 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
- .debug_frame   0x00001320      0x180 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
- .debug_frame   0x000014a0       0x20 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x000014c0       0x28 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
- .debug_frame   0x000014e8       0x2c c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
- .debug_frame   0x00001514       0x28 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x0000153c       0x20 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x00000030       0x90 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+ .debug_frame   0x000000c0       0xcc .\CortexM3\ARM_GCC_541\Debug\keypad.o
+ .debug_frame   0x0000018c       0x2c .\CortexM3\ARM_GCC_541\Debug\lock.o
+ .debug_frame   0x000001b8       0x2c .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_frame   0x000001e4       0x58 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+ .debug_frame   0x0000023c       0x90 .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .debug_frame   0x000002cc       0x50 .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .debug_frame   0x0000031c       0x48 .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .debug_frame   0x00000364      0x12c .\CortexM3\ARM_GCC_541\Debug\led.o
+ .debug_frame   0x00000490       0xfc .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_frame   0x0000058c       0xb8 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_frame   0x00000644      0x104 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+ .debug_frame   0x00000748       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+ .debug_frame   0x00000798       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+ .debug_frame   0x000007e8       0x78 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+ .debug_frame   0x00000860      0x738 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+ .debug_frame   0x00000f98      0x1f8 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+ .debug_frame   0x00001190      0x104 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+ .debug_frame   0x00001294      0x134 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .debug_frame   0x000013c8      0x1b0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .debug_frame   0x00001578       0x20 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .debug_frame   0x00001598      0x100 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .debug_frame   0x00001698       0x50 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .debug_frame   0x000016e8      0x108 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .debug_frame   0x000017f0      0x104 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .debug_frame   0x000018f4      0x194 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .debug_frame   0x00001a88      0x180 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .debug_frame   0x00001c08       0x44 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .debug_frame   0x00001c4c       0x38 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00001c84       0x20 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00001ca4       0x28 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x00001ccc       0x2c c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x00001cf8       0x28 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00001d20       0x20 c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
 
-.debug_str      0x00000000     0x1a32
+.debug_str      0x00000000     0x2531
  *(.debug_str)
  .debug_str     0x00000000      0x16b .\CortexM3\ARM_GCC_541\Debug\accel.o
                                 0x1a7 (size before relaxing)
- .debug_str     0x0000016b       0xdb .\CortexM3\ARM_GCC_541\Debug\alarm.o
-                                0x213 (size before relaxing)
- .debug_str     0x00000246       0xc7 .\CortexM3\ARM_GCC_541\Debug\keypad.o
-                                0x2a0 (size before relaxing)
- .debug_str     0x0000030d       0x33 .\CortexM3\ARM_GCC_541\Debug\lock.o
-                                0x1c9 (size before relaxing)
- .debug_str     0x00000340        0xc .\CortexM3\ARM_GCC_541\Debug\main.o
-                                0x269 (size before relaxing)
- .debug_str     0x0000034c       0x42 .\CortexM3\ARM_GCC_541\Debug\rotary.o
-                                0x216 (size before relaxing)
- .debug_str     0x0000038e       0x4a .\CortexM3\ARM_GCC_541\Debug\servo.o
-                                0x22e (size before relaxing)
- .debug_str     0x000003d8      0x185 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
-                                0x330 (size before relaxing)
- .debug_str     0x0000055d       0x75 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
-                                0x1fb (size before relaxing)
- .debug_str     0x000005d2      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
-                                0x321 (size before relaxing)
- .debug_str     0x00000716      0x10a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
-                                0x2d9 (size before relaxing)
- .debug_str     0x00000820       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
-                                0x20d (size before relaxing)
- .debug_str     0x0000088f       0x57 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
-                                0x203 (size before relaxing)
- .debug_str     0x000008e6       0xc0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
-                                0x27e (size before relaxing)
- .debug_str     0x000009a6      0x7e4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
-                                0xa5e (size before relaxing)
- .debug_str     0x0000118a      0x365 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
-                                0x74a (size before relaxing)
- .debug_str     0x000014ef      0x119 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
-                                0x303 (size before relaxing)
- .debug_str     0x00001608      0x1c3 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
-                                0x3b4 (size before relaxing)
- .debug_str     0x000017cb      0x1bb .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
-                                0x3d7 (size before relaxing)
- .debug_str     0x00001986       0xac .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
-                                0x34f (size before relaxing)
+ .debug_str     0x0000016b      0x13c .\CortexM3\ARM_GCC_541\Debug\alarm.o
+                                0x285 (size before relaxing)
+ .debug_str     0x000002a7      0x13e .\CortexM3\ARM_GCC_541\Debug\keypad.o
+                                0x333 (size before relaxing)
+ .debug_str     0x000003e5       0x44 .\CortexM3\ARM_GCC_541\Debug\lock.o
+                                0x270 (size before relaxing)
+ .debug_str     0x00000429       0x4d .\CortexM3\ARM_GCC_541\Debug\main.o
+                                0x2fa (size before relaxing)
+ .debug_str     0x00000476       0x39 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+                                0x243 (size before relaxing)
+ .debug_str     0x000004af       0xcc .\CortexM3\ARM_GCC_541\Debug\servo.o
+                                0x2d5 (size before relaxing)
+ .debug_str     0x0000057b       0x28 .\CortexM3\ARM_GCC_541\Debug\timer.o
+                                0x229 (size before relaxing)
+ .debug_str     0x000005a3       0x5d .\CortexM3\ARM_GCC_541\Debug\systick.o
+                                0x230 (size before relaxing)
+ .debug_str     0x00000600      0x117 .\CortexM3\ARM_GCC_541\Debug\led.o
+                                0x361 (size before relaxing)
+ .debug_str     0x00000717      0x184 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                                0x329 (size before relaxing)
+ .debug_str     0x0000089b       0x75 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+                                0x1f4 (size before relaxing)
+ .debug_str     0x00000910      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                                0x31a (size before relaxing)
+ .debug_str     0x00000a54      0x10a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                                0x2d2 (size before relaxing)
+ .debug_str     0x00000b5e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+                                0x206 (size before relaxing)
+ .debug_str     0x00000bcd       0x57 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+                                0x1fc (size before relaxing)
+ .debug_str     0x00000c24       0xc0 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+                                0x277 (size before relaxing)
+ .debug_str     0x00000ce4      0x7de .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                                0xa57 (size before relaxing)
+ .debug_str     0x000014c2      0x365 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+                                0x743 (size before relaxing)
+ .debug_str     0x00001827      0x119 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                                0x2fc (size before relaxing)
+ .debug_str     0x00001940      0x1c3 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                                0x3ad (size before relaxing)
+ .debug_str     0x00001b03      0x26e .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+                                0x4ff (size before relaxing)
+ .debug_str     0x00001d71       0x39 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+                                0x1af (size before relaxing)
+ .debug_str     0x00001daa      0x221 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+                                0x3e1 (size before relaxing)
+ .debug_str     0x00001fcb       0x5f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+                                0x206 (size before relaxing)
+ .debug_str     0x0000202a      0x17a .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+                                0x375 (size before relaxing)
+ .debug_str     0x000021a4      0x126 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+                                0x30a (size before relaxing)
+ .debug_str     0x000022ca      0x1bb .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+                                0x3d0 (size before relaxing)
+ .debug_str     0x00002485       0xac .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+                                0x348 (size before relaxing)
 
-.debug_loc      0x00000000     0x1c01
+.debug_loc      0x00000000     0x21e7
  *(.debug_loc)
- .debug_loc     0x00000000       0x5e .\CortexM3\ARM_GCC_541\Debug\keypad.o
- .debug_loc     0x0000005e       0x3a .\CortexM3\ARM_GCC_541\Debug\lock.o
- .debug_loc     0x00000098      0x1fd .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_loc     0x00000295      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_loc     0x000003d9       0x56 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
- .debug_loc     0x0000042f       0x42 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
- .debug_loc     0x00000471       0x42 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
- .debug_loc     0x000004b3       0x26 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
- .debug_loc     0x000004d9      0xa11 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .debug_loc     0x00000eea      0x1e4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
- .debug_loc     0x000010ce       0x56 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
- .debug_loc     0x00001124       0x26 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
- .debug_loc     0x0000114a      0x3b2 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
- .debug_loc     0x000014fc      0x705 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .debug_loc     0x00000000       0x13 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+ .debug_loc     0x00000013       0x13 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+ .debug_loc     0x00000026       0x3a .\CortexM3\ARM_GCC_541\Debug\lock.o
+ .debug_loc     0x00000060      0x1a4 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .debug_loc     0x00000204      0x1fd .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_loc     0x00000401      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_loc     0x00000545       0x56 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+ .debug_loc     0x0000059b       0x42 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+ .debug_loc     0x000005dd       0x42 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+ .debug_loc     0x0000061f       0x26 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+ .debug_loc     0x00000645      0xa11 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+ .debug_loc     0x00001056      0x1e4 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+ .debug_loc     0x0000123a       0x56 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+ .debug_loc     0x00001290       0x26 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .debug_loc     0x000012b6      0x295 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .debug_loc     0x0000154b      0x14d .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .debug_loc     0x00001698       0x42 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .debug_loc     0x000016da       0x56 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .debug_loc     0x00001730      0x3b2 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .debug_loc     0x00001ae2      0x705 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
 
 .debug_macinfo
  *(.debug_macinfo)
 
-.debug_ranges   0x00000000      0x748
+.debug_ranges   0x00000000      0xa30
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x18 .\CortexM3\ARM_GCC_541\Debug\accel.o
- .debug_ranges  0x00000018       0x28 .\CortexM3\ARM_GCC_541\Debug\alarm.o
- .debug_ranges  0x00000040       0x40 .\CortexM3\ARM_GCC_541\Debug\keypad.o
- .debug_ranges  0x00000080       0x10 .\CortexM3\ARM_GCC_541\Debug\lock.o
- .debug_ranges  0x00000090       0x10 .\CortexM3\ARM_GCC_541\Debug\main.o
- .debug_ranges  0x000000a0       0x20 .\CortexM3\ARM_GCC_541\Debug\rotary.o
- .debug_ranges  0x000000c0       0x20 .\CortexM3\ARM_GCC_541\Debug\servo.o
- .debug_ranges  0x000000e0       0x48 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_ranges  0x00000128       0x38 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
- .debug_ranges  0x00000160       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
- .debug_ranges  0x000001d0       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
- .debug_ranges  0x000001f8       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
- .debug_ranges  0x00000220       0x30 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
- .debug_ranges  0x00000250      0x290 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
- .debug_ranges  0x000004e0       0x88 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
- .debug_ranges  0x00000568       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
- .debug_ranges  0x000005d8       0x88 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
- .debug_ranges  0x00000660       0x78 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
- .debug_ranges  0x000006d8       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .debug_ranges  0x00000018       0x38 .\CortexM3\ARM_GCC_541\Debug\alarm.o
+ .debug_ranges  0x00000050       0x48 .\CortexM3\ARM_GCC_541\Debug\keypad.o
+ .debug_ranges  0x00000098       0x10 .\CortexM3\ARM_GCC_541\Debug\lock.o
+ .debug_ranges  0x000000a8       0x10 .\CortexM3\ARM_GCC_541\Debug\main.o
+ .debug_ranges  0x000000b8       0x20 .\CortexM3\ARM_GCC_541\Debug\rotary.o
+ .debug_ranges  0x000000d8       0x30 .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .debug_ranges  0x00000108       0x28 .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .debug_ranges  0x00000130       0x18 .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .debug_ranges  0x00000148       0x58 .\CortexM3\ARM_GCC_541\Debug\led.o
+ .debug_ranges  0x000001a0       0x48 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_ranges  0x000001e8       0x38 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_ranges  0x00000220       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+ .debug_ranges  0x00000290       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+ .debug_ranges  0x000002b8       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+ .debug_ranges  0x000002e0       0x30 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+ .debug_ranges  0x00000310      0x290 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+ .debug_ranges  0x000005a0       0x88 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+ .debug_ranges  0x00000628       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+ .debug_ranges  0x00000698       0x88 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .debug_ranges  0x00000720       0x98 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .debug_ranges  0x000007b8       0x10 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .debug_ranges  0x000007c8       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .debug_ranges  0x00000838       0x28 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .debug_ranges  0x00000860       0x78 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .debug_ranges  0x000008d8       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
+ .debug_ranges  0x00000948       0x78 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .debug_ranges  0x000009c0       0x70 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e .\CortexM3\ARM_GCC_541\Debug\accel.o
@@ -1165,6 +1543,9 @@ END GROUP
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\main.o
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\rotary.o
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\servo.o
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\timer.o
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\systick.o
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\led.o
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
@@ -1176,6 +1557,12 @@ END GROUP
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
+ .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
  .comment       0x0000006e       0x6f .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
 
@@ -1218,49 +1605,77 @@ END GROUP
  .ARM.attributes
                 0x00000197       0x33 .\CortexM3\ARM_GCC_541\Debug\servo.o
  .ARM.attributes
-                0x000001ca       0x33 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000001ca       0x33 .\CortexM3\ARM_GCC_541\Debug\timer.o
  .ARM.attributes
-                0x000001fd       0x33 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+                0x000001fd       0x33 .\CortexM3\ARM_GCC_541\Debug\systick.o
  .ARM.attributes
-                0x00000230       0x33 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+                0x00000230       0x33 .\CortexM3\ARM_GCC_541\Debug\led.o
  .ARM.attributes
-                0x00000263       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
+                0x00000263       0x33 .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
  .ARM.attributes
-                0x00000296       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
+                0x00000296       0x33 .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
  .ARM.attributes
-                0x000002c9       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
+                0x000002c9       0x33 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
  .ARM.attributes
-                0x000002fc       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
+                0x000002fc       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Rot.o)
  .ARM.attributes
-                0x0000032f       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
+                0x0000032f       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Green_LED.o)
  .ARM.attributes
-                0x00000362       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
+                0x00000362       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Red_LED.o)
  .ARM.attributes
-                0x00000395       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
+                0x00000395       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(Status_Rot_B.o)
  .ARM.attributes
-                0x000003c8       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
+                0x000003c8       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyLib.o)
  .ARM.attributes
-                0x000003fb       0x21 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
+                0x000003fb       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(cyPm.o)
  .ARM.attributes
-                0x0000041c       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+                0x0000042e       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(isr_Button.o)
  .ARM.attributes
-                0x0000044f       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+                0x00000461       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(PWM_Servo.o)
  .ARM.attributes
-                0x00000482       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+                0x00000494       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB.o)
  .ARM.attributes
-                0x000004af       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+                0x000004c7       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_INT.o)
  .ARM.attributes
-                0x000004dc       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                0x000004fa       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(ADC_ServoFB_theACLK.o)
  .ARM.attributes
-                0x00000509       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                0x0000052d       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(alarm_LED.o)
  .ARM.attributes
-                0x00000536       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x00000560       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(SysTickTimer.o)
  .ARM.attributes
-                0x00000563       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                0x00000593       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(systick_isr.o)
  .ARM.attributes
-                0x00000590       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+                0x000005c6       0x21 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyBootAsmGnu.o)
  .ARM.attributes
-                0x000005bd       0x1d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
+                0x000005e7       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CyFlash.o)
+ .ARM.attributes
+                0x0000061a       0x33 .\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.a(CySpc.o)
+ .ARM.attributes
+                0x0000064d       0x1d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x0000066a       0x1d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .ARM.attributes
+                0x00000687       0x1d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .ARM.attributes
+                0x000006a4       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_udivmoddi4.o)
+ .ARM.attributes
+                0x000006d1       0x1d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x000006ee       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-errno.o)
+ .ARM.attributes
+                0x0000071b       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x00000748       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x00000775       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x000007a2       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x000007cf       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x000007fc       0x2d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtend.o
+ .ARM.attributes
+                0x00000829       0x1d c:/program files (x86)/cypress/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7-m/crtn.o
 
 /DISCARD/
  *(.note.GNU-stack)

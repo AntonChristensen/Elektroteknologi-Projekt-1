@@ -346,6 +346,40 @@
 .set Servo_Out__SHIFT, 0
 .set Servo_Out__SLW, CYREG_PRT2_SLW
 
+/* alarm_LED */
+.set alarm_LED__0__INTTYPE, CYREG_PICU0_INTTYPE3
+.set alarm_LED__0__MASK, 0x08
+.set alarm_LED__0__PC, CYREG_PRT0_PC3
+.set alarm_LED__0__PORT, 0
+.set alarm_LED__0__SHIFT, 3
+.set alarm_LED__AG, CYREG_PRT0_AG
+.set alarm_LED__AMUX, CYREG_PRT0_AMUX
+.set alarm_LED__BIE, CYREG_PRT0_BIE
+.set alarm_LED__BIT_MASK, CYREG_PRT0_BIT_MASK
+.set alarm_LED__BYP, CYREG_PRT0_BYP
+.set alarm_LED__CTL, CYREG_PRT0_CTL
+.set alarm_LED__DM0, CYREG_PRT0_DM0
+.set alarm_LED__DM1, CYREG_PRT0_DM1
+.set alarm_LED__DM2, CYREG_PRT0_DM2
+.set alarm_LED__DR, CYREG_PRT0_DR
+.set alarm_LED__INP_DIS, CYREG_PRT0_INP_DIS
+.set alarm_LED__INTTYPE_BASE, CYDEV_PICU_INTTYPE_PICU0_BASE
+.set alarm_LED__LCD_COM_SEG, CYREG_PRT0_LCD_COM_SEG
+.set alarm_LED__LCD_EN, CYREG_PRT0_LCD_EN
+.set alarm_LED__MASK, 0x08
+.set alarm_LED__PORT, 0
+.set alarm_LED__PRT, CYREG_PRT0_PRT
+.set alarm_LED__PRTDSI__CAPS_SEL, CYREG_PRT0_CAPS_SEL
+.set alarm_LED__PRTDSI__DBL_SYNC_IN, CYREG_PRT0_DBL_SYNC_IN
+.set alarm_LED__PRTDSI__OE_SEL0, CYREG_PRT0_OE_SEL0
+.set alarm_LED__PRTDSI__OE_SEL1, CYREG_PRT0_OE_SEL1
+.set alarm_LED__PRTDSI__OUT_SEL0, CYREG_PRT0_OUT_SEL0
+.set alarm_LED__PRTDSI__OUT_SEL1, CYREG_PRT0_OUT_SEL1
+.set alarm_LED__PRTDSI__SYNC_OUT, CYREG_PRT0_SYNC_OUT
+.set alarm_LED__PS, CYREG_PRT0_PS
+.set alarm_LED__SHIFT, 3
+.set alarm_LED__SLW, CYREG_PRT0_SLW
+
 /* isr_Button */
 .set isr_Button__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
 .set isr_Button__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
@@ -429,6 +463,16 @@
 .set ADC_ServoFB_theACLK__PM_STBY_CFG, CYREG_PM_STBY_CFG1
 .set ADC_ServoFB_theACLK__PM_STBY_MSK, 0x01
 
+/* systick_isr */
+.set systick_isr__INTC_CLR_EN_REG, CYREG_NVIC_CLRENA0
+.set systick_isr__INTC_CLR_PD_REG, CYREG_NVIC_CLRPEND0
+.set systick_isr__INTC_MASK, 0x20000
+.set systick_isr__INTC_NUMBER, 17
+.set systick_isr__INTC_PRIOR_NUM, 7
+.set systick_isr__INTC_PRIOR_REG, CYREG_NVIC_PRI_17
+.set systick_isr__INTC_SET_EN_REG, CYREG_NVIC_SETENA0
+.set systick_isr__INTC_SET_PD_REG, CYREG_NVIC_SETPEND0
+
 /* Status_Rot_B */
 .set Status_Rot_B_sts_sts_reg__0__MASK, 0x01
 .set Status_Rot_B_sts_sts_reg__0__POS, 0
@@ -438,6 +482,24 @@
 .set Status_Rot_B_sts_sts_reg__MASK_REG, CYREG_B0_UDB12_MSK
 .set Status_Rot_B_sts_sts_reg__STATUS_AUX_CTL_REG, CYREG_B0_UDB12_ACTL
 .set Status_Rot_B_sts_sts_reg__STATUS_REG, CYREG_B0_UDB12_ST
+
+/* SysTickTimer */
+.set SysTickTimer_TimerHW__CAP0, CYREG_TMR0_CAP0
+.set SysTickTimer_TimerHW__CAP1, CYREG_TMR0_CAP1
+.set SysTickTimer_TimerHW__CFG0, CYREG_TMR0_CFG0
+.set SysTickTimer_TimerHW__CFG1, CYREG_TMR0_CFG1
+.set SysTickTimer_TimerHW__CFG2, CYREG_TMR0_CFG2
+.set SysTickTimer_TimerHW__CNT_CMP0, CYREG_TMR0_CNT_CMP0
+.set SysTickTimer_TimerHW__CNT_CMP1, CYREG_TMR0_CNT_CMP1
+.set SysTickTimer_TimerHW__PER0, CYREG_TMR0_PER0
+.set SysTickTimer_TimerHW__PER1, CYREG_TMR0_PER1
+.set SysTickTimer_TimerHW__PM_ACT_CFG, CYREG_PM_ACT_CFG3
+.set SysTickTimer_TimerHW__PM_ACT_MSK, 0x01
+.set SysTickTimer_TimerHW__PM_STBY_CFG, CYREG_PM_STBY_CFG3
+.set SysTickTimer_TimerHW__PM_STBY_MSK, 0x01
+.set SysTickTimer_TimerHW__RT0, CYREG_TMR0_RT0
+.set SysTickTimer_TimerHW__RT1, CYREG_TMR0_RT1
+.set SysTickTimer_TimerHW__SR0, CYREG_TMR0_SR0
 
 /* Miscellaneous */
 .set BCLK__BUS_CLK__HZ, 24000000

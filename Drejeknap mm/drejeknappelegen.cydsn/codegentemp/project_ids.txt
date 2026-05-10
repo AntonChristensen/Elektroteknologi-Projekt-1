@@ -1,6 +1,6 @@
-C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\drejeknappelegen.cyprj|fe5783a1-f048-4c7d-92c1-a28ddd5fcacc
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|ae93a903-276f-465a-999e-a507ce7d4495
-C:\Users\ke\OneDrive\Dokumenter\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|0d1aba74-a40d-4e85-9002-b1cd878bf490
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|98bbf9a6-ef7d-4add-90bd-bc7e62c1fd30
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|1162304f-252b-49e3-b1e6-763490514242
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|31fd881f-40e6-4fdd-bb11-c6afd4de90ce
+C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\drejeknappelegen.cyprj|8f83d5c0-9f55-44f6-9306-e700d910daa8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|2af79e54-80e1-4668-8f23-92493758e749
+C:\Users\ke\OneDrive\Dokumenter\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|5a11ca63-7d91-4137-aebd-c89583253e73
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|54d5e855-228d-43db-a831-f6fb3bba168a
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|4473e3b2-80ab-455e-bde1-a0ecfd3fb24f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|9c1e522a-23eb-44c4-872f-62a35fbdd19b

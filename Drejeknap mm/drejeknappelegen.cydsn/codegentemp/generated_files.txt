@@ -56,6 +56,14 @@
   <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\ADC_ServoFB_PM.c" value="SOURCE_C;CortexM3;;;;ADC_ServoFB" />
   <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\Clock_2.c" value="SOURCE_C;CortexM3;;;;Clock_2" />
   <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\Clock_2.h" value="HEADER;;;;;Clock_2" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\alarm_LED_aliases.h" value="HEADER;;;;;alarm_LED" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\alarm_LED.c" value="SOURCE_C;CortexM3;;;;alarm_LED" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\alarm_LED.h" value="HEADER;;;;;alarm_LED" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\SysTickTimer.c" value="SOURCE_C;CortexM3;;;;SysTickTimer" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\SysTickTimer.h" value="HEADER;;;;;SysTickTimer" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\SysTickTimer_PM.c" value="SOURCE_C;CortexM3;;;;SysTickTimer" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\systick_isr.c" value="SOURCE_C;CortexM3;;;;systick_isr" />
+  <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\systick_isr.h" value="HEADER;;;;;systick_isr" />
   <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\ADC_ServoFB_IRQ.c" value="SOURCE_C;CortexM3;;;;ADC_ServoFB_IRQ" />
   <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\ADC_ServoFB_IRQ.h" value="HEADER;;;;;ADC_ServoFB_IRQ" />
   <file name="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\codegentemp\ADC_ServoFB_theACLK.c" value="SOURCE_C;CortexM3;;;;ADC_ServoFB_theACLK" />

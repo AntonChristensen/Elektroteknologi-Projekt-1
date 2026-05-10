@@ -1,5 +1,5 @@
 -- Project:   C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\drejeknappelegen.cyprj
--- Generated: 05/04/2026 09:10:58
+-- Generated: 05/10/2026 18:20:28
 -- PSoC Creator  4.4
 
 ENTITY drejeknappelegen IS
@@ -9,7 +9,8 @@ ENTITY drejeknappelegen IS
         Button(0)_PAD : IN std_ulogic;
         Red_LED(0)_PAD : OUT std_ulogic;
         Green_LED(0)_PAD : OUT std_ulogic;
-        Servo_Out(0)_PAD : OUT std_ulogic);
+        Servo_Out(0)_PAD : OUT std_ulogic;
+        alarm_LED(0)_PAD : OUT std_ulogic);
     ATTRIBUTE voltage_VDDABUF OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDA OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VUSB OF __DEFAULT__ : ENTITY IS 5e0;
@@ -41,6 +42,7 @@ ARCHITECTURE __DEFAULT__ OF drejeknappelegen IS
     ATTRIBUTE udbclken_assigned OF Net_1110 : SIGNAL IS "True";
     ATTRIBUTE global_signal OF Net_1110 : SIGNAL IS true;
     SIGNAL Net_1110_local : bit;
+    SIGNAL Net_1306 : bit;
     SIGNAL Net_24 : bit;
     SIGNAL Net_30 : bit;
     SIGNAL Net_31 : bit;
@@ -107,14 +109,19 @@ ARCHITECTURE __DEFAULT__ OF drejeknappelegen IS
     ATTRIBUTE placement_force OF \PWM_Servo:PWMUDB:status_2\ : SIGNAL IS "U(0,5,B)0";
     SIGNAL \PWM_Servo:PWMUDB:status_3\ : bit;
     SIGNAL \PWM_Servo:PWMUDB:tc_i\ : bit;
+    SIGNAL \SysTickTimer:Net_261\ : bit;
+    SIGNAL \SysTickTimer:Net_51\ : bit;
     SIGNAL __ONE__ : bit;
+    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(1,4,A)1";
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
     ATTRIBUTE GROUND OF __ZERO__ : SIGNAL IS true;
+    SIGNAL alarm_LED(0)__PA : bit;
     SIGNAL one : bit;
     ATTRIBUTE POWER OF one : SIGNAL IS true;
     SIGNAL zero : bit;
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
+    SIGNAL \ClockBlock.clk_bus_glb_ff__sig\ : bit;
     SIGNAL \ClockBlock.aclk_glb_ff_0__sig\ : bit;
     ATTRIBUTE Location OF ClockBlock : LABEL IS "F(Clock,0)";
     ATTRIBUTE lib_model OF Rot_B(0) : LABEL IS "iocell1";
@@ -133,8 +140,12 @@ ARCHITECTURE __DEFAULT__ OF drejeknappelegen IS
     ATTRIBUTE Location OF Servo_FB(0) : LABEL IS "P2[3]";
     ATTRIBUTE lib_model OF \ADC_ServoFB:Bypass(0)\ : LABEL IS "iocell8";
     ATTRIBUTE Location OF \ADC_ServoFB:Bypass(0)\ : LABEL IS "P0[2]";
+    ATTRIBUTE lib_model OF alarm_LED(0) : LABEL IS "iocell9";
+    ATTRIBUTE Location OF alarm_LED(0) : LABEL IS "P0[3]";
     ATTRIBUTE lib_model OF \PWM_Servo:PWMUDB:status_2\ : LABEL IS "macrocell1";
     ATTRIBUTE Location OF \PWM_Servo:PWMUDB:status_2\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell2";
+    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(1,4)";
     ATTRIBUTE Location OF isr_Button : LABEL IS "[IntrContainer=(0)][IntrId=(1)]";
     ATTRIBUTE Location OF isr_Rot : LABEL IS "[IntrContainer=(0)][IntrId=(2)]";
     ATTRIBUTE lib_model OF \Status_Rot_B:sts:sts_reg\ : LABEL IS "statuscell1";
@@ -147,27 +158,29 @@ ARCHITECTURE __DEFAULT__ OF drejeknappelegen IS
     ATTRIBUTE Location OF \PWM_Servo:PWMUDB:sP8:pwmdp:u0\ : LABEL IS "U(0,5)";
     ATTRIBUTE Location OF \ADC_ServoFB:IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(0)]";
     ATTRIBUTE Location OF \ADC_ServoFB:ADC_SAR\ : LABEL IS "F(SAR,1)";
-    ATTRIBUTE lib_model OF \Deb_Butt:DEBOUNCER[0]:d_sync_0\ : LABEL IS "macrocell2";
+    ATTRIBUTE Location OF \SysTickTimer:TimerHW\ : LABEL IS "F(Timer,0)";
+    ATTRIBUTE Location OF systick_isr : LABEL IS "[IntrContainer=(0)][IntrId=(17)]";
+    ATTRIBUTE lib_model OF \Deb_Butt:DEBOUNCER[0]:d_sync_0\ : LABEL IS "macrocell3";
     ATTRIBUTE Location OF \Deb_Butt:DEBOUNCER[0]:d_sync_0\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \Deb_Butt:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell3";
+    ATTRIBUTE lib_model OF \Deb_Butt:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell4";
     ATTRIBUTE Location OF \Deb_Butt:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF Net_65 : LABEL IS "macrocell4";
+    ATTRIBUTE lib_model OF Net_65 : LABEL IS "macrocell5";
     ATTRIBUTE Location OF Net_65 : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \Deb_Rot_A:DEBOUNCER[0]:d_sync_0\ : LABEL IS "macrocell5";
+    ATTRIBUTE lib_model OF \Deb_Rot_A:DEBOUNCER[0]:d_sync_0\ : LABEL IS "macrocell6";
     ATTRIBUTE Location OF \Deb_Rot_A:DEBOUNCER[0]:d_sync_0\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \Deb_Rot_A:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell6";
+    ATTRIBUTE lib_model OF \Deb_Rot_A:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell7";
     ATTRIBUTE Location OF \Deb_Rot_A:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF Net_101 : LABEL IS "macrocell7";
+    ATTRIBUTE lib_model OF Net_101 : LABEL IS "macrocell8";
     ATTRIBUTE Location OF Net_101 : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF Net_89 : LABEL IS "macrocell8";
+    ATTRIBUTE lib_model OF Net_89 : LABEL IS "macrocell9";
     ATTRIBUTE Location OF Net_89 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF \PWM_Servo:PWMUDB:runmode_enable\ : LABEL IS "macrocell9";
+    ATTRIBUTE lib_model OF \PWM_Servo:PWMUDB:runmode_enable\ : LABEL IS "macrocell10";
     ATTRIBUTE Location OF \PWM_Servo:PWMUDB:runmode_enable\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \PWM_Servo:PWMUDB:prevCompare1\ : LABEL IS "macrocell10";
+    ATTRIBUTE lib_model OF \PWM_Servo:PWMUDB:prevCompare1\ : LABEL IS "macrocell11";
     ATTRIBUTE Location OF \PWM_Servo:PWMUDB:prevCompare1\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \PWM_Servo:PWMUDB:status_0\ : LABEL IS "macrocell11";
+    ATTRIBUTE lib_model OF \PWM_Servo:PWMUDB:status_0\ : LABEL IS "macrocell12";
     ATTRIBUTE Location OF \PWM_Servo:PWMUDB:status_0\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF Net_324 : LABEL IS "macrocell12";
+    ATTRIBUTE lib_model OF Net_324 : LABEL IS "macrocell13";
     ATTRIBUTE Location OF Net_324 : LABEL IS "U(0,5)";
     COMPONENT clockblockcell
         PORT (
@@ -496,6 +509,17 @@ ARCHITECTURE __DEFAULT__ OF drejeknappelegen IS
             interrupt : OUT std_ulogic;
             clk_en : IN std_ulogic);
     END COMPONENT;
+    COMPONENT timercell
+        PORT (
+            clock : IN std_ulogic;
+            kill : IN std_ulogic;
+            enable : IN std_ulogic;
+            capture : IN std_ulogic;
+            timer_reset : IN std_ulogic;
+            tc : OUT std_ulogic;
+            cmp : OUT std_ulogic;
+            irq : OUT std_ulogic);
+    END COMPONENT;
 BEGIN
 
     ClockBlock:clockblockcell
@@ -521,6 +545,7 @@ BEGIN
             dclk_0 => Net_1110_local,
             dclk_glb_1 => Net_31,
             dclk_1 => Net_31_local,
+            clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
             aclk_glb_ff_0 => \ClockBlock.aclk_glb_ff_0__sig\);
 
     Rot_B:logicalport
@@ -616,10 +641,10 @@ BEGIN
 
     Rot_A:logicalport
         GENERIC MAP(
-            drive_mode => "001",
+            drive_mode => "010",
             ibuf_enabled => "1",
             id => "8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba",
-            init_dr_st => "0",
+            init_dr_st => "1",
             input_buffer_sel => "00",
             input_clk_en => 0,
             input_sync => "0",
@@ -1246,6 +1271,96 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
+    alarm_LED:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "6ea6ff34-b662-432a-aac1-096c425e9d9a",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    alarm_LED(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "alarm_LED",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+        PORT MAP(
+            pa_out => alarm_LED(0)__PA,
+            oe => open,
+            pad_in => alarm_LED(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
     \PWM_Servo:PWMUDB:status_2\:macrocell
         GENERIC MAP(
             eqn_main => "(main_0 * main_1)",
@@ -1255,6 +1370,14 @@ BEGIN
             q => \PWM_Servo:PWMUDB:status_2\,
             main_0 => \PWM_Servo:PWMUDB:runmode_enable\,
             main_1 => \PWM_Servo:PWMUDB:tc_i\);
+
+    __ONE__:macrocell
+        GENERIC MAP(
+            eqn_main => "1'b0",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => __ONE__);
 
     isr_Button:interrupt
         GENERIC MAP(
@@ -1400,6 +1523,27 @@ BEGIN
             data_out_udb_1 => \ADC_ServoFB:Net_207_1\,
             data_out_udb_0 => \ADC_ServoFB:Net_207_0\,
             eof_udb => Net_844);
+
+    \SysTickTimer:TimerHW\:timercell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            clock => \ClockBlock.clk_bus_glb_ff__sig\,
+            kill => open,
+            enable => __ONE__,
+            capture => open,
+            timer_reset => open,
+            tc => \SysTickTimer:Net_51\,
+            cmp => \SysTickTimer:Net_261\,
+            irq => Net_1306);
+
+    systick_isr:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_1306,
+            clock => ClockBlock_BUS_CLK);
 
     \Deb_Butt:DEBOUNCER[0]:d_sync_0\:macrocell
         GENERIC MAP(

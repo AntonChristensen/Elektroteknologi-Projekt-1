@@ -346,6 +346,40 @@
 #define Servo_Out__SHIFT 0u
 #define Servo_Out__SLW CYREG_PRT2_SLW
 
+/* alarm_LED */
+#define alarm_LED__0__INTTYPE CYREG_PICU0_INTTYPE3
+#define alarm_LED__0__MASK 0x08u
+#define alarm_LED__0__PC CYREG_PRT0_PC3
+#define alarm_LED__0__PORT 0u
+#define alarm_LED__0__SHIFT 3u
+#define alarm_LED__AG CYREG_PRT0_AG
+#define alarm_LED__AMUX CYREG_PRT0_AMUX
+#define alarm_LED__BIE CYREG_PRT0_BIE
+#define alarm_LED__BIT_MASK CYREG_PRT0_BIT_MASK
+#define alarm_LED__BYP CYREG_PRT0_BYP
+#define alarm_LED__CTL CYREG_PRT0_CTL
+#define alarm_LED__DM0 CYREG_PRT0_DM0
+#define alarm_LED__DM1 CYREG_PRT0_DM1
+#define alarm_LED__DM2 CYREG_PRT0_DM2
+#define alarm_LED__DR CYREG_PRT0_DR
+#define alarm_LED__INP_DIS CYREG_PRT0_INP_DIS
+#define alarm_LED__INTTYPE_BASE CYDEV_PICU_INTTYPE_PICU0_BASE
+#define alarm_LED__LCD_COM_SEG CYREG_PRT0_LCD_COM_SEG
+#define alarm_LED__LCD_EN CYREG_PRT0_LCD_EN
+#define alarm_LED__MASK 0x08u
+#define alarm_LED__PORT 0u
+#define alarm_LED__PRT CYREG_PRT0_PRT
+#define alarm_LED__PRTDSI__CAPS_SEL CYREG_PRT0_CAPS_SEL
+#define alarm_LED__PRTDSI__DBL_SYNC_IN CYREG_PRT0_DBL_SYNC_IN
+#define alarm_LED__PRTDSI__OE_SEL0 CYREG_PRT0_OE_SEL0
+#define alarm_LED__PRTDSI__OE_SEL1 CYREG_PRT0_OE_SEL1
+#define alarm_LED__PRTDSI__OUT_SEL0 CYREG_PRT0_OUT_SEL0
+#define alarm_LED__PRTDSI__OUT_SEL1 CYREG_PRT0_OUT_SEL1
+#define alarm_LED__PRTDSI__SYNC_OUT CYREG_PRT0_SYNC_OUT
+#define alarm_LED__PS CYREG_PRT0_PS
+#define alarm_LED__SHIFT 3u
+#define alarm_LED__SLW CYREG_PRT0_SLW
+
 /* isr_Button */
 #define isr_Button__INTC_CLR_EN_REG CYREG_NVIC_CLRENA0
 #define isr_Button__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
@@ -429,6 +463,16 @@
 #define ADC_ServoFB_theACLK__PM_STBY_CFG CYREG_PM_STBY_CFG1
 #define ADC_ServoFB_theACLK__PM_STBY_MSK 0x01u
 
+/* systick_isr */
+#define systick_isr__INTC_CLR_EN_REG CYREG_NVIC_CLRENA0
+#define systick_isr__INTC_CLR_PD_REG CYREG_NVIC_CLRPEND0
+#define systick_isr__INTC_MASK 0x20000u
+#define systick_isr__INTC_NUMBER 17u
+#define systick_isr__INTC_PRIOR_NUM 7u
+#define systick_isr__INTC_PRIOR_REG CYREG_NVIC_PRI_17
+#define systick_isr__INTC_SET_EN_REG CYREG_NVIC_SETENA0
+#define systick_isr__INTC_SET_PD_REG CYREG_NVIC_SETPEND0
+
 /* Status_Rot_B */
 #define Status_Rot_B_sts_sts_reg__0__MASK 0x01u
 #define Status_Rot_B_sts_sts_reg__0__POS 0
@@ -438,6 +482,24 @@
 #define Status_Rot_B_sts_sts_reg__MASK_REG CYREG_B0_UDB12_MSK
 #define Status_Rot_B_sts_sts_reg__STATUS_AUX_CTL_REG CYREG_B0_UDB12_ACTL
 #define Status_Rot_B_sts_sts_reg__STATUS_REG CYREG_B0_UDB12_ST
+
+/* SysTickTimer */
+#define SysTickTimer_TimerHW__CAP0 CYREG_TMR0_CAP0
+#define SysTickTimer_TimerHW__CAP1 CYREG_TMR0_CAP1
+#define SysTickTimer_TimerHW__CFG0 CYREG_TMR0_CFG0
+#define SysTickTimer_TimerHW__CFG1 CYREG_TMR0_CFG1
+#define SysTickTimer_TimerHW__CFG2 CYREG_TMR0_CFG2
+#define SysTickTimer_TimerHW__CNT_CMP0 CYREG_TMR0_CNT_CMP0
+#define SysTickTimer_TimerHW__CNT_CMP1 CYREG_TMR0_CNT_CMP1
+#define SysTickTimer_TimerHW__PER0 CYREG_TMR0_PER0
+#define SysTickTimer_TimerHW__PER1 CYREG_TMR0_PER1
+#define SysTickTimer_TimerHW__PM_ACT_CFG CYREG_PM_ACT_CFG3
+#define SysTickTimer_TimerHW__PM_ACT_MSK 0x01u
+#define SysTickTimer_TimerHW__PM_STBY_CFG CYREG_PM_STBY_CFG3
+#define SysTickTimer_TimerHW__PM_STBY_MSK 0x01u
+#define SysTickTimer_TimerHW__RT0 CYREG_TMR0_RT0
+#define SysTickTimer_TimerHW__RT1 CYREG_TMR0_RT1
+#define SysTickTimer_TimerHW__SR0 CYREG_TMR0_SR0
 
 /* Miscellaneous */
 #define BCLK__BUS_CLK__HZ 24000000U

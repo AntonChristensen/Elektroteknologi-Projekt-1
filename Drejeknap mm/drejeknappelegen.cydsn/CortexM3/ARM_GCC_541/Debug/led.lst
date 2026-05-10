@@ -1,0 +1,2301 @@
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"led.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.UpdateKeypadBlink,"ax",%progbits
+  20              		.align	2
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	UpdateKeypadBlink, %function
+  24              	UpdateKeypadBlink:
+  25              	.LFB68:
+  26              		.file 1 "led.c"
+   1:led.c         **** #include "led.h"
+   2:led.c         **** #include "project.h"
+   3:led.c         **** #include "systick.h"
+   4:led.c         **** 
+   5:led.c         **** enum LEDOperation {
+   6:led.c         ****     LED_IDLE = 0,
+   7:led.c         ****     LED_KEYPAD_BLINK = 1,
+   8:led.c         ****     LED_SERVO_GREEN = 2,
+   9:led.c         ****     LED_SERVO_RED = 3,
+  10:led.c         ****     LED_TIMEOUT_BLINK = 4
+  11:led.c         **** };
+  12:led.c         **** 
+  13:led.c         **** static uint8_t current_op = LED_IDLE;
+  14:led.c         **** static uint32_t op_start_time = 0;
+  15:led.c         **** static uint8_t keypad_target_blinks = 0;
+  16:led.c         **** static uint8_t keypad_blink_count = 0;
+  17:led.c         **** static uint8_t led_state = 0;
+  18:led.c         **** 
+  19:led.c         **** void LED_Init(void)
+  20:led.c         **** {
+  21:led.c         ****     current_op = LED_IDLE;
+  22:led.c         ****     led_state = 0;
+  23:led.c         ****     Green_LED_Write(0);
+  24:led.c         ****     Red_LED_Write(0);
+  25:led.c         **** }
+  26:led.c         **** 
+  27:led.c         **** void LED_KeypadShowDigit(uint8_t digit)
+  28:led.c         **** {
+  29:led.c         ****     //if (digit == 0){digit = 10;}
+  30:led.c         ****     current_op = LED_KEYPAD_BLINK;
+  31:led.c         ****     keypad_target_blinks = digit;
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 2
+
+
+  32:led.c         ****     keypad_blink_count = 0;
+  33:led.c         ****     op_start_time = tick_ms;
+  34:led.c         ****     led_state = 0;
+  35:led.c         ****     Green_LED_Write(0);
+  36:led.c         **** }
+  37:led.c         **** 
+  38:led.c         **** void LED_ServoOpen(void)
+  39:led.c         **** {
+  40:led.c         ****     current_op = LED_SERVO_GREEN;
+  41:led.c         ****     op_start_time = tick_ms;
+  42:led.c         ****     led_state = 0;
+  43:led.c         ****     Green_LED_Write(1);
+  44:led.c         **** }
+  45:led.c         **** 
+  46:led.c         **** void LED_ServoClose(void)
+  47:led.c         **** {
+  48:led.c         ****     current_op = LED_SERVO_RED;
+  49:led.c         ****     op_start_time = tick_ms;
+  50:led.c         ****     led_state = 0;
+  51:led.c         ****     Red_LED_Write(1);
+  52:led.c         **** }
+  53:led.c         **** 
+  54:led.c         **** void LED_TimeoutBlink(void)
+  55:led.c         **** {
+  56:led.c         ****     current_op = LED_TIMEOUT_BLINK;
+  57:led.c         ****     op_start_time = tick_ms;
+  58:led.c         ****     led_state = 0;
+  59:led.c         ****     Red_LED_Write(1);
+  60:led.c         ****     Green_LED_Write(1);
+  61:led.c         **** }
+  62:led.c         **** 
+  63:led.c         **** static void UpdateKeypadBlink(void)
+  64:led.c         **** {
+  27              		.loc 1 64 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 38B5     		push	{r3, r4, r5, lr}
+  32              		.cfi_def_cfa_offset 16
+  33              		.cfi_offset 3, -16
+  34              		.cfi_offset 4, -12
+  35              		.cfi_offset 5, -8
+  36              		.cfi_offset 14, -4
+  65:led.c         ****     uint32_t elapsed = tick_ms - op_start_time;
+  37              		.loc 1 65 0
+  38 0002 1C4B     		ldr	r3, .L6
+  39 0004 1B68     		ldr	r3, [r3]
+  40 0006 1C49     		ldr	r1, .L6+4
+  41 0008 0868     		ldr	r0, [r1]
+  42 000a 181A     		subs	r0, r3, r0
+  43              	.LVL0:
+  66:led.c         ****     uint32_t blink_phase_elapsed;
+  67:led.c         ****     uint32_t phase;
+  68:led.c         **** 
+  69:led.c         ****     if (keypad_blink_count >= keypad_target_blinks)
+  44              		.loc 1 69 0
+  45 000c 0A79     		ldrb	r2, [r1, #4]	@ zero_extendqisi2
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 3
+
+
+  46 000e 4979     		ldrb	r1, [r1, #5]	@ zero_extendqisi2
+  47 0010 8A42     		cmp	r2, r1
+  48 0012 0ED3     		bcc	.L2
+  70:led.c         ****     {
+  71:led.c         ****         if (elapsed >= (keypad_target_blinks * 240 + 600))
+  49              		.loc 1 71 0
+  50 0014 C1EB0111 		rsb	r1, r1, r1, lsl #4
+  51 0018 0B01     		lsls	r3, r1, #4
+  52 001a 03F51673 		add	r3, r3, #600
+  53 001e 9842     		cmp	r0, r3
+  54 0020 27D3     		bcc	.L1
+  72:led.c         ****         {
+  73:led.c         ****             current_op = LED_IDLE;
+  55              		.loc 1 73 0
+  56 0022 154D     		ldr	r5, .L6+4
+  57 0024 0024     		movs	r4, #0
+  58 0026 AC71     		strb	r4, [r5, #6]
+  74:led.c         ****             Green_LED_Write(0);
+  59              		.loc 1 74 0
+  60 0028 2046     		mov	r0, r4
+  61              	.LVL1:
+  62 002a FFF7FEFF 		bl	Green_LED_Write
+  63              	.LVL2:
+  75:led.c         ****             led_state = 0;
+  64              		.loc 1 75 0
+  65 002e EC71     		strb	r4, [r5, #7]
+  66 0030 38BD     		pop	{r3, r4, r5, pc}
+  67              	.LVL3:
+  68              	.L2:
+  76:led.c         ****         }
+  77:led.c         ****         return;
+  78:led.c         ****     }
+  79:led.c         **** 
+  80:led.c         ****     blink_phase_elapsed = elapsed - (keypad_blink_count * 240);
+  69              		.loc 1 80 0
+  70 0032 A2EB0212 		sub	r2, r2, r2, lsl #4
+  71 0036 1301     		lsls	r3, r2, #4
+  72 0038 0344     		add	r3, r3, r0
+  73              	.LVL4:
+  81:led.c         ****     phase = blink_phase_elapsed / 120;
+  74              		.loc 1 81 0
+  75 003a 104A     		ldr	r2, .L6+8
+  76 003c A2FB0323 		umull	r2, r3, r2, r3
+  77              	.LVL5:
+  82:led.c         **** 
+  83:led.c         ****     if (phase == 0)
+  78              		.loc 1 83 0
+  79 0040 9B09     		lsrs	r3, r3, #6
+  80              	.LVL6:
+  81 0042 09D1     		bne	.L4
+  84:led.c         ****     {
+  85:led.c         ****         if (!led_state)
+  82              		.loc 1 85 0
+  83 0044 0C4B     		ldr	r3, .L6+4
+  84              	.LVL7:
+  85 0046 DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+  86 0048 9BB9     		cbnz	r3, .L1
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 4
+
+
+  86:led.c         ****         {
+  87:led.c         ****             Green_LED_Write(1);
+  87              		.loc 1 87 0
+  88 004a 0120     		movs	r0, #1
+  89              	.LVL8:
+  90 004c FFF7FEFF 		bl	Green_LED_Write
+  91              	.LVL9:
+  88:led.c         ****             led_state = 1;
+  92              		.loc 1 88 0
+  93 0050 0122     		movs	r2, #1
+  94 0052 094B     		ldr	r3, .L6+4
+  95 0054 DA71     		strb	r2, [r3, #7]
+  96 0056 38BD     		pop	{r3, r4, r5, pc}
+  97              	.LVL10:
+  98              	.L4:
+  89:led.c         ****         }
+  90:led.c         ****     }
+  91:led.c         ****     else if (phase >= 1)
+  99              		.loc 1 91 0
+ 100 0058 5BB1     		cbz	r3, .L1
+  92:led.c         ****     {
+  93:led.c         ****         if (led_state)
+ 101              		.loc 1 93 0
+ 102 005a 074B     		ldr	r3, .L6+4
+ 103              	.LVL11:
+ 104 005c DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+ 105 005e 43B1     		cbz	r3, .L1
+  94:led.c         ****         {
+  95:led.c         ****             Green_LED_Write(0);
+ 106              		.loc 1 95 0
+ 107 0060 0020     		movs	r0, #0
+ 108              	.LVL12:
+ 109 0062 FFF7FEFF 		bl	Green_LED_Write
+ 110              	.LVL13:
+  96:led.c         ****             led_state = 0;
+ 111              		.loc 1 96 0
+ 112 0066 044B     		ldr	r3, .L6+4
+ 113 0068 0022     		movs	r2, #0
+ 114 006a DA71     		strb	r2, [r3, #7]
+  97:led.c         ****             keypad_blink_count++;
+ 115              		.loc 1 97 0
+ 116 006c 1A79     		ldrb	r2, [r3, #4]	@ zero_extendqisi2
+ 117 006e 0132     		adds	r2, r2, #1
+ 118 0070 1A71     		strb	r2, [r3, #4]
+ 119              	.L1:
+ 120 0072 38BD     		pop	{r3, r4, r5, pc}
+ 121              	.L7:
+ 122              		.align	2
+ 123              	.L6:
+ 124 0074 00000000 		.word	tick_ms
+ 125 0078 00000000 		.word	.LANCHOR0
+ 126 007c 89888888 		.word	-2004318071
+ 127              		.cfi_endproc
+ 128              	.LFE68:
+ 129              		.size	UpdateKeypadBlink, .-UpdateKeypadBlink
+ 130              		.section	.text.UpdateServoGreen,"ax",%progbits
+ 131              		.align	2
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 5
+
+
+ 132              		.thumb
+ 133              		.thumb_func
+ 134              		.type	UpdateServoGreen, %function
+ 135              	UpdateServoGreen:
+ 136              	.LFB69:
+  98:led.c         ****         }
+  99:led.c         ****     }
+ 100:led.c         **** }
+ 101:led.c         **** 
+ 102:led.c         **** static void UpdateServoGreen(void)
+ 103:led.c         **** {
+ 137              		.loc 1 103 0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141 0000 08B5     		push	{r3, lr}
+ 142              		.cfi_def_cfa_offset 8
+ 143              		.cfi_offset 3, -8
+ 144              		.cfi_offset 14, -4
+ 104:led.c         ****     uint32_t elapsed = tick_ms - op_start_time;
+ 145              		.loc 1 104 0
+ 146 0002 0D4B     		ldr	r3, .L12
+ 147 0004 1B68     		ldr	r3, [r3]
+ 148 0006 0D4A     		ldr	r2, .L12+4
+ 149 0008 1268     		ldr	r2, [r2]
+ 150 000a 9B1A     		subs	r3, r3, r2
+ 151              	.LVL14:
+ 105:led.c         **** 
+ 106:led.c         ****     if (elapsed < 500)
+ 152              		.loc 1 106 0
+ 153 000c B3F5FA7F 		cmp	r3, #500
+ 154 0010 09D2     		bcs	.L9
+ 107:led.c         ****     {
+ 108:led.c         ****         if (!led_state)
+ 155              		.loc 1 108 0
+ 156 0012 0A4B     		ldr	r3, .L12+4
+ 157              	.LVL15:
+ 158 0014 DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+ 159 0016 6BB9     		cbnz	r3, .L8
+ 109:led.c         ****         {
+ 110:led.c         ****             Green_LED_Write(1);
+ 160              		.loc 1 110 0
+ 161 0018 0120     		movs	r0, #1
+ 162 001a FFF7FEFF 		bl	Green_LED_Write
+ 163              	.LVL16:
+ 111:led.c         ****             led_state = 1;
+ 164              		.loc 1 111 0
+ 165 001e 0122     		movs	r2, #1
+ 166 0020 064B     		ldr	r3, .L12+4
+ 167 0022 DA71     		strb	r2, [r3, #7]
+ 168 0024 08BD     		pop	{r3, pc}
+ 169              	.LVL17:
+ 170              	.L9:
+ 112:led.c         ****         }
+ 113:led.c         ****     }
+ 114:led.c         ****     else
+ 115:led.c         ****     {
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 6
+
+
+ 116:led.c         ****         Green_LED_Write(0);
+ 171              		.loc 1 116 0
+ 172 0026 0020     		movs	r0, #0
+ 173 0028 FFF7FEFF 		bl	Green_LED_Write
+ 174              	.LVL18:
+ 117:led.c         ****         current_op = LED_IDLE;
+ 175              		.loc 1 117 0
+ 176 002c 034B     		ldr	r3, .L12+4
+ 177 002e 0022     		movs	r2, #0
+ 178 0030 9A71     		strb	r2, [r3, #6]
+ 118:led.c         ****         led_state = 0;
+ 179              		.loc 1 118 0
+ 180 0032 DA71     		strb	r2, [r3, #7]
+ 181              	.L8:
+ 182 0034 08BD     		pop	{r3, pc}
+ 183              	.L13:
+ 184 0036 00BF     		.align	2
+ 185              	.L12:
+ 186 0038 00000000 		.word	tick_ms
+ 187 003c 00000000 		.word	.LANCHOR0
+ 188              		.cfi_endproc
+ 189              	.LFE69:
+ 190              		.size	UpdateServoGreen, .-UpdateServoGreen
+ 191              		.section	.text.UpdateServoRed,"ax",%progbits
+ 192              		.align	2
+ 193              		.thumb
+ 194              		.thumb_func
+ 195              		.type	UpdateServoRed, %function
+ 196              	UpdateServoRed:
+ 197              	.LFB70:
+ 119:led.c         ****     }
+ 120:led.c         **** }
+ 121:led.c         **** 
+ 122:led.c         **** static void UpdateServoRed(void)
+ 123:led.c         **** {
+ 198              		.loc 1 123 0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202 0000 08B5     		push	{r3, lr}
+ 203              		.cfi_def_cfa_offset 8
+ 204              		.cfi_offset 3, -8
+ 205              		.cfi_offset 14, -4
+ 124:led.c         ****     uint32_t elapsed = tick_ms - op_start_time;
+ 206              		.loc 1 124 0
+ 207 0002 134B     		ldr	r3, .L19
+ 208 0004 1B68     		ldr	r3, [r3]
+ 209 0006 134A     		ldr	r2, .L19+4
+ 210 0008 1268     		ldr	r2, [r2]
+ 211 000a 9B1A     		subs	r3, r3, r2
+ 212              	.LVL19:
+ 125:led.c         **** 
+ 126:led.c         ****     if (elapsed < 500)
+ 213              		.loc 1 126 0
+ 214 000c B3F5FA7F 		cmp	r3, #500
+ 215 0010 09D2     		bcs	.L15
+ 127:led.c         ****     {
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 7
+
+
+ 128:led.c         ****         if (!led_state)
+ 216              		.loc 1 128 0
+ 217 0012 104B     		ldr	r3, .L19+4
+ 218              	.LVL20:
+ 219 0014 DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+ 220 0016 D3B9     		cbnz	r3, .L14
+ 129:led.c         ****         {
+ 130:led.c         ****             Red_LED_Write(1);
+ 221              		.loc 1 130 0
+ 222 0018 0120     		movs	r0, #1
+ 223 001a FFF7FEFF 		bl	Red_LED_Write
+ 224              	.LVL21:
+ 131:led.c         ****             led_state = 1;
+ 225              		.loc 1 131 0
+ 226 001e 0122     		movs	r2, #1
+ 227 0020 0C4B     		ldr	r3, .L19+4
+ 228 0022 DA71     		strb	r2, [r3, #7]
+ 229 0024 08BD     		pop	{r3, pc}
+ 230              	.LVL22:
+ 231              	.L15:
+ 132:led.c         ****         }
+ 133:led.c         ****     }
+ 134:led.c         ****     else if (elapsed < 1000)
+ 232              		.loc 1 134 0
+ 233 0026 B3F57A7F 		cmp	r3, #1000
+ 234 002a 09D2     		bcs	.L17
+ 135:led.c         ****     {
+ 136:led.c         ****         if (led_state)
+ 235              		.loc 1 136 0
+ 236 002c 094B     		ldr	r3, .L19+4
+ 237              	.LVL23:
+ 238 002e DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+ 239 0030 6BB1     		cbz	r3, .L14
+ 137:led.c         ****         {
+ 138:led.c         ****             Red_LED_Write(0);
+ 240              		.loc 1 138 0
+ 241 0032 0020     		movs	r0, #0
+ 242 0034 FFF7FEFF 		bl	Red_LED_Write
+ 243              	.LVL24:
+ 139:led.c         ****             led_state = 0;
+ 244              		.loc 1 139 0
+ 245 0038 0022     		movs	r2, #0
+ 246 003a 064B     		ldr	r3, .L19+4
+ 247 003c DA71     		strb	r2, [r3, #7]
+ 248 003e 08BD     		pop	{r3, pc}
+ 249              	.LVL25:
+ 250              	.L17:
+ 140:led.c         ****         }
+ 141:led.c         ****     }
+ 142:led.c         ****     else
+ 143:led.c         ****     {
+ 144:led.c         ****         Red_LED_Write(0);
+ 251              		.loc 1 144 0
+ 252 0040 0020     		movs	r0, #0
+ 253 0042 FFF7FEFF 		bl	Red_LED_Write
+ 254              	.LVL26:
+ 145:led.c         ****         current_op = LED_IDLE;
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 8
+
+
+ 255              		.loc 1 145 0
+ 256 0046 034B     		ldr	r3, .L19+4
+ 257 0048 0022     		movs	r2, #0
+ 258 004a 9A71     		strb	r2, [r3, #6]
+ 146:led.c         ****         led_state = 0;
+ 259              		.loc 1 146 0
+ 260 004c DA71     		strb	r2, [r3, #7]
+ 261              	.L14:
+ 262 004e 08BD     		pop	{r3, pc}
+ 263              	.L20:
+ 264              		.align	2
+ 265              	.L19:
+ 266 0050 00000000 		.word	tick_ms
+ 267 0054 00000000 		.word	.LANCHOR0
+ 268              		.cfi_endproc
+ 269              	.LFE70:
+ 270              		.size	UpdateServoRed, .-UpdateServoRed
+ 271              		.section	.text.UpdateTimeoutBlink,"ax",%progbits
+ 272              		.align	2
+ 273              		.thumb
+ 274              		.thumb_func
+ 275              		.type	UpdateTimeoutBlink, %function
+ 276              	UpdateTimeoutBlink:
+ 277              	.LFB71:
+ 147:led.c         ****     }
+ 148:led.c         **** }
+ 149:led.c         **** 
+ 150:led.c         **** static void UpdateTimeoutBlink(void)
+ 151:led.c         **** {
+ 278              		.loc 1 151 0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282 0000 08B5     		push	{r3, lr}
+ 283              		.cfi_def_cfa_offset 8
+ 284              		.cfi_offset 3, -8
+ 285              		.cfi_offset 14, -4
+ 152:led.c         ****     uint32_t elapsed = tick_ms - op_start_time;
+ 286              		.loc 1 152 0
+ 287 0002 104B     		ldr	r3, .L25
+ 288 0004 1B68     		ldr	r3, [r3]
+ 289 0006 104A     		ldr	r2, .L25+4
+ 290 0008 1268     		ldr	r2, [r2]
+ 291 000a 9B1A     		subs	r3, r3, r2
+ 292              	.LVL27:
+ 153:led.c         **** 
+ 154:led.c         ****     if (elapsed < 400)
+ 293              		.loc 1 154 0
+ 294 000c B3F5C87F 		cmp	r3, #400
+ 295 0010 0CD2     		bcs	.L22
+ 155:led.c         ****     {
+ 156:led.c         ****         if (!led_state)
+ 296              		.loc 1 156 0
+ 297 0012 0D4B     		ldr	r3, .L25+4
+ 298              	.LVL28:
+ 299 0014 DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+ 300 0016 9BB9     		cbnz	r3, .L21
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 9
+
+
+ 157:led.c         ****         {
+ 158:led.c         ****             Red_LED_Write(1);
+ 301              		.loc 1 158 0
+ 302 0018 0120     		movs	r0, #1
+ 303 001a FFF7FEFF 		bl	Red_LED_Write
+ 304              	.LVL29:
+ 159:led.c         ****             Green_LED_Write(1);
+ 305              		.loc 1 159 0
+ 306 001e 0120     		movs	r0, #1
+ 307 0020 FFF7FEFF 		bl	Green_LED_Write
+ 308              	.LVL30:
+ 160:led.c         ****             led_state = 1;
+ 309              		.loc 1 160 0
+ 310 0024 0122     		movs	r2, #1
+ 311 0026 084B     		ldr	r3, .L25+4
+ 312 0028 DA71     		strb	r2, [r3, #7]
+ 313 002a 08BD     		pop	{r3, pc}
+ 314              	.LVL31:
+ 315              	.L22:
+ 161:led.c         ****         }
+ 162:led.c         ****     }
+ 163:led.c         ****     else
+ 164:led.c         ****     {
+ 165:led.c         ****         Red_LED_Write(0);
+ 316              		.loc 1 165 0
+ 317 002c 0020     		movs	r0, #0
+ 318 002e FFF7FEFF 		bl	Red_LED_Write
+ 319              	.LVL32:
+ 166:led.c         ****         Green_LED_Write(0);
+ 320              		.loc 1 166 0
+ 321 0032 0020     		movs	r0, #0
+ 322 0034 FFF7FEFF 		bl	Green_LED_Write
+ 323              	.LVL33:
+ 167:led.c         ****         current_op = LED_IDLE;
+ 324              		.loc 1 167 0
+ 325 0038 034B     		ldr	r3, .L25+4
+ 326 003a 0022     		movs	r2, #0
+ 327 003c 9A71     		strb	r2, [r3, #6]
+ 168:led.c         ****         led_state = 0;
+ 328              		.loc 1 168 0
+ 329 003e DA71     		strb	r2, [r3, #7]
+ 330              	.L21:
+ 331 0040 08BD     		pop	{r3, pc}
+ 332              	.L26:
+ 333 0042 00BF     		.align	2
+ 334              	.L25:
+ 335 0044 00000000 		.word	tick_ms
+ 336 0048 00000000 		.word	.LANCHOR0
+ 337              		.cfi_endproc
+ 338              	.LFE71:
+ 339              		.size	UpdateTimeoutBlink, .-UpdateTimeoutBlink
+ 340              		.section	.text.LED_Init,"ax",%progbits
+ 341              		.align	2
+ 342              		.global	LED_Init
+ 343              		.thumb
+ 344              		.thumb_func
+ 345              		.type	LED_Init, %function
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 10
+
+
+ 346              	LED_Init:
+ 347              	.LFB63:
+  20:led.c         ****     current_op = LED_IDLE;
+ 348              		.loc 1 20 0
+ 349              		.cfi_startproc
+ 350              		@ args = 0, pretend = 0, frame = 0
+ 351              		@ frame_needed = 0, uses_anonymous_args = 0
+ 352 0000 10B5     		push	{r4, lr}
+ 353              		.cfi_def_cfa_offset 8
+ 354              		.cfi_offset 4, -8
+ 355              		.cfi_offset 14, -4
+  21:led.c         ****     led_state = 0;
+ 356              		.loc 1 21 0
+ 357 0002 054B     		ldr	r3, .L29
+ 358 0004 0024     		movs	r4, #0
+ 359 0006 9C71     		strb	r4, [r3, #6]
+  22:led.c         ****     Green_LED_Write(0);
+ 360              		.loc 1 22 0
+ 361 0008 DC71     		strb	r4, [r3, #7]
+  23:led.c         ****     Red_LED_Write(0);
+ 362              		.loc 1 23 0
+ 363 000a 2046     		mov	r0, r4
+ 364 000c FFF7FEFF 		bl	Green_LED_Write
+ 365              	.LVL34:
+  24:led.c         **** }
+ 366              		.loc 1 24 0
+ 367 0010 2046     		mov	r0, r4
+ 368 0012 FFF7FEFF 		bl	Red_LED_Write
+ 369              	.LVL35:
+ 370 0016 10BD     		pop	{r4, pc}
+ 371              	.L30:
+ 372              		.align	2
+ 373              	.L29:
+ 374 0018 00000000 		.word	.LANCHOR0
+ 375              		.cfi_endproc
+ 376              	.LFE63:
+ 377              		.size	LED_Init, .-LED_Init
+ 378              		.section	.text.LED_KeypadShowDigit,"ax",%progbits
+ 379              		.align	2
+ 380              		.global	LED_KeypadShowDigit
+ 381              		.thumb
+ 382              		.thumb_func
+ 383              		.type	LED_KeypadShowDigit, %function
+ 384              	LED_KeypadShowDigit:
+ 385              	.LFB64:
+  28:led.c         ****     //if (digit == 0){digit = 10;}
+ 386              		.loc 1 28 0
+ 387              		.cfi_startproc
+ 388              		@ args = 0, pretend = 0, frame = 0
+ 389              		@ frame_needed = 0, uses_anonymous_args = 0
+ 390              	.LVL36:
+ 391 0000 08B5     		push	{r3, lr}
+ 392              		.cfi_def_cfa_offset 8
+ 393              		.cfi_offset 3, -8
+ 394              		.cfi_offset 14, -4
+  30:led.c         ****     keypad_target_blinks = digit;
+ 395              		.loc 1 30 0
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 11
+
+
+ 396 0002 064B     		ldr	r3, .L33
+ 397 0004 0122     		movs	r2, #1
+ 398 0006 9A71     		strb	r2, [r3, #6]
+  31:led.c         ****     keypad_blink_count = 0;
+ 399              		.loc 1 31 0
+ 400 0008 5871     		strb	r0, [r3, #5]
+  32:led.c         ****     op_start_time = tick_ms;
+ 401              		.loc 1 32 0
+ 402 000a 0020     		movs	r0, #0
+ 403              	.LVL37:
+ 404 000c 1871     		strb	r0, [r3, #4]
+  33:led.c         ****     led_state = 0;
+ 405              		.loc 1 33 0
+ 406 000e 044A     		ldr	r2, .L33+4
+ 407 0010 1268     		ldr	r2, [r2]
+ 408 0012 1A60     		str	r2, [r3]
+  34:led.c         ****     Green_LED_Write(0);
+ 409              		.loc 1 34 0
+ 410 0014 D871     		strb	r0, [r3, #7]
+  35:led.c         **** }
+ 411              		.loc 1 35 0
+ 412 0016 FFF7FEFF 		bl	Green_LED_Write
+ 413              	.LVL38:
+ 414 001a 08BD     		pop	{r3, pc}
+ 415              	.L34:
+ 416              		.align	2
+ 417              	.L33:
+ 418 001c 00000000 		.word	.LANCHOR0
+ 419 0020 00000000 		.word	tick_ms
+ 420              		.cfi_endproc
+ 421              	.LFE64:
+ 422              		.size	LED_KeypadShowDigit, .-LED_KeypadShowDigit
+ 423              		.section	.text.LED_ServoOpen,"ax",%progbits
+ 424              		.align	2
+ 425              		.global	LED_ServoOpen
+ 426              		.thumb
+ 427              		.thumb_func
+ 428              		.type	LED_ServoOpen, %function
+ 429              	LED_ServoOpen:
+ 430              	.LFB65:
+  39:led.c         ****     current_op = LED_SERVO_GREEN;
+ 431              		.loc 1 39 0
+ 432              		.cfi_startproc
+ 433              		@ args = 0, pretend = 0, frame = 0
+ 434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 435 0000 08B5     		push	{r3, lr}
+ 436              		.cfi_def_cfa_offset 8
+ 437              		.cfi_offset 3, -8
+ 438              		.cfi_offset 14, -4
+  40:led.c         ****     op_start_time = tick_ms;
+ 439              		.loc 1 40 0
+ 440 0002 064B     		ldr	r3, .L37
+ 441 0004 0222     		movs	r2, #2
+ 442 0006 9A71     		strb	r2, [r3, #6]
+  41:led.c         ****     led_state = 0;
+ 443              		.loc 1 41 0
+ 444 0008 054A     		ldr	r2, .L37+4
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 12
+
+
+ 445 000a 1268     		ldr	r2, [r2]
+ 446 000c 1A60     		str	r2, [r3]
+  42:led.c         ****     Green_LED_Write(1);
+ 447              		.loc 1 42 0
+ 448 000e 0022     		movs	r2, #0
+ 449 0010 DA71     		strb	r2, [r3, #7]
+  43:led.c         **** }
+ 450              		.loc 1 43 0
+ 451 0012 0120     		movs	r0, #1
+ 452 0014 FFF7FEFF 		bl	Green_LED_Write
+ 453              	.LVL39:
+ 454 0018 08BD     		pop	{r3, pc}
+ 455              	.L38:
+ 456 001a 00BF     		.align	2
+ 457              	.L37:
+ 458 001c 00000000 		.word	.LANCHOR0
+ 459 0020 00000000 		.word	tick_ms
+ 460              		.cfi_endproc
+ 461              	.LFE65:
+ 462              		.size	LED_ServoOpen, .-LED_ServoOpen
+ 463              		.section	.text.LED_ServoClose,"ax",%progbits
+ 464              		.align	2
+ 465              		.global	LED_ServoClose
+ 466              		.thumb
+ 467              		.thumb_func
+ 468              		.type	LED_ServoClose, %function
+ 469              	LED_ServoClose:
+ 470              	.LFB66:
+  47:led.c         ****     current_op = LED_SERVO_RED;
+ 471              		.loc 1 47 0
+ 472              		.cfi_startproc
+ 473              		@ args = 0, pretend = 0, frame = 0
+ 474              		@ frame_needed = 0, uses_anonymous_args = 0
+ 475 0000 08B5     		push	{r3, lr}
+ 476              		.cfi_def_cfa_offset 8
+ 477              		.cfi_offset 3, -8
+ 478              		.cfi_offset 14, -4
+  48:led.c         ****     op_start_time = tick_ms;
+ 479              		.loc 1 48 0
+ 480 0002 064B     		ldr	r3, .L41
+ 481 0004 0322     		movs	r2, #3
+ 482 0006 9A71     		strb	r2, [r3, #6]
+  49:led.c         ****     led_state = 0;
+ 483              		.loc 1 49 0
+ 484 0008 054A     		ldr	r2, .L41+4
+ 485 000a 1268     		ldr	r2, [r2]
+ 486 000c 1A60     		str	r2, [r3]
+  50:led.c         ****     Red_LED_Write(1);
+ 487              		.loc 1 50 0
+ 488 000e 0022     		movs	r2, #0
+ 489 0010 DA71     		strb	r2, [r3, #7]
+  51:led.c         **** }
+ 490              		.loc 1 51 0
+ 491 0012 0120     		movs	r0, #1
+ 492 0014 FFF7FEFF 		bl	Red_LED_Write
+ 493              	.LVL40:
+ 494 0018 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 13
+
+
+ 495              	.L42:
+ 496 001a 00BF     		.align	2
+ 497              	.L41:
+ 498 001c 00000000 		.word	.LANCHOR0
+ 499 0020 00000000 		.word	tick_ms
+ 500              		.cfi_endproc
+ 501              	.LFE66:
+ 502              		.size	LED_ServoClose, .-LED_ServoClose
+ 503              		.section	.text.LED_TimeoutBlink,"ax",%progbits
+ 504              		.align	2
+ 505              		.global	LED_TimeoutBlink
+ 506              		.thumb
+ 507              		.thumb_func
+ 508              		.type	LED_TimeoutBlink, %function
+ 509              	LED_TimeoutBlink:
+ 510              	.LFB67:
+  55:led.c         ****     current_op = LED_TIMEOUT_BLINK;
+ 511              		.loc 1 55 0
+ 512              		.cfi_startproc
+ 513              		@ args = 0, pretend = 0, frame = 0
+ 514              		@ frame_needed = 0, uses_anonymous_args = 0
+ 515 0000 08B5     		push	{r3, lr}
+ 516              		.cfi_def_cfa_offset 8
+ 517              		.cfi_offset 3, -8
+ 518              		.cfi_offset 14, -4
+  56:led.c         ****     op_start_time = tick_ms;
+ 519              		.loc 1 56 0
+ 520 0002 074B     		ldr	r3, .L45
+ 521 0004 0422     		movs	r2, #4
+ 522 0006 9A71     		strb	r2, [r3, #6]
+  57:led.c         ****     led_state = 0;
+ 523              		.loc 1 57 0
+ 524 0008 064A     		ldr	r2, .L45+4
+ 525 000a 1268     		ldr	r2, [r2]
+ 526 000c 1A60     		str	r2, [r3]
+  58:led.c         ****     Red_LED_Write(1);
+ 527              		.loc 1 58 0
+ 528 000e 0022     		movs	r2, #0
+ 529 0010 DA71     		strb	r2, [r3, #7]
+  59:led.c         ****     Green_LED_Write(1);
+ 530              		.loc 1 59 0
+ 531 0012 0120     		movs	r0, #1
+ 532 0014 FFF7FEFF 		bl	Red_LED_Write
+ 533              	.LVL41:
+  60:led.c         **** }
+ 534              		.loc 1 60 0
+ 535 0018 0120     		movs	r0, #1
+ 536 001a FFF7FEFF 		bl	Green_LED_Write
+ 537              	.LVL42:
+ 538 001e 08BD     		pop	{r3, pc}
+ 539              	.L46:
+ 540              		.align	2
+ 541              	.L45:
+ 542 0020 00000000 		.word	.LANCHOR0
+ 543 0024 00000000 		.word	tick_ms
+ 544              		.cfi_endproc
+ 545              	.LFE67:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 14
+
+
+ 546              		.size	LED_TimeoutBlink, .-LED_TimeoutBlink
+ 547              		.section	.text.LED_Update,"ax",%progbits
+ 548              		.align	2
+ 549              		.global	LED_Update
+ 550              		.thumb
+ 551              		.thumb_func
+ 552              		.type	LED_Update, %function
+ 553              	LED_Update:
+ 554              	.LFB72:
+ 169:led.c         ****     }
+ 170:led.c         **** }
+ 171:led.c         **** 
+ 172:led.c         **** void LED_Update(void)
+ 173:led.c         **** {
+ 555              		.loc 1 173 0
+ 556              		.cfi_startproc
+ 557              		@ args = 0, pretend = 0, frame = 0
+ 558              		@ frame_needed = 0, uses_anonymous_args = 0
+ 559 0000 08B5     		push	{r3, lr}
+ 560              		.cfi_def_cfa_offset 8
+ 561              		.cfi_offset 3, -8
+ 562              		.cfi_offset 14, -4
+ 174:led.c         ****     switch (current_op)
+ 563              		.loc 1 174 0
+ 564 0002 0A4B     		ldr	r3, .L55
+ 565 0004 9B79     		ldrb	r3, [r3, #6]	@ zero_extendqisi2
+ 566 0006 013B     		subs	r3, r3, #1
+ 567 0008 032B     		cmp	r3, #3
+ 568 000a 0ED8     		bhi	.L47
+ 569 000c DFE803F0 		tbb	[pc, r3]
+ 570              	.L50:
+ 571 0010 02       		.byte	(.L49-.L50)/2
+ 572 0011 05       		.byte	(.L51-.L50)/2
+ 573 0012 08       		.byte	(.L52-.L50)/2
+ 574 0013 0B       		.byte	(.L53-.L50)/2
+ 575              		.p2align 1
+ 576              	.L49:
+ 175:led.c         ****     {
+ 176:led.c         ****         case LED_KEYPAD_BLINK:
+ 177:led.c         ****             UpdateKeypadBlink();
+ 577              		.loc 1 177 0
+ 578 0014 FFF7FEFF 		bl	UpdateKeypadBlink
+ 579              	.LVL43:
+ 178:led.c         ****             break;
+ 580              		.loc 1 178 0
+ 581 0018 08BD     		pop	{r3, pc}
+ 582              	.L51:
+ 179:led.c         ****         case LED_SERVO_GREEN:
+ 180:led.c         ****             UpdateServoGreen();
+ 583              		.loc 1 180 0
+ 584 001a FFF7FEFF 		bl	UpdateServoGreen
+ 585              	.LVL44:
+ 181:led.c         ****             break;
+ 586              		.loc 1 181 0
+ 587 001e 08BD     		pop	{r3, pc}
+ 588              	.L52:
+ 182:led.c         ****         case LED_SERVO_RED:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 15
+
+
+ 183:led.c         ****             UpdateServoRed();
+ 589              		.loc 1 183 0
+ 590 0020 FFF7FEFF 		bl	UpdateServoRed
+ 591              	.LVL45:
+ 184:led.c         ****             break;
+ 592              		.loc 1 184 0
+ 593 0024 08BD     		pop	{r3, pc}
+ 594              	.L53:
+ 185:led.c         ****         case LED_TIMEOUT_BLINK:
+ 186:led.c         ****             UpdateTimeoutBlink();
+ 595              		.loc 1 186 0
+ 596 0026 FFF7FEFF 		bl	UpdateTimeoutBlink
+ 597              	.LVL46:
+ 598              	.L47:
+ 599 002a 08BD     		pop	{r3, pc}
+ 600              	.L56:
+ 601              		.align	2
+ 602              	.L55:
+ 603 002c 00000000 		.word	.LANCHOR0
+ 604              		.cfi_endproc
+ 605              	.LFE72:
+ 606              		.size	LED_Update, .-LED_Update
+ 607              		.bss
+ 608              		.align	2
+ 609              		.set	.LANCHOR0,. + 0
+ 610              		.type	op_start_time, %object
+ 611              		.size	op_start_time, 4
+ 612              	op_start_time:
+ 613 0000 00000000 		.space	4
+ 614              		.type	keypad_blink_count, %object
+ 615              		.size	keypad_blink_count, 1
+ 616              	keypad_blink_count:
+ 617 0004 00       		.space	1
+ 618              		.type	keypad_target_blinks, %object
+ 619              		.size	keypad_target_blinks, 1
+ 620              	keypad_target_blinks:
+ 621 0005 00       		.space	1
+ 622              		.type	current_op, %object
+ 623              		.size	current_op, 1
+ 624              	current_op:
+ 625 0006 00       		.space	1
+ 626              		.type	led_state, %object
+ 627              		.size	led_state, 1
+ 628              	led_state:
+ 629 0007 00       		.space	1
+ 630              		.text
+ 631              	.Letext0:
+ 632              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 633              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 634              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+ 635              		.file 5 "systick.h"
+ 636              		.file 6 "Generated_Source\\PSoC5/Green_LED.h"
+ 637              		.file 7 "Generated_Source\\PSoC5/Red_LED.h"
+ 638              		.section	.debug_info,"",%progbits
+ 639              	.Ldebug_info0:
+ 640 0000 39040000 		.4byte	0x439
+ 641 0004 0400     		.2byte	0x4
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 16
+
+
+ 642 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 643 000a 04       		.byte	0x4
+ 644 000b 01       		.uleb128 0x1
+ 645 000c B0000000 		.4byte	.LASF47
+ 646 0010 0C       		.byte	0xc
+ 647 0011 77010000 		.4byte	.LASF48
+ 648 0015 8D020000 		.4byte	.LASF49
+ 649 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 650 001d 00000000 		.4byte	0
+ 651 0021 00000000 		.4byte	.Ldebug_line0
+ 652 0025 02       		.uleb128 0x2
+ 653 0026 08       		.byte	0x8
+ 654 0027 07       		.byte	0x7
+ 655 0028 10020000 		.4byte	.LASF0
+ 656 002c 02       		.uleb128 0x2
+ 657 002d 04       		.byte	0x4
+ 658 002e 07       		.byte	0x7
+ 659 002f CE010000 		.4byte	.LASF1
+ 660 0033 02       		.uleb128 0x2
+ 661 0034 01       		.byte	0x1
+ 662 0035 06       		.byte	0x6
+ 663 0036 39030000 		.4byte	.LASF2
+ 664 003a 03       		.uleb128 0x3
+ 665 003b 31000000 		.4byte	.LASF6
+ 666 003f 02       		.byte	0x2
+ 667 0040 1D       		.byte	0x1d
+ 668 0041 45000000 		.4byte	0x45
+ 669 0045 02       		.uleb128 0x2
+ 670 0046 01       		.byte	0x1
+ 671 0047 08       		.byte	0x8
+ 672 0048 8A010000 		.4byte	.LASF3
+ 673 004c 02       		.uleb128 0x2
+ 674 004d 02       		.byte	0x2
+ 675 004e 05       		.byte	0x5
+ 676 004f F4020000 		.4byte	.LASF4
+ 677 0053 02       		.uleb128 0x2
+ 678 0054 02       		.byte	0x2
+ 679 0055 07       		.byte	0x7
+ 680 0056 5E010000 		.4byte	.LASF5
+ 681 005a 03       		.uleb128 0x3
+ 682 005b 3B000000 		.4byte	.LASF7
+ 683 005f 02       		.byte	0x2
+ 684 0060 3F       		.byte	0x3f
+ 685 0061 65000000 		.4byte	0x65
+ 686 0065 02       		.uleb128 0x2
+ 687 0066 04       		.byte	0x4
+ 688 0067 05       		.byte	0x5
+ 689 0068 24030000 		.4byte	.LASF8
+ 690 006c 03       		.uleb128 0x3
+ 691 006d C3010000 		.4byte	.LASF9
+ 692 0071 02       		.byte	0x2
+ 693 0072 41       		.byte	0x41
+ 694 0073 77000000 		.4byte	0x77
+ 695 0077 02       		.uleb128 0x2
+ 696 0078 04       		.byte	0x4
+ 697 0079 07       		.byte	0x7
+ 698 007a 4C010000 		.4byte	.LASF10
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 17
+
+
+ 699 007e 02       		.uleb128 0x2
+ 700 007f 08       		.byte	0x8
+ 701 0080 05       		.byte	0x5
+ 702 0081 71020000 		.4byte	.LASF11
+ 703 0085 04       		.uleb128 0x4
+ 704 0086 04       		.byte	0x4
+ 705 0087 05       		.byte	0x5
+ 706 0088 696E7400 		.ascii	"int\000"
+ 707 008c 03       		.uleb128 0x3
+ 708 008d 27020000 		.4byte	.LASF12
+ 709 0091 03       		.byte	0x3
+ 710 0092 18       		.byte	0x18
+ 711 0093 3A000000 		.4byte	0x3a
+ 712 0097 03       		.uleb128 0x3
+ 713 0098 60020000 		.4byte	.LASF13
+ 714 009c 03       		.byte	0x3
+ 715 009d 2C       		.byte	0x2c
+ 716 009e 5A000000 		.4byte	0x5a
+ 717 00a2 03       		.uleb128 0x3
+ 718 00a3 1B030000 		.4byte	.LASF14
+ 719 00a7 03       		.byte	0x3
+ 720 00a8 30       		.byte	0x30
+ 721 00a9 6C000000 		.4byte	0x6c
+ 722 00ad 02       		.uleb128 0x2
+ 723 00ae 04       		.byte	0x4
+ 724 00af 04       		.byte	0x4
+ 725 00b0 83000000 		.4byte	.LASF15
+ 726 00b4 02       		.uleb128 0x2
+ 727 00b5 08       		.byte	0x8
+ 728 00b6 04       		.byte	0x4
+ 729 00b7 A8010000 		.4byte	.LASF16
+ 730 00bb 02       		.uleb128 0x2
+ 731 00bc 01       		.byte	0x1
+ 732 00bd 08       		.byte	0x8
+ 733 00be 88020000 		.4byte	.LASF17
+ 734 00c2 02       		.uleb128 0x2
+ 735 00c3 08       		.byte	0x8
+ 736 00c4 04       		.byte	0x4
+ 737 00c5 2D030000 		.4byte	.LASF18
+ 738 00c9 02       		.uleb128 0x2
+ 739 00ca 04       		.byte	0x4
+ 740 00cb 07       		.byte	0x7
+ 741 00cc 68020000 		.4byte	.LASF19
+ 742 00d0 05       		.uleb128 0x5
+ 743 00d1 A2000000 		.4byte	0xa2
+ 744 00d5 06       		.uleb128 0x6
+ 745 00d6 5C000000 		.4byte	.LASF50
+ 746 00da 01       		.byte	0x1
+ 747 00db 45000000 		.4byte	0x45
+ 748 00df 01       		.byte	0x1
+ 749 00e0 05       		.byte	0x5
+ 750 00e1 04010000 		.4byte	0x104
+ 751 00e5 07       		.uleb128 0x7
+ 752 00e6 7F020000 		.4byte	.LASF20
+ 753 00ea 00       		.byte	0
+ 754 00eb 07       		.uleb128 0x7
+ 755 00ec 41020000 		.4byte	.LASF21
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 18
+
+
+ 756 00f0 01       		.byte	0x1
+ 757 00f1 07       		.uleb128 0x7
+ 758 00f2 0E000000 		.4byte	.LASF22
+ 759 00f6 02       		.byte	0x2
+ 760 00f7 07       		.uleb128 0x7
+ 761 00f8 0D030000 		.4byte	.LASF23
+ 762 00fc 03       		.byte	0x3
+ 763 00fd 07       		.uleb128 0x7
+ 764 00fe 71000000 		.4byte	.LASF24
+ 765 0102 04       		.byte	0x4
+ 766 0103 00       		.byte	0
+ 767 0104 08       		.uleb128 0x8
+ 768 0105 DB010000 		.4byte	.LASF28
+ 769 0109 01       		.byte	0x1
+ 770 010a 3F       		.byte	0x3f
+ 771 010b 00000000 		.4byte	.LFB68
+ 772 010f 80000000 		.4byte	.LFE68-.LFB68
+ 773 0113 01       		.uleb128 0x1
+ 774 0114 9C       		.byte	0x9c
+ 775 0115 7D010000 		.4byte	0x17d
+ 776 0119 09       		.uleb128 0x9
+ 777 011a 2F020000 		.4byte	.LASF25
+ 778 011e 01       		.byte	0x1
+ 779 011f 41       		.byte	0x41
+ 780 0120 A2000000 		.4byte	0xa2
+ 781 0124 00000000 		.4byte	.LLST0
+ 782 0128 09       		.uleb128 0x9
+ 783 0129 AF010000 		.4byte	.LASF26
+ 784 012d 01       		.byte	0x1
+ 785 012e 42       		.byte	0x42
+ 786 012f A2000000 		.4byte	0xa2
+ 787 0133 29000000 		.4byte	.LLST1
+ 788 0137 09       		.uleb128 0x9
+ 789 0138 71010000 		.4byte	.LASF27
+ 790 013c 01       		.byte	0x1
+ 791 013d 43       		.byte	0x43
+ 792 013e A2000000 		.4byte	0xa2
+ 793 0142 76000000 		.4byte	.LLST2
+ 794 0146 0A       		.uleb128 0xa
+ 795 0147 2E000000 		.4byte	.LVL2
+ 796 014b 26040000 		.4byte	0x426
+ 797 014f 5A010000 		.4byte	0x15a
+ 798 0153 0B       		.uleb128 0xb
+ 799 0154 01       		.uleb128 0x1
+ 800 0155 50       		.byte	0x50
+ 801 0156 02       		.uleb128 0x2
+ 802 0157 74       		.byte	0x74
+ 803 0158 00       		.sleb128 0
+ 804 0159 00       		.byte	0
+ 805 015a 0A       		.uleb128 0xa
+ 806 015b 50000000 		.4byte	.LVL9
+ 807 015f 26040000 		.4byte	0x426
+ 808 0163 6D010000 		.4byte	0x16d
+ 809 0167 0B       		.uleb128 0xb
+ 810 0168 01       		.uleb128 0x1
+ 811 0169 50       		.byte	0x50
+ 812 016a 01       		.uleb128 0x1
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 19
+
+
+ 813 016b 31       		.byte	0x31
+ 814 016c 00       		.byte	0
+ 815 016d 0C       		.uleb128 0xc
+ 816 016e 66000000 		.4byte	.LVL13
+ 817 0172 26040000 		.4byte	0x426
+ 818 0176 0B       		.uleb128 0xb
+ 819 0177 01       		.uleb128 0x1
+ 820 0178 50       		.byte	0x50
+ 821 0179 01       		.uleb128 0x1
+ 822 017a 30       		.byte	0x30
+ 823 017b 00       		.byte	0
+ 824 017c 00       		.byte	0
+ 825 017d 08       		.uleb128 0x8
+ 826 017e 94000000 		.4byte	.LASF29
+ 827 0182 01       		.byte	0x1
+ 828 0183 66       		.byte	0x66
+ 829 0184 00000000 		.4byte	.LFB69
+ 830 0188 40000000 		.4byte	.LFE69-.LFB69
+ 831 018c 01       		.uleb128 0x1
+ 832 018d 9C       		.byte	0x9c
+ 833 018e C4010000 		.4byte	0x1c4
+ 834 0192 09       		.uleb128 0x9
+ 835 0193 2F020000 		.4byte	.LASF25
+ 836 0197 01       		.byte	0x1
+ 837 0198 68       		.byte	0x68
+ 838 0199 A2000000 		.4byte	0xa2
+ 839 019d 0F010000 		.4byte	.LLST3
+ 840 01a1 0A       		.uleb128 0xa
+ 841 01a2 1E000000 		.4byte	.LVL16
+ 842 01a6 26040000 		.4byte	0x426
+ 843 01aa B4010000 		.4byte	0x1b4
+ 844 01ae 0B       		.uleb128 0xb
+ 845 01af 01       		.uleb128 0x1
+ 846 01b0 50       		.byte	0x50
+ 847 01b1 01       		.uleb128 0x1
+ 848 01b2 31       		.byte	0x31
+ 849 01b3 00       		.byte	0
+ 850 01b4 0C       		.uleb128 0xc
+ 851 01b5 2C000000 		.4byte	.LVL18
+ 852 01b9 26040000 		.4byte	0x426
+ 853 01bd 0B       		.uleb128 0xb
+ 854 01be 01       		.uleb128 0x1
+ 855 01bf 50       		.byte	0x50
+ 856 01c0 01       		.uleb128 0x1
+ 857 01c1 30       		.byte	0x30
+ 858 01c2 00       		.byte	0
+ 859 01c3 00       		.byte	0
+ 860 01c4 08       		.uleb128 0x8
+ 861 01c5 FE020000 		.4byte	.LASF30
+ 862 01c9 01       		.byte	0x1
+ 863 01ca 7A       		.byte	0x7a
+ 864 01cb 00000000 		.4byte	.LFB70
+ 865 01cf 58000000 		.4byte	.LFE70-.LFB70
+ 866 01d3 01       		.uleb128 0x1
+ 867 01d4 9C       		.byte	0x9c
+ 868 01d5 1E020000 		.4byte	0x21e
+ 869 01d9 09       		.uleb128 0x9
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 20
+
+
+ 870 01da 2F020000 		.4byte	.LASF25
+ 871 01de 01       		.byte	0x1
+ 872 01df 7C       		.byte	0x7c
+ 873 01e0 A2000000 		.4byte	0xa2
+ 874 01e4 2D010000 		.4byte	.LLST4
+ 875 01e8 0A       		.uleb128 0xa
+ 876 01e9 1E000000 		.4byte	.LVL21
+ 877 01ed 31040000 		.4byte	0x431
+ 878 01f1 FB010000 		.4byte	0x1fb
+ 879 01f5 0B       		.uleb128 0xb
+ 880 01f6 01       		.uleb128 0x1
+ 881 01f7 50       		.byte	0x50
+ 882 01f8 01       		.uleb128 0x1
+ 883 01f9 31       		.byte	0x31
+ 884 01fa 00       		.byte	0
+ 885 01fb 0A       		.uleb128 0xa
+ 886 01fc 38000000 		.4byte	.LVL24
+ 887 0200 31040000 		.4byte	0x431
+ 888 0204 0E020000 		.4byte	0x20e
+ 889 0208 0B       		.uleb128 0xb
+ 890 0209 01       		.uleb128 0x1
+ 891 020a 50       		.byte	0x50
+ 892 020b 01       		.uleb128 0x1
+ 893 020c 30       		.byte	0x30
+ 894 020d 00       		.byte	0
+ 895 020e 0C       		.uleb128 0xc
+ 896 020f 46000000 		.4byte	.LVL26
+ 897 0213 31040000 		.4byte	0x431
+ 898 0217 0B       		.uleb128 0xb
+ 899 0218 01       		.uleb128 0x1
+ 900 0219 50       		.byte	0x50
+ 901 021a 01       		.uleb128 0x1
+ 902 021b 30       		.byte	0x30
+ 903 021c 00       		.byte	0
+ 904 021d 00       		.byte	0
+ 905 021e 08       		.uleb128 0x8
+ 906 021f 1E000000 		.4byte	.LASF31
+ 907 0223 01       		.byte	0x1
+ 908 0224 96       		.byte	0x96
+ 909 0225 00000000 		.4byte	.LFB71
+ 910 0229 4C000000 		.4byte	.LFE71-.LFB71
+ 911 022d 01       		.uleb128 0x1
+ 912 022e 9C       		.byte	0x9c
+ 913 022f 8B020000 		.4byte	0x28b
+ 914 0233 09       		.uleb128 0x9
+ 915 0234 2F020000 		.4byte	.LASF25
+ 916 0238 01       		.byte	0x1
+ 917 0239 98       		.byte	0x98
+ 918 023a A2000000 		.4byte	0xa2
+ 919 023e 56010000 		.4byte	.LLST5
+ 920 0242 0A       		.uleb128 0xa
+ 921 0243 1E000000 		.4byte	.LVL29
+ 922 0247 31040000 		.4byte	0x431
+ 923 024b 55020000 		.4byte	0x255
+ 924 024f 0B       		.uleb128 0xb
+ 925 0250 01       		.uleb128 0x1
+ 926 0251 50       		.byte	0x50
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 21
+
+
+ 927 0252 01       		.uleb128 0x1
+ 928 0253 31       		.byte	0x31
+ 929 0254 00       		.byte	0
+ 930 0255 0A       		.uleb128 0xa
+ 931 0256 24000000 		.4byte	.LVL30
+ 932 025a 26040000 		.4byte	0x426
+ 933 025e 68020000 		.4byte	0x268
+ 934 0262 0B       		.uleb128 0xb
+ 935 0263 01       		.uleb128 0x1
+ 936 0264 50       		.byte	0x50
+ 937 0265 01       		.uleb128 0x1
+ 938 0266 31       		.byte	0x31
+ 939 0267 00       		.byte	0
+ 940 0268 0A       		.uleb128 0xa
+ 941 0269 32000000 		.4byte	.LVL32
+ 942 026d 31040000 		.4byte	0x431
+ 943 0271 7B020000 		.4byte	0x27b
+ 944 0275 0B       		.uleb128 0xb
+ 945 0276 01       		.uleb128 0x1
+ 946 0277 50       		.byte	0x50
+ 947 0278 01       		.uleb128 0x1
+ 948 0279 30       		.byte	0x30
+ 949 027a 00       		.byte	0
+ 950 027b 0C       		.uleb128 0xc
+ 951 027c 38000000 		.4byte	.LVL33
+ 952 0280 26040000 		.4byte	0x426
+ 953 0284 0B       		.uleb128 0xb
+ 954 0285 01       		.uleb128 0x1
+ 955 0286 50       		.byte	0x50
+ 956 0287 01       		.uleb128 0x1
+ 957 0288 30       		.byte	0x30
+ 958 0289 00       		.byte	0
+ 959 028a 00       		.byte	0
+ 960 028b 0D       		.uleb128 0xd
+ 961 028c 45030000 		.4byte	.LASF32
+ 962 0290 01       		.byte	0x1
+ 963 0291 13       		.byte	0x13
+ 964 0292 00000000 		.4byte	.LFB63
+ 965 0296 1C000000 		.4byte	.LFE63-.LFB63
+ 966 029a 01       		.uleb128 0x1
+ 967 029b 9C       		.byte	0x9c
+ 968 029c C5020000 		.4byte	0x2c5
+ 969 02a0 0A       		.uleb128 0xa
+ 970 02a1 10000000 		.4byte	.LVL34
+ 971 02a5 26040000 		.4byte	0x426
+ 972 02a9 B4020000 		.4byte	0x2b4
+ 973 02ad 0B       		.uleb128 0xb
+ 974 02ae 01       		.uleb128 0x1
+ 975 02af 50       		.byte	0x50
+ 976 02b0 02       		.uleb128 0x2
+ 977 02b1 74       		.byte	0x74
+ 978 02b2 00       		.sleb128 0
+ 979 02b3 00       		.byte	0
+ 980 02b4 0C       		.uleb128 0xc
+ 981 02b5 16000000 		.4byte	.LVL35
+ 982 02b9 31040000 		.4byte	0x431
+ 983 02bd 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 22
+
+
+ 984 02be 01       		.uleb128 0x1
+ 985 02bf 50       		.byte	0x50
+ 986 02c0 02       		.uleb128 0x2
+ 987 02c1 74       		.byte	0x74
+ 988 02c2 00       		.sleb128 0
+ 989 02c3 00       		.byte	0
+ 990 02c4 00       		.byte	0
+ 991 02c5 0D       		.uleb128 0xd
+ 992 02c6 FC010000 		.4byte	.LASF33
+ 993 02ca 01       		.byte	0x1
+ 994 02cb 1B       		.byte	0x1b
+ 995 02cc 00000000 		.4byte	.LFB64
+ 996 02d0 24000000 		.4byte	.LFE64-.LFB64
+ 997 02d4 01       		.uleb128 0x1
+ 998 02d5 9C       		.byte	0x9c
+ 999 02d6 F9020000 		.4byte	0x2f9
+ 1000 02da 0E       		.uleb128 0xe
+ 1001 02db 45000000 		.4byte	.LASF51
+ 1002 02df 01       		.byte	0x1
+ 1003 02e0 1B       		.byte	0x1b
+ 1004 02e1 8C000000 		.4byte	0x8c
+ 1005 02e5 74010000 		.4byte	.LLST6
+ 1006 02e9 0C       		.uleb128 0xc
+ 1007 02ea 1A000000 		.4byte	.LVL38
+ 1008 02ee 26040000 		.4byte	0x426
+ 1009 02f2 0B       		.uleb128 0xb
+ 1010 02f3 01       		.uleb128 0x1
+ 1011 02f4 50       		.byte	0x50
+ 1012 02f5 01       		.uleb128 0x1
+ 1013 02f6 30       		.byte	0x30
+ 1014 02f7 00       		.byte	0
+ 1015 02f8 00       		.byte	0
+ 1016 02f9 0D       		.uleb128 0xd
+ 1017 02fa 52020000 		.4byte	.LASF34
+ 1018 02fe 01       		.byte	0x1
+ 1019 02ff 26       		.byte	0x26
+ 1020 0300 00000000 		.4byte	.LFB65
+ 1021 0304 24000000 		.4byte	.LFE65-.LFB65
+ 1022 0308 01       		.uleb128 0x1
+ 1023 0309 9C       		.byte	0x9c
+ 1024 030a 1E030000 		.4byte	0x31e
+ 1025 030e 0C       		.uleb128 0xc
+ 1026 030f 18000000 		.4byte	.LVL39
+ 1027 0313 26040000 		.4byte	0x426
+ 1028 0317 0B       		.uleb128 0xb
+ 1029 0318 01       		.uleb128 0x1
+ 1030 0319 50       		.byte	0x50
+ 1031 031a 01       		.uleb128 0x1
+ 1032 031b 31       		.byte	0x31
+ 1033 031c 00       		.byte	0
+ 1034 031d 00       		.byte	0
+ 1035 031e 0D       		.uleb128 0xd
+ 1036 031f ED010000 		.4byte	.LASF35
+ 1037 0323 01       		.byte	0x1
+ 1038 0324 2E       		.byte	0x2e
+ 1039 0325 00000000 		.4byte	.LFB66
+ 1040 0329 24000000 		.4byte	.LFE66-.LFB66
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 23
+
+
+ 1041 032d 01       		.uleb128 0x1
+ 1042 032e 9C       		.byte	0x9c
+ 1043 032f 43030000 		.4byte	0x343
+ 1044 0333 0C       		.uleb128 0xc
+ 1045 0334 18000000 		.4byte	.LVL40
+ 1046 0338 31040000 		.4byte	0x431
+ 1047 033c 0B       		.uleb128 0xb
+ 1048 033d 01       		.uleb128 0x1
+ 1049 033e 50       		.byte	0x50
+ 1050 033f 01       		.uleb128 0x1
+ 1051 0340 31       		.byte	0x31
+ 1052 0341 00       		.byte	0
+ 1053 0342 00       		.byte	0
+ 1054 0343 0D       		.uleb128 0xd
+ 1055 0344 4B000000 		.4byte	.LASF36
+ 1056 0348 01       		.byte	0x1
+ 1057 0349 36       		.byte	0x36
+ 1058 034a 00000000 		.4byte	.LFB67
+ 1059 034e 28000000 		.4byte	.LFE67-.LFB67
+ 1060 0352 01       		.uleb128 0x1
+ 1061 0353 9C       		.byte	0x9c
+ 1062 0354 7B030000 		.4byte	0x37b
+ 1063 0358 0A       		.uleb128 0xa
+ 1064 0359 18000000 		.4byte	.LVL41
+ 1065 035d 31040000 		.4byte	0x431
+ 1066 0361 6B030000 		.4byte	0x36b
+ 1067 0365 0B       		.uleb128 0xb
+ 1068 0366 01       		.uleb128 0x1
+ 1069 0367 50       		.byte	0x50
+ 1070 0368 01       		.uleb128 0x1
+ 1071 0369 31       		.byte	0x31
+ 1072 036a 00       		.byte	0
+ 1073 036b 0C       		.uleb128 0xc
+ 1074 036c 1E000000 		.4byte	.LVL42
+ 1075 0370 26040000 		.4byte	0x426
+ 1076 0374 0B       		.uleb128 0xb
+ 1077 0375 01       		.uleb128 0x1
+ 1078 0376 50       		.byte	0x50
+ 1079 0377 01       		.uleb128 0x1
+ 1080 0378 31       		.byte	0x31
+ 1081 0379 00       		.byte	0
+ 1082 037a 00       		.byte	0
+ 1083 037b 0D       		.uleb128 0xd
+ 1084 037c A5000000 		.4byte	.LASF37
+ 1085 0380 01       		.byte	0x1
+ 1086 0381 AC       		.byte	0xac
+ 1087 0382 00000000 		.4byte	.LFB72
+ 1088 0386 30000000 		.4byte	.LFE72-.LFB72
+ 1089 038a 01       		.uleb128 0x1
+ 1090 038b 9C       		.byte	0x9c
+ 1091 038c B5030000 		.4byte	0x3b5
+ 1092 0390 0F       		.uleb128 0xf
+ 1093 0391 18000000 		.4byte	.LVL43
+ 1094 0395 04010000 		.4byte	0x104
+ 1095 0399 0F       		.uleb128 0xf
+ 1096 039a 1E000000 		.4byte	.LVL44
+ 1097 039e 7D010000 		.4byte	0x17d
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 24
+
+
+ 1098 03a2 0F       		.uleb128 0xf
+ 1099 03a3 24000000 		.4byte	.LVL45
+ 1100 03a7 C4010000 		.4byte	0x1c4
+ 1101 03ab 0F       		.uleb128 0xf
+ 1102 03ac 2A000000 		.4byte	.LVL46
+ 1103 03b0 1E020000 		.4byte	0x21e
+ 1104 03b4 00       		.byte	0
+ 1105 03b5 10       		.uleb128 0x10
+ 1106 03b6 89000000 		.4byte	.LASF38
+ 1107 03ba 01       		.byte	0x1
+ 1108 03bb 0D       		.byte	0xd
+ 1109 03bc 8C000000 		.4byte	0x8c
+ 1110 03c0 05       		.uleb128 0x5
+ 1111 03c1 03       		.byte	0x3
+ 1112 03c2 06000000 		.4byte	current_op
+ 1113 03c6 10       		.uleb128 0x10
+ 1114 03c7 00000000 		.4byte	.LASF39
+ 1115 03cb 01       		.byte	0x1
+ 1116 03cc 0E       		.byte	0xe
+ 1117 03cd A2000000 		.4byte	0xa2
+ 1118 03d1 05       		.uleb128 0x5
+ 1119 03d2 03       		.byte	0x3
+ 1120 03d3 00000000 		.4byte	op_start_time
+ 1121 03d7 10       		.uleb128 0x10
+ 1122 03d8 DF020000 		.4byte	.LASF40
+ 1123 03dc 01       		.byte	0x1
+ 1124 03dd 0F       		.byte	0xf
+ 1125 03de 8C000000 		.4byte	0x8c
+ 1126 03e2 05       		.uleb128 0x5
+ 1127 03e3 03       		.byte	0x3
+ 1128 03e4 05000000 		.4byte	keypad_target_blinks
+ 1129 03e8 10       		.uleb128 0x10
+ 1130 03e9 4E030000 		.4byte	.LASF41
+ 1131 03ed 01       		.byte	0x1
+ 1132 03ee 10       		.byte	0x10
+ 1133 03ef 8C000000 		.4byte	0x8c
+ 1134 03f3 05       		.uleb128 0x5
+ 1135 03f4 03       		.byte	0x3
+ 1136 03f5 04000000 		.4byte	keypad_blink_count
+ 1137 03f9 10       		.uleb128 0x10
+ 1138 03fa 37020000 		.4byte	.LASF42
+ 1139 03fe 01       		.byte	0x1
+ 1140 03ff 11       		.byte	0x11
+ 1141 0400 8C000000 		.4byte	0x8c
+ 1142 0404 05       		.uleb128 0x5
+ 1143 0405 03       		.byte	0x3
+ 1144 0406 07000000 		.4byte	led_state
+ 1145 040a 11       		.uleb128 0x11
+ 1146 040b 7D010000 		.4byte	.LASF43
+ 1147 040f 04       		.byte	0x4
+ 1148 0410 1207     		.2byte	0x712
+ 1149 0412 16040000 		.4byte	0x416
+ 1150 0416 05       		.uleb128 0x5
+ 1151 0417 97000000 		.4byte	0x97
+ 1152 041b 12       		.uleb128 0x12
+ 1153 041c 69000000 		.4byte	.LASF44
+ 1154 0420 05       		.byte	0x5
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 25
+
+
+ 1155 0421 04       		.byte	0x4
+ 1156 0422 D0000000 		.4byte	0xd0
+ 1157 0426 13       		.uleb128 0x13
+ 1158 0427 98010000 		.4byte	.LASF45
+ 1159 042b 98010000 		.4byte	.LASF45
+ 1160 042f 06       		.byte	0x6
+ 1161 0430 26       		.byte	0x26
+ 1162 0431 13       		.uleb128 0x13
+ 1163 0432 3E010000 		.4byte	.LASF46
+ 1164 0436 3E010000 		.4byte	.LASF46
+ 1165 043a 07       		.byte	0x7
+ 1166 043b 26       		.byte	0x26
+ 1167 043c 00       		.byte	0
+ 1168              		.section	.debug_abbrev,"",%progbits
+ 1169              	.Ldebug_abbrev0:
+ 1170 0000 01       		.uleb128 0x1
+ 1171 0001 11       		.uleb128 0x11
+ 1172 0002 01       		.byte	0x1
+ 1173 0003 25       		.uleb128 0x25
+ 1174 0004 0E       		.uleb128 0xe
+ 1175 0005 13       		.uleb128 0x13
+ 1176 0006 0B       		.uleb128 0xb
+ 1177 0007 03       		.uleb128 0x3
+ 1178 0008 0E       		.uleb128 0xe
+ 1179 0009 1B       		.uleb128 0x1b
+ 1180 000a 0E       		.uleb128 0xe
+ 1181 000b 55       		.uleb128 0x55
+ 1182 000c 17       		.uleb128 0x17
+ 1183 000d 11       		.uleb128 0x11
+ 1184 000e 01       		.uleb128 0x1
+ 1185 000f 10       		.uleb128 0x10
+ 1186 0010 17       		.uleb128 0x17
+ 1187 0011 00       		.byte	0
+ 1188 0012 00       		.byte	0
+ 1189 0013 02       		.uleb128 0x2
+ 1190 0014 24       		.uleb128 0x24
+ 1191 0015 00       		.byte	0
+ 1192 0016 0B       		.uleb128 0xb
+ 1193 0017 0B       		.uleb128 0xb
+ 1194 0018 3E       		.uleb128 0x3e
+ 1195 0019 0B       		.uleb128 0xb
+ 1196 001a 03       		.uleb128 0x3
+ 1197 001b 0E       		.uleb128 0xe
+ 1198 001c 00       		.byte	0
+ 1199 001d 00       		.byte	0
+ 1200 001e 03       		.uleb128 0x3
+ 1201 001f 16       		.uleb128 0x16
+ 1202 0020 00       		.byte	0
+ 1203 0021 03       		.uleb128 0x3
+ 1204 0022 0E       		.uleb128 0xe
+ 1205 0023 3A       		.uleb128 0x3a
+ 1206 0024 0B       		.uleb128 0xb
+ 1207 0025 3B       		.uleb128 0x3b
+ 1208 0026 0B       		.uleb128 0xb
+ 1209 0027 49       		.uleb128 0x49
+ 1210 0028 13       		.uleb128 0x13
+ 1211 0029 00       		.byte	0
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 26
+
+
+ 1212 002a 00       		.byte	0
+ 1213 002b 04       		.uleb128 0x4
+ 1214 002c 24       		.uleb128 0x24
+ 1215 002d 00       		.byte	0
+ 1216 002e 0B       		.uleb128 0xb
+ 1217 002f 0B       		.uleb128 0xb
+ 1218 0030 3E       		.uleb128 0x3e
+ 1219 0031 0B       		.uleb128 0xb
+ 1220 0032 03       		.uleb128 0x3
+ 1221 0033 08       		.uleb128 0x8
+ 1222 0034 00       		.byte	0
+ 1223 0035 00       		.byte	0
+ 1224 0036 05       		.uleb128 0x5
+ 1225 0037 35       		.uleb128 0x35
+ 1226 0038 00       		.byte	0
+ 1227 0039 49       		.uleb128 0x49
+ 1228 003a 13       		.uleb128 0x13
+ 1229 003b 00       		.byte	0
+ 1230 003c 00       		.byte	0
+ 1231 003d 06       		.uleb128 0x6
+ 1232 003e 04       		.uleb128 0x4
+ 1233 003f 01       		.byte	0x1
+ 1234 0040 03       		.uleb128 0x3
+ 1235 0041 0E       		.uleb128 0xe
+ 1236 0042 0B       		.uleb128 0xb
+ 1237 0043 0B       		.uleb128 0xb
+ 1238 0044 49       		.uleb128 0x49
+ 1239 0045 13       		.uleb128 0x13
+ 1240 0046 3A       		.uleb128 0x3a
+ 1241 0047 0B       		.uleb128 0xb
+ 1242 0048 3B       		.uleb128 0x3b
+ 1243 0049 0B       		.uleb128 0xb
+ 1244 004a 01       		.uleb128 0x1
+ 1245 004b 13       		.uleb128 0x13
+ 1246 004c 00       		.byte	0
+ 1247 004d 00       		.byte	0
+ 1248 004e 07       		.uleb128 0x7
+ 1249 004f 28       		.uleb128 0x28
+ 1250 0050 00       		.byte	0
+ 1251 0051 03       		.uleb128 0x3
+ 1252 0052 0E       		.uleb128 0xe
+ 1253 0053 1C       		.uleb128 0x1c
+ 1254 0054 0B       		.uleb128 0xb
+ 1255 0055 00       		.byte	0
+ 1256 0056 00       		.byte	0
+ 1257 0057 08       		.uleb128 0x8
+ 1258 0058 2E       		.uleb128 0x2e
+ 1259 0059 01       		.byte	0x1
+ 1260 005a 03       		.uleb128 0x3
+ 1261 005b 0E       		.uleb128 0xe
+ 1262 005c 3A       		.uleb128 0x3a
+ 1263 005d 0B       		.uleb128 0xb
+ 1264 005e 3B       		.uleb128 0x3b
+ 1265 005f 0B       		.uleb128 0xb
+ 1266 0060 27       		.uleb128 0x27
+ 1267 0061 19       		.uleb128 0x19
+ 1268 0062 11       		.uleb128 0x11
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 27
+
+
+ 1269 0063 01       		.uleb128 0x1
+ 1270 0064 12       		.uleb128 0x12
+ 1271 0065 06       		.uleb128 0x6
+ 1272 0066 40       		.uleb128 0x40
+ 1273 0067 18       		.uleb128 0x18
+ 1274 0068 9742     		.uleb128 0x2117
+ 1275 006a 19       		.uleb128 0x19
+ 1276 006b 01       		.uleb128 0x1
+ 1277 006c 13       		.uleb128 0x13
+ 1278 006d 00       		.byte	0
+ 1279 006e 00       		.byte	0
+ 1280 006f 09       		.uleb128 0x9
+ 1281 0070 34       		.uleb128 0x34
+ 1282 0071 00       		.byte	0
+ 1283 0072 03       		.uleb128 0x3
+ 1284 0073 0E       		.uleb128 0xe
+ 1285 0074 3A       		.uleb128 0x3a
+ 1286 0075 0B       		.uleb128 0xb
+ 1287 0076 3B       		.uleb128 0x3b
+ 1288 0077 0B       		.uleb128 0xb
+ 1289 0078 49       		.uleb128 0x49
+ 1290 0079 13       		.uleb128 0x13
+ 1291 007a 02       		.uleb128 0x2
+ 1292 007b 17       		.uleb128 0x17
+ 1293 007c 00       		.byte	0
+ 1294 007d 00       		.byte	0
+ 1295 007e 0A       		.uleb128 0xa
+ 1296 007f 898201   		.uleb128 0x4109
+ 1297 0082 01       		.byte	0x1
+ 1298 0083 11       		.uleb128 0x11
+ 1299 0084 01       		.uleb128 0x1
+ 1300 0085 31       		.uleb128 0x31
+ 1301 0086 13       		.uleb128 0x13
+ 1302 0087 01       		.uleb128 0x1
+ 1303 0088 13       		.uleb128 0x13
+ 1304 0089 00       		.byte	0
+ 1305 008a 00       		.byte	0
+ 1306 008b 0B       		.uleb128 0xb
+ 1307 008c 8A8201   		.uleb128 0x410a
+ 1308 008f 00       		.byte	0
+ 1309 0090 02       		.uleb128 0x2
+ 1310 0091 18       		.uleb128 0x18
+ 1311 0092 9142     		.uleb128 0x2111
+ 1312 0094 18       		.uleb128 0x18
+ 1313 0095 00       		.byte	0
+ 1314 0096 00       		.byte	0
+ 1315 0097 0C       		.uleb128 0xc
+ 1316 0098 898201   		.uleb128 0x4109
+ 1317 009b 01       		.byte	0x1
+ 1318 009c 11       		.uleb128 0x11
+ 1319 009d 01       		.uleb128 0x1
+ 1320 009e 31       		.uleb128 0x31
+ 1321 009f 13       		.uleb128 0x13
+ 1322 00a0 00       		.byte	0
+ 1323 00a1 00       		.byte	0
+ 1324 00a2 0D       		.uleb128 0xd
+ 1325 00a3 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 28
+
+
+ 1326 00a4 01       		.byte	0x1
+ 1327 00a5 3F       		.uleb128 0x3f
+ 1328 00a6 19       		.uleb128 0x19
+ 1329 00a7 03       		.uleb128 0x3
+ 1330 00a8 0E       		.uleb128 0xe
+ 1331 00a9 3A       		.uleb128 0x3a
+ 1332 00aa 0B       		.uleb128 0xb
+ 1333 00ab 3B       		.uleb128 0x3b
+ 1334 00ac 0B       		.uleb128 0xb
+ 1335 00ad 27       		.uleb128 0x27
+ 1336 00ae 19       		.uleb128 0x19
+ 1337 00af 11       		.uleb128 0x11
+ 1338 00b0 01       		.uleb128 0x1
+ 1339 00b1 12       		.uleb128 0x12
+ 1340 00b2 06       		.uleb128 0x6
+ 1341 00b3 40       		.uleb128 0x40
+ 1342 00b4 18       		.uleb128 0x18
+ 1343 00b5 9742     		.uleb128 0x2117
+ 1344 00b7 19       		.uleb128 0x19
+ 1345 00b8 01       		.uleb128 0x1
+ 1346 00b9 13       		.uleb128 0x13
+ 1347 00ba 00       		.byte	0
+ 1348 00bb 00       		.byte	0
+ 1349 00bc 0E       		.uleb128 0xe
+ 1350 00bd 05       		.uleb128 0x5
+ 1351 00be 00       		.byte	0
+ 1352 00bf 03       		.uleb128 0x3
+ 1353 00c0 0E       		.uleb128 0xe
+ 1354 00c1 3A       		.uleb128 0x3a
+ 1355 00c2 0B       		.uleb128 0xb
+ 1356 00c3 3B       		.uleb128 0x3b
+ 1357 00c4 0B       		.uleb128 0xb
+ 1358 00c5 49       		.uleb128 0x49
+ 1359 00c6 13       		.uleb128 0x13
+ 1360 00c7 02       		.uleb128 0x2
+ 1361 00c8 17       		.uleb128 0x17
+ 1362 00c9 00       		.byte	0
+ 1363 00ca 00       		.byte	0
+ 1364 00cb 0F       		.uleb128 0xf
+ 1365 00cc 898201   		.uleb128 0x4109
+ 1366 00cf 00       		.byte	0
+ 1367 00d0 11       		.uleb128 0x11
+ 1368 00d1 01       		.uleb128 0x1
+ 1369 00d2 31       		.uleb128 0x31
+ 1370 00d3 13       		.uleb128 0x13
+ 1371 00d4 00       		.byte	0
+ 1372 00d5 00       		.byte	0
+ 1373 00d6 10       		.uleb128 0x10
+ 1374 00d7 34       		.uleb128 0x34
+ 1375 00d8 00       		.byte	0
+ 1376 00d9 03       		.uleb128 0x3
+ 1377 00da 0E       		.uleb128 0xe
+ 1378 00db 3A       		.uleb128 0x3a
+ 1379 00dc 0B       		.uleb128 0xb
+ 1380 00dd 3B       		.uleb128 0x3b
+ 1381 00de 0B       		.uleb128 0xb
+ 1382 00df 49       		.uleb128 0x49
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 29
+
+
+ 1383 00e0 13       		.uleb128 0x13
+ 1384 00e1 02       		.uleb128 0x2
+ 1385 00e2 18       		.uleb128 0x18
+ 1386 00e3 00       		.byte	0
+ 1387 00e4 00       		.byte	0
+ 1388 00e5 11       		.uleb128 0x11
+ 1389 00e6 34       		.uleb128 0x34
+ 1390 00e7 00       		.byte	0
+ 1391 00e8 03       		.uleb128 0x3
+ 1392 00e9 0E       		.uleb128 0xe
+ 1393 00ea 3A       		.uleb128 0x3a
+ 1394 00eb 0B       		.uleb128 0xb
+ 1395 00ec 3B       		.uleb128 0x3b
+ 1396 00ed 05       		.uleb128 0x5
+ 1397 00ee 49       		.uleb128 0x49
+ 1398 00ef 13       		.uleb128 0x13
+ 1399 00f0 3F       		.uleb128 0x3f
+ 1400 00f1 19       		.uleb128 0x19
+ 1401 00f2 3C       		.uleb128 0x3c
+ 1402 00f3 19       		.uleb128 0x19
+ 1403 00f4 00       		.byte	0
+ 1404 00f5 00       		.byte	0
+ 1405 00f6 12       		.uleb128 0x12
+ 1406 00f7 34       		.uleb128 0x34
+ 1407 00f8 00       		.byte	0
+ 1408 00f9 03       		.uleb128 0x3
+ 1409 00fa 0E       		.uleb128 0xe
+ 1410 00fb 3A       		.uleb128 0x3a
+ 1411 00fc 0B       		.uleb128 0xb
+ 1412 00fd 3B       		.uleb128 0x3b
+ 1413 00fe 0B       		.uleb128 0xb
+ 1414 00ff 49       		.uleb128 0x49
+ 1415 0100 13       		.uleb128 0x13
+ 1416 0101 3F       		.uleb128 0x3f
+ 1417 0102 19       		.uleb128 0x19
+ 1418 0103 3C       		.uleb128 0x3c
+ 1419 0104 19       		.uleb128 0x19
+ 1420 0105 00       		.byte	0
+ 1421 0106 00       		.byte	0
+ 1422 0107 13       		.uleb128 0x13
+ 1423 0108 2E       		.uleb128 0x2e
+ 1424 0109 00       		.byte	0
+ 1425 010a 3F       		.uleb128 0x3f
+ 1426 010b 19       		.uleb128 0x19
+ 1427 010c 3C       		.uleb128 0x3c
+ 1428 010d 19       		.uleb128 0x19
+ 1429 010e 6E       		.uleb128 0x6e
+ 1430 010f 0E       		.uleb128 0xe
+ 1431 0110 03       		.uleb128 0x3
+ 1432 0111 0E       		.uleb128 0xe
+ 1433 0112 3A       		.uleb128 0x3a
+ 1434 0113 0B       		.uleb128 0xb
+ 1435 0114 3B       		.uleb128 0x3b
+ 1436 0115 0B       		.uleb128 0xb
+ 1437 0116 00       		.byte	0
+ 1438 0117 00       		.byte	0
+ 1439 0118 00       		.byte	0
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 30
+
+
+ 1440              		.section	.debug_loc,"",%progbits
+ 1441              	.Ldebug_loc0:
+ 1442              	.LLST0:
+ 1443 0000 0C000000 		.4byte	.LVL0
+ 1444 0004 2A000000 		.4byte	.LVL1
+ 1445 0008 0100     		.2byte	0x1
+ 1446 000a 50       		.byte	0x50
+ 1447 000b 32000000 		.4byte	.LVL3
+ 1448 000f 4C000000 		.4byte	.LVL8
+ 1449 0013 0100     		.2byte	0x1
+ 1450 0015 50       		.byte	0x50
+ 1451 0016 58000000 		.4byte	.LVL10
+ 1452 001a 62000000 		.4byte	.LVL12
+ 1453 001e 0100     		.2byte	0x1
+ 1454 0020 50       		.byte	0x50
+ 1455 0021 00000000 		.4byte	0
+ 1456 0025 00000000 		.4byte	0
+ 1457              	.LLST1:
+ 1458 0029 3A000000 		.4byte	.LVL4
+ 1459 002d 40000000 		.4byte	.LVL5
+ 1460 0031 0100     		.2byte	0x1
+ 1461 0033 53       		.byte	0x53
+ 1462 0034 40000000 		.4byte	.LVL5
+ 1463 0038 4C000000 		.4byte	.LVL8
+ 1464 003c 1300     		.2byte	0x13
+ 1465 003e 03       		.byte	0x3
+ 1466 003f 04000000 		.4byte	keypad_blink_count
+ 1467 0043 94       		.byte	0x94
+ 1468 0044 01       		.byte	0x1
+ 1469 0045 08       		.byte	0x8
+ 1470 0046 FF       		.byte	0xff
+ 1471 0047 1A       		.byte	0x1a
+ 1472 0048 09       		.byte	0x9
+ 1473 0049 F1       		.byte	0xf1
+ 1474 004a 1E       		.byte	0x1e
+ 1475 004b 34       		.byte	0x34
+ 1476 004c 24       		.byte	0x24
+ 1477 004d 70       		.byte	0x70
+ 1478 004e 00       		.sleb128 0
+ 1479 004f 22       		.byte	0x22
+ 1480 0050 9F       		.byte	0x9f
+ 1481 0051 58000000 		.4byte	.LVL10
+ 1482 0055 62000000 		.4byte	.LVL12
+ 1483 0059 1300     		.2byte	0x13
+ 1484 005b 03       		.byte	0x3
+ 1485 005c 04000000 		.4byte	keypad_blink_count
+ 1486 0060 94       		.byte	0x94
+ 1487 0061 01       		.byte	0x1
+ 1488 0062 08       		.byte	0x8
+ 1489 0063 FF       		.byte	0xff
+ 1490 0064 1A       		.byte	0x1a
+ 1491 0065 09       		.byte	0x9
+ 1492 0066 F1       		.byte	0xf1
+ 1493 0067 1E       		.byte	0x1e
+ 1494 0068 34       		.byte	0x34
+ 1495 0069 24       		.byte	0x24
+ 1496 006a 70       		.byte	0x70
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 31
+
+
+ 1497 006b 00       		.sleb128 0
+ 1498 006c 22       		.byte	0x22
+ 1499 006d 9F       		.byte	0x9f
+ 1500 006e 00000000 		.4byte	0
+ 1501 0072 00000000 		.4byte	0
+ 1502              	.LLST2:
+ 1503 0076 40000000 		.4byte	.LVL5
+ 1504 007a 42000000 		.4byte	.LVL6
+ 1505 007e 0500     		.2byte	0x5
+ 1506 0080 73       		.byte	0x73
+ 1507 0081 00       		.sleb128 0
+ 1508 0082 36       		.byte	0x36
+ 1509 0083 25       		.byte	0x25
+ 1510 0084 9F       		.byte	0x9f
+ 1511 0085 42000000 		.4byte	.LVL6
+ 1512 0089 46000000 		.4byte	.LVL7
+ 1513 008d 0100     		.2byte	0x1
+ 1514 008f 53       		.byte	0x53
+ 1515 0090 46000000 		.4byte	.LVL7
+ 1516 0094 4C000000 		.4byte	.LVL8
+ 1517 0098 2C00     		.2byte	0x2c
+ 1518 009a 03       		.byte	0x3
+ 1519 009b 04000000 		.4byte	keypad_blink_count
+ 1520 009f 94       		.byte	0x94
+ 1521 00a0 01       		.byte	0x1
+ 1522 00a1 08       		.byte	0x8
+ 1523 00a2 FF       		.byte	0xff
+ 1524 00a3 1A       		.byte	0x1a
+ 1525 00a4 09       		.byte	0x9
+ 1526 00a5 F1       		.byte	0xf1
+ 1527 00a6 1E       		.byte	0x1e
+ 1528 00a7 34       		.byte	0x34
+ 1529 00a8 24       		.byte	0x24
+ 1530 00a9 70       		.byte	0x70
+ 1531 00aa 00       		.sleb128 0
+ 1532 00ab 22       		.byte	0x22
+ 1533 00ac F7       		.byte	0xf7
+ 1534 00ad 2C       		.uleb128 0x2c
+ 1535 00ae F7       		.byte	0xf7
+ 1536 00af 25       		.uleb128 0x25
+ 1537 00b0 F4       		.byte	0xf4
+ 1538 00b1 25       		.uleb128 0x25
+ 1539 00b2 08       		.byte	0x8
+ 1540 00b3 89888888 		.8byte	0x88888889
+ 1540      00000000 
+ 1541 00bb 1E       		.byte	0x1e
+ 1542 00bc 08       		.byte	0x8
+ 1543 00bd 20       		.byte	0x20
+ 1544 00be F7       		.byte	0xf7
+ 1545 00bf 25       		.uleb128 0x25
+ 1546 00c0 25       		.byte	0x25
+ 1547 00c1 F7       		.byte	0xf7
+ 1548 00c2 2C       		.uleb128 0x2c
+ 1549 00c3 36       		.byte	0x36
+ 1550 00c4 25       		.byte	0x25
+ 1551 00c5 9F       		.byte	0x9f
+ 1552 00c6 58000000 		.4byte	.LVL10
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 32
+
+
+ 1553 00ca 5C000000 		.4byte	.LVL11
+ 1554 00ce 0100     		.2byte	0x1
+ 1555 00d0 53       		.byte	0x53
+ 1556 00d1 5C000000 		.4byte	.LVL11
+ 1557 00d5 62000000 		.4byte	.LVL12
+ 1558 00d9 2C00     		.2byte	0x2c
+ 1559 00db 03       		.byte	0x3
+ 1560 00dc 04000000 		.4byte	keypad_blink_count
+ 1561 00e0 94       		.byte	0x94
+ 1562 00e1 01       		.byte	0x1
+ 1563 00e2 08       		.byte	0x8
+ 1564 00e3 FF       		.byte	0xff
+ 1565 00e4 1A       		.byte	0x1a
+ 1566 00e5 09       		.byte	0x9
+ 1567 00e6 F1       		.byte	0xf1
+ 1568 00e7 1E       		.byte	0x1e
+ 1569 00e8 34       		.byte	0x34
+ 1570 00e9 24       		.byte	0x24
+ 1571 00ea 70       		.byte	0x70
+ 1572 00eb 00       		.sleb128 0
+ 1573 00ec 22       		.byte	0x22
+ 1574 00ed F7       		.byte	0xf7
+ 1575 00ee 2C       		.uleb128 0x2c
+ 1576 00ef F7       		.byte	0xf7
+ 1577 00f0 25       		.uleb128 0x25
+ 1578 00f1 F4       		.byte	0xf4
+ 1579 00f2 25       		.uleb128 0x25
+ 1580 00f3 08       		.byte	0x8
+ 1581 00f4 89888888 		.8byte	0x88888889
+ 1581      00000000 
+ 1582 00fc 1E       		.byte	0x1e
+ 1583 00fd 08       		.byte	0x8
+ 1584 00fe 20       		.byte	0x20
+ 1585 00ff F7       		.byte	0xf7
+ 1586 0100 25       		.uleb128 0x25
+ 1587 0101 25       		.byte	0x25
+ 1588 0102 F7       		.byte	0xf7
+ 1589 0103 2C       		.uleb128 0x2c
+ 1590 0104 36       		.byte	0x36
+ 1591 0105 25       		.byte	0x25
+ 1592 0106 9F       		.byte	0x9f
+ 1593 0107 00000000 		.4byte	0
+ 1594 010b 00000000 		.4byte	0
+ 1595              	.LLST3:
+ 1596 010f 0C000000 		.4byte	.LVL14
+ 1597 0113 14000000 		.4byte	.LVL15
+ 1598 0117 0100     		.2byte	0x1
+ 1599 0119 53       		.byte	0x53
+ 1600 011a 26000000 		.4byte	.LVL17
+ 1601 011e 2B000000 		.4byte	.LVL18-1
+ 1602 0122 0100     		.2byte	0x1
+ 1603 0124 53       		.byte	0x53
+ 1604 0125 00000000 		.4byte	0
+ 1605 0129 00000000 		.4byte	0
+ 1606              	.LLST4:
+ 1607 012d 0C000000 		.4byte	.LVL19
+ 1608 0131 14000000 		.4byte	.LVL20
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 33
+
+
+ 1609 0135 0100     		.2byte	0x1
+ 1610 0137 53       		.byte	0x53
+ 1611 0138 26000000 		.4byte	.LVL22
+ 1612 013c 2E000000 		.4byte	.LVL23
+ 1613 0140 0100     		.2byte	0x1
+ 1614 0142 53       		.byte	0x53
+ 1615 0143 40000000 		.4byte	.LVL25
+ 1616 0147 45000000 		.4byte	.LVL26-1
+ 1617 014b 0100     		.2byte	0x1
+ 1618 014d 53       		.byte	0x53
+ 1619 014e 00000000 		.4byte	0
+ 1620 0152 00000000 		.4byte	0
+ 1621              	.LLST5:
+ 1622 0156 0C000000 		.4byte	.LVL27
+ 1623 015a 14000000 		.4byte	.LVL28
+ 1624 015e 0100     		.2byte	0x1
+ 1625 0160 53       		.byte	0x53
+ 1626 0161 2C000000 		.4byte	.LVL31
+ 1627 0165 31000000 		.4byte	.LVL32-1
+ 1628 0169 0100     		.2byte	0x1
+ 1629 016b 53       		.byte	0x53
+ 1630 016c 00000000 		.4byte	0
+ 1631 0170 00000000 		.4byte	0
+ 1632              	.LLST6:
+ 1633 0174 00000000 		.4byte	.LVL36
+ 1634 0178 0C000000 		.4byte	.LVL37
+ 1635 017c 0100     		.2byte	0x1
+ 1636 017e 50       		.byte	0x50
+ 1637 017f 0C000000 		.4byte	.LVL37
+ 1638 0183 19000000 		.4byte	.LVL38-1
+ 1639 0187 0500     		.2byte	0x5
+ 1640 0189 03       		.byte	0x3
+ 1641 018a 05000000 		.4byte	keypad_target_blinks
+ 1642 018e 19000000 		.4byte	.LVL38-1
+ 1643 0192 24000000 		.4byte	.LFE64
+ 1644 0196 0400     		.2byte	0x4
+ 1645 0198 F3       		.byte	0xf3
+ 1646 0199 01       		.uleb128 0x1
+ 1647 019a 50       		.byte	0x50
+ 1648 019b 9F       		.byte	0x9f
+ 1649 019c 00000000 		.4byte	0
+ 1650 01a0 00000000 		.4byte	0
+ 1651              		.section	.debug_aranges,"",%progbits
+ 1652 0000 64000000 		.4byte	0x64
+ 1653 0004 0200     		.2byte	0x2
+ 1654 0006 00000000 		.4byte	.Ldebug_info0
+ 1655 000a 04       		.byte	0x4
+ 1656 000b 00       		.byte	0
+ 1657 000c 0000     		.2byte	0
+ 1658 000e 0000     		.2byte	0
+ 1659 0010 00000000 		.4byte	.LFB68
+ 1660 0014 80000000 		.4byte	.LFE68-.LFB68
+ 1661 0018 00000000 		.4byte	.LFB69
+ 1662 001c 40000000 		.4byte	.LFE69-.LFB69
+ 1663 0020 00000000 		.4byte	.LFB70
+ 1664 0024 58000000 		.4byte	.LFE70-.LFB70
+ 1665 0028 00000000 		.4byte	.LFB71
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 34
+
+
+ 1666 002c 4C000000 		.4byte	.LFE71-.LFB71
+ 1667 0030 00000000 		.4byte	.LFB63
+ 1668 0034 1C000000 		.4byte	.LFE63-.LFB63
+ 1669 0038 00000000 		.4byte	.LFB64
+ 1670 003c 24000000 		.4byte	.LFE64-.LFB64
+ 1671 0040 00000000 		.4byte	.LFB65
+ 1672 0044 24000000 		.4byte	.LFE65-.LFB65
+ 1673 0048 00000000 		.4byte	.LFB66
+ 1674 004c 24000000 		.4byte	.LFE66-.LFB66
+ 1675 0050 00000000 		.4byte	.LFB67
+ 1676 0054 28000000 		.4byte	.LFE67-.LFB67
+ 1677 0058 00000000 		.4byte	.LFB72
+ 1678 005c 30000000 		.4byte	.LFE72-.LFB72
+ 1679 0060 00000000 		.4byte	0
+ 1680 0064 00000000 		.4byte	0
+ 1681              		.section	.debug_ranges,"",%progbits
+ 1682              	.Ldebug_ranges0:
+ 1683 0000 00000000 		.4byte	.LFB68
+ 1684 0004 80000000 		.4byte	.LFE68
+ 1685 0008 00000000 		.4byte	.LFB69
+ 1686 000c 40000000 		.4byte	.LFE69
+ 1687 0010 00000000 		.4byte	.LFB70
+ 1688 0014 58000000 		.4byte	.LFE70
+ 1689 0018 00000000 		.4byte	.LFB71
+ 1690 001c 4C000000 		.4byte	.LFE71
+ 1691 0020 00000000 		.4byte	.LFB63
+ 1692 0024 1C000000 		.4byte	.LFE63
+ 1693 0028 00000000 		.4byte	.LFB64
+ 1694 002c 24000000 		.4byte	.LFE64
+ 1695 0030 00000000 		.4byte	.LFB65
+ 1696 0034 24000000 		.4byte	.LFE65
+ 1697 0038 00000000 		.4byte	.LFB66
+ 1698 003c 24000000 		.4byte	.LFE66
+ 1699 0040 00000000 		.4byte	.LFB67
+ 1700 0044 28000000 		.4byte	.LFE67
+ 1701 0048 00000000 		.4byte	.LFB72
+ 1702 004c 30000000 		.4byte	.LFE72
+ 1703 0050 00000000 		.4byte	0
+ 1704 0054 00000000 		.4byte	0
+ 1705              		.section	.debug_line,"",%progbits
+ 1706              	.Ldebug_line0:
+ 1707 0000 55020000 		.section	.debug_str,"MS",%progbits,1
+ 1707      02006701 
+ 1707      00000201 
+ 1707      FB0E0D00 
+ 1707      01010101 
+ 1708              	.LASF39:
+ 1709 0000 6F705F73 		.ascii	"op_start_time\000"
+ 1709      74617274 
+ 1709      5F74696D 
+ 1709      6500
+ 1710              	.LASF22:
+ 1711 000e 4C45445F 		.ascii	"LED_SERVO_GREEN\000"
+ 1711      53455256 
+ 1711      4F5F4752 
+ 1711      45454E00 
+ 1712              	.LASF31:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 35
+
+
+ 1713 001e 55706461 		.ascii	"UpdateTimeoutBlink\000"
+ 1713      74655469 
+ 1713      6D656F75 
+ 1713      74426C69 
+ 1713      6E6B00
+ 1714              	.LASF6:
+ 1715 0031 5F5F7569 		.ascii	"__uint8_t\000"
+ 1715      6E74385F 
+ 1715      7400
+ 1716              	.LASF7:
+ 1717 003b 5F5F696E 		.ascii	"__int32_t\000"
+ 1717      7433325F 
+ 1717      7400
+ 1718              	.LASF51:
+ 1719 0045 64696769 		.ascii	"digit\000"
+ 1719      7400
+ 1720              	.LASF36:
+ 1721 004b 4C45445F 		.ascii	"LED_TimeoutBlink\000"
+ 1721      54696D65 
+ 1721      6F757442 
+ 1721      6C696E6B 
+ 1721      00
+ 1722              	.LASF50:
+ 1723 005c 4C45444F 		.ascii	"LEDOperation\000"
+ 1723      70657261 
+ 1723      74696F6E 
+ 1723      00
+ 1724              	.LASF44:
+ 1725 0069 7469636B 		.ascii	"tick_ms\000"
+ 1725      5F6D7300 
+ 1726              	.LASF24:
+ 1727 0071 4C45445F 		.ascii	"LED_TIMEOUT_BLINK\000"
+ 1727      54494D45 
+ 1727      4F55545F 
+ 1727      424C494E 
+ 1727      4B00
+ 1728              	.LASF15:
+ 1729 0083 666C6F61 		.ascii	"float\000"
+ 1729      7400
+ 1730              	.LASF38:
+ 1731 0089 63757272 		.ascii	"current_op\000"
+ 1731      656E745F 
+ 1731      6F7000
+ 1732              	.LASF29:
+ 1733 0094 55706461 		.ascii	"UpdateServoGreen\000"
+ 1733      74655365 
+ 1733      72766F47 
+ 1733      7265656E 
+ 1733      00
+ 1734              	.LASF37:
+ 1735 00a5 4C45445F 		.ascii	"LED_Update\000"
+ 1735      55706461 
+ 1735      746500
+ 1736              	.LASF47:
+ 1737 00b0 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1737      43313120 
+ 1737      352E342E 
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 36
+
+
+ 1737      31203230 
+ 1737      31363036 
+ 1738 00e3 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1738      20726576 
+ 1738      6973696F 
+ 1738      6E203233 
+ 1738      37373135 
+ 1739 0116 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1739      66756E63 
+ 1739      74696F6E 
+ 1739      2D736563 
+ 1739      74696F6E 
+ 1740              	.LASF46:
+ 1741 013e 5265645F 		.ascii	"Red_LED_Write\000"
+ 1741      4C45445F 
+ 1741      57726974 
+ 1741      6500
+ 1742              	.LASF10:
+ 1743 014c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1743      20756E73 
+ 1743      69676E65 
+ 1743      6420696E 
+ 1743      7400
+ 1744              	.LASF5:
+ 1745 015e 73686F72 		.ascii	"short unsigned int\000"
+ 1745      7420756E 
+ 1745      7369676E 
+ 1745      65642069 
+ 1745      6E7400
+ 1746              	.LASF27:
+ 1747 0171 70686173 		.ascii	"phase\000"
+ 1747      6500
+ 1748              	.LASF48:
+ 1749 0177 6C65642E 		.ascii	"led.c\000"
+ 1749      6300
+ 1750              	.LASF43:
+ 1751 017d 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1751      52784275 
+ 1751      66666572 
+ 1751      00
+ 1752              	.LASF3:
+ 1753 018a 756E7369 		.ascii	"unsigned char\000"
+ 1753      676E6564 
+ 1753      20636861 
+ 1753      7200
+ 1754              	.LASF45:
+ 1755 0198 47726565 		.ascii	"Green_LED_Write\000"
+ 1755      6E5F4C45 
+ 1755      445F5772 
+ 1755      69746500 
+ 1756              	.LASF16:
+ 1757 01a8 646F7562 		.ascii	"double\000"
+ 1757      6C6500
+ 1758              	.LASF26:
+ 1759 01af 626C696E 		.ascii	"blink_phase_elapsed\000"
+ 1759      6B5F7068 
+ 1759      6173655F 
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 37
+
+
+ 1759      656C6170 
+ 1759      73656400 
+ 1760              	.LASF9:
+ 1761 01c3 5F5F7569 		.ascii	"__uint32_t\000"
+ 1761      6E743332 
+ 1761      5F7400
+ 1762              	.LASF1:
+ 1763 01ce 756E7369 		.ascii	"unsigned int\000"
+ 1763      676E6564 
+ 1763      20696E74 
+ 1763      00
+ 1764              	.LASF28:
+ 1765 01db 55706461 		.ascii	"UpdateKeypadBlink\000"
+ 1765      74654B65 
+ 1765      79706164 
+ 1765      426C696E 
+ 1765      6B00
+ 1766              	.LASF35:
+ 1767 01ed 4C45445F 		.ascii	"LED_ServoClose\000"
+ 1767      53657276 
+ 1767      6F436C6F 
+ 1767      736500
+ 1768              	.LASF33:
+ 1769 01fc 4C45445F 		.ascii	"LED_KeypadShowDigit\000"
+ 1769      4B657970 
+ 1769      61645368 
+ 1769      6F774469 
+ 1769      67697400 
+ 1770              	.LASF0:
+ 1771 0210 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1771      206C6F6E 
+ 1771      6720756E 
+ 1771      7369676E 
+ 1771      65642069 
+ 1772              	.LASF12:
+ 1773 0227 75696E74 		.ascii	"uint8_t\000"
+ 1773      385F7400 
+ 1774              	.LASF25:
+ 1775 022f 656C6170 		.ascii	"elapsed\000"
+ 1775      73656400 
+ 1776              	.LASF42:
+ 1777 0237 6C65645F 		.ascii	"led_state\000"
+ 1777      73746174 
+ 1777      6500
+ 1778              	.LASF21:
+ 1779 0241 4C45445F 		.ascii	"LED_KEYPAD_BLINK\000"
+ 1779      4B455950 
+ 1779      41445F42 
+ 1779      4C494E4B 
+ 1779      00
+ 1780              	.LASF34:
+ 1781 0252 4C45445F 		.ascii	"LED_ServoOpen\000"
+ 1781      53657276 
+ 1781      6F4F7065 
+ 1781      6E00
+ 1782              	.LASF13:
+ 1783 0260 696E7433 		.ascii	"int32_t\000"
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 38
+
+
+ 1783      325F7400 
+ 1784              	.LASF19:
+ 1785 0268 73697A65 		.ascii	"sizetype\000"
+ 1785      74797065 
+ 1785      00
+ 1786              	.LASF11:
+ 1787 0271 6C6F6E67 		.ascii	"long long int\000"
+ 1787      206C6F6E 
+ 1787      6720696E 
+ 1787      7400
+ 1788              	.LASF20:
+ 1789 027f 4C45445F 		.ascii	"LED_IDLE\000"
+ 1789      49444C45 
+ 1789      00
+ 1790              	.LASF17:
+ 1791 0288 63686172 		.ascii	"char\000"
+ 1791      00
+ 1792              	.LASF49:
+ 1793 028d 433A5C55 		.ascii	"C:\\Users\\ke\\Gitfis\\Elektroteknologi-Projekt-1\\"
+ 1793      73657273 
+ 1793      5C6B655C 
+ 1793      47697466 
+ 1793      69735C45 
+ 1794 02bb 4472656A 		.ascii	"Drejeknap mm\\drejeknappelegen.cydsn\000"
+ 1794      656B6E61 
+ 1794      70206D6D 
+ 1794      5C647265 
+ 1794      6A656B6E 
+ 1795              	.LASF40:
+ 1796 02df 6B657970 		.ascii	"keypad_target_blinks\000"
+ 1796      61645F74 
+ 1796      61726765 
+ 1796      745F626C 
+ 1796      696E6B73 
+ 1797              	.LASF4:
+ 1798 02f4 73686F72 		.ascii	"short int\000"
+ 1798      7420696E 
+ 1798      7400
+ 1799              	.LASF30:
+ 1800 02fe 55706461 		.ascii	"UpdateServoRed\000"
+ 1800      74655365 
+ 1800      72766F52 
+ 1800      656400
+ 1801              	.LASF23:
+ 1802 030d 4C45445F 		.ascii	"LED_SERVO_RED\000"
+ 1802      53455256 
+ 1802      4F5F5245 
+ 1802      4400
+ 1803              	.LASF14:
+ 1804 031b 75696E74 		.ascii	"uint32_t\000"
+ 1804      33325F74 
+ 1804      00
+ 1805              	.LASF8:
+ 1806 0324 6C6F6E67 		.ascii	"long int\000"
+ 1806      20696E74 
+ 1806      00
+ 1807              	.LASF18:
+ARM GAS  C:\Users\ke\AppData\Local\Temp\cchEU9Lj.s 			page 39
+
+
+ 1808 032d 6C6F6E67 		.ascii	"long double\000"
+ 1808      20646F75 
+ 1808      626C6500 
+ 1809              	.LASF2:
+ 1810 0339 7369676E 		.ascii	"signed char\000"
+ 1810      65642063 
+ 1810      68617200 
+ 1811              	.LASF32:
+ 1812 0345 4C45445F 		.ascii	"LED_Init\000"
+ 1812      496E6974 
+ 1812      00
+ 1813              	.LASF41:
+ 1814 034e 6B657970 		.ascii	"keypad_blink_count\000"
+ 1814      61645F62 
+ 1814      6C696E6B 
+ 1814      5F636F75 
+ 1814      6E7400
+ 1815              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

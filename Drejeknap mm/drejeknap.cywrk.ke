@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="drejeknap\drejeknappelegen\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="drejeknap\drejeknappelegen\Source Files\servo.c">
 <ExpandedNodeIds>
 <v>drejeknap</v>
 <v>drejeknap\drejeknappelegen</v>
@@ -33,39 +33,49 @@
 <v>drejeknap\drejeknappelegen\Header Files\alarm.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\cyapicallbacks.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\keypad.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\led.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\lock.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\rotary.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\servo.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\systick.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\timer.h</v>
 <v>drejeknap\drejeknappelegen\Source Files</v>
 <v>drejeknap\drejeknappelegen\Source Files\accel.c</v>
 <v>drejeknap\drejeknappelegen\Source Files\alarm.c</v>
 <v>drejeknap\drejeknappelegen\Source Files\keypad.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\led.c</v>
 <v>drejeknap\drejeknappelegen\Source Files\lock.c</v>
 <v>drejeknap\drejeknappelegen\Source Files\main.c</v>
 <v>drejeknap\drejeknappelegen\Source Files\rotary.c</v>
 <v>drejeknap\drejeknappelegen\Source Files\servo.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\systick.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\timer.c</v>
 <v>drejeknap\drejeknappelegen\Generated_Source\PSoC5</v>
+<v>drejeknap\drejeknappelegen\Generated_Source\PSoC5\SysTickTimer</v>
+<v>drejeknap\drejeknappelegen\todo.txt</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>drejeknap</v>
-<v>drejeknap\drejeknappelegen</v>
-<v>drejeknap\drejeknappelegen\TopDesign</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Pins</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Analog</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Clocks</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Interrupts</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\DMA</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\System</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Directives</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\Flash Security</v>
-<v>drejeknap\drejeknappelegen\drejeknappelegen.cydwr\EEPROM</v>
-<v>drejeknap\drejeknappelegen\Header Files</v>
-<v>drejeknap\drejeknappelegen\Header Files\accel.h</v>
-<v>drejeknap\drejeknappelegen\Header Files\alarm.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\cyapicallbacks.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\keypad.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\led.h</v>
 <v>drejeknap\drejeknappelegen\Header Files\lock.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\rotary.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\servo.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\systick.h</v>
+<v>drejeknap\drejeknappelegen\Header Files\timer.h</v>
+<v>drejeknap\drejeknappelegen\Source Files</v>
+<v>drejeknap\drejeknappelegen\Source Files\accel.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\alarm.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\keypad.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\led.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\lock.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\main.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\rotary.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\servo.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\systick.c</v>
+<v>drejeknap\drejeknappelegen\Source Files\timer.c</v>
+<v>drejeknap\drejeknappelegen\Generated_Source</v>
+<v>drejeknap\drejeknappelegen\todo.txt</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="drejeknap">
@@ -98,6 +108,7 @@
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_PM.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_theACLK.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\alarm.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\alarm_LED.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Button.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
@@ -116,6 +127,7 @@
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_Button.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_Rot.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\keypad.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\led.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\lock.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_Servo.lst</v>
@@ -128,6 +140,11 @@
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Servo_FB.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Servo_Out.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Status_Rot_B.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\systick.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\systick_isr.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\SysTickTimer.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\SysTickTimer_PM.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\timer.lst</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.elf</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.hex</v>
 <v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\drejeknappelegen.map</v>
@@ -138,6 +155,25 @@
 <VisibleNodeIds>
 <v>drejeknap</v>
 <v>drejeknap\drejeknappelegen</v>
+<v>drejeknap\drejeknappelegen\CortexM3</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\accel.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_Bypass.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_INT.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_IRQ.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_PM.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_ServoFB_theACLK.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\alarm.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\alarm_LED.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Button.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>drejeknap\drejeknappelegen\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -158,12 +194,15 @@
 <v>drejeknap\drejeknappelegen\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>drejeknap\drejeknappelegen\cy_isr_v1_70</v>
 <v>drejeknap\drejeknappelegen\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_isr_v1_71.pdf</v>
 <v>drejeknap\drejeknappelegen\cy_pins_v2_20</v>
 <v>drejeknap\drejeknappelegen\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 <v>drejeknap\drejeknappelegen\CyStatusReg_v1_90.pdf</v>
 <v>drejeknap\drejeknappelegen\Debouncer_v1_0</v>
 <v>drejeknap\drejeknappelegen\Debouncer_v1_0\Debouncer_v1_0.pdf</v>
 <v>drejeknap\drejeknappelegen\PWM_v3_30.pdf</v>
+<v>drejeknap\drejeknappelegen\Timer_v2_80.pdf</v>
+<v>drejeknap\drejeknappelegen\ZeroTerminal.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>drejeknap</v>
@@ -177,12 +216,15 @@
 <v>drejeknap\drejeknappelegen\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>drejeknap\drejeknappelegen\cy_isr_v1_70</v>
 <v>drejeknap\drejeknappelegen\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>drejeknap\drejeknappelegen\cy_isr_v1_71.pdf</v>
 <v>drejeknap\drejeknappelegen\cy_pins_v2_20</v>
 <v>drejeknap\drejeknappelegen\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 <v>drejeknap\drejeknappelegen\CyStatusReg_v1_90.pdf</v>
 <v>drejeknap\drejeknappelegen\Debouncer_v1_0</v>
 <v>drejeknap\drejeknappelegen\Debouncer_v1_0\Debouncer_v1_0.pdf</v>
 <v>drejeknap\drejeknappelegen\PWM_v3_30.pdf</v>
+<v>drejeknap\drejeknappelegen\Timer_v2_80.pdf</v>
+<v>drejeknap\drejeknappelegen\ZeroTerminal.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -192,22 +234,31 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\drejeknappelegen.cydsn\drejeknappelegen.cydwr" />
-<name v=".\drejeknappelegen.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\drejeknappelegen.cydsn\alarm.c" />
-<name v=".\drejeknappelegen.cydsn\alarm.h" />
-<name v=".\drejeknappelegen.cydsn\accel.c" />
-<name v=".\drejeknappelegen.cydsn\keypad.c" />
 <name v=".\drejeknappelegen.cydsn\lock.c" />
-<name v=".\drejeknappelegen.cydsn\main.c" />
+<name v=".\drejeknappelegen.cydsn\servo.c" />
+<name v=".\drejeknappelegen.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\drejeknappelegen.cydsn\drejeknappelegen.cydwr" />
+<name v=".\drejeknappelegen.cydsn\keypad.c" />
+<name v=".\drejeknappelegen.cydsn\alarm.c" />
 <name v=".\drejeknappelegen.cydsn\servo.h" />
-<name v=".\drejeknappelegen.cydsn\rotary.h" />
 <name v=".\drejeknappelegen.cydsn\rotary.c" />
 <name v=".\drejeknappelegen.cydsn\lock.h" />
-<name v=".\drejeknappelegen.cydsn\servo.c" />
-<name v=".\drejeknappelegen.cydsn\keypad.h" />
+<name v=".\drejeknappelegen.cydsn\accel.c" />
+<name v=".\drejeknappelegen.cydsn\rotary.h" />
 <name v=".\drejeknappelegen.cydsn\accel.h" />
+<name v=".\drejeknappelegen.cydsn\Generated_Source\PSoC5\CyBootAsmGnu.s" />
+<name v=".\drejeknappelegen.cydsn\alarm.h" />
+<name v=".\drejeknappelegen.cydsn\timer.c" />
+<name v=".\drejeknappelegen.cydsn\keypad.h" />
+<name v=".\drejeknappelegen.cydsn\timer.h" />
 <name v=".\drejeknappelegen.cydsn\cyapicallbacks.h" />
+<name v=".\drejeknappelegen.cydsn\todo.txt" />
+<name v=".\drejeknappelegen.cydsn\systick.c" />
+<name v=".\drejeknappelegen.cydsn\systick.h" />
+<name v=".\drejeknappelegen.cydsn\led.c" />
+<name v=".\drejeknappelegen.cydsn\led.h" />
+<name v=".\drejeknappelegen.cydsn\main.c" />
+<name v=".\drejeknappelegen.cydsn\Generated_Source\PSoC5\SysTickTimer.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -215,7 +266,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="756, 392" SelectedTabbedMdiWindow="cad6525b-53ab-4596-a305-074a7cf6238c"><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\drejeknappelegen.cydwr" Guid="b4473f7f-21a4-411a-80fe-7aa25322bd40" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\TopDesign\TopDesign.cysch" Guid="2bbfc2b7-4280-4f57-86db-e3876dc2df94" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\alarm.c" Guid="c20a48ee-64b4-4b6f-8db4-df8cee2f2f89" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\alarm.h" Guid="af87b8e9-7260-4914-91fe-db43a2057dc1" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\accel.c" Guid="d50abe47-e578-4752-b79e-15c4cf8a66f5" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\keypad.c" Guid="1b39f084-5e31-42c8-8d0a-3ab46964632c" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\lock.c" Guid="d0bcbeb1-91be-4d71-b73a-0f96e26a3ace" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\main.c" Guid="3d521638-28b1-4f24-aa65-afa1ea023e7a" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\servo.h" Guid="047ed7c2-3f62-4acf-8e7e-28379ae41511" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\rotary.h" Guid="e5f6a6c9-9098-4ee5-a215-7c09bed833c6" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\rotary.c" Guid="b436d244-106f-456a-b467-73f6f58bdbc9" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\lock.h" Guid="05ecb3da-5c53-418c-a7dc-64c3692a5a8b" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\servo.c" Guid="f347333e-dd27-4d7a-af0b-936219aac5c8" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\keypad.h" Guid="cad6525b-53ab-4596-a305-074a7cf6238c" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\accel.h" Guid="d4795fc8-a853-46b1-9fe9-b1ee8fcb1863" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="6d6e00a7-6db7-499f-a3fd-8404dff81a3b" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\UI\drejeknap - Kopi\drejeknappelegen.cydsn\cyapicallbacks.h" Guid="25ce8982-5ed7-4181-9c19-ba36074a9b62" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="784, 434" SelectedTabbedMdiWindow="126d2f54-7c9a-4d22-9b46-7a0ce05fc35e"><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\lock.c" Guid="46e5f792-724a-436a-a48f-415e86c08739" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\servo.c" Guid="126d2f54-7c9a-4d22-9b46-7a0ce05fc35e" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\TopDesign\TopDesign.cysch" Guid="5ded58c5-bcd2-46df-9aa0-33d1b86d17ee" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\drejeknappelegen.cydwr" Guid="70eb81ee-ebad-41e8-ae0a-daa92a40690b" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\keypad.c" Guid="186039b3-9c54-4f7c-ac30-2d36c89b93eb" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\alarm.c" Guid="41266198-d27f-4167-ba33-f5349b0da4fc" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\servo.h" Guid="976ac6fd-afb5-4512-af3b-fd563e3fb5fc" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\rotary.c" Guid="b95a456a-104e-45e4-8193-4744794dadc6" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\lock.h" Guid="9fbbc8bc-cad6-4a31-8ccc-8e16df3ae49c" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\accel.c" Guid="79a8f93c-da84-4480-9018-81be7dbc770b" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\rotary.h" Guid="7f40e7e0-ca3a-4c24-9706-1e5b7f66ea32" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\accel.h" Guid="2f9361f8-f203-4c76-a166-26aaf34ab9cd" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\Generated_Source\PSoC5\CyBootAsmGnu.s" Guid="5ebc5dda-7cca-4a4e-98a4-ecfdc8b840d1" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\alarm.h" Guid="61a00cde-2820-4b2b-932d-680e3be8ce9a" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\timer.c" Guid="162f338c-6463-4896-9f98-64e4a47a0632" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\keypad.h" Guid="805e1ac4-49a2-4d66-86ac-81bbc9d6b9cb" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\timer.h" Guid="fd175c86-782b-44a8-a8e7-2ee489a65fd7" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\cyapicallbacks.h" Guid="e6b19c8e-d5e8-4d65-b542-7e73ea8f25ab" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\todo.txt" Guid="71cb56b3-29bc-4f48-87e0-bb00b6cc21f0" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\systick.c" Guid="83bce0f9-333a-4608-960c-1b3da1a2692e" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\systick.h" Guid="f253c073-e926-4515-976c-ebdb50b27218" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\led.c" Guid="6e2cdc8b-c161-429a-8493-5235264cb69d" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\led.h" Guid="61ba9506-71a3-4142-8638-b2f6bdb6c6b9" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\main.c" Guid="18aa0169-1fa0-40cb-8883-2f7fddaa4f7d" /><DocumentWindow Key="C:\Users\ke\Gitfis\Elektroteknologi-Projekt-1\Drejeknap mm\drejeknappelegen.cydsn\Generated_Source\PSoC5\SysTickTimer.h" Guid="84ece0f0-d513-4944-867a-5c9334581c5c" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="6d6e00a7-6db7-499f-a3fd-8404dff81a3b" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
