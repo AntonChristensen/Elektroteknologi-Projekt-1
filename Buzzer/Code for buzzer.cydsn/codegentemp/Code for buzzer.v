@@ -1,6 +1,6 @@
 // ======================================================================
 // Code for buzzer.v generated from TopDesign.cysch
-// 05/03/2026 at 23:18
+// 05/04/2026 at 13:49
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -485,7 +485,7 @@ module top ;
 		#(.id("c8a80143-0c31-4f44-9cde-e9bc91d639ce"),
 		  .source_clock_id(""),
 		  .divisor(0),
-		  .period("16666666666666.7"),
+		  .period("25000000000000"),
 		  .is_direct(0),
 		  .is_digital(1))
 		Clock_3

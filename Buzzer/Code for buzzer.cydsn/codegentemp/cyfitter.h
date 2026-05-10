@@ -132,11 +132,11 @@
 #define Clock_3__PM_STBY_MSK 0x04u
 
 /* AlarmPin */
-#define AlarmPin__0__INTTYPE CYREG_PICU2_INTTYPE1
-#define AlarmPin__0__MASK 0x02u
-#define AlarmPin__0__PC CYREG_PRT2_PC1
+#define AlarmPin__0__INTTYPE CYREG_PICU2_INTTYPE0
+#define AlarmPin__0__MASK 0x01u
+#define AlarmPin__0__PC CYREG_PRT2_PC0
 #define AlarmPin__0__PORT 2u
-#define AlarmPin__0__SHIFT 1u
+#define AlarmPin__0__SHIFT 0u
 #define AlarmPin__AG CYREG_PRT2_AG
 #define AlarmPin__AMUX CYREG_PRT2_AMUX
 #define AlarmPin__BIE CYREG_PRT2_BIE
@@ -151,7 +151,7 @@
 #define AlarmPin__INTTYPE_BASE CYDEV_PICU_INTTYPE_PICU2_BASE
 #define AlarmPin__LCD_COM_SEG CYREG_PRT2_LCD_COM_SEG
 #define AlarmPin__LCD_EN CYREG_PRT2_LCD_EN
-#define AlarmPin__MASK 0x02u
+#define AlarmPin__MASK 0x01u
 #define AlarmPin__PORT 2u
 #define AlarmPin__PRT CYREG_PRT2_PRT
 #define AlarmPin__PRTDSI__CAPS_SEL CYREG_PRT2_CAPS_SEL
@@ -162,7 +162,7 @@
 #define AlarmPin__PRTDSI__OUT_SEL1 CYREG_PRT2_OUT_SEL1
 #define AlarmPin__PRTDSI__SYNC_OUT CYREG_PRT2_SYNC_OUT
 #define AlarmPin__PS CYREG_PRT2_PS
-#define AlarmPin__SHIFT 1u
+#define AlarmPin__SHIFT 0u
 #define AlarmPin__SLW CYREG_PRT2_SLW
 
 /* Miscellaneous */

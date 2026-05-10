@@ -205,8 +205,8 @@ net Net_187
 	switch ":dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:85,80_f"
 	switch "IStub-:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v81+:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v83+:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v85"
 	switch "Stub-:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v81+:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v83+:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v85==>:ioport2:inputs1_mux.in_1"
-	switch ":ioport2:inputs1_mux.pin1__pin_input==>:ioport2:pin1.pin_input"
-	term   ":ioport2:pin1.pin_input"
+	switch ":ioport2:inputs1_mux.pin0__pin_input==>:ioport2:pin0.pin_input"
+	term   ":ioport2:pin0.pin_input"
 end Net_187
 net \PWM:PWMUDB:status_3\
 	term   ":udb@[UDB=(1,4)]:dp_wrapper:datapath.f1_blk_stat_comb"

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
   55 001a 01       		.byte	1
   56 001b 40       		.byte	64
   57 001c 01       		.byte	1
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 2
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 2
 
 
   58 001d 17       		.byte	23
@@ -93,7 +93,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
   87 003a 01       		.byte	1
   88 003b 40       		.byte	64
   89 003c 10       		.byte	16
-  90 003d 02       		.byte	2
+  90 003d 01       		.byte	1
   91 003e 8C       		.byte	-116
   92 003f 0D       		.byte	13
   93 0040 E8       		.byte	-24
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  112 0053 01       		.byte	1
  113 0054 0E       		.byte	14
  114 0055 02       		.byte	2
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 3
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 3
 
 
  115 0056 16       		.byte	22
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  169 008c 58       		.byte	88
  170 008d 04       		.byte	4
  171 008e 59       		.byte	89
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 4
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 4
 
 
  172 008f 04       		.byte	4
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  226 00c5 20       		.byte	32
  227 00c6 37       		.byte	55
  228 00c7 20       		.byte	32
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 5
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 5
 
 
  229 00c8 3F       		.byte	63
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  283 00fe 23       		.byte	35
  284 00ff 20       		.byte	32
  285 0100 25       		.byte	37
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 6
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 6
 
 
  286 0101 80       		.byte	-128
@@ -325,10 +325,10 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  307 0116 00       		.byte	0
  308 0117 00       		.byte	0
  309 0118 00       		.byte	0
- 310 0119 02       		.byte	2
- 311 011a 02       		.byte	2
+ 310 0119 01       		.byte	1
+ 311 011a 01       		.byte	1
  312 011b 00       		.byte	0
- 313 011c 02       		.byte	2
+ 313 011c 01       		.byte	1
  314 011d 00       		.byte	0
  315 011e 00       		.byte	0
  316 011f 00       		.byte	0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  340 0000 00       		.byte	0
  341 0001 01       		.byte	1
  342 0002 2E       		.byte	46
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 7
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 7
 
 
  343 0003 16       		.byte	22
@@ -394,13 +394,13 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  369 000b 01       		.uleb128 0x1
  370 000c 24000000 		.4byte	.LASF17
  371 0010 0C       		.byte	0xc
- 372 0011 C1010000 		.4byte	.LASF18
- 373 0015 D7000000 		.4byte	.LASF19
+ 372 0011 E1010000 		.4byte	.LASF18
+ 373 0015 48010000 		.4byte	.LASF19
  374 0019 00000000 		.4byte	.Ldebug_line0
  375 001d 02       		.uleb128 0x2
  376 001e 01       		.byte	0x1
  377 001f 06       		.byte	0x6
- 378 0020 B5010000 		.4byte	.LASF0
+ 378 0020 D5010000 		.4byte	.LASF0
  379 0024 03       		.uleb128 0x3
  380 0025 00000000 		.4byte	.LASF9
  381 0029 01       		.byte	0x1
@@ -413,18 +413,18 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  388 0036 02       		.uleb128 0x2
  389 0037 02       		.byte	0x2
  390 0038 05       		.byte	0x5
- 391 0039 A2010000 		.4byte	.LASF2
+ 391 0039 C2010000 		.4byte	.LASF2
  392 003d 02       		.uleb128 0x2
  393 003e 02       		.byte	0x2
  394 003f 07       		.byte	0x7
  395 0040 C4000000 		.4byte	.LASF3
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 8
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 8
 
 
  396 0044 02       		.uleb128 0x2
  397 0045 04       		.byte	0x4
  398 0046 05       		.byte	0x5
- 399 0047 AC010000 		.4byte	.LASF4
+ 399 0047 CC010000 		.4byte	.LASF4
  400 004b 02       		.uleb128 0x2
  401 004c 04       		.byte	0x4
  402 004d 07       		.byte	0x7
@@ -432,11 +432,11 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  404 0052 02       		.uleb128 0x2
  405 0053 08       		.byte	0x8
  406 0054 05       		.byte	0x5
- 407 0055 94010000 		.4byte	.LASF6
+ 407 0055 B4010000 		.4byte	.LASF6
  408 0059 02       		.uleb128 0x2
  409 005a 08       		.byte	0x8
  410 005b 07       		.byte	0x7
- 411 005c 49010000 		.4byte	.LASF7
+ 411 005c 06010000 		.4byte	.LASF7
  412 0060 04       		.uleb128 0x4
  413 0061 04       		.byte	0x4
  414 0062 05       		.byte	0x5
@@ -444,9 +444,9 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  416 0067 02       		.uleb128 0x2
  417 0068 04       		.byte	0x4
  418 0069 07       		.byte	0x7
- 419 006a 3C010000 		.4byte	.LASF8
+ 419 006a F9000000 		.4byte	.LASF8
  420 006e 03       		.uleb128 0x3
- 421 006f 60010000 		.4byte	.LASF10
+ 421 006f 1D010000 		.4byte	.LASF10
  422 0073 02       		.byte	0x2
  423 0074 18       		.byte	0x18
  424 0075 24000000 		.4byte	0x24
@@ -460,11 +460,11 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  432 008a 02       		.uleb128 0x2
  433 008b 04       		.byte	0x4
  434 008c 07       		.byte	0x7
- 435 008d 8B010000 		.4byte	.LASF11
+ 435 008d AB010000 		.4byte	.LASF11
  436 0091 07       		.uleb128 0x7
  437 0092 6E000000 		.4byte	0x6e
  438 0096 08       		.uleb128 0x8
- 439 0097 2A010000 		.4byte	.LASF12
+ 439 0097 E7000000 		.4byte	.LASF12
  440 009b 03       		.byte	0x3
  441 009c 1F       		.byte	0x1f
  442 009d A7000000 		.4byte	0xa7
@@ -478,13 +478,13 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  450 00b1 BC000000 		.4byte	0xbc
  451 00b5 09       		.uleb128 0x9
  452 00b6 8A000000 		.4byte	0x8a
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 9
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 9
 
 
  453 00ba 03       		.byte	0x3
  454 00bb 00       		.byte	0
  455 00bc 08       		.uleb128 0x8
- 456 00bd 1A010000 		.4byte	.LASF13
+ 456 00bd D7000000 		.4byte	.LASF13
  457 00c1 03       		.byte	0x3
  458 00c2 50       		.byte	0x50
  459 00c3 CD000000 		.4byte	0xcd
@@ -494,7 +494,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  463 00cd 07       		.uleb128 0x7
  464 00ce AC000000 		.4byte	0xac
  465 00d2 08       		.uleb128 0x8
- 466 00d3 7D010000 		.4byte	.LASF14
+ 466 00d3 3A010000 		.4byte	.LASF14
  467 00d7 03       		.byte	0x3
  468 00d8 5E       		.byte	0x5e
  469 00d9 E3000000 		.4byte	0xe3
@@ -511,7 +511,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  480 00f6 FF       		.byte	0xff
  481 00f7 00       		.byte	0
  482 00f8 08       		.uleb128 0x8
- 483 00f9 68010000 		.4byte	.LASF15
+ 483 00f9 25010000 		.4byte	.LASF15
  484 00fd 03       		.byte	0x3
  485 00fe 6C       		.byte	0x6c
  486 00ff 09010000 		.4byte	0x109
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  507 012f 07       		.uleb128 0x7
  508 0130 0E010000 		.4byte	0x10e
  509 0134 00       		.byte	0
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 10
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 10
 
 
  510              		.section	.debug_abbrev,"",%progbits
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  564 0034 01       		.byte	0x1
  565 0035 49       		.uleb128 0x49
  566 0036 13       		.uleb128 0x13
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 11
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 11
 
 
  567 0037 01       		.uleb128 0x1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  621 000e 0000     		.2byte	0
  622 0010 00000000 		.4byte	0
  623 0014 00000000 		.4byte	0
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 12
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 12
 
 
  624              		.section	.debug_line,"",%progbits
@@ -709,84 +709,85 @@ ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 1
  640      7369676E 
  640      65642069 
  640      6E7400
- 641              	.LASF19:
- 642 00d7 433A5C55 		.ascii	"C:\\Users\\Anton\\Documents\\PSoC Creator\\Buzzer\\"
- 642      73657273 
- 642      5C416E74 
- 642      6F6E5C44 
- 642      6F63756D 
- 643 0104 436F6465 		.ascii	"Code for buzzer.cydsn\000"
- 643      20666F72 
- 643      2062757A 
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 13
+ 641              	.LASF13:
+ 642 00d7 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 642      6574615F 
+ 642      63757374 
+ 642      6E766C00 
+ 643              	.LASF12:
+ 644 00e7 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 644      6574615F 
+ 644      636F6E66 
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 13
 
 
- 643      7A65722E 
- 643      63796473 
- 644              	.LASF13:
- 645 011a 63795F6D 		.ascii	"cy_meta_custnvl\000"
- 645      6574615F 
- 645      63757374 
- 645      6E766C00 
- 646              	.LASF12:
- 647 012a 63795F6D 		.ascii	"cy_meta_configecc\000"
- 647      6574615F 
- 647      636F6E66 
- 647      69676563 
- 647      6300
- 648              	.LASF8:
- 649 013c 756E7369 		.ascii	"unsigned int\000"
- 649      676E6564 
- 649      20696E74 
- 649      00
- 650              	.LASF7:
- 651 0149 6C6F6E67 		.ascii	"long long unsigned int\000"
- 651      206C6F6E 
- 651      6720756E 
- 651      7369676E 
- 651      65642069 
- 652              	.LASF10:
- 653 0160 75696E74 		.ascii	"uint8_t\000"
- 653      385F7400 
- 654              	.LASF15:
- 655 0168 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 655      6574615F 
- 655      666C6173 
- 655      6870726F 
- 655      74656374 
- 656              	.LASF14:
- 657 017d 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 657      6574615F 
- 657      776F6E76 
- 657      6C00
- 658              	.LASF11:
- 659 018b 73697A65 		.ascii	"sizetype\000"
- 659      74797065 
- 659      00
- 660              	.LASF6:
- 661 0194 6C6F6E67 		.ascii	"long long int\000"
- 661      206C6F6E 
- 661      6720696E 
- 661      7400
- 662              	.LASF2:
- 663 01a2 73686F72 		.ascii	"short int\000"
- 663      7420696E 
- 663      7400
- 664              	.LASF4:
- 665 01ac 6C6F6E67 		.ascii	"long int\000"
- 665      20696E74 
- 665      00
- 666              	.LASF0:
- 667 01b5 7369676E 		.ascii	"signed char\000"
-ARM GAS  C:\Users\Anton\AppData\Local\Temp\ccHR6zIj.s 			page 14
+ 644      69676563 
+ 644      6300
+ 645              	.LASF8:
+ 646 00f9 756E7369 		.ascii	"unsigned int\000"
+ 646      676E6564 
+ 646      20696E74 
+ 646      00
+ 647              	.LASF7:
+ 648 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 648      206C6F6E 
+ 648      6720756E 
+ 648      7369676E 
+ 648      65642069 
+ 649              	.LASF10:
+ 650 011d 75696E74 		.ascii	"uint8_t\000"
+ 650      385F7400 
+ 651              	.LASF15:
+ 652 0125 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 652      6574615F 
+ 652      666C6173 
+ 652      6870726F 
+ 652      74656374 
+ 653              	.LASF14:
+ 654 013a 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 654      6574615F 
+ 654      776F6E76 
+ 654      6C00
+ 655              	.LASF19:
+ 656 0148 433A5C55 		.ascii	"C:\\Users\\Anton\\Documents\\GitHub repository\\Ele"
+ 656      73657273 
+ 656      5C416E74 
+ 656      6F6E5C44 
+ 656      6F63756D 
+ 657 0176 6B74726F 		.ascii	"ktroteknologi-Projekt-1\\Buzzer\\Code for buzzer.cy"
+ 657      74656B6E 
+ 657      6F6C6F67 
+ 657      692D5072 
+ 657      6F6A656B 
+ 658 01a7 64736E00 		.ascii	"dsn\000"
+ 659              	.LASF11:
+ 660 01ab 73697A65 		.ascii	"sizetype\000"
+ 660      74797065 
+ 660      00
+ 661              	.LASF6:
+ 662 01b4 6C6F6E67 		.ascii	"long long int\000"
+ 662      206C6F6E 
+ 662      6720696E 
+ 662      7400
+ 663              	.LASF2:
+ 664 01c2 73686F72 		.ascii	"short int\000"
+ 664      7420696E 
+ 664      7400
+ 665              	.LASF4:
+ 666 01cc 6C6F6E67 		.ascii	"long int\000"
+ 666      20696E74 
+ 666      00
+ 667              	.LASF0:
+ARM GAS  C:\Users\Anton\AppData\Local\Temp\cc7Ioyoo.s 			page 14
 
 
- 667      65642063 
- 667      68617200 
- 668              	.LASF18:
- 669 01c1 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
- 669      72617465 
- 669      645F536F 
- 669      75726365 
- 669      5C50536F 
- 670              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 668 01d5 7369676E 		.ascii	"signed char\000"
+ 668      65642063 
+ 668      68617200 
+ 669              	.LASF18:
+ 670 01e1 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 670      72617465 
+ 670      645F536F 
+ 670      75726365 
+ 670      5C50536F 
+ 671              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
